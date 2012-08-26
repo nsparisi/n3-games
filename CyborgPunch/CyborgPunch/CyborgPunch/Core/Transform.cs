@@ -29,6 +29,9 @@ namespace CyborgPunch.Core
                 {
                     this.parent.AddChild(this);
                 }
+
+
+                DetermineLocalPosition();
             }
         }
 
