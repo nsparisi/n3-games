@@ -50,6 +50,29 @@ namespace CyborgPunch.Game.Enemies
         public void Die()
         {
             EnemyManager.Instance.UnregisterEnemy(this);
+
+            Blob head = RemoveBodyPart(LimbType.Head);
+            head.transform.Parent = null;
+            head.GetComponent<LimbVisual>().FlyInRandomDirection();
+
+            Blob lLeg = RemoveBodyPart(LimbType.LeftArm);
+            lLeg.transform.Parent = null;
+            lLeg.GetComponent<LimbVisual>().FlyInRandomDirection();
+
+            Blob rLeg = RemoveBodyPart(LimbType.LeftLeg);
+            rLeg.transform.Parent = null;
+            rLeg.GetComponent<LimbVisual>().FlyInRandomDirection();
+
+            Blob rArm = RemoveBodyPart(LimbType.RightArm);
+            rArm.transform.Parent = null;
+            rArm.GetComponent<LimbVisual>().FlyInRandomDirection();
+
+            Blob lArm = RemoveBodyPart(LimbType.RightLeg);
+            lArm.transform.Parent = null;
+            lArm.GetComponent<LimbVisual>().FlyInRandomDirection();
+
+
+
             blob.Destroy();
         }
 

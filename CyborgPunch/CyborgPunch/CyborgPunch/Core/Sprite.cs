@@ -13,6 +13,7 @@ namespace CyborgPunch.Core
         public Vector2 origin;
         public float rotation;
         public float z;
+        public float scale;
 
         private Rectangle rectangle;
         private Rectangle source;
@@ -24,10 +25,11 @@ namespace CyborgPunch.Core
             color = Color.White;
             rectangle = new Rectangle();
             source = new Rectangle(0, 0, 1, 1);
+            scale = 1;
         }
 
         public Sprite(Texture2D tex)
-            : base()
+            : this()
         {
             texture = tex;
             color = Color.White;
@@ -46,8 +48,8 @@ namespace CyborgPunch.Core
             rectangle = new Rectangle(
                 (int)(blob.transform.Position.X + offset.X),
                 (int)(blob.transform.Position.Y + offset.Y),
-                width, 
-                height);
+                (int)(width * scale),
+                (int)(height * scale));
 
         }
 
