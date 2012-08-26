@@ -12,6 +12,9 @@ namespace CyborgPunch.Game.Limbs
     public class Damage : Component
     {
         public int damageValue;
+        public float shakeStrength = 10f;
+        public int shakeFrames = 20;
+        public float stickLength = .1f;
 
         public Damage(int damage)
             : base()
@@ -35,8 +38,8 @@ namespace CyborgPunch.Game.Limbs
                 {
                     //hit enemy
                     enemies[i].Hit(this);
-                    Shake.ShakeIt(10, 20);
-                    BlobManager.Instance.PauseForDuration(0.10f);
+                    Shake.ShakeIt(shakeStrength, shakeFrames);
+                    BlobManager.Instance.PauseForDuration(stickLength);
                 }
             }
         }

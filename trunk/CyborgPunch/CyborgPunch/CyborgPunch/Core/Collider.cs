@@ -42,5 +42,10 @@ namespace CyborgPunch.Core
             Gizmos.color = Color.Green;
             Gizmos.DrawRectangle(spriteBatch, bounds);
         }
+
+        public Vector2 Center()
+        {
+            return new Vector2(bounds.Center.X, bounds.Center.Y);
+        }
     }
 }
