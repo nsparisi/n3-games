@@ -1,0 +1,42 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace CyborgPunch.Core
+{
+    public class Collider : Component
+    {
+        public Rectangle bounds;
+
+        public Collider() : base()
+        {
+        }
+
+        public virtual bool Collides(Collider actor)
+        {
+            if (actor == null)
+                return false;
+
+            return actor.bounds.Intersects(bounds);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            RefreshRectangle();
+        }
+
+        private void RefreshRectangle()
+        {
+            bounds.X = (int)blob.transform.Position.X;
+            bounds.Y = (int)blob.transform.Position.Y;
+        }
+
+        public override void DrawDebug(SpriteBatch spriteBatch)
+        {
+            base.DrawDebug(spriteBatch);
+
+            Gizmos.color = Color.Green;
+            Gizmos.DrawRectangle(spriteBatch, bounds);
+        }
+    }
+}
