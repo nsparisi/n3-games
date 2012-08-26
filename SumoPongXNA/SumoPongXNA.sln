@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SumoPongXNA", "SumoPongXNA\SumoPongXNA\SumoPongXNA.csproj", "{2C6543A0-53D4-4949-82F8-E0183C279268}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "SumoPongXNAContent", "SumoPongXNA\SumoPongXNAContent\SumoPongXNAContent.contentproj", "{1815FB90-4EF1-48DB-B187-125654BFD751}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C6543A0-53D4-4949-82F8-E0183C279268}.Debug|x86.ActiveCfg = Debug|x86
+		{2C6543A0-53D4-4949-82F8-E0183C279268}.Debug|x86.Build.0 = Debug|x86
+		{2C6543A0-53D4-4949-82F8-E0183C279268}.Release|x86.ActiveCfg = Release|x86
+		{2C6543A0-53D4-4949-82F8-E0183C279268}.Release|x86.Build.0 = Release|x86
+		{1815FB90-4EF1-48DB-B187-125654BFD751}.Debug|x86.ActiveCfg = Debug|x86
+		{1815FB90-4EF1-48DB-B187-125654BFD751}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
