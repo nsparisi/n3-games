@@ -59,6 +59,29 @@ namespace CyborgPunch.Game.Enemies
             direction.Normalize();
             blob.transform.Translate(direction * speed * Time.deltaTime);
 
+            if (Math.Abs(direction.X) > Math.Abs(direction.Y))
+            {
+                if (direction.X <= 0)
+                {
+                    SetFacing(Facing.Left);
+                }
+                else
+                {
+                    SetFacing(Facing.Right);
+                }
+            }
+            else
+            {
+                if (direction.Y <= 0)
+                {
+                    SetFacing(Facing.Up);
+                }
+                else
+                {
+                    SetFacing(Facing.Down);
+                }
+            }
+
             if (blob.Collides(GameManager.Instance.dude))
             {
                 //kill dude

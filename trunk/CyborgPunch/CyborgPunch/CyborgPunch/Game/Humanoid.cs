@@ -6,6 +6,7 @@ using CyborgPunch.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using CyborgPunch.Game.Limbs;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace CyborgPunch.Game
 {
@@ -120,6 +121,70 @@ namespace CyborgPunch.Game
         public Facing GetFacing()
         {
             return facing;
+        }
+
+        public void SetFacing(Facing face)
+        {
+            this.facing = face;
+
+            Texture2D texTorso = null;
+            Texture2D texHead = null;
+            Texture2D texLeftArm = null;
+            Texture2D texRightArm = null;
+            Texture2D texLeftLeg = null;
+            Texture2D texRightLeg = null;
+
+            if (face == Facing.Down)
+            {
+                texTorso = ResourceManager.TEXTURE_HUMAN_DOWN_TORSO;
+                texHead = ResourceManager.TEXTURE_HUMAN_DOWN_HEAD;
+                texLeftArm = ResourceManager.TEXTURE_HUMAN_DOWN_LEFTARM;
+                texRightArm = ResourceManager.TEXTURE_HUMAN_DOWN_RIGHTARM;
+                texLeftLeg = ResourceManager.TEXTURE_HUMAN_DOWN_LEFTLEG;
+                texRightLeg = ResourceManager.TEXTURE_HUMAN_DOWN_RIGHTLEG;
+            }
+            else if (face == Facing.Up)
+            {
+                texTorso = ResourceManager.TEXTURE_HUMAN_UP_TORSO;
+                texHead = ResourceManager.TEXTURE_HUMAN_UP_HEAD;
+                texLeftArm = ResourceManager.TEXTURE_HUMAN_UP_LEFTARM;
+                texRightArm = ResourceManager.TEXTURE_HUMAN_UP_RIGHTARM;
+                texLeftLeg = ResourceManager.TEXTURE_HUMAN_UP_LEFTLEG;
+                texRightLeg = ResourceManager.TEXTURE_HUMAN_UP_RIGHTLEG;
+            }
+            else if (face == Facing.Left)
+            {
+                texTorso = ResourceManager.TEXTURE_HUMAN_LEFT_TORSO;
+                texHead = ResourceManager.TEXTURE_HUMAN_LEFT_HEAD;
+                texLeftArm = ResourceManager.TEXTURE_HUMAN_LEFT_LEFTARM;
+                texRightArm = null;
+                texLeftLeg = ResourceManager.TEXTURE_HUMAN_LEFT_LEFTLEG;
+                texRightLeg = null;
+            }
+            else if (face == Facing.Right)
+            {
+                texTorso = ResourceManager.TEXTURE_HUMAN_RIGHT_TORSO;
+                texHead = ResourceManager.TEXTURE_HUMAN_RIGHT_HEAD;
+                texLeftArm = null;
+                texRightArm = ResourceManager.TEXTURE_HUMAN_RIGHT_RIGHTARM;
+                texLeftLeg = null;
+                texRightLeg = ResourceManager.TEXTURE_HUMAN_RIGHT_RIGHTLEG;
+            }
+
+            SetBodyPartTexture(LimbType.Torso, texTorso);
+            SetBodyPartTexture(LimbType.Head, texHead);
+            SetBodyPartTexture(LimbType.LeftArm, texLeftArm);
+            SetBodyPartTexture(LimbType.RightArm, texRightArm);
+            SetBodyPartTexture(LimbType.LeftLeg, texLeftLeg);
+            SetBodyPartTexture(LimbType.RightLeg, texRightLeg);
+        }
+
+        void SetBodyPartTexture(LimbType type, Texture2D tex)
+        {
+            if (GetBodyPart(type) != null)
+            {
+                GetBodyPart(type).GetComponent<Sprite>().texture = tex;
+            }
         }
     }
 }
