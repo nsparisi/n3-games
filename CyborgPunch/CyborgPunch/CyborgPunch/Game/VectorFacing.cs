@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace CyborgPunch.Game
 {
-    public enum Facing { Up = 0, Down = 1, Left = 2, Right = 3}
+    public enum Facing { Up = 0, Left = 1, Down = 2, Right = 3}
     public class VectorFacing
     {
         //assumes vector given is for facing down
@@ -34,6 +34,46 @@ namespace CyborgPunch.Game
             }
 
             return newVector;
+        }
+
+        public static Vector2 RotateVector(Vector2 vector, float rotation)
+        {
+            return Vector2.Transform(vector, Quaternion.CreateFromAxisAngle(Vector3.UnitZ, rotation));
+        }
+
+        //turn left or right
+        public static Facing FacingTurnFacing(Facing facing, Facing turn)
+        {
+            Facing retVal = Facing.Down;
+            switch (facing)
+            {
+                case Facing.Up:
+                    if (turn == Facing.Left)
+                        retVal = Facing.Left;
+                    else
+                        retVal = Facing.Right;
+                    break;
+                case Facing.Left:
+                    if (turn == Facing.Left)
+                        retVal = Facing.Down;
+                    else
+                        retVal = Facing.Up;
+                    break;
+                case Facing.Right:
+                    if (turn == Facing.Left)
+                        retVal = Facing.Up;
+                    else
+                        retVal = Facing.Down;
+                    break;
+                case Facing.Down:
+                    if (turn == Facing.Left)
+                        retVal = Facing.Right;
+                    else
+                        retVal = Facing.Left;
+                    break;
+            }
+
+            return retVal;
         }
     }
 }

@@ -74,5 +74,10 @@ namespace CyborgPunch.Game
         {
             secondLabel.GetComponent<Label>().text = thing;
         }
+
+        public bool InVisualBounds(Vector2 checkPosition)
+        {
+            return checkPosition.X > 0 && checkPosition.Y > 0 && checkPosition.X < Constants.GAME_WIDTH && checkPosition.Y < Constants.GAME_HEIGHT;
+        }
     }
 }

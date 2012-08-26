@@ -115,6 +115,7 @@
     <Compile Include="Core\Gizmos.cs" />
     <Compile Include="Core\Debug.cs" />
     <Compile Include="Core\Label.cs" />
+    <Compile Include="Game\Bullet.cs" />
     <Compile Include="Game\Enemies\EnemyManager.cs" />
     <Compile Include="Game\Enemies\EnemySpawner.cs" />
     <Compile Include="Game\Enemies\Enemy.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Game\DudeMovement.cs" />
     <Compile Include="Game\Limbs\LimbVisual.cs" />
     <Compile Include="Game\Limbs\Damage.cs" />
+    <Compile Include="Game\Limbs\GunLeg.cs" />
     <Compile Include="Game\Limbs\HumanArm.cs" />
     <Compile Include="Game\Limbs\LimbPunch.cs" />
     <Compile Include="Game\ResourceManager.cs" />
