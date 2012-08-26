@@ -12,6 +12,7 @@ namespace CyborgPunch.Game.Limbs
     {
         protected float chargePower;
         protected float chargeSpeed;
+        protected float chargeMax;
         protected bool thrown;
         protected bool keyWasDown;
         protected Dude body;
@@ -66,7 +67,7 @@ namespace CyborgPunch.Game.Limbs
         {
             if (keyWasDown && keyIsDown)
             {
-                chargePower += chargeSpeed;
+                IncreaseCharge();
             }
             else if (!keyWasDown && keyIsDown)
             {
@@ -76,6 +77,14 @@ namespace CyborgPunch.Game.Limbs
             {
                 Throw();
             }
+        }
+
+        public void IncreaseCharge()
+        {
+            chargePower += chargeSpeed * Time.deltaTime;
+            chargePower = MathHelper.Min(chargePower, chargeMax);
+
+            GameManager.Instance.SetSecondLabel(chargePower.ToString());
         }
 
         public abstract void ThrowUpdate();

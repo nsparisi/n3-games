@@ -35,7 +35,7 @@ namespace CyborgPunch.Game
 
             secondLabel = new Blob();
             secondLabel.AddComponent(new Label());
-            secondLabel.transform.Position = new Vector2(300, 20);
+            secondLabel.transform.Position = new Vector2(300, 40);
             secondLabel.GetComponent<Label>().SetAlign(Label.AlignType.Right);
 
             dude = new Blob();
@@ -68,6 +68,11 @@ namespace CyborgPunch.Game
                 counts = 0;
                 label.GetComponent<Label>().text = fps.ToString("00.0");
             }
+        }
+
+        public void SetSecondLabel(string thing)
+        {
+            secondLabel.GetComponent<Label>().text = thing;
         }
     }
 }

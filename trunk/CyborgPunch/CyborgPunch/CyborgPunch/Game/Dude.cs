@@ -20,8 +20,8 @@ namespace CyborgPunch.Game
         {
             base.Start();
 
-            Blob arm = GetBodyPart(LimbType.LeftArm);
-            arm.AddComponent(new HumanArm(this, LimbType.LeftArm, KeyBindings.ArmLeftAction));
+            GetBodyPart(LimbType.LeftArm).AddComponent(new HumanArm(this, LimbType.LeftArm, KeyBindings.ArmLeftAction));
+            GetBodyPart(LimbType.RightArm).AddComponent(new HumanArm(this, LimbType.RightArm, KeyBindings.ArmRightAction));
         }
 
         public override void Update()
