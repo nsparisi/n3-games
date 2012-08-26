@@ -19,6 +19,19 @@ namespace CyborgPunch.Game.Limbs
         protected Keys activationKey;
         protected LimbType limbType;
 
+        public float restitutionSpeed = 4f;
+        public Vector2 currentAnchor;
+        public Vector2 offset;
+
+        Vector2 chargeMove = new Vector2(0,-10);
+
+        public override void Start()
+        {
+            base.Start();
+
+            currentAnchor = blob.transform.LocalPosition;
+        }
+
         public LimbPunch(Dude body, LimbType limbType, Keys activationKey) : base()
         {
             this.limbType = limbType;
@@ -41,6 +54,12 @@ namespace CyborgPunch.Game.Limbs
             KeyboardState keyState = Keyboard.GetState();
             bool keyIsDown = keyState.IsKeyDown(activationKey);
 
+            if (!keyIsDown)
+            {
+                offset = Vector2.Lerp(offset, Vector2.Zero, Time.deltaTime*restitutionSpeed);
+                blob.transform.LocalPosition = currentAnchor + offset;
+            }
+
             if (keyState.IsKeyDown(KeyBindings.LimbChangeModifier) || keyState.IsKeyDown(KeyBindings.LimbChangeAlternate))
             {
                 ThrowCharge(keyIsDown);
@@ -53,11 +72,15 @@ namespace CyborgPunch.Game.Limbs
                 }
                 else if (!keyWasDown && keyIsDown)
                 {
+                    StartCharge();
                     StartPunch();
                 }
                 else if (keyWasDown && !keyIsDown)
                 {
+                    ReleaseCharge();
                     EndPunch();
+                    chargePower = 0;
+                    GameManager.Instance.SetSecondLabel(chargePower.ToString("0.00"));
                 }
             }
             keyWasDown = keyState.IsKeyDown(activationKey);
@@ -71,20 +94,35 @@ namespace CyborgPunch.Game.Limbs
             }
             else if (!keyWasDown && keyIsDown)
             {
-                //???
+                StartCharge();
             }
             else if (keyWasDown && !keyIsDown)
             {
+                ReleaseCharge();
                 Throw();
             }
+        }
+
+        public void StartCharge()
+        {
+            offset = Vector2.Zero;
         }
 
         public void IncreaseCharge()
         {
             chargePower += chargeSpeed * Time.deltaTime;
             chargePower = MathHelper.Min(chargePower, chargeMax);
+            GameManager.Instance.SetSecondLabel(chargePower.ToString("0.00"));
 
-            GameManager.Instance.SetSecondLabel(chargePower.ToString());
+            Vector2 chargeTranslationVector = VectorFacing.RotateVectorToFacing(chargeMove, body.GetFacing());
+            offset = chargeTranslationVector*(chargePower / chargeMax);
+            blob.transform.LocalPosition = offset + currentAnchor;
+        }
+
+        public void ReleaseCharge()
+        {
+            offset *= -1;
+            blob.transform.LocalPosition = currentAnchor + offset;
         }
 
         public abstract void ThrowUpdate();

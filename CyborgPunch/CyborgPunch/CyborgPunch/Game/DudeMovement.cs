@@ -11,7 +11,7 @@ namespace CyborgPunch.Game
     class DudeMovement : Component
     {
 
-        public float speed = 140;
+        public float speed = 300;
 
         public DudeMovement()
             : base()
