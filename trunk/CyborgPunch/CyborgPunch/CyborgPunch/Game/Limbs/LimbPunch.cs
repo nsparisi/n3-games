@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using CyborgPunch.Core;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
 
 namespace CyborgPunch.Game.Limbs
 {
     abstract class LimbPunch : Component
     {
-        float chargePower;
-        float chargeSpeed;
-        bool thrown;
-        Dude body;
-        Keys activationKey;
-        LimbType limbType;
-
-        bool keyWasDown;
+        protected float chargePower;
+        protected float chargeSpeed;
+        protected bool thrown;
+        protected bool keyWasDown;
+        protected Dude body;
+        protected Keys activationKey;
+        protected LimbType limbType;
 
         public LimbPunch(Dude body, LimbType limbType, Keys activationKey) : base()
         {
@@ -87,6 +87,7 @@ namespace CyborgPunch.Game.Limbs
         {
             thrown = true;
             body.RemoveBodyPart(limbType);
+            blob.transform.Parent = null;
         }
     }
 }
