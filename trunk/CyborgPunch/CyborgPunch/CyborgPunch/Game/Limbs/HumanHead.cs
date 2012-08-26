@@ -8,28 +8,29 @@ using CyborgPunch.Core;
 
 namespace CyborgPunch.Game.Limbs
 {
-    class HumanArm : LimbPunch
+    class HumanHead : LimbPunch
     {
+        Vector2 velocity;
         float maxThrowTime;
         float throwTime;
-        Vector2 velocity;
         float sweetMin;
         float sweetMax;
         float sweetBonus;
 
-        public HumanArm(Dude body, LimbType limbType, Keys activationKey)
+        public HumanHead(Dude body, LimbType limbType, Keys activationKey)
             : base(body, limbType, activationKey)
         {
             velocity = new Vector2(0, 420);
 
             maxThrowTime = .75f;
             throwTime = 0f;
-            sweetMin = .7f;
-            sweetMax = .9f;
-            sweetBonus = 2f;
+            sweetMin = .1f;
+            sweetMax = .4f;
+            sweetBonus = 1f;
             chargePower = 0f;
-            chargeSpeed = 2f;
-            chargeMax = 1;
+            chargeSpeed = 5f;
+            chargeMax = .5f;
+            chargeMove = new Vector2(0, -5);
         }
 
         public override void Throw()
@@ -41,7 +42,7 @@ namespace CyborgPunch.Game.Limbs
             {
                 GameManager.Instance.SetSecondLabel("SWEET SHOT");
             }
-            velocity *= chargePower + (IsSweet()?sweetBonus:0f);
+            velocity *= chargePower + (IsSweet() ? sweetBonus : 0f);
         }
 
         public bool IsSweet()
@@ -57,7 +58,7 @@ namespace CyborgPunch.Game.Limbs
                 velocity *= .75f;
                 FadeAway();
             }
-            blob.transform.Translate(velocity*Time.deltaTime);
+            blob.transform.Translate(velocity * Time.deltaTime);
         }
 
         public override void StartPunch()

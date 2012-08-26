@@ -18,6 +18,7 @@ namespace CyborgPunch.Game
         Blob rightArm;
         Blob leftLeg;
         Blob rightLeg;
+        Collider collider;
 
         private Blob[] bodyIndex;
         private Facing facing = Facing.Down;
@@ -76,7 +77,7 @@ namespace CyborgPunch.Game
             SetBodyPart(LimbType.Torso, torso);
 
 
-            Collider collider = new Collider();
+            collider = new Collider();
             collider.bounds = new Rectangle(0, 0, 55, 86);
             blob.AddComponent(collider);
         }
