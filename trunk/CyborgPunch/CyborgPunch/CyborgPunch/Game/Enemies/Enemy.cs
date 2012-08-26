@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CyborgPunch.Core;
 using Microsoft.Xna.Framework;
+using CyborgPunch.Game.Limbs;
 
 namespace CyborgPunch.Game.Enemies
 {
@@ -9,6 +10,7 @@ namespace CyborgPunch.Game.Enemies
     {
         Blob dude;
         public float speed = 70;
+        int health = 1;
 
 
         public Enemy()
@@ -49,6 +51,24 @@ namespace CyborgPunch.Game.Enemies
         {
             EnemyManager.Instance.UnregisterEnemy(this);
             blob.Destroy();
+        }
+
+        public void Hit(Damage damage)
+        {
+            health -= damage.damageValue;
+
+            if (health <= 0)
+            {
+                //die
+                Die();
+            }
+            else
+            {
+                //knockback
+                Vector2 direction = blob.transform.Position - damage.blob.transform.Position;
+                direction.Normalize();
+                blob.transform.Translate(direction * 50);
+            }
         }
 
         public override void Update()
