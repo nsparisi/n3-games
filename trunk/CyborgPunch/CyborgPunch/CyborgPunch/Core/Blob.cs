@@ -70,6 +70,12 @@ namespace CyborgPunch.Core
         public void Destroy()
         {
             BlobManager.Instance.UnregisterBlob(this);
+
+            for (int i = 0; i < transform.Children.Count; i++)
+            {
+                transform.Children[i].blob.Destroy();
+            }
+
         }
 
         public void Update()
