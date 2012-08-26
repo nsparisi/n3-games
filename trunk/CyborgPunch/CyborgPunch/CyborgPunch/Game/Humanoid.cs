@@ -5,6 +5,7 @@ using System.Text;
 using CyborgPunch.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using CyborgPunch.Game.Limbs;
 
 namespace CyborgPunch.Game
 {
@@ -18,6 +19,7 @@ namespace CyborgPunch.Game
         Blob rightLeg;
 
         private Blob[] bodyIndex;
+        private Facing facing = Facing.Down;
 
         public Humanoid()
             : base()
@@ -108,6 +110,11 @@ namespace CyborgPunch.Game
             Blob removed = GetBodyPart(whichLimb);
             SetBodyPart(whichLimb, null);
             return removed;
+        }
+
+        public Facing GetFacing()
+        {
+            return facing;
         }
     }
 }

@@ -26,8 +26,7 @@ namespace CyborgPunch.Game
             {
                 blob.transform.Translate(0, -speed * Time.deltaTime);
             }
-
-            if (Keyboard.GetState().IsKeyDown(KeyBindings.MoveDown))
+            else if (Keyboard.GetState().IsKeyDown(KeyBindings.MoveDown))
             {
                 blob.transform.Translate(0, speed * Time.deltaTime);
             }
@@ -36,8 +35,7 @@ namespace CyborgPunch.Game
             {
                 blob.transform.Translate(-speed * Time.deltaTime, 0);
             }
-
-            if (Keyboard.GetState().IsKeyDown(KeyBindings.MoveRight))
+            else if (Keyboard.GetState().IsKeyDown(KeyBindings.MoveRight))
             {
                 blob.transform.Translate(speed * Time.deltaTime, 0);
             }
