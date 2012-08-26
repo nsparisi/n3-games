@@ -114,7 +114,7 @@ namespace CyborgPunch.Game
                 if (limb.IsMatchingLimb(type))
                 {
                     part.Pickup();
-                    //TODO attach it to arm. or generate a new one, whatever
+                    AddLimbFromLimb(type, limb);
                     return;
                 }
             }
