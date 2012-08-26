@@ -129,6 +129,7 @@
     <Compile Include="Game\CharacterSheet.cs" />
     <Compile Include="Game\Dude.cs" />
     <Compile Include="Game\GameManager.cs" />
+    <Compile Include="Game\VectorFacing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
