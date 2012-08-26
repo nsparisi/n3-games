@@ -12,9 +12,10 @@ namespace CyborgPunch.Game
     {
         public Blob characterSheet;
         public Blob dude;
+        public Blob enemySpawner;
+        public Blob secondLabel;
 
         Blob label;
-        Blob enemySpawner;
 
         public static GameManager Instance { get; private set; }
 
@@ -31,6 +32,11 @@ namespace CyborgPunch.Game
             label.AddComponent(new Label());
             label.transform.Position = new Vector2(300, 20);
             label.GetComponent<Label>().SetAlign(Label.AlignType.Right);
+
+            secondLabel = new Blob();
+            secondLabel.AddComponent(new Label());
+            secondLabel.transform.Position = new Vector2(300, 20);
+            secondLabel.GetComponent<Label>().SetAlign(Label.AlignType.Right);
 
             dude = new Blob();
             Dude dudeComp = new Dude();
