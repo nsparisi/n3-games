@@ -11,7 +11,6 @@ namespace CyborgPunch.Core
         public Transform transform;
         public bool enabled;
 
-        HashSet<Type> componentHash;
         List<Component> components;
 
         private static int IDCount = 0;
@@ -27,7 +26,6 @@ namespace CyborgPunch.Core
 
             this.enabled = true;
             this.components = new List<Component>();
-            this.componentHash = new HashSet<Type>();
 
             this.transform = new Transform();
             AddComponent(transform);
@@ -40,21 +38,17 @@ namespace CyborgPunch.Core
 
         public void AddComponent(Component component)
         {
-            if (componentHash.Add(component.GetType()))
-            {
-                components.Add(component);
-                component.blob = this;
-                component.Start();
-            }
+            components.Add(component);
+            component.blob = this;
+            component.Start();
         }
 
         public void RemoveComponent<T>() where T : Component
         {
             for (int i = 0; i < components.Count; i++)
             {
-                if (components[i].GetType() == typeof(T))
+                if (components[i].GetType() is T)
                 {
-                    componentHash.Remove(typeof(T));
                     components.RemoveAt(i);
                     return;
                 }
@@ -63,14 +57,11 @@ namespace CyborgPunch.Core
 
         public T GetComponent<T>() where T : Component
         {
-            if (componentHash.Contains(typeof(T)))
+            for (int i = 0; i < components.Count; i++)
             {
-                for (int i = 0; i < components.Count; i++)
+                if (components[i] is T)
                 {
-                    if (components[i].GetType() == typeof(T))
-                    {
-                        return (T)components[i];
-                    }
+                    return (T)components[i];
                 }
             }
 

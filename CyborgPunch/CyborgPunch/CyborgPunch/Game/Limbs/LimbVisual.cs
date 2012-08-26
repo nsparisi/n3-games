@@ -12,21 +12,45 @@ namespace CyborgPunch.Game.Limbs
     class LimbVisual : Sprite
     {
         private Texture2D[] facings;
+        private float[] depths;
         private Rectangle[] boundAreas;
+        private Facing currentFacing;
+
 
         public LimbVisual(PartTypes part)
             : base()
         {
             facings = new Texture2D[4];
             boundAreas = new Rectangle[4];
+            depths = new float[4];
             SetPartType(part);
+        }
+
+        public override void Start()
+        {
+            base.Start();
             SetFacing(Facing.Down);
+        }
+
+        public void SetDepths(float[] depths)
+        {
+            this.depths = depths;
+            RefreshDepth();
+        }
+
+        void RefreshDepth()
+        {
+            float iteration = 1f / (1024f * 1024f);
+            float depth = iteration * this.depths[(int)currentFacing];
+            this.z = depth;
         }
 
         public void SetFacing(Facing facing)
         {
+            this.currentFacing = facing;
             texture = facings[(int)facing];
             SetSize(texture.Width, texture.Height);
+            RefreshDepth();
         }
 
         public void SetPartType(PartTypes part)
