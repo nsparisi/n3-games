@@ -35,7 +35,7 @@ namespace CyborgPunch.Game
             float randomDepth = (float)rand.NextDouble();
 
             head = new Blob();
-            Sprite headSprite = new Sprite(ResourceManager.GetSpritePart(LimbType.Head, PartType.Human));
+            Sprite headSprite = new Sprite(ResourceManager.TEXTURE_HUMAN_DOWN_HEAD);
             head.AddComponent(headSprite);
             head.transform.Parent = blob.transform;
             head.transform.Translate(0, 0);
@@ -43,42 +43,42 @@ namespace CyborgPunch.Game
             randomDepth += iteration;
 
             leftArm = new Blob();
-            Sprite laSprite = new Sprite(ResourceManager.GetSpritePart(LimbType.LeftArm, PartType.Human));
+            Sprite laSprite = new Sprite(ResourceManager.TEXTURE_HUMAN_DOWN_LEFTARM);
             leftArm.AddComponent(laSprite);
             leftArm.transform.Parent = blob.transform;
-            leftArm.transform.Translate(7, 41);
+            leftArm.transform.Translate(0, 35);
             laSprite.z = randomDepth + iteration;
             randomDepth += iteration;
 
             rightArm = new Blob();
-            Sprite raSprite = new Sprite(ResourceManager.GetSpritePart(LimbType.RightArm, PartType.Human));
+            Sprite raSprite = new Sprite(ResourceManager.TEXTURE_HUMAN_DOWN_RIGHTARM);
             rightArm.AddComponent(raSprite);
             rightArm.transform.Parent = blob.transform;
-            rightArm.transform.Translate(42, 41);
+            rightArm.transform.Translate(0, 35);
             raSprite.z = randomDepth + iteration;
             randomDepth += iteration;
 
             torso = new Blob();
-            Sprite torsoSprite = new Sprite(ResourceManager.GetSpritePart(LimbType.Torso, PartType.Human));
+            Sprite torsoSprite = new Sprite(ResourceManager.TEXTURE_HUMAN_DOWN_TORSO);
             torso.AddComponent(torsoSprite);
             torso.transform.Parent = blob.transform;
-            torso.transform.Translate(12, 34);
+            torso.transform.Translate(0, 29);
             torsoSprite.z = randomDepth + iteration;
             randomDepth += iteration;
 
             leftLeg = new Blob();
-            Sprite llSprite = new Sprite(ResourceManager.GetSpritePart(LimbType.LeftLeg, PartType.Human));
+            Sprite llSprite = new Sprite(ResourceManager.TEXTURE_HUMAN_DOWN_LEFTLEG);
             leftLeg.AddComponent(llSprite);
             leftLeg.transform.Parent = blob.transform;
-            leftLeg.transform.Translate(17, 53);
+            leftLeg.transform.Translate(0, 55);
             llSprite.z = randomDepth + iteration;
             randomDepth += iteration;
 
             rightLeg = new Blob();
-            Sprite rlSprite = new Sprite(ResourceManager.GetSpritePart(LimbType.RightLeg, PartType.Human));
+            Sprite rlSprite = new Sprite(ResourceManager.TEXTURE_HUMAN_DOWN_RIGHTLEG);
             rightLeg.AddComponent(rlSprite);
             rightLeg.transform.Parent = blob.transform;
-            rightLeg.transform.Translate(33, 53);
+            rightLeg.transform.Translate(0, 55);
             rlSprite.z = randomDepth + iteration;
             randomDepth += iteration;
 

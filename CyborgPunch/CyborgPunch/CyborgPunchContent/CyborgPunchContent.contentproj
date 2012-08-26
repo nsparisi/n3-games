@@ -86,38 +86,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\Sprite\Human\head.png">
-      <Name>head</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprite\Human\LeftArm.png">
-      <Name>LeftArm</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprite\Human\LeftFoot.png">
-      <Name>LeftFoot</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Images\Sprite\reference.jpg">
       <Name>reference</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprite\Human\RightArm.png">
-      <Name>RightArm</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprite\Human\RightFoot.png">
-      <Name>RightFoot</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprite\Human\Torso.png">
-      <Name>Torso</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -160,6 +130,118 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprite\Human\Left_LeftArm.png">
+      <Name>Left_LeftArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Right_RightArm.png">
+      <Name>Right_RightArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Down_Head.png">
+      <Name>Down_Head</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Down_LeftArm.png">
+      <Name>Down_LeftArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Left_Head.png">
+      <Name>Left_Head</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Right_Head.png">
+      <Name>Right_Head</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Up_Head.png">
+      <Name>Up_Head</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Up_LeftArm.png">
+      <Name>Up_LeftArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Down_LeftLeg.png">
+      <Name>Down_LeftLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Up_LeftLeg.png">
+      <Name>Up_LeftLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Left_LeftLeg.png">
+      <Name>Left_LeftLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Right_RightLeg.png">
+      <Name>Right_RightLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Up_RightArm.png">
+      <Name>Up_RightArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Down_RightArm.png">
+      <Name>Down_RightArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Down_RightLeg.png">
+      <Name>Down_RightLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Up_RightLeg.png">
+      <Name>Up_RightLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Down_Torso.png">
+      <Name>Down_Torso</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Left_Torso.png">
+      <Name>Left_Torso</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Right_Torso.png">
+      <Name>Right_Torso</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Human\Up_Torso.png">
+      <Name>Up_Torso</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\Sprite\Robot\BiteHead\" />
+    <Folder Include="Images\Sprite\Robot\BombHead\" />
+    <Folder Include="Images\Sprite\Robot\GunLeg\" />
+    <Folder Include="Images\Sprite\Robot\HammerArm\" />
+    <Folder Include="Images\Sprite\Robot\HookArm\" />
+    <Folder Include="Images\Sprite\Robot\LaserHead\" />
+    <Folder Include="Images\Sprite\Robot\LongArm\" />
+    <Folder Include="Images\Sprite\Robot\RocketLeg\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

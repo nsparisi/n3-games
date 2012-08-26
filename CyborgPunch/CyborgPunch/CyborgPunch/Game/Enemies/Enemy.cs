@@ -23,6 +23,7 @@ namespace CyborgPunch.Game.Enemies
 
             dude = GameManager.Instance.dude;
 
+            /*
             GetBodyPart(LimbType.Head).GetComponent<Sprite>().texture =
                 ResourceManager.GetSpritePart(LimbType.Head, PartType.Robot);
 
@@ -40,6 +41,7 @@ namespace CyborgPunch.Game.Enemies
 
             GetBodyPart(LimbType.RightLeg).GetComponent<Sprite>().texture =
                 ResourceManager.GetSpritePart(LimbType.RightLeg, PartType.Robot);
+             */
 
         }
 

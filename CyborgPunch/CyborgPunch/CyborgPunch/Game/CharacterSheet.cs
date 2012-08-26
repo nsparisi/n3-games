@@ -23,6 +23,7 @@ namespace CyborgPunch.Game
 
         public override void Start()
         {
+            /*
             torso = new Blob();
             Sprite torsoSprite = new Sprite(ResourceManager.GetSheetPart(LimbType.Torso, PartType.Human));
             torsoSprite.SetAnchor(Sprite.AnchorType.Middle_Center);
@@ -64,6 +65,7 @@ namespace CyborgPunch.Game
             rlSprite.SetAnchor(Sprite.AnchorType.Upper_Left);
             rightLeg.transform.Parent = blob.transform;
             rightLeg.transform.Translate(00, 50);
+            */
         }
 
         public override void Update()
