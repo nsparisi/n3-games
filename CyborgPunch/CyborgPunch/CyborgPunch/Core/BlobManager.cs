@@ -23,11 +23,19 @@ namespace CyborgPunch.Core
 
         private HashSet<int> blobIDs;
         private List<Blob> blobs;
+        private bool paused;
+        private float timer;
 
         private BlobManager()
         {
             blobs = new List<Blob>();
             blobIDs = new HashSet<int>();
+        }
+
+        public void PauseForDuration(float duration)
+        {
+            timer = duration;
+            paused = true;
         }
 
         public void RegisterBlob(Blob blob)
@@ -49,11 +57,21 @@ namespace CyborgPunch.Core
 
         public void Update()
         {
-            for (int i = 0; i < blobs.Count; i++)
+            timer -= Time.deltaTime;
+            if (timer <= 0)
             {
-                if (blobs[i].enabled)
+                paused = false;
+            }
+
+            if (!paused)
+            {
+
+                for (int i = 0; i < blobs.Count; i++)
                 {
-                    blobs[i].Update();
+                    if (blobs[i].enabled)
+                    {
+                        blobs[i].Update();
+                    }
                 }
             }
         }
