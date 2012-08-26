@@ -98,5 +98,19 @@ namespace CyborgPunch.Core
                 }
             }
         }
+
+        public bool Collides(Blob other)
+        {
+            Collider myCollider = this.GetComponent<Collider>();
+            Collider otherCollider = other.GetComponent<Collider>();
+            if (myCollider == null || otherCollider == null)
+            {
+                return false;
+            }
+            else
+            {
+                return myCollider.Collides(otherCollider);
+            }
+        }
     }
 }
