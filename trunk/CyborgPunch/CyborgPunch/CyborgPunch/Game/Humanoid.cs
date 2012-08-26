@@ -60,20 +60,14 @@ namespace CyborgPunch.Game
             float randomDepth = (float)rand.NextDouble();
 
             //visuals
-            head.AddComponent(CreateVisual(PartTypes.Head, randomDepth));
+            SetupLimb(head, Limb.LimbType.Head, Limb.LimbPosition.Left, randomDepth);
+            SetupLimb(torso, Limb.LimbType.Torso, Limb.LimbPosition.Left, randomDepth);
+            SetupLimb(leftArm, Limb.LimbType.Arm, Limb.LimbPosition.Left, randomDepth);
+            SetupLimb(rightArm, Limb.LimbType.Arm, Limb.LimbPosition.Right, randomDepth);
+            SetupLimb(leftLeg, Limb.LimbType.Leg, Limb.LimbPosition.Left, randomDepth);
+            SetupLimb(rightLeg, Limb.LimbType.Leg, Limb.LimbPosition.Right, randomDepth);
             randomDepth += iteration;
-            leftArm.AddComponent(CreateVisual(PartTypes.LeftArm, randomDepth));
-            randomDepth += iteration;
-            rightArm.AddComponent(CreateVisual(PartTypes.RightArm, randomDepth));
-            randomDepth += iteration;
-            torso.AddComponent(CreateVisual(PartTypes.Torso, randomDepth));
-            randomDepth += iteration;
-            leftLeg.AddComponent(CreateVisual(PartTypes.LeftLeg, randomDepth));
-            randomDepth += iteration;
-            rightLeg.AddComponent(CreateVisual(PartTypes.RightLeg, randomDepth));
-            randomDepth += iteration;
-
-
+            
             SetBodyPart(LimbType.Head, head);
             SetBodyPart(LimbType.LeftArm, leftArm);
             SetBodyPart(LimbType.LeftLeg, leftLeg);
@@ -87,11 +81,11 @@ namespace CyborgPunch.Game
             blob.AddComponent(collider);
         }
 
-        LimbVisual CreateVisual(PartTypes type, float z)
+        void SetupLimb(Blob bodyPart, Limb.LimbType type, Limb.LimbPosition position, float z)
         {
-            LimbVisual visual = new LimbVisual(type);
-            visual.z = z;
-            return visual;
+            Limb visual = new Limb(type, position);
+            bodyPart.AddComponent(visual);
+            bodyPart.GetComponent<LimbVisual>().z = z;
         }
 
         public void DiscardLimb(LimbType whichLimb)

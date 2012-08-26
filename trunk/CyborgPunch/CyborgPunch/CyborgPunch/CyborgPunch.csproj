@@ -122,6 +122,7 @@
     <Compile Include="Game\Humanoid.cs" />
     <Compile Include="Game\KeyBindings.cs" />
     <Compile Include="Game\DudeMovement.cs" />
+    <Compile Include="Game\Limbs\Limb.cs" />
     <Compile Include="Game\Limbs\LimbVisual.cs" />
     <Compile Include="Game\Limbs\Damage.cs" />
     <Compile Include="Game\Limbs\GunLeg.cs" />

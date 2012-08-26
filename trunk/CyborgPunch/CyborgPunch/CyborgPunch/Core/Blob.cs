@@ -16,6 +16,11 @@ namespace CyborgPunch.Core
 
         private static int IDCount = 0;
         public Blob()
+            : this(false)
+        {
+        }
+
+        public Blob(bool godBlob)
         {
             this.ID = IDCount++;
             BlobManager.Instance.RegisterBlob(this);
@@ -26,6 +31,11 @@ namespace CyborgPunch.Core
 
             this.transform = new Transform();
             AddComponent(transform);
+
+            if (!godBlob)
+            {
+                this.transform.Parent = BlobManager.Instance.RootBlob.transform;
+            }
         }
 
         public void AddComponent(Component component)

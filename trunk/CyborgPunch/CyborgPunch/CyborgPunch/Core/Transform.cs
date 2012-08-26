@@ -29,7 +29,7 @@ namespace CyborgPunch.Core
                 }
 
                 //setup new parent relationship
-                this.parent = value;
+                this.parent = value == null ? BlobManager.Instance.RootBlob.transform : value;
                 if (this.parent != null)
                 {
                     this.parent.AddChild(this);
