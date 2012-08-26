@@ -8,6 +8,11 @@ namespace CyborgPunch.Core
         private List<Transform> children;
         private HashSet<int> childrenHash;
 
+        public List<Transform> Children
+        {
+            get { return children; }
+        }
+
         private Transform parent;
         public Transform Parent
         {

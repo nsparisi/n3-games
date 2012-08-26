@@ -121,6 +121,7 @@
     <Compile Include="Game\Humanoid.cs" />
     <Compile Include="Game\KeyBindings.cs" />
     <Compile Include="Game\DudeMovement.cs" />
+    <Compile Include="Game\Limbs\HumanArm.cs" />
     <Compile Include="Game\Limbs\LimbPunch.cs" />
     <Compile Include="Game\ResourceManager.cs" />
     <Compile Include="Core\Sprite.cs" />

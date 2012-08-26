@@ -6,7 +6,7 @@ using CyborgPunch.Core;
 
 namespace CyborgPunch.Game.Enemies
 {
-    public class EnemyManager : Component
+    public class EnemyManager
     {
         private static EnemyManager instance;
         public static EnemyManager Instance

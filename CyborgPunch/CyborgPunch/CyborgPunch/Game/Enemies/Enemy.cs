@@ -46,6 +46,7 @@ namespace CyborgPunch.Game.Enemies
         public void Die()
         {
             EnemyManager.Instance.UnregisterEnemy(this);
+            blob.Destroy();
         }
 
         public override void Update()
