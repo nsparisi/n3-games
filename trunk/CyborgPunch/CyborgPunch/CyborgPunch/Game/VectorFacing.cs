@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace CyborgPunch.Game
 {
-    public enum Facing { Up, Down, Left, Right }
+    public enum Facing { Up = 0, Down = 1, Left = 2, Right = 3}
     public class VectorFacing
     {
         //assumes vector given is for facing down

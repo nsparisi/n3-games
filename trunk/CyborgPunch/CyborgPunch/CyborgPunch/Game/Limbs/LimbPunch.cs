@@ -30,6 +30,10 @@ namespace CyborgPunch.Game.Limbs
             base.Start();
 
             currentAnchor = blob.transform.LocalPosition;
+
+
+            LimbVisual visual = new LimbVisual(PartTypes.Head);
+            this.blob.AddComponent(visual);
         }
 
         public LimbPunch(Dude body, LimbType limbType, Keys activationKey) : base()
@@ -133,7 +137,7 @@ namespace CyborgPunch.Game.Limbs
         public virtual void Throw()
         {
             Collider collider = new Collider();
-            collider.bounds = ResourceManager.GetBounds(body.GetBodyPart(limbType).GetComponent<Sprite>().texture);
+            collider.bounds = ResourceManager.GetBounds(body.GetBodyPart(limbType).GetComponent<LimbVisual>().texture);
             collider.offset = new Vector2(collider.bounds.X, collider.bounds.Y);
             body.GetBodyPart(limbType).AddComponent(collider);
             body.GetBodyPart(limbType).AddComponent(new Damage(1));

@@ -233,15 +233,254 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Images\Sprite\Robot\BiteHead\" />
-    <Folder Include="Images\Sprite\Robot\BombHead\" />
-    <Folder Include="Images\Sprite\Robot\GunLeg\" />
-    <Folder Include="Images\Sprite\Robot\HammerArm\" />
-    <Folder Include="Images\Sprite\Robot\HookArm\" />
-    <Folder Include="Images\Sprite\Robot\LaserHead\" />
-    <Folder Include="Images\Sprite\Robot\LongArm\" />
-    <Folder Include="Images\Sprite\Robot\RocketLeg\" />
+    <Compile Include="Images\Sprite\Robot\BiteHead\BiteHead_Down.png">
+      <Name>BiteHead_Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\BiteHead\BiteHead_Left.png">
+      <Name>BiteHead_Left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\BiteHead\BiteHead_Right.png">
+      <Name>BiteHead_Right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\BiteHead\BiteHead_Up.png">
+      <Name>BiteHead_Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprite\Robot\BombHead\BombHead_Down.png">
+      <Name>BombHead_Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\BombHead\BombHead_Left.png">
+      <Name>BombHead_Left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\BombHead\BombHead_Right.png">
+      <Name>BombHead_Right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\BombHead\BombHead_Up.png">
+      <Name>BombHead_Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprite\Robot\LaserHead\LaserHead_Down.png">
+      <Name>LaserHead_Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\LaserHead\LaserHead_Left.png">
+      <Name>LaserHead_Left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\LaserHead\LaserHead_Right.png">
+      <Name>LaserHead_Right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\LaserHead\LaserHead_Up.png">
+      <Name>LaserHead_Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprite\Robot\HammerArm\HammerArm_Down_LeftArm.png">
+      <Name>HammerArm_Down_LeftArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\HammerArm\HammerArm_Down_RightArm.png">
+      <Name>HammerArm_Down_RightArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\HammerArm\HammerArm_Left_LeftArm.png">
+      <Name>HammerArm_Left_LeftArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\HammerArm\HammerArm_Right_RightArm.png">
+      <Name>HammerArm_Right_RightArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\HammerArm\HammerArm_Up_LeftArm.png">
+      <Name>HammerArm_Up_LeftArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\HammerArm\HammerArm_Up_RightArm.png">
+      <Name>HammerArm_Up_RightArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprite\Robot\HookArm\HookArm_Down_LeftArm.png">
+      <Name>HookArm_Down_LeftArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\HookArm\HookArm_Down_RightArm.png">
+      <Name>HookArm_Down_RightArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\HookArm\HookArm_Left_LeftArm.png">
+      <Name>HookArm_Left_LeftArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\HookArm\HookArm_Right_RightArm.png">
+      <Name>HookArm_Right_RightArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\HookArm\HookArm_Up_LeftArm.png">
+      <Name>HookArm_Up_LeftArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\HookArm\HookArm_Up_RightArm.png">
+      <Name>HookArm_Up_RightArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprite\Robot\LongArm\LongArm_Down_LeftArm.png">
+      <Name>LongArm_Down_LeftArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\LongArm\LongArm_Down_RightArm.png">
+      <Name>LongArm_Down_RightArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\LongArm\LongArm_Left_LeftArm.png">
+      <Name>LongArm_Left_LeftArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\LongArm\LongArm_Right_RightArm.png">
+      <Name>LongArm_Right_RightArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\LongArm\LongArm_Up_LeftArm.png">
+      <Name>LongArm_Up_LeftArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\LongArm\LongArm_Up_RightArm.png">
+      <Name>LongArm_Up_RightArm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprite\Robot\Torso_Down.png">
+      <Name>Torso_Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\Torso_Left.png">
+      <Name>Torso_Left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\Torso_Right.png">
+      <Name>Torso_Right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\Torso_Up.png">
+      <Name>Torso_Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprite\Robot\GunLeg\GunLeg_Down_LeftLeg.png">
+      <Name>GunLeg_Down_LeftLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\GunLeg\GunLeg_Down_RightLeg.png">
+      <Name>GunLeg_Down_RightLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\GunLeg\GunLeg_Left_LeftLeg.png">
+      <Name>GunLeg_Left_LeftLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\GunLeg\GunLeg_Right_RightLeg.png">
+      <Name>GunLeg_Right_RightLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\GunLeg\GunLeg_Up_LeftLeg.png">
+      <Name>GunLeg_Up_LeftLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\GunLeg\GunLeg_Up_RightLeg.png">
+      <Name>GunLeg_Up_RightLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprite\Robot\RocketLeg\RocketLeg_Down_LeftLeg.png">
+      <Name>RocketLeg_Down_LeftLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\RocketLeg\RocketLeg_Down_RightLeg.png">
+      <Name>RocketLeg_Down_RightLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\RocketLeg\RocketLeg_Left_LeftLeg.png">
+      <Name>RocketLeg_Left_LeftLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\RocketLeg\RocketLeg_Right_RightLeg.png">
+      <Name>RocketLeg_Right_RightLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\RocketLeg\RocketLeg_Up_LeftLeg.png">
+      <Name>RocketLeg_Up_LeftLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprite\Robot\RocketLeg\RocketLeg_Up_RightLeg.png">
+      <Name>RocketLeg_Up_RightLeg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

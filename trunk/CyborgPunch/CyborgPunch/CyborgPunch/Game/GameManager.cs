@@ -45,9 +45,9 @@ namespace CyborgPunch.Game
             dude.AddComponent(movement);
             dude.transform.Translate(400, 400);
 
-            Blob background = new Blob();
-            background.AddComponent(new Sprite(ResourceManager.texture_BG));
-            background.GetComponent<Sprite>().z = 1;
+            //Blob background = new Blob();
+            //background.AddComponent(new Sprite(ResourceManager.texture_BG));
+            //background.GetComponent<Sprite>().z = 1;
 
             enemySpawner = new Blob();
             enemySpawner.AddComponent(new EnemySpawner());
