@@ -17,10 +17,21 @@ namespace CyborgPunch.Core
 
             Vector2 resultVector = from + directionVector;
 
-            int oldXDiffSign;
-            int ySign;
+            Vector2 afterDirectionVector = (to - resultVector);
 
-            return resultVector;
+            int oldXDiffSign = Math.Sign(directionVector.X);
+            int oldYDiffSign = Math.Sign(directionVector.Y);
+            int newXDiffSign = Math.Sign(afterDirectionVector.X);
+            int newYDiffSign = Math.Sign(afterDirectionVector.Y);
+
+            if (oldXDiffSign != newXDiffSign || oldYDiffSign != newYDiffSign)
+            {
+                return to;
+            }
+            else
+            {
+                return resultVector;
+            }
         }
     }
 }

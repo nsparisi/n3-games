@@ -56,7 +56,7 @@ namespace CyborgPunch.Game.Limbs
 
             if (!keyIsDown)
             {
-                offset = Vector2.Lerp(offset, Vector2.Zero, Time.deltaTime*restitutionSpeed);
+                offset = VectorHelpers.MoveTowards(offset, Vector2.Zero, Time.deltaTime*restitutionSpeed);
                 blob.transform.LocalPosition = currentAnchor + offset;
             }
 

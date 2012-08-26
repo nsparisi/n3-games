@@ -21,10 +21,11 @@ namespace CyborgPunch.Game
 
         public static void RandomShake()
         {
-            Vector2 shakeVector = new Vector2((float)rand.NextDouble(), (float)rand.NextDouble());
+            Vector2 shakeVector = new Vector2(((float)rand.NextDouble()-.5f)*2, ((float)rand.NextDouble()-.5f)*2);
             shakeVector.Normalize();
             shakeVector *= strength;
             BlobManager.Instance.RootBlob.transform.Position = shakeVector;
+            strength /= 1.25f;
         }
 
         public static void StopShake()
