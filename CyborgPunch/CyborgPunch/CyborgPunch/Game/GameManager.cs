@@ -50,9 +50,9 @@ namespace CyborgPunch.Game
             blobShake = new Blob();
             blobShake.AddComponent(new Shake());
 
-            //Blob background = new Blob();
-            //background.AddComponent(new Sprite(ResourceManager.texture_BG));
-            //background.GetComponent<Sprite>().z = 1;
+            Blob background = new Blob();
+            background.AddComponent(new Sprite(ResourceManager.texture_BG));
+            background.GetComponent<Sprite>().z = 1;
 
             enemySpawner = new Blob();
             enemySpawner.AddComponent(new EnemySpawner());
