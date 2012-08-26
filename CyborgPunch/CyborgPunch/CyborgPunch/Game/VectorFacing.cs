@@ -24,7 +24,7 @@ namespace CyborgPunch.Game
                     newVector.Y = vector.Y;
                     break;
                 case Facing.Left:
-                    newVector.X = vector.Y;
+                    newVector.X = -vector.Y;
                     newVector.Y = -vector.X;
                     break;
                 case Facing.Right:
