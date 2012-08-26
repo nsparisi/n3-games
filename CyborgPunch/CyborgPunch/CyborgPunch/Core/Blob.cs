@@ -36,11 +36,12 @@ namespace CyborgPunch.Core
             }
         }
 
-        public void AddComponent(Component component)
+        public Component AddComponent(Component component)
         {
             components.Add(component);
             component.blob = this;
             component.Start();
+            return component;
         }
 
         public void RemoveComponent<T>() where T : Component

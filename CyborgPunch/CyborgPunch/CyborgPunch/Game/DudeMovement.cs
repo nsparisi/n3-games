@@ -48,7 +48,7 @@ namespace CyborgPunch.Game
 
         public int LegCount()
         {
-            return (body.GetBodyPart(LimbType.LeftLeg) != null?1:0) + (body.GetBodyPart(LimbType.RightLeg) != null ? 1 : 0);
+            return (body.GetBodyPart(LimbType.LeftLeg)!=null?1:0) + (body.GetBodyPart(LimbType.RightLeg)!=null?1:0);
         }
     }
 }

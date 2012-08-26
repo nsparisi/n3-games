@@ -14,8 +14,10 @@ namespace CyborgPunch.Game
         static Random rand = new Random();
         public static void ShakeIt(float howHard, int forFrames)
         {
-            strength = howHard;
-            shakeFrames = forFrames;
+            if (howHard > strength)
+                strength = howHard;
+            if (forFrames > shakeFrames)
+                shakeFrames = forFrames;
             RandomShake();
         }
 
