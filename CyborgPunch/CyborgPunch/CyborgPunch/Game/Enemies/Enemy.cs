@@ -10,7 +10,7 @@ namespace CyborgPunch.Game.Enemies
     {
         Blob dude;
         public float speed = 70;
-        int health = 1;
+        int health = 2;
 
 
         public Enemy()
