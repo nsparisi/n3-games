@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CyborgPunch.Game.Limbs
 {
-    class Limb : Component
+    public class Limb : Component
     {
         public enum LimbComponentType { Head, Arm, Leg, Torso }
         public enum LimbPosition { Left, Right }
@@ -39,6 +39,18 @@ namespace CyborgPunch.Game.Limbs
             this.head = (HeadSubType)random.Next(0, 3);
             this.leg = (LegSubType)random.Next(0, 2);
             this.torso = (TorsoSubType)random.Next(0, 2);
+            this.humanoidZ = humanoidZ;
+        }
+
+        public Limb(Limb other, LimbPosition newPosition, float humanoidZ)
+            : base()
+        {
+            this.type = other.type;
+            this.position = newPosition;
+            this.arm = other.arm;
+            this.head = other.head;
+            this.leg = other.leg;
+            this.torso = other.torso;
             this.humanoidZ = humanoidZ;
         }
 

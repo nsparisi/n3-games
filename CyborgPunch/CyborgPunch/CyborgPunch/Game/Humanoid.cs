@@ -12,18 +12,20 @@ namespace CyborgPunch.Game
 {
     public class Humanoid : Component
     {
-        Blob torso;
-        Blob head;
-        Blob leftArm;
-        Blob rightArm;
-        Blob leftLeg;
-        Blob rightLeg;
-        Collider collider;
-
         private Blob[] bodyIndex;
         private Facing facing = Facing.Down;
 
+        private int[] yCoordinates = {   35, //left arm
+                                         35, //right arm
+                                         55, //right leg
+                                         55, //left leg
+                                         0, //head
+                                         29 //torso
+                                     };
+
         static Random rand = new Random();
+
+        protected Collider collider;
 
         public float randomDepth = 0;
 
@@ -35,51 +37,65 @@ namespace CyborgPunch.Game
 
         public override void Start()
         {
-            head = new Blob();
-            head.transform.Parent = blob.transform;
-            head.transform.Translate(0, 0);
-
-            leftArm = new Blob();
-            leftArm.transform.Parent = blob.transform;
-            leftArm.transform.Translate(0, 35);
-
-            rightArm = new Blob();
-            rightArm.transform.Parent = blob.transform;
-            rightArm.transform.Translate(0, 35);
-
-            torso = new Blob();
-            torso.transform.Parent = blob.transform;
-            torso.transform.Translate(0, 29);
-
-            leftLeg = new Blob();
-            leftLeg.transform.Parent = blob.transform;
-            leftLeg.transform.Translate(0, 55);
-
-            rightLeg = new Blob();
-            rightLeg.transform.Parent = blob.transform;
-            rightLeg.transform.Translate(0, 55);
-
             randomDepth = (float)rand.NextDouble();
 
-            //visuals
-            SetupLimb(head, Limb.LimbComponentType.Head, Limb.LimbPosition.Left);
-            SetupLimb(torso, Limb.LimbComponentType.Torso, Limb.LimbPosition.Left);
-            SetupLimb(leftArm, Limb.LimbComponentType.Arm, Limb.LimbPosition.Left);
-            SetupLimb(rightArm, Limb.LimbComponentType.Arm, Limb.LimbPosition.Right);
-            SetupLimb(leftLeg, Limb.LimbComponentType.Leg, Limb.LimbPosition.Left);
-            SetupLimb(rightLeg, Limb.LimbComponentType.Leg, Limb.LimbPosition.Right);
-            
-            SetBodyPart(LimbType.Head, head);
-            SetBodyPart(LimbType.LeftArm, leftArm);
-            SetBodyPart(LimbType.LeftLeg, leftLeg);
-            SetBodyPart(LimbType.RightArm, rightArm);
-            SetBodyPart(LimbType.RightLeg, rightLeg);
-            SetBodyPart(LimbType.Torso, torso);
+            this.blob.ToString();
+
+            AddLimb(LimbType.Head);
+            AddLimb(LimbType.LeftArm);
+            AddLimb(LimbType.LeftLeg);
+            AddLimb(LimbType.RightArm);
+            AddLimb(LimbType.RightLeg);
+            AddLimb(LimbType.Torso);
 
 
             collider = new Collider();
             collider.bounds = new Rectangle(0, 0, 55, 86);
             blob.AddComponent(collider);
+        }
+
+        public void AddLimb(LimbType limbType)
+        {
+            if (GetBodyPart(limbType) == null)
+            {
+                Blob limb = new Blob();
+                limb.transform.Parent = blob.transform;
+                limb.transform.LocalPosition = new Vector2(0, yCoordinates[(int)limbType]);
+
+                Limb.LimbComponentType componentType = Limb.LimbComponentType.Head;
+                if(limbType == LimbType.Head)componentType = Limb.LimbComponentType.Head;
+                else if (limbType == LimbType.LeftArm || limbType == LimbType.RightArm) componentType = Limb.LimbComponentType.Arm;
+                else if (limbType == LimbType.LeftLeg || limbType == LimbType.RightLeg) componentType = Limb.LimbComponentType.Leg;
+                else if (limbType == LimbType.Torso) componentType = Limb.LimbComponentType.Torso;
+
+                Limb.LimbPosition positionType = Limb.LimbPosition.Left;
+                if (limbType == LimbType.RightLeg || limbType == LimbType.RightArm) positionType = Limb.LimbPosition.Right;
+                
+                Limb visual = new Limb(componentType, positionType, randomDepth);
+                limb.AddComponent(visual);
+
+                SetBodyPart(limbType, limb);
+                SetFacing(facing);
+            }
+        }
+
+        public void AddLimbFromLimb(LimbType limbType, Limb previousLimb)
+        {
+            if (GetBodyPart(limbType) == null)
+            {
+                Blob limb = new Blob();
+                limb.transform.Parent = blob.transform;
+                limb.transform.LocalPosition = new Vector2(0, yCoordinates[(int)limbType]);
+                
+                Limb.LimbPosition positionType = Limb.LimbPosition.Left;
+                if (limbType == LimbType.RightLeg || limbType == LimbType.RightArm) positionType = Limb.LimbPosition.Right;
+
+                Limb visual = new Limb(previousLimb, positionType, randomDepth);
+                limb.AddComponent(visual);
+
+                SetBodyPart(limbType, limb);
+                SetFacing(facing);
+            }
         }
 
         void SetupLimb(Blob bodyPart, Limb.LimbComponentType type, Limb.LimbPosition position)
