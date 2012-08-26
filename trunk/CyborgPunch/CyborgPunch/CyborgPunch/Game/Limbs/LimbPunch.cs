@@ -146,7 +146,6 @@ namespace CyborgPunch.Game.Limbs
             body.GetBodyPart(limbType).AddComponent(new Damage(1));
             this.blob.AddComponent(new DieOutOfBounds());
 
-
             thrown = true;
             body.RemoveBodyPart(limbType);
             blob.transform.Parent = null;

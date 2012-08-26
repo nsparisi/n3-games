@@ -11,7 +11,7 @@ namespace CyborgPunch.Game.Limbs
 {
     class BombHead : LimbPunch
     {
-        float baseExplosionSize = 20f;
+        float baseExplosionSize = 200f;
         Vector2 velocity;
         float maxThrowTime;
         float throwTime;
@@ -20,9 +20,11 @@ namespace CyborgPunch.Game.Limbs
         float sweetBonus;
         float storedCharge;
 
+        bool hasBeenUnpressed;
         public BombHead(Dude body, LimbType limbType)
             : base(body, limbType)
         {
+            hasBeenUnpressed = false;
             velocity = new Vector2(0, 420);
 
             maxThrowTime = .75f;
@@ -44,16 +46,34 @@ namespace CyborgPunch.Game.Limbs
 
         public override void ThrowUpdate()
         {
+            KeyboardState keyState = Keyboard.GetState();
+
+            if (!keyState.IsKeyDown(activationKey))
+                hasBeenUnpressed = true;
+
+            throwTime += Time.deltaTime;
+            if (throwTime > maxThrowTime)
+            {
+                velocity *= .75f;
+                FadeAway();
+            }
+            blob.transform.Translate(velocity * Time.deltaTime);
             List<Enemy> enemies = EnemyManager.Instance.GetEnemies();
             for (int i = 0; i < enemies.Count; i++)
             {
                 if (enemies[i].blob.Collides(this.blob))
                 {
-                    Explode();
+                    Explode(collider.Center());
                     Shake.ShakeIt(10, 20);
                     BlobManager.Instance.PauseForDuration(0.10f);
                 }
             }
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            hasBeenUnpressed |= !keyWasDown;
         }
 
         public override void StartPunch()
@@ -67,25 +87,37 @@ namespace CyborgPunch.Game.Limbs
 
         public override void EndPunch()
         {
-            Explode();
+            if (hasBeenUnpressed)
+            {
+                Explode(blob.transform.Position);
+                Shake.ShakeIt(10, 20);
+                BlobManager.Instance.PauseForDuration(0.10f);
+            }
         }
 
-        public void Explode()
+        public void Explode(Vector2 atPosition)
         {
             Blob explosion = new Blob();
             Sprite explosionSprite = new Sprite(ResourceManager.texture_White);
             Damage bombDamage = new Damage(2);
-            Collider collider = new Collider();
-
+            Collider newCollider = new Collider();
+            
             float chargedExplosionSize = baseExplosionSize * chargePower;
-            collider.bounds = new Rectangle((int)-chargedExplosionSize / 2, (int)-chargedExplosionSize / 2,
+            newCollider.bounds = new Rectangle((int)-chargedExplosionSize / 2, (int)-chargedExplosionSize / 2,
                 (int)chargedExplosionSize / 2, (int)chargedExplosionSize / 2);
 
             //bombDamage.shakeStrength = 0f;
             //bombDamage.stickLength = .1;
+            explosionSprite.SetSize(newCollider.bounds.Width, newCollider.bounds.Height);
             explosion.AddComponent(explosionSprite);
             explosion.AddComponent(bombDamage);
-            explosion.AddComponent(collider);
+            explosion.AddComponent(newCollider);
+            explosion.AddComponent(new DieInSeconds(1f));
+            explosion.transform.Position = atPosition -(explosionSprite.GetSize() / 2) + (limbSprite.GetSize()/2);
+
+            if (!thrown)
+                body.RemoveBodyPart(limbType);
+            blob.Destroy();
         }
     }
 }
