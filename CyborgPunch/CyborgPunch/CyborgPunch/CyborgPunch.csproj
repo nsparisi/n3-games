@@ -122,6 +122,7 @@
     <Compile Include="Game\Enemies\EnemyManager.cs" />
     <Compile Include="Game\Enemies\EnemySpawner.cs" />
     <Compile Include="Game\Enemies\Enemy.cs" />
+    <Compile Include="Game\FadeInSeconds.cs" />
     <Compile Include="Game\Humanoid.cs" />
     <Compile Include="Game\KeyBindings.cs" />
     <Compile Include="Game\DudeMovement.cs" />

@@ -48,7 +48,7 @@ namespace CyborgPunch.Core
         {
             for (int i = 0; i < components.Count; i++)
             {
-                if (components[i].GetType() is T)
+                if (components[i] is T)
                 {
                     components.RemoveAt(i);
                     return;
@@ -71,6 +71,7 @@ namespace CyborgPunch.Core
 
         public void Destroy()
         {
+            this.transform.Parent = null;
             BlobManager.Instance.UnregisterBlob(this);
 
             for (int i = 0; i < transform.Children.Count; i++)

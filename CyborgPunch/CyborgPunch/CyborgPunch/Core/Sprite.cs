@@ -43,6 +43,11 @@ namespace CyborgPunch.Core
             this.height = height;
         }
 
+        public Vector2 GetSize()
+        {
+            return new Vector2(width, height);
+        }
+
         private void RefreshRectangle()
         {
             rectangle = new Rectangle(

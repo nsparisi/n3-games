@@ -21,6 +21,7 @@ namespace CyborgPunch.Game
             lifeSeconds -= Time.deltaTime;
             if (lifeSeconds <= 0f)
             {
+                blob.transform.Parent = null;
                 blob.Destroy();
             }
         }

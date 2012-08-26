@@ -142,6 +142,10 @@ namespace CyborgPunch.Game
             return chosenTexture;
         }
 
+        public static Texture2D laserBeam;
+        public static Texture2D bullet;
+        public static Texture2D explosion;
+        public static Texture2D hitFlash;
         public static Texture2D texture_White;
         public static Texture2D texture_BG;
 
@@ -256,6 +260,10 @@ namespace CyborgPunch.Game
             
 
             //additional
+            bullet = manager.Load<Texture2D>("Images//Sprite//Bullet");
+            explosion = manager.Load<Texture2D>("Images//Sprite//Explosion");
+            laserBeam = manager.Load<Texture2D>("Images//Sprite//LaserBeam");
+            hitFlash = manager.Load<Texture2D>("Images//Sprite//HitFlash");
             texture_White = manager.Load<Texture2D>("Images//white");
             texture_BG = manager.Load<Texture2D>("Images/CrappyBG");
             font_Common = manager.Load<SpriteFont>("Font//Common");
