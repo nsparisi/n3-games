@@ -81,7 +81,7 @@ namespace CyborgPunch.Core
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.NonPremultiplied);
             for (int i = 0; i < blobs.Count; i++)
             {
                 if (blobs[i].enabled)

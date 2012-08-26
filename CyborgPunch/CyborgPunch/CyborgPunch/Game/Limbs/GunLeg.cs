@@ -10,9 +10,14 @@ namespace CyborgPunch.Game.Limbs
 {
     class GunLeg : LimbPunch
     {
+        Vector2 meleeAhead;
+        Vector2 meleeSize;
+
         int ammo = 5;
         Facing facing;
         Vector2 velocity;
+        float maxThrowTime;
+        float throwTime;
         float sweetMin;
         float sweetMax;
         float sweetBonus;
@@ -23,12 +28,16 @@ namespace CyborgPunch.Game.Limbs
             : base(myBody, whichLimb, activationKey)
         {
             velocity = new Vector2(0, 420);
+            throwTime = 0f;
+            maxThrowTime = .75f;
             sweetMin = .7f;
             sweetMax = .9f;
             sweetBonus = 1f;
             chargePower = 0f;
-            chargeSpeed = 2f;
+            chargeSpeed = 1f;
             chargeMax = 1;
+
+            //meleeAhead = 10f;
 
             bulletFireTrajectory = new Vector2(0, 500);
         }
@@ -63,6 +72,12 @@ namespace CyborgPunch.Game.Limbs
 
         public override void ThrowUpdate()
         {
+            throwTime += Time.deltaTime;
+            if (throwTime > maxThrowTime)
+            {
+                velocity *= .75f;
+                FadeAway();
+            }
             blob.transform.Translate(velocity * Time.deltaTime);
             KeyboardState keyState = Keyboard.GetState();
             bool keyIsDown = keyState.IsKeyDown(activationKey);
@@ -74,7 +89,6 @@ namespace CyborgPunch.Game.Limbs
             keyWasDown = keyIsDown;
         }
 
-        int num = 0;
         public void FireGun()
         {
             if (ammo > 0)

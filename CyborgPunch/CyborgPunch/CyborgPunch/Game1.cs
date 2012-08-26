@@ -107,7 +107,6 @@ namespace CyborgPunch
             GraphicsDevice.Clear(Color.Black);
             // TODO: Add your drawing code here
             blobManager.Draw(spriteBatch);
-
             base.Draw(gameTime);
         }
     }

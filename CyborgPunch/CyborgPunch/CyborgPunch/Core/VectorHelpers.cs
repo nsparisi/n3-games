@@ -10,12 +10,15 @@ namespace CyborgPunch.Core
     {
         public static Vector2 MoveTowards(Vector2 from, Vector2 to, float speed)
         {
+            if (from == to)
+                return to;
+
             Vector2 directionVector = (to - from);
             float magnitude = directionVector.Length();
             Vector2 moveVector = directionVector / magnitude;
             moveVector *= speed;
 
-            Vector2 resultVector = from + directionVector;
+            Vector2 resultVector = from + moveVector;
 
             Vector2 afterDirectionVector = (to - resultVector);
 

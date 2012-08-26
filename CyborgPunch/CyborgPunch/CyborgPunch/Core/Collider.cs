@@ -17,6 +17,9 @@ namespace CyborgPunch.Core
             if (actor == null)
                 return false;
 
+            if (!enabled || !actor.enabled)
+                return false;
+
             return actor.bounds.Intersects(bounds);
         }
 

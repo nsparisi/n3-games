@@ -10,6 +10,9 @@ namespace CyborgPunch.Game.Limbs
 {
     abstract class LimbPunch : Component
     {
+        protected Collider collider;
+        protected float fadeTime;
+
         protected float chargePower;
         protected float chargeSpeed;
         protected float chargeMax;
@@ -18,17 +21,21 @@ namespace CyborgPunch.Game.Limbs
         protected Dude body;
         protected Keys activationKey;
         protected LimbType limbType;
+        protected Sprite limbSprite;
 
-        public float restitutionSpeed = 4f;
+        protected bool firstFade = true;
+
+        public float restitutionSpeed = 60f;
         public Vector2 currentAnchor;
         public Vector2 offset;
 
-        Vector2 chargeMove = new Vector2(0,-10);
+        protected Vector2 chargeMove = new Vector2(0,-10);
 
         public override void Start()
         {
             base.Start();
-
+            fadeTime = .2f;
+            limbSprite = blob.GetComponent<Sprite>();
             currentAnchor = blob.transform.LocalPosition;
         }
 
@@ -132,7 +139,7 @@ namespace CyborgPunch.Game.Limbs
 
         public virtual void Throw()
         {
-            Collider collider = new Collider();
+            collider = new Collider();
             collider.bounds = ResourceManager.GetBounds(body.GetBodyPart(limbType).GetComponent<Sprite>().texture);
             collider.offset = new Vector2(collider.bounds.X, collider.bounds.Y);
             body.GetBodyPart(limbType).AddComponent(collider);
@@ -143,6 +150,28 @@ namespace CyborgPunch.Game.Limbs
             thrown = true;
             body.RemoveBodyPart(limbType);
             blob.transform.Parent = null;
+        }
+
+        public void FadeAway()
+        {
+            if (firstFade)
+            {
+                collider.enabled = false;
+                limbSprite.color = Color.Lerp(limbSprite.color, Color.Black, .8f);
+                firstFade = false;
+            }
+            Color newLimbColor = limbSprite.color;
+
+            float newAlpha = (newLimbColor.A - (Time.deltaTime * (1f / fadeTime) * byte.MaxValue));
+
+            if (newAlpha < 0)
+            {
+                newAlpha = 0;
+                blob.Destroy();
+            }
+
+            newLimbColor.A = (byte)newAlpha;
+            limbSprite.color = newLimbColor;
         }
     }
 }

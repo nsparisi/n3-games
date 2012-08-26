@@ -43,7 +43,7 @@ namespace CyborgPunch.Game
             dude = new Blob();
             Dude dudeComp = new Dude();
             dude.AddComponent(dudeComp);
-            DudeMovement movement = new DudeMovement();
+            DudeMovement movement = new DudeMovement(dudeComp);
             dude.AddComponent(movement);
             dude.transform.Translate(400, 400);
 
