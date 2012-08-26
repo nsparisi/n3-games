@@ -29,7 +29,7 @@ namespace CyborgPunch.Game.Limbs
             this.blob.AddComponent(collider);
         }
 
-        void Pickup()
+        public void Pickup()
         {
             LimbManager.Instance.UnregisterLimb(this);
             this.blob.Destroy();

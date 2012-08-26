@@ -61,12 +61,12 @@ namespace CyborgPunch.Game
             randomDepth = (float)rand.NextDouble();
 
             //visuals
-            SetupLimb(head, Limb.LimbType.Head, Limb.LimbPosition.Left);
-            SetupLimb(torso, Limb.LimbType.Torso, Limb.LimbPosition.Left);
-            SetupLimb(leftArm, Limb.LimbType.Arm, Limb.LimbPosition.Left);
-            SetupLimb(rightArm, Limb.LimbType.Arm, Limb.LimbPosition.Right);
-            SetupLimb(leftLeg, Limb.LimbType.Leg, Limb.LimbPosition.Left);
-            SetupLimb(rightLeg, Limb.LimbType.Leg, Limb.LimbPosition.Right);
+            SetupLimb(head, Limb.LimbComponentType.Head, Limb.LimbPosition.Left);
+            SetupLimb(torso, Limb.LimbComponentType.Torso, Limb.LimbPosition.Left);
+            SetupLimb(leftArm, Limb.LimbComponentType.Arm, Limb.LimbPosition.Left);
+            SetupLimb(rightArm, Limb.LimbComponentType.Arm, Limb.LimbPosition.Right);
+            SetupLimb(leftLeg, Limb.LimbComponentType.Leg, Limb.LimbPosition.Left);
+            SetupLimb(rightLeg, Limb.LimbComponentType.Leg, Limb.LimbPosition.Right);
             
             SetBodyPart(LimbType.Head, head);
             SetBodyPart(LimbType.LeftArm, leftArm);
@@ -81,7 +81,7 @@ namespace CyborgPunch.Game
             blob.AddComponent(collider);
         }
 
-        void SetupLimb(Blob bodyPart, Limb.LimbType type, Limb.LimbPosition position)
+        void SetupLimb(Blob bodyPart, Limb.LimbComponentType type, Limb.LimbPosition position)
         {
             Limb visual = new Limb(type, position, randomDepth);
             bodyPart.AddComponent(visual);
