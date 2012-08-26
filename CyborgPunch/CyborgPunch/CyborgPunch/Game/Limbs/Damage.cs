@@ -35,6 +35,7 @@ namespace CyborgPunch.Game.Limbs
                 {
                     //hit enemy
                     enemies[i].Hit(this);
+                    Shake.ShakeIt(10, 1);
                     BlobManager.Instance.PauseForDuration(0.15f);
                 }
             }

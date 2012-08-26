@@ -15,6 +15,8 @@ namespace CyborgPunch.Game
         public Blob enemySpawner;
         public Blob secondLabel;
 
+        public Blob blobShake;
+
         Blob label;
 
         public static GameManager Instance { get; private set; }
@@ -44,6 +46,9 @@ namespace CyborgPunch.Game
             DudeMovement movement = new DudeMovement();
             dude.AddComponent(movement);
             dude.transform.Translate(400, 400);
+
+            blobShake = new Blob();
+            blobShake.AddComponent(new Shake());
 
             //Blob background = new Blob();
             //background.AddComponent(new Sprite(ResourceManager.texture_BG));
