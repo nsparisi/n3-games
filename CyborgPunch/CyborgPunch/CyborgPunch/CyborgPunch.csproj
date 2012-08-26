@@ -125,6 +125,12 @@
     <Compile Include="Game\KeyBindings.cs" />
     <Compile Include="Game\DudeMovement.cs" />
     <Compile Include="Game\Limbs\BombHead.cs" />
+    <Compile Include="Game\Limbs\BiteHead.cs" />
+    <Compile Include="Game\Limbs\LaserHead.cs" />
+    <Compile Include="Game\Limbs\RocketLeg.cs" />
+    <Compile Include="Game\Limbs\LongArm.cs" />
+    <Compile Include="Game\Limbs\HammerArm.cs" />
+    <Compile Include="Game\Limbs\HookArm.cs" />
     <Compile Include="Game\Limbs\HumanHead.cs" />
     <Compile Include="Game\Limbs\LimbManager.cs" />
     <Compile Include="Game\Limbs\LimbPickup.cs" />

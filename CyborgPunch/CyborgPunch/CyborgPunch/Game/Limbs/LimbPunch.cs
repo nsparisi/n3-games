@@ -27,7 +27,7 @@ namespace CyborgPunch.Game.Limbs
 
         public float restitutionSpeed = 60f;
         public Vector2 currentAnchor;
-        public Vector2 offset;
+        public Vector2 offset = Vector2.Zero;
 
         protected Vector2 chargeMove = new Vector2(0,-10);
 
