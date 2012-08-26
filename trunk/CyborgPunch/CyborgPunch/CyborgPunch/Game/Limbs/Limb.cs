@@ -18,12 +18,12 @@ namespace CyborgPunch.Game.Limbs
         public enum LegSubType { Gun = 0, Rocket, Human }
         public enum TorsoSubType { Human = 0, Robot }
 
-        private LimbComponentType type;
-        private LimbPosition position;
-        private ArmSubType arm;
-        private HeadSubType head;
-        private LegSubType leg;
-        private TorsoSubType torso;
+        public LimbComponentType type { get; private set; }
+        public LimbPosition position { get; private set; }
+        public ArmSubType arm { get; private set; }
+        public HeadSubType head { get; private set; }
+        public LegSubType leg { get; private set; }
+        public TorsoSubType torso { get; private set; }
 
         float humanoidZ = 0;
 

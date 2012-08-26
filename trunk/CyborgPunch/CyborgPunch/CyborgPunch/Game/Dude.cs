@@ -35,6 +35,69 @@ namespace CyborgPunch.Game
 
         }
 
+        public void AttachAbilityToPart(LimbType type, Limb newLimb)
+        {
+            Blob part = GetBodyPart(type);
+            LimbPunch action = null;
+
+            if (newLimb.type == Limb.LimbComponentType.Head)
+            {
+                if (newLimb.head == Limb.HeadSubType.Bite)
+                {
+                    action = new BiteHead(this, type, KeyBindings.HeadAction);
+                }
+                else if (newLimb.head == Limb.HeadSubType.Bomb)
+                {
+                    action = new BombHead(this, type, KeyBindings.HeadAction);
+                }
+                else if (newLimb.head == Limb.HeadSubType.Laser)
+                {
+                    action = new LaserHead(this, type, KeyBindings.HeadAction);
+                }
+                else if (newLimb.head == Limb.HeadSubType.Human)
+                {
+                    action = new HumanHead(this, type, KeyBindings.HeadAction);
+                }
+            }
+            else if (newLimb.type == Limb.LimbComponentType.Arm)
+            {
+                if (newLimb.arm == Limb.ArmSubType.Hammer)
+                {
+                    action = new HammerArm(this, type, KeyBindings.HeadAction);
+                }
+                else if (newLimb.arm == Limb.ArmSubType.Hook)
+                {
+                    action = new HookArm(this, type, KeyBindings.HeadAction);
+                }
+                else if (newLimb.arm == Limb.ArmSubType.Long)
+                {
+                    action = new LongArm(this, type, KeyBindings.HeadAction);
+                }
+                else if (newLimb.arm == Limb.ArmSubType.Human)
+                {
+                    action = new HumanArm(this, type, KeyBindings.HeadAction);
+                }
+            }
+            else if (newLimb.type == Limb.LimbComponentType.Leg)
+            {
+                if (newLimb.leg == Limb.LegSubType.Gun)
+                {
+                    action = new GunLeg(this, type, KeyBindings.HeadAction);
+                }
+                else if (newLimb.leg == Limb.LegSubType.Rocket)
+                {
+                    action = new RocketLeg(this, type, KeyBindings.HeadAction);
+                }
+                else if (newLimb.leg == Limb.LegSubType.Human)
+                {
+                    action = new HumanArm(this, type, KeyBindings.HeadAction);
+                }
+            }
+
+            part.AddComponent(action);
+        }
+
+
         public override void Update()
         {
             base.Update();
@@ -115,6 +178,7 @@ namespace CyborgPunch.Game
                 {
                     part.Pickup();
                     AddLimbFromLimb(type, limb);
+                    AttachAbilityToPart(type, limb);
                     return;
                 }
             }
