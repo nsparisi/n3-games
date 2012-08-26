@@ -11,14 +11,14 @@ namespace CyborgPunch.Game.Limbs
 {
     class Limb : Component
     {
-        public enum LimbType { Head, Arm, Leg, Torso }
+        public enum LimbComponentType { Head, Arm, Leg, Torso }
         public enum LimbPosition { Left, Right }
         public enum ArmSubType { Hook = 0, Long, Hammer, Human }
         public enum HeadSubType { Bite = 0, Laser, Bomb, Human }
         public enum LegSubType { Gun = 0, Rocket, Human }
         public enum TorsoSubType { Human = 0, Robot }
 
-        private LimbType type;
+        private LimbComponentType type;
         private LimbPosition position;
         private ArmSubType arm;
         private HeadSubType head;
@@ -30,7 +30,7 @@ namespace CyborgPunch.Game.Limbs
         static Random random = new Random();
 
         //make a random limb of this type
-        public Limb(LimbType type, LimbPosition position, float humanoidZ)
+        public Limb(LimbComponentType type, LimbPosition position, float humanoidZ)
             : base()
         {
             this.type = type;
@@ -42,13 +42,33 @@ namespace CyborgPunch.Game.Limbs
             this.humanoidZ = humanoidZ;
         }
 
+        public bool IsMatchingLimb(LimbType limbType)
+        {
+            if (limbType == LimbType.Head)
+            {
+                return type == LimbComponentType.Head;
+            }
+
+            else if (limbType == LimbType.LeftArm || limbType == LimbType.RightArm)
+            {
+                return type == LimbComponentType.Arm;
+            }
+
+            else if (limbType == LimbType.LeftLeg || limbType == LimbType.RightLeg)
+            {
+                return type == LimbComponentType.Leg;
+            }
+
+            return false;
+        }
+
         public override void Start()
         {
             base.Start();
 
             PartTypes theType = PartTypes.Torso;
 
-            if (type == LimbType.Head)
+            if (type == LimbComponentType.Head)
             {
                 if (head == HeadSubType.Bite)
                 {
@@ -67,7 +87,7 @@ namespace CyborgPunch.Game.Limbs
                     theType = PartTypes.Head;
                 }
             }
-            else if (type == LimbType.Arm)
+            else if (type == LimbComponentType.Arm)
             {
                 if (arm == ArmSubType.Hammer)
                 {
@@ -86,7 +106,7 @@ namespace CyborgPunch.Game.Limbs
                     theType = position == LimbPosition.Left ? PartTypes.LeftArm : PartTypes.RightArm;
                 }
             }
-            else if (type == LimbType.Leg)
+            else if (type == LimbComponentType.Leg)
             {
                 if (leg == LegSubType.Gun)
                 {
@@ -101,7 +121,7 @@ namespace CyborgPunch.Game.Limbs
                     theType = position == LimbPosition.Left ? PartTypes.LeftLeg : PartTypes.RightLeg;
                 }
             }
-            else if (type == LimbType.Torso)
+            else if (type == LimbComponentType.Torso)
             {
                 if (torso == TorsoSubType.Human)
                 {
@@ -158,19 +178,19 @@ namespace CyborgPunch.Game.Limbs
 
             float[] result = new float[4];
 
-            if (type == LimbType.Head)
+            if (type == LimbComponentType.Head)
             {
                 result = headZ;
             }
-            else if (type == LimbType.Arm)
+            else if (type == LimbComponentType.Arm)
             {
                 result = position == LimbPosition.Left ? leftArmZ : rightArmZ;
             }
-            else if (type == LimbType.Leg)
+            else if (type == LimbComponentType.Leg)
             {
                 result = position == LimbPosition.Left ? leftLegZ : rightLegZ;
             }
-            else if (type == LimbType.Torso)
+            else if (type == LimbComponentType.Torso)
             {
                 result = torsoZ;
             }
