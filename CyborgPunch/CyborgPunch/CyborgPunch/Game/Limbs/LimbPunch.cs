@@ -13,9 +13,9 @@ namespace CyborgPunch.Game.Limbs
         protected Collider collider;
         protected float fadeTime;
 
-        protected float chargePower;
-        protected float chargeSpeed;
-        protected float chargeMax;
+        protected float chargePower = 1;
+        protected float chargeSpeed = 1;
+        protected float chargeMax = 1;
         protected bool thrown;
         protected bool keyWasDown;
         protected Dude body;

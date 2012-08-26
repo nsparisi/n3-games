@@ -31,6 +31,7 @@ namespace CyborgPunch.Game.Limbs
 
         public override void ContinuePunch()
         {
+            IncreaseCharge();
         }
 
         public override void EndPunch()
