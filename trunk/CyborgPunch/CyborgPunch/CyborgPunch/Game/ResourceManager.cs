@@ -8,11 +8,17 @@ using System;
 namespace CyborgPunch.Game
 {
     public enum LimbType { LeftArm, RightArm, RightLeg, LeftLeg, Head, Torso }
+    public enum PartTypes
+    {
+        GunLegRight, GunLegLeft, RocketLegRight, RocketLegLeft,
+        HookArmRight, HookArmLeft, HammerArmRight, HammerArmLeft, LongArmRight, LongArmLeft,
+        RobotTorso, BombHead, LaserHead, BiteHead, RightArm, LeftArm, RightLeg, LeftLeg
+    }
+
     public enum PartType { Human = 0, Robot = 1 }
 
     public class ResourceManager
     {
-
         public static Texture2D TEXTURE_HUMAN_UP_HEAD;
         public static Texture2D TEXTURE_HUMAN_UP_TORSO;
         public static Texture2D TEXTURE_HUMAN_UP_LEFTARM;
@@ -127,8 +133,13 @@ namespace CyborgPunch.Game
 
         public static Texture2D TEXTURE_ROBOT_GUNLEG_RIGHTLEG_RIGHT;
 
+        public static Texture2D[][] partTextureLookup;
 
-
+        public static Texture2D GetTextureFromPartAndFacing(Facing facing, PartTypes partType)
+        {
+            Texture2D chosenTexture = null;
+            return chosenTexture;
+        }
 
         public static Texture2D texture_White;
         public static Texture2D texture_BG;
@@ -166,7 +177,11 @@ namespace CyborgPunch.Game
             texture_BG = manager.Load<Texture2D>("Images/CrappyBG");
             font_Common = manager.Load<SpriteFont>("Font//Common");
 
-
+            partTextureLookup = new Texture2D[Enum.GetValues(typeof(PartType)).Length][];
+            for (int i = 0; i < partTextureLookup.Length; i++)
+            {
+                partTextureLookup[i] = new Texture2D[Enum.GetValues(typeof(Facing)).Length];
+            }
         }
 
         public static Rectangle GetBounds(Texture2D tex)
