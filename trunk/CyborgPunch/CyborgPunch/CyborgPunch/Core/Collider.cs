@@ -6,6 +6,7 @@ namespace CyborgPunch.Core
     public class Collider : Component
     {
         public Rectangle bounds;
+        public Vector2 offset;
 
         public Collider() : base()
         {
@@ -27,8 +28,8 @@ namespace CyborgPunch.Core
 
         private void RefreshRectangle()
         {
-            bounds.X = (int)blob.transform.Position.X;
-            bounds.Y = (int)blob.transform.Position.Y;
+            bounds.X = (int)(blob.transform.Position.X + offset.X);
+            bounds.Y = (int)(blob.transform.Position.Y + offset.Y);
         }
 
         public override void DrawDebug(SpriteBatch spriteBatch)

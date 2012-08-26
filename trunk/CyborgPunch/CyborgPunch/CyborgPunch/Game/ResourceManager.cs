@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics.PackedVector;
+using Microsoft.Xna.Framework;
+using System;
 
 namespace CyborgPunch.Game
 {
@@ -162,6 +165,33 @@ namespace CyborgPunch.Game
             texture_White = manager.Load<Texture2D>("Images//white");
             texture_BG = manager.Load<Texture2D>("Images/CrappyBG");
             font_Common = manager.Load<SpriteFont>("Font//Common");
+
+
+        }
+
+        public static Rectangle GetBounds(Texture2D tex)
+        {
+            Color[] data = new Color[tex.Width * tex.Height];
+            tex.GetData<Color>(data);
+            int left = 100000;
+            int right = 0;
+            int up = 1000000;
+            int down = 0;
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (data[i].A > 0)
+                {
+                    int x = i % tex.Width;
+                    int y = i / tex.Width;
+
+                    left = Math.Min(left, x);
+                    up = Math.Min(up, y);
+                    down = Math.Max(down, y);
+                    right = Math.Max(right, x);
+                }
+            }
+
+            return new Rectangle(left, up, right - left, down - up);
         }
     }
 }
