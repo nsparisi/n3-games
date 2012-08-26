@@ -116,6 +116,7 @@
     <Compile Include="Core\Debug.cs" />
     <Compile Include="Core\Label.cs" />
     <Compile Include="Game\Bullet.cs" />
+    <Compile Include="Game\DieOutOfBounds.cs" />
     <Compile Include="Game\Enemies\EnemyManager.cs" />
     <Compile Include="Game\Enemies\EnemySpawner.cs" />
     <Compile Include="Game\Enemies\Enemy.cs" />

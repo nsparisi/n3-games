@@ -88,6 +88,7 @@ namespace CyborgPunch.Game.Limbs
                 collider.offset = new Vector2(collider.bounds.X, collider.bounds.Y);
                 bulletBlob.AddComponent(collider);
                 bulletBlob.AddComponent(new Damage(1));
+                bulletBlob.AddComponent(new DieOutOfBounds());
 
                 if (!thrown)
                 {
