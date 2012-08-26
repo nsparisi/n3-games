@@ -25,10 +25,12 @@ namespace CyborgPunch.Game.Limbs
         private LegSubType leg;
         private TorsoSubType torso;
 
+        float humanoidZ = 0;
+
         static Random random = new Random();
 
         //make a random limb of this type
-        public Limb(LimbType type, LimbPosition position)
+        public Limb(LimbType type, LimbPosition position, float humanoidZ)
             : base()
         {
             this.type = type;
@@ -37,6 +39,7 @@ namespace CyborgPunch.Game.Limbs
             this.head = (HeadSubType)random.Next(0, 3);
             this.leg = (LegSubType)random.Next(0, 2);
             this.torso = (TorsoSubType)random.Next(0, 2);
+            this.humanoidZ = humanoidZ;
         }
 
         public override void Start()
@@ -112,6 +115,72 @@ namespace CyborgPunch.Game.Limbs
 
             LimbVisual visual = new LimbVisual(theType);
             this.blob.AddComponent(visual);
+            PrepareDepth(visual);
+        }
+
+        void PrepareDepth(LimbVisual visual)
+        {
+
+            float[] headZ = new float[4];
+            float[] torsoZ = new float[4];
+            float[] leftArmZ = new float[4];
+            float[] rightArmZ = new float[4];
+            float[] leftLegZ = new float[4];
+            float[] rightLegZ = new float[4];
+
+            headZ[(int)Facing.Down] = 1;
+            torsoZ[(int)Facing.Down] = 2;
+            leftArmZ[(int)Facing.Down] = 3;
+            rightArmZ[(int)Facing.Down] = 4;
+            leftLegZ[(int)Facing.Down] = 5;
+            rightLegZ[(int)Facing.Down] = 6;
+
+            headZ[(int)Facing.Up] = 1;
+            torsoZ[(int)Facing.Up] = 2;
+            leftArmZ[(int)Facing.Up] = 3;
+            rightArmZ[(int)Facing.Up] = 4;
+            leftLegZ[(int)Facing.Up] = 5;
+            rightLegZ[(int)Facing.Up] = 6;
+
+            headZ[(int)Facing.Left] = 1;
+            leftArmZ[(int)Facing.Left] = 2;
+            torsoZ[(int)Facing.Left] = 3;
+            leftLegZ[(int)Facing.Left] = 4;
+            rightLegZ[(int)Facing.Left] = 5;
+            rightArmZ[(int)Facing.Left] = 6;
+
+            headZ[(int)Facing.Right] = 1;
+            rightArmZ[(int)Facing.Right] = 2;
+            torsoZ[(int)Facing.Right] = 3;
+            rightLegZ[(int)Facing.Right] = 4;
+            leftLegZ[(int)Facing.Right] = 5;
+            leftArmZ[(int)Facing.Right] = 6;
+
+            float[] result = new float[4];
+
+            if (type == LimbType.Head)
+            {
+                result = headZ;
+            }
+            else if (type == LimbType.Arm)
+            {
+                result = position == LimbPosition.Left ? leftArmZ : rightArmZ;
+            }
+            else if (type == LimbType.Leg)
+            {
+                result = position == LimbPosition.Left ? leftLegZ : rightLegZ;
+            }
+            else if (type == LimbType.Torso)
+            {
+                result = torsoZ;
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                result[i] += humanoidZ;
+            }
+
+            visual.SetDepths(result);
         }
     }
 }

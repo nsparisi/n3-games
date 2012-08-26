@@ -22,6 +22,10 @@ namespace CyborgPunch.Game
         private Blob[] bodyIndex;
         private Facing facing = Facing.Down;
 
+        static Random rand = new Random();
+
+        public float randomDepth = 0;
+
         public Humanoid()
             : base()
         {
@@ -54,19 +58,15 @@ namespace CyborgPunch.Game
             rightLeg.transform.Parent = blob.transform;
             rightLeg.transform.Translate(0, 55);
 
-
-            Random rand = new Random();
-            float iteration = 1f / (1024f * 1024f);
-            float randomDepth = (float)rand.NextDouble();
+            randomDepth = (float)rand.NextDouble();
 
             //visuals
-            SetupLimb(head, Limb.LimbType.Head, Limb.LimbPosition.Left, randomDepth);
-            SetupLimb(torso, Limb.LimbType.Torso, Limb.LimbPosition.Left, randomDepth);
-            SetupLimb(leftArm, Limb.LimbType.Arm, Limb.LimbPosition.Left, randomDepth);
-            SetupLimb(rightArm, Limb.LimbType.Arm, Limb.LimbPosition.Right, randomDepth);
-            SetupLimb(leftLeg, Limb.LimbType.Leg, Limb.LimbPosition.Left, randomDepth);
-            SetupLimb(rightLeg, Limb.LimbType.Leg, Limb.LimbPosition.Right, randomDepth);
-            randomDepth += iteration;
+            SetupLimb(head, Limb.LimbType.Head, Limb.LimbPosition.Left);
+            SetupLimb(torso, Limb.LimbType.Torso, Limb.LimbPosition.Left);
+            SetupLimb(leftArm, Limb.LimbType.Arm, Limb.LimbPosition.Left);
+            SetupLimb(rightArm, Limb.LimbType.Arm, Limb.LimbPosition.Right);
+            SetupLimb(leftLeg, Limb.LimbType.Leg, Limb.LimbPosition.Left);
+            SetupLimb(rightLeg, Limb.LimbType.Leg, Limb.LimbPosition.Right);
             
             SetBodyPart(LimbType.Head, head);
             SetBodyPart(LimbType.LeftArm, leftArm);
@@ -77,15 +77,14 @@ namespace CyborgPunch.Game
 
 
             Collider collider = new Collider();
-            collider.bounds = new Rectangle(0, 0, 55, 66);
+            collider.bounds = new Rectangle(0, 0, 55, 86);
             blob.AddComponent(collider);
         }
 
-        void SetupLimb(Blob bodyPart, Limb.LimbType type, Limb.LimbPosition position, float z)
+        void SetupLimb(Blob bodyPart, Limb.LimbType type, Limb.LimbPosition position)
         {
-            Limb visual = new Limb(type, position);
+            Limb visual = new Limb(type, position, randomDepth);
             bodyPart.AddComponent(visual);
-            bodyPart.GetComponent<LimbVisual>().z = z;
         }
 
         public void DiscardLimb(LimbType whichLimb)
