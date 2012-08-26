@@ -132,6 +132,12 @@ namespace CyborgPunch.Game.Limbs
 
         public virtual void Throw()
         {
+            Collider collider = new Collider();
+            collider.bounds = new Rectangle(0, 0, 10, 20);
+            body.GetBodyPart(limbType).AddComponent(collider);
+            body.GetBodyPart(limbType).AddComponent(new Damage(1));
+
+
             thrown = true;
             body.RemoveBodyPart(limbType);
             blob.transform.Parent = null;
