@@ -47,5 +47,10 @@ namespace CyborgPunch.Game.Enemies
                 blobIDs.Remove(enemy.blob.ID);
             }
         }
+
+        public List<Enemy> GetEnemies()
+        {
+            return enemies;
+        }
     }
 }
