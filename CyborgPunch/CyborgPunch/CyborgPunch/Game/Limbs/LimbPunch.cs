@@ -39,10 +39,10 @@ namespace CyborgPunch.Game.Limbs
             currentAnchor = blob.transform.LocalPosition;
         }
 
-        public LimbPunch(Dude body, LimbType limbType, Keys activationKey) : base()
+        public LimbPunch(Dude body, LimbType limbType) : base()
         {
             this.limbType = limbType;
-            this.activationKey = activationKey;
+            this.activationKey = KeyBindings.KeyBindingFromLimbType(limbType);
             this.body = body;
         }
 

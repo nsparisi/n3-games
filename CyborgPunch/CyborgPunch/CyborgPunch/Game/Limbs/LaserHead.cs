@@ -11,8 +11,8 @@ namespace CyborgPunch.Game.Limbs
     class LaserHead : LimbPunch
     {
 
-        public LaserHead(Dude body, LimbType limbType, Keys activationKey)
-            : base(body, limbType, activationKey)
+        public LaserHead(Dude body, LimbType limbType)
+            : base(body, limbType)
         {
         }
 

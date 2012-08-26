@@ -24,8 +24,8 @@ namespace CyborgPunch.Game.Limbs
 
         Vector2 bulletFireTrajectory;
 
-        public GunLeg(Dude myBody, LimbType whichLimb, Keys activationKey)
-            : base(myBody, whichLimb, activationKey)
+        public GunLeg(Dude myBody, LimbType whichLimb)
+            : base(myBody, whichLimb)
         {
             velocity = new Vector2(0, 420);
             throwTime = 0f;

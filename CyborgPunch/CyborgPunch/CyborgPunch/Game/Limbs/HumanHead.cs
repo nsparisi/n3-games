@@ -17,8 +17,8 @@ namespace CyborgPunch.Game.Limbs
         float sweetMax;
         float sweetBonus;
 
-        public HumanHead(Dude body, LimbType limbType, Keys activationKey)
-            : base(body, limbType, activationKey)
+        public HumanHead(Dude body, LimbType limbType)
+            : base(body, limbType)
         {
             velocity = new Vector2(0, 420);
 

@@ -25,26 +25,12 @@ namespace CyborgPunch.Game.Enemies
 
             dude = GameManager.Instance.dude;
 
-            /*
-            GetBodyPart(LimbType.Head).GetComponent<Sprite>().texture =
-                ResourceManager.GetSpritePart(LimbType.Head, PartType.Robot);
-
-            GetBodyPart(LimbType.Torso).GetComponent<Sprite>().texture =
-                ResourceManager.GetSpritePart(LimbType.Torso, PartType.Robot);
-
-            GetBodyPart(LimbType.LeftArm).GetComponent<Sprite>().texture =
-                ResourceManager.GetSpritePart(LimbType.LeftArm, PartType.Robot);
-
-            GetBodyPart(LimbType.LeftLeg).GetComponent<Sprite>().texture =
-                ResourceManager.GetSpritePart(LimbType.LeftLeg, PartType.Robot);
-
-            GetBodyPart(LimbType.RightArm).GetComponent<Sprite>().texture =
-                ResourceManager.GetSpritePart(LimbType.RightArm, PartType.Robot);
-
-            GetBodyPart(LimbType.RightLeg).GetComponent<Sprite>().texture =
-                ResourceManager.GetSpritePart(LimbType.RightLeg, PartType.Robot);
-             */
-
+            AddLimb(LimbType.Head, false);
+            AddLimb(LimbType.LeftArm, false);
+            AddLimb(LimbType.LeftLeg, false);
+            AddLimb(LimbType.RightArm, false);
+            AddLimb(LimbType.RightLeg, false);
+            AddLimb(LimbType.Torso, false);
         }
 
         public void Die()
