@@ -11,8 +11,8 @@ namespace CyborgPunch.Game.Limbs
     class BiteHead : LimbPunch
     {
 
-        public BiteHead(Dude body, LimbType limbType, Keys activationKey)
-            : base(body, limbType, activationKey)
+        public BiteHead(Dude body, LimbType limbType)
+            : base(body, limbType)
         {
         }
 

@@ -20,8 +20,8 @@ namespace CyborgPunch.Game.Limbs
         float sweetBonus;
         float storedCharge;
 
-        public BombHead(Dude body, LimbType limbType, Keys activationKey)
-            : base(body, limbType, activationKey)
+        public BombHead(Dude body, LimbType limbType)
+            : base(body, limbType)
         {
             velocity = new Vector2(0, 420);
 

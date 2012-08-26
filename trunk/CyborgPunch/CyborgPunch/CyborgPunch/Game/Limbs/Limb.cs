@@ -16,7 +16,7 @@ namespace CyborgPunch.Game.Limbs
         public enum ArmSubType { Hook = 0, Long, Hammer, Human }
         public enum HeadSubType { Bite = 0, Laser, Bomb, Human }
         public enum LegSubType { Gun = 0, Rocket, Human }
-        public enum TorsoSubType { Human = 0, Robot }
+        public enum TorsoSubType { Robot = 0, Human }
 
         public LimbComponentType type { get; private set; }
         public LimbPosition position { get; private set; }
@@ -38,8 +38,20 @@ namespace CyborgPunch.Game.Limbs
             this.arm = (ArmSubType)random.Next(0, 3);
             this.head = (HeadSubType)random.Next(0, 3);
             this.leg = (LegSubType)random.Next(0, 2);
-            this.torso = (TorsoSubType)random.Next(0, 2);
+            this.torso = (TorsoSubType)random.Next(0, 1);
             this.humanoidZ = humanoidZ;
+        }
+
+        public Limb(LimbComponentType type, LimbPosition position, float humanoidZ, bool isHuman)
+            : this(type, position, humanoidZ)
+        {
+            if (isHuman)
+            {
+                this.arm = ArmSubType.Human;
+                this.head = HeadSubType.Human;
+                this.leg = LegSubType.Human;
+                this.torso = TorsoSubType.Human;
+            }
         }
 
         public Limb(Limb other, LimbPosition newPosition, float humanoidZ)
@@ -137,11 +149,11 @@ namespace CyborgPunch.Game.Limbs
             {
                 if (torso == TorsoSubType.Human)
                 {
-                    theType = PartTypes.RobotTorso;
+                    theType = PartTypes.Torso;
                 }
                 else if (torso == TorsoSubType.Robot)
                 {
-                    theType = PartTypes.Torso;
+                    theType = PartTypes.RobotTorso;
                 }
             }
 

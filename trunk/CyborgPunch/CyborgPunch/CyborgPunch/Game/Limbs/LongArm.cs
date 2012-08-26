@@ -11,8 +11,8 @@ namespace CyborgPunch.Game.Limbs
     class LongArm : LimbPunch
     {
 
-        public LongArm(Dude body, LimbType limbType, Keys activationKey)
-            : base(body, limbType, activationKey)
+        public LongArm(Dude body, LimbType limbType)
+            : base(body, limbType)
         {
         }
 

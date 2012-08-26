@@ -11,8 +11,8 @@ namespace CyborgPunch.Game.Limbs
     class RocketLeg : LimbPunch
     {
 
-        public RocketLeg(Dude body, LimbType limbType, Keys activationKey)
-            : base(body, limbType, activationKey)
+        public RocketLeg(Dude body, LimbType limbType)
+            : base(body, limbType)
         {
         }
 

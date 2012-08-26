@@ -11,8 +11,8 @@ namespace CyborgPunch.Game.Limbs
     class HookArm : LimbPunch
     {
 
-        public HookArm(Dude body, LimbType limbType, Keys activationKey)
-            : base(body, limbType, activationKey)
+        public HookArm(Dude body, LimbType limbType)
+            : base(body, limbType)
         {
         }
 

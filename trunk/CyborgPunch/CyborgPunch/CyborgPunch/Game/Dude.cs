@@ -26,14 +26,22 @@ namespace CyborgPunch.Game
         {
             base.Start();
 
-            GetBodyPart(LimbType.Head).AddComponent(new HumanHead(this, LimbType.Head, KeyBindings.HeadAction));
-            GetBodyPart(LimbType.LeftArm).AddComponent(new HumanArm(this, LimbType.LeftArm, KeyBindings.ArmLeftAction));
-            GetBodyPart(LimbType.RightArm).AddComponent(new HumanArm(this, LimbType.RightArm, KeyBindings.ArmRightAction));
+            AddLimb(LimbType.Head, true);
+            AddLimb(LimbType.LeftArm, true);
+            AddLimb(LimbType.LeftLeg, true);
+            AddLimb(LimbType.RightArm, true);
+            AddLimb(LimbType.RightLeg, true);
+            AddLimb(LimbType.Torso, true);
 
-            GetBodyPart(LimbType.RightLeg).AddComponent(new GunLeg(this, LimbType.RightLeg, KeyBindings.LegRightAction));
+            GetBodyPart(LimbType.Head).AddComponent(new HumanHead(this, LimbType.Head));
+            GetBodyPart(LimbType.LeftArm).AddComponent(new HumanArm(this, LimbType.LeftArm));
+            GetBodyPart(LimbType.RightArm).AddComponent(new HumanArm(this, LimbType.RightArm));
+
+            GetBodyPart(LimbType.RightLeg).AddComponent(new GunLeg(this, LimbType.RightLeg));
             //GetBodyPart(LimbType.RightLeg).AddComponent(new HumanArm(this, LimbType.RightLeg, KeyBindings.LegRightAction));
 
         }
+
 
         public void AttachAbilityToPart(LimbType type, Limb newLimb)
         {
@@ -44,53 +52,53 @@ namespace CyborgPunch.Game
             {
                 if (newLimb.head == Limb.HeadSubType.Bite)
                 {
-                    action = new BiteHead(this, type, KeyBindings.HeadAction);
+                    action = new BiteHead(this, type);
                 }
                 else if (newLimb.head == Limb.HeadSubType.Bomb)
                 {
-                    action = new BombHead(this, type, KeyBindings.HeadAction);
+                    action = new BombHead(this, type);
                 }
                 else if (newLimb.head == Limb.HeadSubType.Laser)
                 {
-                    action = new LaserHead(this, type, KeyBindings.HeadAction);
+                    action = new LaserHead(this, type);
                 }
                 else if (newLimb.head == Limb.HeadSubType.Human)
                 {
-                    action = new HumanHead(this, type, KeyBindings.HeadAction);
+                    action = new HumanHead(this, type);
                 }
             }
             else if (newLimb.type == Limb.LimbComponentType.Arm)
             {
                 if (newLimb.arm == Limb.ArmSubType.Hammer)
                 {
-                    action = new HammerArm(this, type, KeyBindings.HeadAction);
+                    action = new HammerArm(this, type);
                 }
                 else if (newLimb.arm == Limb.ArmSubType.Hook)
                 {
-                    action = new HookArm(this, type, KeyBindings.HeadAction);
+                    action = new HookArm(this, type );
                 }
                 else if (newLimb.arm == Limb.ArmSubType.Long)
                 {
-                    action = new LongArm(this, type, KeyBindings.HeadAction);
+                    action = new LongArm(this, type );
                 }
                 else if (newLimb.arm == Limb.ArmSubType.Human)
                 {
-                    action = new HumanArm(this, type, KeyBindings.HeadAction);
+                    action = new HumanArm(this, type);
                 }
             }
             else if (newLimb.type == Limb.LimbComponentType.Leg)
             {
                 if (newLimb.leg == Limb.LegSubType.Gun)
                 {
-                    action = new GunLeg(this, type, KeyBindings.HeadAction);
+                    action = new GunLeg(this, type);
                 }
                 else if (newLimb.leg == Limb.LegSubType.Rocket)
                 {
-                    action = new RocketLeg(this, type, KeyBindings.HeadAction);
+                    action = new RocketLeg(this, type);
                 }
                 else if (newLimb.leg == Limb.LegSubType.Human)
                 {
-                    action = new HumanArm(this, type, KeyBindings.HeadAction);
+                    action = new HumanArm(this, type);
                 }
             }
 

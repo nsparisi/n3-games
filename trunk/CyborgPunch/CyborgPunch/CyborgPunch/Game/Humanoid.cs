@@ -40,21 +40,13 @@ namespace CyborgPunch.Game
             randomDepth = (float)rand.NextDouble();
 
             this.blob.ToString();
-
-            AddLimb(LimbType.Head);
-            AddLimb(LimbType.LeftArm);
-            AddLimb(LimbType.LeftLeg);
-            AddLimb(LimbType.RightArm);
-            AddLimb(LimbType.RightLeg);
-            AddLimb(LimbType.Torso);
-
-
+        
             collider = new Collider();
             collider.bounds = new Rectangle(0, 0, 55, 86);
             blob.AddComponent(collider);
         }
 
-        public void AddLimb(LimbType limbType)
+        public void AddLimb(LimbType limbType, bool isHuman)
         {
             if (GetBodyPart(limbType) == null)
             {
@@ -70,8 +62,8 @@ namespace CyborgPunch.Game
 
                 Limb.LimbPosition positionType = Limb.LimbPosition.Left;
                 if (limbType == LimbType.RightLeg || limbType == LimbType.RightArm) positionType = Limb.LimbPosition.Right;
-                
-                Limb visual = new Limb(componentType, positionType, randomDepth);
+
+                Limb visual = new Limb(componentType, positionType, randomDepth, isHuman);
                 limb.AddComponent(visual);
 
                 SetBodyPart(limbType, limb);

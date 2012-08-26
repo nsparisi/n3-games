@@ -21,5 +21,26 @@ namespace CyborgPunch.Game
 
         public static Keys LimbChangeModifier = Keys.LeftShift;
         public static Keys LimbChangeAlternate = Keys.RightShift;
+
+
+        public static Keys KeyBindingFromLimbType(LimbType type)
+        {
+            if (type == LimbType.Head)
+                return HeadAction;
+
+            if (type == LimbType.RightArm)
+                return ArmRightAction;
+
+            if (type == LimbType.LeftArm)
+                return ArmLeftAction;
+
+            if (type == LimbType.LeftLeg)
+                return LegLeftAction;
+
+            if (type == LimbType.RightLeg)
+                return LegRightAction;
+
+            return Keys.F24; 
+        }
     }
 }
