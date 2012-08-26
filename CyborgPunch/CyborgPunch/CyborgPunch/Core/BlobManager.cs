@@ -15,11 +15,14 @@ namespace CyborgPunch.Core
                 if (instance == null)
                 {
                     instance = new BlobManager();
+                    instance.RootBlob = new Blob(true);
                 }
 
                 return instance; 
             }
         }
+
+        public Blob RootBlob;
 
         private HashSet<int> blobIDs;
         private List<Blob> blobs;
