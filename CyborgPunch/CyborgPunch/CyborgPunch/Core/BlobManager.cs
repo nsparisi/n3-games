@@ -43,6 +43,7 @@ namespace CyborgPunch.Core
             if (blobIDs.Contains(blob.ID))
             {
                 blobs.Remove(blob);
+                blobIDs.Remove(blob.ID);
             }
         }
 

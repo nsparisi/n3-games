@@ -88,6 +88,11 @@ namespace CyborgPunch.Game
             SetBodyPart(LimbType.RightArm, rightArm);
             SetBodyPart(LimbType.RightLeg, rightLeg);
             SetBodyPart(LimbType.Torso, torso);
+
+
+            Collider collider = new Collider();
+            collider.bounds = new Rectangle(0, 0, 55, 66);
+            blob.AddComponent(collider);
         }
 
         public void DiscardLimb(LimbType whichLimb)

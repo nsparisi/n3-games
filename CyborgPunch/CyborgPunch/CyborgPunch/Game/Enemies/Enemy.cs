@@ -19,6 +19,7 @@ namespace CyborgPunch.Game.Enemies
         public override void Start()
         {
             base.Start();
+            EnemyManager.Instance.RegisterEnemy(this);
 
             dude = GameManager.Instance.dude;
 
@@ -42,6 +43,11 @@ namespace CyborgPunch.Game.Enemies
 
         }
 
+        public void Die()
+        {
+            EnemyManager.Instance.UnregisterEnemy(this);
+        }
+
         public override void Update()
         {
             base.Update();
@@ -50,6 +56,11 @@ namespace CyborgPunch.Game.Enemies
             direction.Normalize();
             blob.transform.Translate(direction * speed * Time.deltaTime);
 
+            if (blob.Collides(GameManager.Instance.dude))
+            {
+                //kill dude
+                GameManager.Instance.dude.transform.Translate(direction * 50);
+            }
         }
 
     }
