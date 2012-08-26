@@ -23,6 +23,10 @@ namespace CyborgPunch.Game
             GetBodyPart(LimbType.Head).AddComponent(new HumanArm(this, LimbType.Head, KeyBindings.HeadAction));
             GetBodyPart(LimbType.LeftArm).AddComponent(new HumanArm(this, LimbType.LeftArm, KeyBindings.ArmLeftAction));
             GetBodyPart(LimbType.RightArm).AddComponent(new HumanArm(this, LimbType.RightArm, KeyBindings.ArmRightAction));
+
+            GetBodyPart(LimbType.RightLeg).AddComponent(new GunLeg(this, LimbType.RightLeg, KeyBindings.LegRightAction));
+            //GetBodyPart(LimbType.RightLeg).AddComponent(new HumanArm(this, LimbType.RightLeg, KeyBindings.LegRightAction));
+
         }
 
         public override void Update()
