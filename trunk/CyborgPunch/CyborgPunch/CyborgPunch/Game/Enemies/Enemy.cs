@@ -60,6 +60,7 @@ namespace CyborgPunch.Game.Enemies
             {
                 //kill dude
                 GameManager.Instance.dude.transform.Translate(direction * 50);
+                Die();
             }
         }
 
