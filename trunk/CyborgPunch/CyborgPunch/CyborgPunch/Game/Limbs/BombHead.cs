@@ -40,7 +40,7 @@ namespace CyborgPunch.Game.Limbs
         public override void Throw()
         {
             base.Throw();
-
+            blob.RemoveComponent<Damage>();
             storedCharge = chargePower;
         }
 
@@ -66,6 +66,7 @@ namespace CyborgPunch.Game.Limbs
                     Explode(collider.Center());
                     Shake.ShakeIt(10, 20);
                     BlobManager.Instance.PauseForDuration(0.10f);
+                    break;
                 }
             }
         }
@@ -98,7 +99,7 @@ namespace CyborgPunch.Game.Limbs
         public void Explode(Vector2 atPosition)
         {
             Blob explosion = new Blob();
-            Sprite explosionSprite = new Sprite(ResourceManager.texture_White);
+            Sprite explosionSprite = new Sprite(ResourceManager.explosion);
             Damage bombDamage = new Damage(2);
             Collider newCollider = new Collider();
             
@@ -112,7 +113,8 @@ namespace CyborgPunch.Game.Limbs
             explosion.AddComponent(explosionSprite);
             explosion.AddComponent(bombDamage);
             explosion.AddComponent(newCollider);
-            explosion.AddComponent(new DieInSeconds(1f));
+            explosion.AddComponent(new DieInSeconds(.5f));
+            explosion.AddComponent(new FadeInSeconds(.7f));
             explosion.transform.Position = atPosition -(explosionSprite.GetSize() / 2) + (limbSprite.GetSize()/2);
 
             if (!thrown)
