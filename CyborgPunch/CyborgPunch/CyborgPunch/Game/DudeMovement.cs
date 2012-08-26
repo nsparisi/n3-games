@@ -25,19 +25,23 @@ namespace CyborgPunch.Game
             if (Keyboard.GetState().IsKeyDown(KeyBindings.MoveUp))
             {
                 blob.transform.Translate(0, -speed * Time.deltaTime);
+                blob.GetComponent<Dude>().SetFacing(Facing.Up);
             }
             else if (Keyboard.GetState().IsKeyDown(KeyBindings.MoveDown))
             {
                 blob.transform.Translate(0, speed * Time.deltaTime);
+                blob.GetComponent<Dude>().SetFacing(Facing.Down);
             }
 
             if (Keyboard.GetState().IsKeyDown(KeyBindings.MoveLeft))
             {
                 blob.transform.Translate(-speed * Time.deltaTime, 0);
+                blob.GetComponent<Dude>().SetFacing(Facing.Left);
             }
             else if (Keyboard.GetState().IsKeyDown(KeyBindings.MoveRight))
             {
                 blob.transform.Translate(speed * Time.deltaTime, 0);
+                blob.GetComponent<Dude>().SetFacing(Facing.Right);
             }
         }
     }
