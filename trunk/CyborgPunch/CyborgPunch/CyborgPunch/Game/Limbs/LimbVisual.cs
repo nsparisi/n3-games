@@ -24,6 +24,7 @@ namespace CyborgPunch.Game.Limbs
             boundAreas = new Rectangle[4];
             depths = new float[4];
             SetPartType(part);
+            currentUpdate = Update_Nothing;
         }
 
         public override void Start()
@@ -60,11 +61,6 @@ namespace CyborgPunch.Game.Limbs
             Texture2D left = ResourceManager.GetTextureFromPartAndFacing(Facing.Left, part);
             Texture2D right = ResourceManager.GetTextureFromPartAndFacing(Facing.Right, part);
             SetTextures(up, down, left, right);
-
-            //Rectangle upRect = ResourceManager.GetBounds(up);
-            //Rectangle downRect = ResourceManager.GetBounds(down);
-            //Rectangle leftRect = ResourceManager.GetBounds(left);
-            //Rectangle rightRect = ResourceManager.GetBounds(right);
         }
 
         private void SetTextures(Texture2D up, Texture2D down, Texture2D left, Texture2D right)
@@ -73,6 +69,75 @@ namespace CyborgPunch.Game.Limbs
             facings[(int)Facing.Down] = down;
             facings[(int)Facing.Left ] = left;
             facings[(int)Facing.Right] = right;
+        }
+
+
+        /**
+         * animation logic
+         */
+        Vector3 velocity, position;
+        float friction = 0.5f;
+        float initialPower = 200f;
+        float gravity = 300;
+        float rotateSpeed = (float)(Math.PI * 3);
+        static Random random = new Random();
+        public void FlyInRandomDirection()
+        {
+            Vector3 randomDirection = new Vector3(
+                (float)(random.NextDouble() - 0.5), 
+                (float)(random.NextDouble() - 0.5), 
+                (float)(random.NextDouble() / -2));
+
+            randomDirection.Normalize();
+            randomDirection *= initialPower;
+            velocity = randomDirection;
+
+            rotateSpeed *= (float)(random.NextDouble()-0.5);
+
+            position = new Vector3(this.blob.transform.Position.X, this.blob.transform.Position.Y, 0);
+            currentUpdate = Update_Flying;
+        }
+
+        private delegate void UpdateFunc();
+        private UpdateFunc currentUpdate;
+
+        public override void Update()
+        {
+            base.Update();
+            currentUpdate();
+        }
+
+        void Update_Nothing()
+        {
+        }
+
+        void Update_Flying()
+        {
+            velocity.Z += gravity * Time.deltaTime;
+            position += velocity * Time.deltaTime;
+            this.blob.transform.Position = new Vector2(position.X, position.Y);
+            this.scale = MathHelper.Lerp(1, 3, position.Z / -100);
+            GameManager.Instance.secondLabel.GetComponent<Label>().text = position.Z.ToString();
+            //this.rotation += rotateSpeed * Time.deltaTime;
+
+            //bounced
+            if (position.Z >= 0)
+            {
+                velocity *= friction;
+                velocity = Vector3.Reflect(velocity, new Vector3(0, 0, -1));
+            }
+
+            if (velocity.LengthSquared() < 10)
+            {
+                currentUpdate = Update_OnGround;
+
+                LimbPickup pickup = new LimbPickup();
+                this.blob.AddComponent(pickup);
+            }
+        }
+
+        void Update_OnGround()
+        {
         }
     }
 }
