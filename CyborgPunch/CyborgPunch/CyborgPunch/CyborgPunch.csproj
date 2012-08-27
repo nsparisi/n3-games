@@ -112,6 +112,7 @@
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\Collider.cs" />
     <Compile Include="Core\Blob.cs" />
+    <Compile Include="Core\SoundManager.cs" />
     <Compile Include="Core\Gizmos.cs" />
     <Compile Include="Core\Debug.cs" />
     <Compile Include="Core\Label.cs" />

@@ -88,6 +88,8 @@ namespace CyborgPunch.Game.Limbs
                     EndPunch();
                     chargePower = 0;
                     GameManager.Instance.SetSecondLabel(chargePower.ToString("0.00"));
+
+                    SoundManager.PlaySound(SoundManager.SFX_PUNCH);
                 }
             }
             keyWasDown = keyState.IsKeyDown(activationKey);
@@ -149,6 +151,11 @@ namespace CyborgPunch.Game.Limbs
             thrown = true;
             body.RemoveBodyPart(limbType);
             blob.transform.Parent = null;
+
+            if ( !(this is HumanArm || this is HumanHead))
+            {
+                SoundManager.PlaySound(SoundManager.SFX_THROW_LIMB);
+            }
         }
 
         public void FadeAway()

@@ -37,6 +37,9 @@ namespace CyborgPunch.Game.Enemies
         {
             EnemyManager.Instance.UnregisterEnemy(this);
 
+
+            SoundManager.PlaySound(SoundManager.SFX_ENEMY_DEATH);
+
             Blob head = RemoveBodyPart(LimbType.Head);
             head.transform.Parent = null;
             head.GetComponent<LimbVisual>().FlyInRandomDirection();
@@ -77,6 +80,8 @@ namespace CyborgPunch.Game.Enemies
                 Vector2 direction = blob.transform.Position - damage.blob.transform.Position;
                 direction.Normalize();
                 blob.transform.Translate(direction * 50);
+                
+                SoundManager.PlaySound(SoundManager.SFX_HIT_2);
             }
         }
 
