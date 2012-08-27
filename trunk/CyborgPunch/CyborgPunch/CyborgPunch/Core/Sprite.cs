@@ -14,6 +14,7 @@ namespace CyborgPunch.Core
         public float rotation;
         public float z;
         public float scale;
+        public bool drawNonPremultiply;
 
         private Rectangle rectangle;
         private Rectangle source;
@@ -56,11 +57,26 @@ namespace CyborgPunch.Core
                 (int)(width * scale),
                 (int)(height * scale));
 
+            if (color.A < byte.MaxValue)
+            {
+                drawNonPremultiply = true;
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (texture != null)
+            if (texture != null && !drawNonPremultiply)
+            {
+                RefreshRectangle();
+                spriteBatch.Draw(texture, rectangle, null, color, rotation, origin, SpriteEffects.None, z);
+            }
+        }
+
+        public override void DrawNonPreMult(SpriteBatch spriteBatch)
+        {
+            base.DrawNonPreMult(spriteBatch);
+
+            if (texture != null && drawNonPremultiply)
             {
                 RefreshRectangle();
                 spriteBatch.Draw(texture, rectangle, null, color, rotation, origin, SpriteEffects.None, z);
