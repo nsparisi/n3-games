@@ -10,7 +10,7 @@ namespace CyborgPunch.Game.Limbs
 {
     class HammerArm : LimbPunch
     {
-        int ammo = 5;
+        int ammo = DamageValues.robotMeleeAmmo;
         float maxThrowTime;
         float throwTime;
         Vector2 velocity;
@@ -72,13 +72,11 @@ namespace CyborgPunch.Game.Limbs
         }
 
         public override void EndPunch()
-        {            //TODO nick tweak pubch attack
+        {
             if (chargePower > 0 && ammo-- >= 0)
             {
-                //make an attack
-                int damage = IsSweet() ? 2 : 1;
                 Blob b = new Blob();
-                b.AddComponent(new HitFlash(damage, 20f,body.GetFacing()));
+                b.AddComponent(new HitFlash(DamageValues.robotMelee, 20f,body.GetFacing(), DamageValues.robotPiercing));
                 b.transform.Parent = this.blob.transform;
 
                 Vector2 position = VectorFacing.RotateVectorToFacing(new Vector2(0, 50), body.GetFacing());

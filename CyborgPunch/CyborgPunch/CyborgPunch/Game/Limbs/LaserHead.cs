@@ -13,7 +13,7 @@ namespace CyborgPunch.Game.Limbs
         Vector2 meleeAhead;
         Vector2 meleeSize;
 
-        int ammo = 1;
+        int ammo = DamageValues.robotLaserAmmo;
         Facing facing;
         Vector2 velocity;
         float maxThrowTime;
@@ -107,7 +107,7 @@ namespace CyborgPunch.Game.Limbs
                 }
 
                 chargePower = Math.Max(chargePower, 1);
-                int laserWidth = (int)(30 * chargePower);
+                int laserWidth = (int)(60 * chargePower);
                 Blob bulletBlob = new Blob();
                 bulletBlob.transform.Position = position;
 
@@ -148,7 +148,7 @@ namespace CyborgPunch.Game.Limbs
                 bulletBlob.AddComponent(new DieInSeconds(dieTime));
                 bulletBlob.AddComponent(new FadeInSeconds(dieTime));
 
-                bulletBlob.AddComponent(new Damage(1));
+                bulletBlob.AddComponent(new Damage(5));
                 bulletBlob.AddComponent(new DieOutOfBounds());
 
                 //bulletBlob.AddComponent(new Bullet(VectorFacing.RotateVectorToFacing(bulletFireTrajectory, facing)));

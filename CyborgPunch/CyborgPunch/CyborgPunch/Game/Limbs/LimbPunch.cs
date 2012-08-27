@@ -143,7 +143,7 @@ namespace CyborgPunch.Game.Limbs
             collider.bounds = ResourceManager.GetBounds(body.GetBodyPart(limbType).GetComponent<Sprite>().texture);
             collider.offset = new Vector2(collider.bounds.X, collider.bounds.Y);
             body.GetBodyPart(limbType).AddComponent(collider);
-            body.GetBodyPart(limbType).AddComponent(new Damage(1));
+            body.GetBodyPart(limbType).AddComponent(new Damage(DamageValues.throwDamage));
             this.blob.AddComponent(new DieOutOfBounds());
 
             thrown = true;

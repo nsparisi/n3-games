@@ -34,7 +34,6 @@ namespace CyborgPunch.Game.Limbs
         public override void Throw()
         {
             base.Throw();
-            blob.GetComponent<Damage>().damageValue = 2;
             velocity = VectorFacing.RotateVectorToFacing(velocity, body.GetFacing());
             body.movement.velocity += -velocity * 5;
             SoundManager.PlaySound(SoundManager.SFX_ROCKET_BLAST);
@@ -69,6 +68,8 @@ namespace CyborgPunch.Game.Limbs
 
         public override void EndPunch()
         {
+            body.movement.velocity += -DamageValues.rocketKick * VectorFacing.RotateVectorToFacing(velocity, body.GetFacing());
+            
         }
     }
 }

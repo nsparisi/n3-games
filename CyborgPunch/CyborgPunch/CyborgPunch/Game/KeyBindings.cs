@@ -13,11 +13,11 @@ namespace CyborgPunch.Game
         public static Keys MoveLeft = Keys.A;
         public static Keys MoveRight = Keys.D;
 
-        public static Keys HeadAction = Keys.I;
-        public static Keys ArmRightAction = Keys.J;
-        public static Keys ArmLeftAction = Keys.L;
-        public static Keys LegRightAction = Keys.M;
-        public static Keys LegLeftAction = Keys.OemComma;
+        public static Keys HeadAction = Keys.O;
+        public static Keys ArmRightAction = Keys.K;
+        public static Keys ArmLeftAction = Keys.OemSemicolon;
+        public static Keys LegRightAction = Keys.OemComma;
+        public static Keys LegLeftAction = Keys.OemPeriod;
 
         public static Keys LimbChangeModifier = Keys.LeftShift;
         public static Keys LimbChangeAlternate = Keys.RightShift;

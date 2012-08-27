@@ -75,13 +75,12 @@ namespace CyborgPunch.Game.Limbs
 
         public override void EndPunch()
         {
-            //TODO nick tweak pubch attack
             if (chargePower >= .7)
             {
                 //make an attack
                 int damage = IsSweet() ? 2 : 1;
                 Blob b = new Blob();
-                b.AddComponent(new HitFlash(damage, 10f, body.GetFacing()));
+                b.AddComponent(new HitFlash(DamageValues.humanMelee*damage, 30f, body.GetFacing(), DamageValues.humanPiercing));
                 b.transform.Parent = this.blob.transform;
 
                 Vector2 position = VectorFacing.RotateVectorToFacing(new Vector2(0, 50), body.GetFacing());

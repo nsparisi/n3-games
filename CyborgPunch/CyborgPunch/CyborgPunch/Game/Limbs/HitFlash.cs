@@ -15,11 +15,14 @@ namespace CyborgPunch.Game.Limbs
         float timer;
         float knockback;
         int damage;
+        int piercing;
         Facing face;
+        Damage damageComp;
 
-        public HitFlash(int damage, float knockback, Facing face)
+        public HitFlash(int damage, float knockback, Facing face, int piercing)
             : base()
         {
+            this.piercing = piercing;
             this.damage = damage;
             this.face = face;
             this.knockback = knockback;
@@ -29,7 +32,7 @@ namespace CyborgPunch.Game.Limbs
         {
             base.Start();
 
-            Damage damageComp = new Damage(damage);
+            damageComp = new Damage(damage, piercing);
             damageComp.knockbackPower = knockback;
             Sprite sprite = new Sprite(ResourceManager.hitFlash);
             sprite.SetAnchor(Sprite.AnchorType.Middle_Center);
@@ -47,16 +50,18 @@ namespace CyborgPunch.Game.Limbs
             this.blob.AddComponent(collider);
             this.blob.AddComponent(fade);
             timer = duration;
-
-
-
         }
-
+        int frameCount = 0;
         public override void Update()
         {
             base.Update();
 
             timer -= Time.deltaTime;
+
+            if (frameCount++ > 1)
+            {
+                damageComp.enabled = false;
+            }
 
             if (timer <= 0)
             {

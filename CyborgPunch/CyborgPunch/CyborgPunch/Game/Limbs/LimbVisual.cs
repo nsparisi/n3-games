@@ -136,6 +136,9 @@ namespace CyborgPunch.Game.Limbs
             else if (velocity.LengthSquared() < 10)
             {
                 currentUpdate = Update_OnGround;
+                float dieTime = 8f;
+                blob.AddComponent(new FadeInSeconds(30));
+                blob.AddComponent(new DieInSeconds(8));
 
                 LimbPickup pickup = new LimbPickup();
                 this.blob.AddComponent(pickup);
@@ -149,6 +152,7 @@ namespace CyborgPunch.Game.Limbs
 
         void Update_OnGround()
         {
+
         }
     }
 }

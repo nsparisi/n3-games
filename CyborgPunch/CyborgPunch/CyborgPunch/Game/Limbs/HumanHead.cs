@@ -75,6 +75,15 @@ namespace CyborgPunch.Game.Limbs
 
         public override void EndPunch()
         {
+            if (chargePower >= sweetMin)
+            {
+                Blob b = new Blob();
+                b.AddComponent(new HitFlash(DamageValues.humanMelee, 0f, body.GetFacing(), DamageValues.humanPiercing));
+                Vector2 position = VectorFacing.RotateVectorToFacing(new Vector2(0, 50), body.GetFacing());
+                b.transform.Position = body.GetColliderCenter() + position + new Vector2(0, -20);
+
+                SoundManager.PlaySound(SoundManager.SFX_PUNCH);
+            }
         }
     }
 }
