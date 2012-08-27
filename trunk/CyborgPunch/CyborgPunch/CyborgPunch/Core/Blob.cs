@@ -10,6 +10,7 @@ namespace CyborgPunch.Core
         public int ID { get; private set; }
         public Transform transform;
         public bool enabled;
+        private bool godBlob = false;
 
         List<Component> components;
 
@@ -21,6 +22,7 @@ namespace CyborgPunch.Core
 
         public Blob(bool godBlob)
         {
+            this.godBlob = godBlob;
             this.ID = IDCount++;
             BlobManager.Instance.RegisterBlob(this);
 
@@ -71,7 +73,10 @@ namespace CyborgPunch.Core
 
         public void Destroy()
         {
-            this.transform.Parent = null;
+            if (!godBlob)
+            {
+               // this.transform.Parent = null;
+            }
             BlobManager.Instance.UnregisterBlob(this);
 
             for (int i = 0; i < transform.Children.Count; i++)
