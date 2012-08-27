@@ -12,10 +12,33 @@ namespace CyborgPunch.Game.Enemies
         public float speed = 70;
         int health = 2;
 
+        Vector3 start, target;
+        Vector3 initialLaunch;
+        Vector3 position;
 
-        public Enemy()
+        static Random rand = new Random();
+        float gravity = 300;
+        float timer;
+
+        public Enemy(Vector2 start, Vector2 target)
             : base()
         {
+            this.start = new Vector3(start.X, start.Y, 0);
+            this.target = new Vector3(target.X, target.Y, 0);
+
+            float z = (float)(rand.NextDouble() * gravity * 1.5f);
+            z = MathHelper.Clamp(z, gravity * 0.5f, gravity);
+            float duration = 2 * z / gravity;
+            timer = duration;
+
+            Vector2 direction = target - start;
+            direction.Normalize();
+            float dist = (target - start).Length();
+            direction *= dist / duration;
+
+            position = this.start;
+            initialLaunch = new Vector3(direction.X, direction.Y, -z);
+            comingIn = true;
         }
 
         public override void Start()
@@ -85,41 +108,66 @@ namespace CyborgPunch.Game.Enemies
             }
         }
 
+        bool comingIn;
         public override void Update()
         {
             base.Update();
 
-            Vector2 direction = dude.transform.Position - blob.transform.Position;
-            direction.Normalize();
-            blob.transform.Translate(direction * speed * Time.deltaTime);
-
-            if (Math.Abs(direction.X) > Math.Abs(direction.Y))
+            //spawning
+            if (comingIn)
             {
-                if (direction.X <= 0)
+                timer -= Time.deltaTime;
+                if (timer > 0)
                 {
-                    SetFacing(Facing.Left);
+                    this.initialLaunch.Z += gravity * Time.deltaTime;
+                    this.position += initialLaunch * Time.deltaTime;
+                    this.blob.transform.Position = new Vector2(this.position.X, this.position.Y + this.position.Z);
+                }
+                else if (timer > -0.6f)
+                {
                 }
                 else
                 {
-                    SetFacing(Facing.Right);
+                    comingIn = false;
                 }
             }
+
+            //attacking
             else
             {
-                if (direction.Y <= 0)
+
+                Vector2 direction = dude.transform.Position - blob.transform.Position;
+                direction.Normalize();
+                blob.transform.Translate(direction * speed * Time.deltaTime);
+
+                if (Math.Abs(direction.X) > Math.Abs(direction.Y))
                 {
-                    SetFacing(Facing.Up);
+                    if (direction.X <= 0)
+                    {
+                        SetFacing(Facing.Left);
+                    }
+                    else
+                    {
+                        SetFacing(Facing.Right);
+                    }
                 }
                 else
                 {
-                    SetFacing(Facing.Down);
+                    if (direction.Y <= 0)
+                    {
+                        SetFacing(Facing.Up);
+                    }
+                    else
+                    {
+                        SetFacing(Facing.Down);
+                    }
                 }
-            }
 
-            if (blob.Collides(GameManager.Instance.dude))
-            {
-                //kill dude
-                GameManager.Instance.dude.GetComponent<Dude>().Hit();
+                if (blob.Collides(GameManager.Instance.dude))
+                {
+                    //kill dude
+                    GameManager.Instance.dude.GetComponent<Dude>().Hit();
+                }
             }
         }
 
