@@ -10,8 +10,8 @@ namespace CyborgPunch.Game.Enemies
         Blob dude;
         public float speed = 70f;
 
-        int spawnTime = 5;
-        int spawnTimeMax = 10;
+        int spawnTime = 4;
+        int spawnTimeMax = 6;
         float timer;
 
         int[] spawnCounts = { 1, 2, 3, 4, 5 };
@@ -61,7 +61,7 @@ namespace CyborgPunch.Game.Enemies
                 }
             }
 
-            spawnCount = rand.Next(1, spawnCount);
+            //spawnCount = rand.Next(1, spawnCount);
 
             for (int i = 0; i < spawnCount; i++)
             {

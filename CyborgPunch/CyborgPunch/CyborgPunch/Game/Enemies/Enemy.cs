@@ -23,8 +23,8 @@ namespace CyborgPunch.Game.Enemies
         public Enemy(Vector2 start, Vector2 target)
             : base()
         {
-            float newSpeed = speed / 2f + (float)RandomCore.random.NextDouble() * speed;
-            speed = newSpeed;
+            float variation = (float)(RandomCore.random.NextDouble() - 0.5) * 0.5f;
+            speed += speed * variation;
             this.start = new Vector3(start.X, start.Y, 0);
             this.target = new Vector3(target.X, target.Y, 0);
 
@@ -41,6 +41,8 @@ namespace CyborgPunch.Game.Enemies
             position = this.start;
             initialLaunch = new Vector3(direction.X, direction.Y, -z);
             comingIn = true;
+
+            typeA = RandomCore.random.Next(0, 2) == 1 ? false : true;
         }
 
         public override void Start()
@@ -116,6 +118,10 @@ namespace CyborgPunch.Game.Enemies
         }
 
         bool comingIn;
+        bool isWait;
+        float waitTimer;
+        Vector2 destination;
+        bool typeA = false;
         public override void Update()
         {
             base.Update();
@@ -136,6 +142,7 @@ namespace CyborgPunch.Game.Enemies
                 else
                 {
                     comingIn = false;
+                    destination = dude.transform.Position;
                 }
             }
 
@@ -145,30 +152,54 @@ namespace CyborgPunch.Game.Enemies
                 if (!dude.GetComponent<Dude>().dying)
                 {
 
-                    Vector2 direction = dude.transform.Position - blob.transform.Position;
-                    direction.Normalize();
-                    blob.transform.Translate(direction * speed * Time.deltaTime);
-
-                    if (Math.Abs(direction.X) > Math.Abs(direction.Y))
+                    if (isWait)
                     {
-                        if (direction.X <= 0)
+                        waitTimer -= Time.deltaTime;
+                        if (waitTimer < 0)
                         {
-                            SetFacing(Facing.Left);
-                        }
-                        else
-                        {
-                            SetFacing(Facing.Right);
+                            isWait = false;
+                            destination = dude.transform.Position;
                         }
                     }
-                    else
+                    else if (!isWait)
                     {
-                        if (direction.Y <= 0)
+                        if (typeA)
                         {
-                            SetFacing(Facing.Up);
+                            destination = dude.transform.Position;
+                        }
+
+                        Vector2 direction = destination - blob.transform.Position;
+                        direction.Normalize();
+                        blob.transform.Translate(direction * speed * Time.deltaTime);
+
+                        if (Math.Abs(direction.X) > Math.Abs(direction.Y))
+                        {
+                            if (direction.X <= 0)
+                            {
+                                SetFacing(Facing.Left);
+                            }
+                            else
+                            {
+                                SetFacing(Facing.Right);
+                            }
                         }
                         else
                         {
-                            SetFacing(Facing.Down);
+                            if (direction.Y <= 0)
+                            {
+                                SetFacing(Facing.Up);
+                            }
+                            else
+                            {
+                                SetFacing(Facing.Down);
+                            }
+                        }
+
+                        if ((destination - blob.transform.Position).LengthSquared() < 5)
+                        {
+                            isWait = true;
+                            float waitAverage = DamageValues.enemyWaitAverage;
+                            waitTimer = (float)(RandomCore.random.NextDouble() + 0.5) * waitAverage;
                         }
                     }
 
