@@ -18,6 +18,7 @@ namespace CyborgPunch.Game.Limbs
         public float stickLength = .1f;
         public float knockbackPower = 50f;
         public int hits;
+        public bool explosive = false;
 
         public Damage(int damage)
             : base()
