@@ -156,23 +156,10 @@ namespace CyborgPunch.Game
         public static Texture2D Stage;
         public static Texture2D DeadHead;
         public static Texture2D Instructions;
+        public static Texture2D Blood;
 
         public static SpriteFont font_Common;
 
-
-        //sounds
-        public static SoundEffect SFX_ATTACH_LIMB;
-        public static SoundEffect SFX_BOMB_EXPLODE;
-        public static SoundEffect SFX_ENEMY_DEATH;
-        public static SoundEffect SFX_GUN_LEG_SHOT;
-        public static SoundEffect SFX_HIT_1;
-        public static SoundEffect SFX_HIT_2;
-        public static SoundEffect SFX_KICK;
-        public static SoundEffect SFX_LASER_FIRE;
-        public static SoundEffect SFX_PUNCH;
-        public static SoundEffect SFX_RIP_HUMAN_LIMB;
-        public static SoundEffect SFX_ROCKET_BLAST;
-        public static SoundEffect SFX_THROW_LIMB;
 
         public static void LoadAll(ContentManager manager)
         {
@@ -295,6 +282,7 @@ namespace CyborgPunch.Game
             Stage = manager.Load<Texture2D>("Images//Stage");
             DeadHead = manager.Load<Texture2D>("Images//Sprite/Human/Dead_Head");
             Instructions = manager.Load<Texture2D>("Images//Instructions");
+            Blood = manager.Load<Texture2D>("Images//Sprite//BloodSplatter");
 
             font_Common = manager.Load<SpriteFont>("Font//Common");
 
