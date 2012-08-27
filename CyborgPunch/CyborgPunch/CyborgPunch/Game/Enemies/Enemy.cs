@@ -77,9 +77,9 @@ namespace CyborgPunch.Game.Enemies
             else
             {
                 //knockback
-                Vector2 direction = blob.transform.Position - damage.blob.transform.Position;
+                Vector2 direction = collider.Center() - damage.blob.collider.Center();
                 direction.Normalize();
-                blob.transform.Translate(direction * 50);
+                blob.transform.Translate(direction * damage.knockbackPower);
                 
                 SoundManager.PlaySound(SoundManager.SFX_HIT_2);
             }

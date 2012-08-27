@@ -15,6 +15,7 @@ namespace CyborgPunch.Game.Limbs
         public float shakeStrength = 10f;
         public int shakeFrames = 20;
         public float stickLength = .1f;
+        public float knockbackPower = 50f;
 
         public Damage(int damage)
             : base()
