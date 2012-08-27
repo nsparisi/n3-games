@@ -10,7 +10,7 @@ namespace CyborgPunch.Game.Limbs
 {
     class GunLeg : LimbPunch
     {
-        int ammo = 40;
+        int ammo = DamageValues.robotGunAmmo;
         Facing facing;
         Vector2 velocity;
         float maxThrowTime;
@@ -74,6 +74,7 @@ namespace CyborgPunch.Game.Limbs
             throwTime += Time.deltaTime;
             if (throwTime > maxThrowTime)
             {
+                blob.RemoveComponent<Damage>();
                 velocity *= .75f;
                 if (ammo == 0)
                     FadeAway();
