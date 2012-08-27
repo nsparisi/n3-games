@@ -117,6 +117,7 @@
     <Compile Include="Core\Debug.cs" />
     <Compile Include="Core\Label.cs" />
     <Compile Include="Core\VectorHelpers.cs" />
+    <Compile Include="Game\Limbs\HitFlash.cs" />
     <Compile Include="Game\ScoreManager.cs" />
     <Compile Include="Game\Bullet.cs" />
     <Compile Include="Game\ScoreScreen.cs" />

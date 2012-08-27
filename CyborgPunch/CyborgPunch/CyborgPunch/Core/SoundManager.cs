@@ -35,6 +35,8 @@ namespace CyborgPunch.Core
         public static SoundEffect SFX_RIP_HUMAN_LIMB;
         public static SoundEffect SFX_ROCKET_BLAST;
         public static SoundEffect SFX_THROW_LIMB;
+        public static SoundEffect SFX_PLAYER_DIES_MAYBE;
+        public static SoundEffect SFX_SMASH_MEH;
 
         public static void LoadAll(ContentManager manager)
         {
@@ -50,6 +52,8 @@ namespace CyborgPunch.Core
             SFX_RIP_HUMAN_LIMB = manager.Load<SoundEffect>("Sounds//RipHumanLimb");
             SFX_ROCKET_BLAST = manager.Load<SoundEffect>("Sounds//RocketLegBlast");
             SFX_THROW_LIMB = manager.Load<SoundEffect>("Sounds//ThrowLimb");
+            SFX_PLAYER_DIES_MAYBE = manager.Load<SoundEffect>("Sounds//PlayerDiesMaybe");
+            SFX_SMASH_MEH = manager.Load<SoundEffect>("Sounds//SmashMeh");
         }
     }
 }

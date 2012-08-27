@@ -88,8 +88,6 @@ namespace CyborgPunch.Game.Limbs
                     EndPunch();
                     chargePower = 0;
                     GameManager.Instance.SetSecondLabel(chargePower.ToString("0.00"));
-
-                    SoundManager.PlaySound(SoundManager.SFX_PUNCH);
                 }
             }
             keyWasDown = keyState.IsKeyDown(activationKey);

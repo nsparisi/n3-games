@@ -120,7 +120,6 @@ namespace CyborgPunch.Game.Enemies
             {
                 //kill dude
                 GameManager.Instance.dude.GetComponent<Dude>().Hit();
-                Die();
             }
         }
 

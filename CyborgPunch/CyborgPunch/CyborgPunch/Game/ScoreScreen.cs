@@ -14,6 +14,8 @@ namespace CyborgPunch.Game
         Label label;
         Label secondLabel;
 
+        Label pressAgain;
+
         public static ScoreScreen Instance { get; private set; }
 
         public ScoreScreen()
@@ -36,6 +38,14 @@ namespace CyborgPunch.Game
             labelblob.AddComponent(label);
             labelblob.transform.Position = background.transform.Position + new Vector2(-0, 30);
 
+            Blob pressAgainBlob = new Blob();
+            pressAgain = new Label();
+            pressAgain.SetAlign(Label.AlignType.Center);
+            pressAgain.color = Color.Black;
+            pressAgain.text = "Press Enter To Play Again";
+            pressAgainBlob.AddComponent(pressAgain);
+            pressAgainBlob.transform.Position = background.transform.Position + new Vector2(-0, 100);
+
            /* Blob secondLabelBlob = new Blob();
             secondLabel = new Label();
             secondLabel.SetAlign(Label.AlignType.Left);
@@ -47,6 +57,7 @@ namespace CyborgPunch.Game
             
         }
 
+        float timer = 0;
         public override void Update()
         {
             base.Update();
@@ -56,6 +67,20 @@ namespace CyborgPunch.Game
                 ScoreManager.Instance.ResetScore();
                 BlobManager.Instance.ResetRoot();
                 Game1.Instance.GoToNewGame();
+            }
+
+            timer += Time.deltaTime;
+            if (timer < 3 && timer > 2)
+            {
+                pressAgain.color = Color.Yellow;
+            }
+            else if (timer < 4)
+            {
+                pressAgain.color = Color.Black;
+            }
+            else if(timer > 4)
+            {
+                timer -= 2;
             }
         }
     }
