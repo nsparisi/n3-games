@@ -49,9 +49,11 @@ namespace CyborgPunch.Game
             blobShake = new Blob();
             blobShake.AddComponent(new Shake());
 
-            Blob background = new Blob();
-            background.AddComponent(new Sprite(ResourceManager.texture_BG));
-            background.GetComponent<Sprite>().z = 1;
+            Blob platform = new Blob();
+            platform.AddComponent(new Sprite(ResourceManager.Stage));
+            platform.GetComponent<Sprite>().z = 0.998f;
+            platform.GetComponent<Sprite>().SetAnchor(Sprite.AnchorType.Middle_Center);
+            platform.transform.Position = new Vector2(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
 
             Blob enemySpawner = new Blob();
             enemySpawner.AddComponent(new EnemySpawner());
@@ -66,17 +68,22 @@ namespace CyborgPunch.Game
             enemySpawner.transform.Position = new Vector2(Constants.GAME_WIDTH / 2, -120);
             enemySpawner.GetComponent<EnemySpawner>().SpawnEnemy();
 
+            
+            Blob background = new Blob();
+            background.transform.Position = new Vector2(0, 0);
+            background.AddComponent(new CloudRepeater(ResourceManager.texture_BG, -100, 1));
+
             Blob high = new Blob();
             high.transform.Position = new Vector2(0, 0);
-            high.AddComponent(new CloudRepeater(ResourceManager.cloudTop, -5, 0.9999f));
+            high.AddComponent(new CloudRepeater(ResourceManager.cloudTop, -80, 0.9999f));
 
             Blob mid = new Blob();
             mid.transform.Position = new Vector2(0, 90);
-            mid.AddComponent(new CloudRepeater(ResourceManager.cloudMid, -10, 0.9995f));
+            mid.AddComponent(new CloudRepeater(ResourceManager.cloudMid, -100, 0.9995f));
 
             Blob bottom = new Blob();
-            bottom.transform.Position = new Vector2(0, 330);
-            bottom.AddComponent(new CloudRepeater(ResourceManager.cloudBottom, -15, 0.9990f));
+            bottom.transform.Position = new Vector2(0, 360);
+            bottom.AddComponent(new CloudRepeater(ResourceManager.cloudBottom, -180, 0.9990f));
         }
 
         float timer;
