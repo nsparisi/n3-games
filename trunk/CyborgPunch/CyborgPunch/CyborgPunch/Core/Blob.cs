@@ -12,6 +12,8 @@ namespace CyborgPunch.Core
         public bool enabled;
         private bool godBlob = false;
 
+        public Collider collider { get { return GetComponent<Collider>(); } }
+
         List<Component> components;
 
         private static int IDCount = 0;
