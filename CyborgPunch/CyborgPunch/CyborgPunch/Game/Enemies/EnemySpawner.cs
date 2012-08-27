@@ -15,7 +15,8 @@ namespace CyborgPunch.Game.Enemies
         float timer;
 
         int[] spawnCounts = { 1, 2, 3, 4, 5 };
-        int[] scoreThresholds = { 0, 20, 40, 80, 150 };
+        int[] scoreThresholds = { 0, 5, 10, 15, 20 };
+        //int[] scoreThresholds = { 0, 20, 40, 80, 150 };
 
         Rectangle target;
 
@@ -58,6 +59,12 @@ namespace CyborgPunch.Game.Enemies
                 {
                     spawnCount = spawnCounts[i - 1];
                     break;
+                }
+
+                //last
+                else if (i == scoreThresholds.Length - 1)
+                {
+                    spawnCount = spawnCounts[i];
                 }
             }
 

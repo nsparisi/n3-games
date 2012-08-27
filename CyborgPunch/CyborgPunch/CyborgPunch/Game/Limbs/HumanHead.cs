@@ -45,6 +45,13 @@ namespace CyborgPunch.Game.Limbs
 
             SoundManager.PlaySound(SoundManager.SFX_RIP_HUMAN_LIMB);
 
+            Blob blood = new Blob();
+            blood.AddComponent(new Sprite(ResourceManager.Blood));
+            blood.transform.Position = this.blob.transform.Position;
+            blood.GetComponent<Sprite>().SetAnchor(Sprite.AnchorType.Upper_Left);
+            blood.GetComponent<Sprite>().z = 0.99f;
+            blood.GetComponent<Sprite>().scale = 0.5f;
+
             velocity *= chargePower + (IsSweet() ? sweetBonus : 0f);
         }
 
