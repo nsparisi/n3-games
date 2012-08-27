@@ -73,10 +73,12 @@ namespace CyborgPunch.Game.Enemies
 
 
             SoundManager.PlaySound(SoundManager.SFX_ENEMY_DEATH);
-
             Blob head = RemoveBodyPart(LimbType.Head);
-            head.transform.Parent = null;
-            head.GetComponent<LimbVisual>().FlyInRandomDirection();
+            if (head != null)
+            {
+                head.transform.Parent = null;
+                head.GetComponent<LimbVisual>().FlyInRandomDirection();
+            }
 
             Blob lLeg = RemoveBodyPart(LimbType.LeftArm);
             lLeg.transform.Parent = null;
@@ -103,6 +105,21 @@ namespace CyborgPunch.Game.Enemies
         {
             health -= damage.damageValue;
 
+            if (damage.explosive)
+            {
+                Blob head = GetBodyPart(LimbType.Head);
+                if (head != null)
+                {
+                    if (head.GetComponent<Limb>().head == Limb.HeadSubType.Bomb)
+                    {
+                        BombHead bombHead = (BombHead)head.AddComponent(new BombHead(null, LimbType.Head));
+                        bombHead.MaxCharge();
+                        bombHead.Explode(collider.Center());
+                        RemoveBodyPart(LimbType.Head);
+                    }
+                }
+            }
+
             if (health <= 0)
             {
                 //die
@@ -119,7 +136,6 @@ namespace CyborgPunch.Game.Enemies
                 Vector2 direction = collider.Center() - relativeCollider.Center();
                 direction.Normalize();
                 blob.transform.Translate(direction * damage.knockbackPower);
-                
                 SoundManager.PlaySound(SoundManager.SFX_HIT_2);
             }
         }

@@ -37,6 +37,11 @@ namespace CyborgPunch.Game.Limbs
             chargeMax = 5f;
         }
 
+        public void MaxCharge()
+        {
+            chargePower = chargeMax;
+        }
+
         public override void Throw()
         {
             base.Throw();
@@ -113,6 +118,7 @@ namespace CyborgPunch.Game.Limbs
             Sprite explosionSprite = new Sprite(ResourceManager.explosion);
             Damage bombDamage = new Damage(5);
             Collider newCollider = new Collider();
+            bombDamage.explosive = true;
             
             float chargedExplosionSize = baseExplosionSize * chargePower;
             newCollider.bounds = new Rectangle((int)-chargedExplosionSize / 2, (int)-chargedExplosionSize / 2,
@@ -131,7 +137,7 @@ namespace CyborgPunch.Game.Limbs
 
             SoundManager.PlaySound(SoundManager.SFX_BOMB_EXPLODE);
 
-            if (!thrown)
+            if (!thrown && body != null)
                 body.RemoveBodyPart(limbType);
             blob.Destroy();
         }
