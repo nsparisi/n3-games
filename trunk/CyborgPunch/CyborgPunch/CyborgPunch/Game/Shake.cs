@@ -11,7 +11,7 @@ namespace CyborgPunch.Game
     {
         static float strength;
         static int shakeFrames;
-        static Random rand = new Random();
+        static Random rand { get { return RandomCore.random; } }
         public static void ShakeIt(float howHard, int forFrames)
         {
             if (howHard > strength)

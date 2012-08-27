@@ -16,7 +16,7 @@ namespace CyborgPunch.Game.Enemies
         Vector3 initialLaunch;
         Vector3 position;
 
-        static Random rand = new Random();
+        static Random rand { get { return RandomCore.random; } }
         float gravity = 300;
         float timer;
 

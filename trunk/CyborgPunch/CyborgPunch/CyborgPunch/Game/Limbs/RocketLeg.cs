@@ -16,12 +16,11 @@ namespace CyborgPunch.Game.Limbs
         float sweetMin;
         float sweetMax;
         float sweetBonus;
-        Random random;
+        Random random { get { return RandomCore.random; } }
 
         public RocketLeg(Dude body, LimbType limbType)
             : base(body, limbType)
         {
-            random = new Random();
             velocity = new Vector2(0, 400);
 
             maxThrowTime = 10f;

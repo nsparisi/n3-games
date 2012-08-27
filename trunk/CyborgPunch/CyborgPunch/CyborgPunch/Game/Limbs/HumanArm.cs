@@ -28,8 +28,8 @@ namespace CyborgPunch.Game.Limbs
             sweetMax = .9f;
             sweetBonus = 2f;
             chargePower = 0f;
-            chargeSpeed = .4f;
-            chargeMax = 1;
+            chargeSpeed = 5f;
+            chargeMax = 1f;
         }
 
         public override void Throw()
@@ -45,7 +45,7 @@ namespace CyborgPunch.Game.Limbs
             //ouch
             SoundManager.PlaySound(SoundManager.SFX_RIP_HUMAN_LIMB);
 
-            velocity *= chargePower + (IsSweet()?sweetBonus:0f);
+            //velocity *= chargePower + (IsSweet()?sweetBonus:0f);
         }
 
         public bool IsSweet()
@@ -80,13 +80,14 @@ namespace CyborgPunch.Game.Limbs
                 //make an attack
                 int damage = IsSweet() ? 2 : 1;
                 Blob b = new Blob();
-                b.AddComponent(new HitFlash(DamageValues.humanMelee*damage, 30f, body.GetFacing(), DamageValues.humanPiercing));
+                b.AddComponent(new HitFlash(DamageValues.humanMelee*damage, 50f, body.GetFacing(), DamageValues.humanPiercing));
                 b.transform.Parent = this.blob.transform;
 
                 Vector2 position = VectorFacing.RotateVectorToFacing(new Vector2(0, 50), body.GetFacing());
                 b.transform.LocalPosition = position + new Vector2(25,0);
 
                 SoundManager.PlaySound(SoundManager.SFX_PUNCH);
+                chargeSpeed -= .5f;
             }
         }
     }
