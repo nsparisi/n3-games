@@ -118,6 +118,7 @@ namespace CyborgPunch.Game.Limbs
         public void StartCharge()
         {
             offset = Vector2.Zero;
+            //SoundManager.PlaySound(SoundManager.SFX_CHARGE_UP, 0.4f);
         }
 
         public void IncreaseCharge()

@@ -16,6 +16,11 @@ namespace CyborgPunch.Core
             sound.Play();
         }
 
+        public static void PlaySound(SoundEffect sound, float vol)
+        {
+            sound.Play(vol, 0f, 0);
+        }
+
         public static void PlaySong(Song song)
         {
             MediaPlayer.IsRepeating = true;
@@ -37,6 +42,8 @@ namespace CyborgPunch.Core
         public static SoundEffect SFX_ROCKET_BLAST;
         public static SoundEffect SFX_THROW_LIMB;
         public static SoundEffect SFX_PLAYER_DIES_MAYBE;
+        public static SoundEffect SFX_CHARGE_UP;
+        public static SoundEffect SFX_EMPTY_GUN;
         public static SoundEffect SFX_SMASH_MEH;
 
         public static Song BGM_THEME;
@@ -57,6 +64,8 @@ namespace CyborgPunch.Core
             SFX_THROW_LIMB = manager.Load<SoundEffect>("Sounds//ThrowLimb");
             SFX_PLAYER_DIES_MAYBE = manager.Load<SoundEffect>("Sounds//PlayerDiesMaybe");
             SFX_SMASH_MEH = manager.Load<SoundEffect>("Sounds//SmashMeh");
+            SFX_CHARGE_UP = manager.Load<SoundEffect>("Sounds//ChargeUp");
+            SFX_EMPTY_GUN = manager.Load<SoundEffect>("Sounds//EmptyGun");
 
             BGM_THEME = manager.Load<Song>("Sounds//BGM");
         }

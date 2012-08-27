@@ -5,6 +5,7 @@ using System.Text;
 using CyborgPunch.Core;
 using Microsoft.Xna.Framework;
 using CyborgPunch.Game.Enemies;
+using CyborgPunch.Game.Limbs;
 
 namespace CyborgPunch.Game
 {
@@ -23,6 +24,9 @@ namespace CyborgPunch.Game
         public GameManager()
         {
             Instance = this;
+
+            EnemyManager.Instance.Clean();
+            LimbManager.Instance.Clean();
 
             characterSheet = new Blob();
             CharacterSheet characterComp = new CharacterSheet();

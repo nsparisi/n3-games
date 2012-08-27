@@ -125,15 +125,15 @@ namespace CyborgPunch.Game.Limbs
             {
                 velocity *= friction;
                 velocity = Vector3.Reflect(velocity, new Vector3(0, 0, -1));
+
+                if (!GameManager.Instance.InVisualBounds(rectangle))
+                {
+                    currentUpdate = Update_Nothing;
+                    this.blob.AddComponent(new Falling(Fell, this, 2));
+                }
             }
 
-            if (!GameManager.Instance.InVisualBounds(rectangle))
-            {
-                currentUpdate = Update_Nothing;
-                this.blob.AddComponent(new Falling(Fell, this, 2));
-            }
-
-            else if (velocity.LengthSquared() < 10)
+            if (velocity.LengthSquared() < 10)
             {
                 currentUpdate = Update_OnGround;
                 //blob.AddComponent(new FadeInSeconds(128));

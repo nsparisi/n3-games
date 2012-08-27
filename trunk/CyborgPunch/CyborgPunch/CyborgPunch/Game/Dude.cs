@@ -23,6 +23,7 @@ namespace CyborgPunch.Game
         bool previousRightArm;
         bool previousLeftArm;
 
+
         public override void Start()
         {
             base.Start();
@@ -107,53 +108,70 @@ namespace CyborgPunch.Game
         }
 
 
+        public bool dying;
+        float dieDuration = 2f;
+        float timer;
+
         public override void Update()
         {
             base.Update();
 
-
-            KeyboardState keyState = Keyboard.GetState();
-            bool HeadKeyDown = keyState.IsKeyDown(KeyBindings.HeadAction);
-            bool ArmLeftKeyDown = keyState.IsKeyDown(KeyBindings.ArmLeftAction);
-            bool ArmRightKeyDown = keyState.IsKeyDown(KeyBindings.ArmRightAction);
-            bool LegLeftKeyDown = keyState.IsKeyDown(KeyBindings.LegLeftAction);
-            bool LegRightKeyDown = keyState.IsKeyDown(KeyBindings.LegRightAction);
-
-            if (GetBodyPart(LimbType.Head) == null && 
-                JustPressedKey(previousHead, HeadKeyDown))
+            if (dying)
             {
-                TryPickupBodyPart(LimbType.Head);
-            }
+                timer -= Time.deltaTime;
 
-            if (GetBodyPart(LimbType.LeftArm) == null &&
-                JustPressedKey(previousLeftArm, ArmLeftKeyDown))
+                if (timer < 0)
+                {
+                    BlobManager.Instance.ResetRoot();
+                    Game1.Instance.GoToEndScreen();
+                }
+            }
+            else if (!dying)
             {
-                TryPickupBodyPart(LimbType.LeftArm);
-            }
 
-            if (GetBodyPart(LimbType.RightArm) == null &&
-                JustPressedKey(previousRightArm, ArmRightKeyDown))
-            {
-                TryPickupBodyPart(LimbType.RightArm);
-            }
+                KeyboardState keyState = Keyboard.GetState();
+                bool HeadKeyDown = keyState.IsKeyDown(KeyBindings.HeadAction);
+                bool ArmLeftKeyDown = keyState.IsKeyDown(KeyBindings.ArmLeftAction);
+                bool ArmRightKeyDown = keyState.IsKeyDown(KeyBindings.ArmRightAction);
+                bool LegLeftKeyDown = keyState.IsKeyDown(KeyBindings.LegLeftAction);
+                bool LegRightKeyDown = keyState.IsKeyDown(KeyBindings.LegRightAction);
 
-            if (GetBodyPart(LimbType.LeftLeg) == null &&
-                JustPressedKey(previousLeftLeg, LegLeftKeyDown))
-            {
-                TryPickupBodyPart(LimbType.LeftLeg);
-            }
+                if (GetBodyPart(LimbType.Head) == null &&
+                    JustPressedKey(previousHead, HeadKeyDown))
+                {
+                    TryPickupBodyPart(LimbType.Head);
+                }
 
-            if (GetBodyPart(LimbType.RightLeg) == null &&
-                JustPressedKey(previousRightLeg, LegRightKeyDown))
-            {
-                TryPickupBodyPart(LimbType.RightLeg);
-            }
+                if (GetBodyPart(LimbType.LeftArm) == null &&
+                    JustPressedKey(previousLeftArm, ArmLeftKeyDown))
+                {
+                    TryPickupBodyPart(LimbType.LeftArm);
+                }
 
-            previousHead = HeadKeyDown;
-            previousLeftArm = ArmLeftKeyDown;
-            previousRightArm = ArmRightKeyDown;
-            previousLeftLeg = LegLeftKeyDown;
-            previousRightLeg = LegRightKeyDown;
+                if (GetBodyPart(LimbType.RightArm) == null &&
+                    JustPressedKey(previousRightArm, ArmRightKeyDown))
+                {
+                    TryPickupBodyPart(LimbType.RightArm);
+                }
+
+                if (GetBodyPart(LimbType.LeftLeg) == null &&
+                    JustPressedKey(previousLeftLeg, LegLeftKeyDown))
+                {
+                    TryPickupBodyPart(LimbType.LeftLeg);
+                }
+
+                if (GetBodyPart(LimbType.RightLeg) == null &&
+                    JustPressedKey(previousRightLeg, LegRightKeyDown))
+                {
+                    TryPickupBodyPart(LimbType.RightLeg);
+                }
+
+                previousHead = HeadKeyDown;
+                previousLeftArm = ArmLeftKeyDown;
+                previousRightArm = ArmRightKeyDown;
+                previousLeftLeg = LegLeftKeyDown;
+                previousRightLeg = LegRightKeyDown;
+            }
         }
 
 
@@ -196,12 +214,56 @@ namespace CyborgPunch.Game
 
         public void Hit()
         {
-            //gameover
-            BlobManager.Instance.ResetRoot();
+            if (!dying)
+            {
 
-            SoundManager.PlaySound(SoundManager.SFX_PLAYER_DIES_MAYBE);
+                timer = dieDuration;
+                dying = true;
+                movement.enabled = false;
 
-            Game1.Instance.GoToEndScreen();
+                Blob head = RemoveBodyPart(LimbType.Head);
+                if (head != null)
+                {
+                    head.transform.Parent = null;
+                    head.RemoveComponent<LimbPunch>();
+                    head.GetComponent<LimbVisual>().FlyInRandomDirection();
+                }
+
+                Blob lLeg = RemoveBodyPart(LimbType.LeftArm);
+                if (lLeg != null)
+                {
+                    lLeg.transform.Parent = null;
+                    lLeg.RemoveComponent<LimbPunch>();
+                    lLeg.GetComponent<LimbVisual>().FlyInRandomDirection();
+                }
+
+                Blob rLeg = RemoveBodyPart(LimbType.LeftLeg);
+                if (rLeg != null)
+                {
+                    rLeg.transform.Parent = null;
+                    rLeg.RemoveComponent<LimbPunch>();
+                    rLeg.GetComponent<LimbVisual>().FlyInRandomDirection();
+                }
+
+                Blob rArm = RemoveBodyPart(LimbType.RightArm);
+                if (rArm != null)
+                {
+                    rArm.transform.Parent = null;
+                    rArm.RemoveComponent<LimbPunch>();
+                    rArm.GetComponent<LimbVisual>().FlyInRandomDirection();
+                }
+
+                Blob lArm = RemoveBodyPart(LimbType.RightLeg);
+                if (lArm != null)
+                {
+                    lArm.transform.Parent = null;
+                    lArm.RemoveComponent<LimbPunch>();
+                    lArm.GetComponent<LimbVisual>().FlyInRandomDirection();
+                }
+
+
+                SoundManager.PlaySound(SoundManager.SFX_PLAYER_DIES_MAYBE);
+            }
         }
     }
 }
