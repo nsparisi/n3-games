@@ -198,6 +198,8 @@ namespace CyborgPunch.Game
             //gameover
             BlobManager.Instance.ResetRoot();
 
+            SoundManager.PlaySound(SoundManager.SFX_PLAYER_DIES_MAYBE);
+
             Game1.Instance.GoToEndScreen();
         }
     }

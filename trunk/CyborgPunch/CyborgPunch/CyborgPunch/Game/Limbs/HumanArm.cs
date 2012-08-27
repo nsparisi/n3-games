@@ -75,6 +75,20 @@ namespace CyborgPunch.Game.Limbs
 
         public override void EndPunch()
         {
+            //TODO nick tweak pubch attack
+            if (chargePower > chargeMax * 0.5f)
+            {
+                //make an attack
+                int damage = IsSweet() ? 2 : 1;
+                Blob b = new Blob();
+                b.AddComponent(new HitFlash(damage, body.GetFacing()));
+                b.transform.Parent = this.blob.transform;
+
+                Vector2 position = VectorFacing.RotateVectorToFacing(new Vector2(0, 50), body.GetFacing());
+                b.transform.LocalPosition = position + new Vector2(25,0);
+
+                SoundManager.PlaySound(SoundManager.SFX_PUNCH);
+            }
         }
     }
 }
