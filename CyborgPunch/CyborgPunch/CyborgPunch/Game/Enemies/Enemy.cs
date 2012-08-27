@@ -16,6 +16,8 @@ namespace CyborgPunch.Game.Enemies
         Vector3 initialLaunch;
         Vector3 position;
 
+        float maxScoreMultiplier = 150;
+
         static Random rand { get { return RandomCore.random; } }
         float gravity = 300;
         float timer;
@@ -25,6 +27,11 @@ namespace CyborgPunch.Game.Enemies
         {
             float variation = (float)(RandomCore.random.NextDouble() - 0.5) * 0.5f;
             speed += speed * variation;
+
+            float multiplier = MathHelper.Lerp(1, 2, ScoreManager.Instance.Score / maxScoreMultiplier);
+            multiplier = MathHelper.Clamp(multiplier, 1, 2);
+            speed *= multiplier;
+
             this.start = new Vector3(start.X, start.Y, 0);
             this.target = new Vector3(target.X, target.Y, 0);
 

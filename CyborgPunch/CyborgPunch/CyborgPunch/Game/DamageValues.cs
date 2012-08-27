@@ -8,7 +8,7 @@ namespace CyborgPunch.Game
     static class DamageValues
     {
         public const int enemyHealth = 5;
-        public const float enemySpeed = 120f;
+        public const float enemySpeed = 70f;
 
         public const int throwDamage = enemyHealth;
 
