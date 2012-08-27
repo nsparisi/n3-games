@@ -29,6 +29,9 @@ namespace CyborgPunch.Game.Limbs
         public Vector2 currentAnchor;
         public Vector2 offset = Vector2.Zero;
 
+        public const float waitFor = .25f;
+        public float liveTime = 0f;
+
         protected Vector2 chargeMove = new Vector2(0,-10);
 
         public override void Start()
@@ -49,7 +52,9 @@ namespace CyborgPunch.Game.Limbs
         public override void Update()
         {
             base.Update();
-
+            liveTime += Time.deltaTime;
+            if (liveTime < waitFor)
+                return;
             if (thrown)
                 ThrowUpdate();
             else

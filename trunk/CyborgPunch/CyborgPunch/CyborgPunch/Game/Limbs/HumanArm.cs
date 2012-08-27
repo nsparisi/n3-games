@@ -80,7 +80,7 @@ namespace CyborgPunch.Game.Limbs
                 //make an attack
                 int damage = IsSweet() ? 2 : 1;
                 Blob b = new Blob();
-                b.AddComponent(new HitFlash(DamageValues.humanMelee*damage, 50f, body.GetFacing(), DamageValues.humanPiercing));
+                b.AddComponent(new HitFlash(DamageValues.humanArm*damage, 50f, body.GetFacing(), DamageValues.humanPiercing));
                 b.transform.Parent = this.blob.transform;
 
                 Vector2 position = VectorFacing.RotateVectorToFacing(new Vector2(0, 50), body.GetFacing());
