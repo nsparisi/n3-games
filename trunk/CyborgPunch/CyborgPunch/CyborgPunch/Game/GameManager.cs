@@ -33,11 +33,13 @@ namespace CyborgPunch.Game
             label.AddComponent(new Label());
             label.transform.Position = new Vector2(300, 20);
             label.GetComponent<Label>().SetAlign(Label.AlignType.Right);
+            label.enabled = false;
 
             secondLabel = new Blob();
             secondLabel.AddComponent(new Label());
             secondLabel.transform.Position = new Vector2(300, 40);
             secondLabel.GetComponent<Label>().SetAlign(Label.AlignType.Right);
+            secondLabel.enabled = false;
 
             dude = new Blob();
             Dude dudeComp = new Dude();

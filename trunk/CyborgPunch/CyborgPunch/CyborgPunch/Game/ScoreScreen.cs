@@ -12,9 +12,10 @@ namespace CyborgPunch.Game
     class ScoreScreen : Component
     {
         Label label;
-        Label secondLabel;
-
         Label pressAgain;
+        Blob background;
+
+        Blob instructions;
 
         public static ScoreScreen Instance { get; private set; }
 
@@ -22,13 +23,12 @@ namespace CyborgPunch.Game
         {
             Instance = this;
 
-            Blob background = new Blob();
+            background = new Blob();
             background.AddComponent(new Sprite(ResourceManager.DeadHead));
             background.GetComponent<Sprite>().z = 1;
             background.GetComponent<Sprite>().color = Color.White;
             background.GetComponent<Sprite>().SetAnchor(Sprite.AnchorType.Middle_Center);
             background.transform.Translate(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
-
 
             Blob labelblob = new Blob();
             label = new Label();
@@ -42,19 +42,24 @@ namespace CyborgPunch.Game
             pressAgain = new Label();
             pressAgain.SetAlign(Label.AlignType.Center);
             pressAgain.color = Color.Black;
-            pressAgain.text = "Press Enter To Play Again";
+            pressAgain.text = "Press Enter To Play Again\n   Press 'F1' For Help.";
             pressAgainBlob.AddComponent(pressAgain);
             pressAgainBlob.transform.Position = background.transform.Position + new Vector2(-0, 100);
 
-           /* Blob secondLabelBlob = new Blob();
-            secondLabel = new Label();
-            secondLabel.SetAlign(Label.AlignType.Left);
-            secondLabel.color = Color.White;
-            secondLabel.text = ScoreManager.Instance.Score.ToString();
-            secondLabelBlob.AddComponent(secondLabel);
-            secondLabelBlob.transform.Position = background.transform.Position + new Vector2(50, 30);
-            * */
-            
+            instructions = new Blob();
+            instructions.AddComponent(new Sprite(ResourceManager.Instructions));
+            instructions.GetComponent<Sprite>().z = 0.1f;
+            instructions.GetComponent<Sprite>().color = Color.White;
+            instructions.enabled = false;
+        }
+
+        void GoToInstructions()
+        {
+            label.enabled = false;
+            pressAgain.enabled = false;
+            background.enabled = false;
+
+            instructions.enabled = true;
         }
 
         float timer = 0;
@@ -69,16 +74,21 @@ namespace CyborgPunch.Game
                 Game1.Instance.GoToNewGame();
             }
 
+            if (Keyboard.GetState().IsKeyDown(Keys.F1))
+            {
+                GoToInstructions();
+            }
+
             timer += Time.deltaTime;
-            if (timer < 3 && timer > 2)
+            if (timer < 2 && timer > 1)
             {
                 pressAgain.color = Color.Yellow;
             }
-            else if (timer < 4)
+            else if (timer < 3)
             {
                 pressAgain.color = Color.Black;
             }
-            else if(timer > 4)
+            else if(timer > 3)
             {
                 timer -= 2;
             }

@@ -61,6 +61,8 @@ namespace CyborgPunch.Game.Enemies
                 }
             }
 
+            spawnCount = rand.Next(1, spawnCount);
+
             for (int i = 0; i < spawnCount; i++)
             {
                 Blob enemy = new Blob();

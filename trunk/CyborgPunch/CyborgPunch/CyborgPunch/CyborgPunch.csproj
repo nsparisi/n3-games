@@ -118,6 +118,7 @@
     <Compile Include="Core\Label.cs" />
     <Compile Include="Core\VectorHelpers.cs" />
     <Compile Include="Game\CloudRepeater.cs" />
+    <Compile Include="Game\TitleScreen.cs" />
     <Compile Include="Game\DamageValues.cs" />
     <Compile Include="Game\Limbs\Falling.cs" />
     <Compile Include="Game\Limbs\HitFlash.cs" />
