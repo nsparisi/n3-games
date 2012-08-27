@@ -32,6 +32,7 @@ namespace CyborgPunch
 
         public Game1()
         {
+            Window.Title = "Reckless Abandon";
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
