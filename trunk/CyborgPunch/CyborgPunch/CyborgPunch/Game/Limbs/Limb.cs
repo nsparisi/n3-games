@@ -29,10 +29,9 @@ namespace CyborgPunch.Game.Limbs
 
         static Random random { get { return RandomCore.random; } }
 
-        //HeadSubType[] headChoice = { HeadSubType.Bite, HeadSubType.Bite, HeadSubType.Bite, HeadSubType.Bite,
-        //                               HeadSubType.Bite, HeadSubType.Bomb, HeadSubType.Laser, HeadSubType.Laser,
-        //                               HeadSubType.Laser, HeadSubType.Laser, HeadSubType.Laser };
-        HeadSubType[] headChoice = { HeadSubType.Bomb };
+        HeadSubType[] headChoice = { HeadSubType.Bite, HeadSubType.Bite, HeadSubType.Bite, HeadSubType.Bite,
+                                       HeadSubType.Bite, HeadSubType.Bomb, HeadSubType.Laser, HeadSubType.Laser,
+                                       HeadSubType.Laser, HeadSubType.Laser, HeadSubType.Laser };
 
         //make a random limb of this type
         public Limb(LimbComponentType type, LimbPosition position, float humanoidZ)
