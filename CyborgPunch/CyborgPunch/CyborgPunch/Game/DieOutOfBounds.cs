@@ -21,7 +21,6 @@ namespace CyborgPunch.Game
             if (!GameManager.Instance.InVisualBounds(blob.transform.Position))
             {
                 blob.Destroy();
-                GameManager.Instance.SetSecondLabel("DEATH");
             }
         }
     }
