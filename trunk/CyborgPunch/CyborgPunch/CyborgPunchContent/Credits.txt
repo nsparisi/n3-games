@@ -1,3 +1,11 @@
+**	Reckless Abandon	**
+
+Nick Wasilewski
+Nick Parisi
+Natalie Parisi
+
+
+
 **	SFX	**  
 sfxr - sound effect generator
 
@@ -9,3 +17,7 @@ http://freemusicarchive.org/music/Sycamore_Drive/Sycamore_Drive/Deep_Thought_Pro
 
 **	Textures	**
 http://www.cgtextures.com/
+
+
+** 	FONT		**
+New Horizons by Joiro Hatgaya
