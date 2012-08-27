@@ -79,19 +79,19 @@ namespace CyborgPunch.Game
             
             Blob background = new Blob();
             background.transform.Position = new Vector2(0, 0);
-            background.AddComponent(new CloudRepeater(ResourceManager.texture_BG, -100, 1));
+            background.AddComponent(new CloudRepeater(ResourceManager.texture_BG, -10, 1));
 
             Blob high = new Blob();
             high.transform.Position = new Vector2(0, 50);
-            high.AddComponent(new CloudRepeater(ResourceManager.cloudTop, -80, 0.9999f));
+            high.AddComponent(new CloudRepeater(ResourceManager.cloudTop, -50, 0.9999f));
 
             Blob mid = new Blob();
             mid.transform.Position = new Vector2(0, 140);
-            mid.AddComponent(new CloudRepeater(ResourceManager.cloudMid, -100, 0.9995f));
+            mid.AddComponent(new CloudRepeater(ResourceManager.cloudMid, -80, 0.9995f));
 
             Blob bottom = new Blob();
             bottom.transform.Position = new Vector2(0, 380);
-            bottom.AddComponent(new CloudRepeater(ResourceManager.cloudBottom, -180, 0.9990f));
+            bottom.AddComponent(new CloudRepeater(ResourceManager.cloudBottom, -170, 0.9990f));
         }
 
         float timer;
