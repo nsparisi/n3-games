@@ -10,8 +10,12 @@ namespace CyborgPunch.Game.Enemies
         Blob dude;
         public float speed = 70;
 
-        float spawnTime = 5;
+        int spawnTime = 4;
+        int spawnTimeMax = 10;
         float timer;
+
+
+        static Random rand = new Random();
 
         public EnemySpawner()
             : base()
@@ -21,9 +25,9 @@ namespace CyborgPunch.Game.Enemies
         public override void Start()
         {
             base.Start();
-
-            blob.transform.Position = new Vector2(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT + 100);
+            timer = rand.Next(spawnTime, spawnTimeMax);
         }
+
 
         public override void Update()
         {
@@ -34,13 +38,12 @@ namespace CyborgPunch.Game.Enemies
             if (timer <= 0)
             {
                 SpawnEnemy();
-                timer += spawnTime;
             }
         }
 
-        private void SpawnEnemy()
+        public void SpawnEnemy()
         {
-
+            timer = rand.Next(spawnTime, spawnTimeMax);
             Blob enemy = new Blob();
             Enemy comp = new Enemy();
             enemy.AddComponent(comp);
