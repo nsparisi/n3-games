@@ -57,9 +57,9 @@ namespace CyborgPunch.Game.Enemies
             lArm.transform.Parent = null;
             lArm.GetComponent<LimbVisual>().FlyInRandomDirection();
 
-
-
             blob.Destroy();
+
+            ScoreManager.Instance.IncrementScore();
         }
 
         public void Hit(Damage damage)
@@ -114,7 +114,7 @@ namespace CyborgPunch.Game.Enemies
             if (blob.Collides(GameManager.Instance.dude))
             {
                 //kill dude
-                GameManager.Instance.dude.transform.Translate(direction * 50);
+                GameManager.Instance.dude.GetComponent<Dude>().Hit();
                 Die();
             }
         }
