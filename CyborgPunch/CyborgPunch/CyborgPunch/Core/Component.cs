@@ -20,6 +20,10 @@ namespace CyborgPunch.Core
         {
         }
 
+        public virtual void DrawNonPreMult(SpriteBatch spriteBatch)
+        {
+        }
+
         public virtual void DrawDebug(SpriteBatch spriteBatch)
         {
         }

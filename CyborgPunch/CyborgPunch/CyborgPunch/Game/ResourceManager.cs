@@ -150,6 +150,10 @@ namespace CyborgPunch.Game
         public static Texture2D texture_White;
         public static Texture2D texture_BG;
 
+        public static Texture2D cloudBottom;
+        public static Texture2D cloudMid;
+        public static Texture2D cloudTop;
+
         public static SpriteFont font_Common;
 
 
@@ -282,6 +286,9 @@ namespace CyborgPunch.Game
             hitFlash = manager.Load<Texture2D>("Images//Sprite//HitFlash");
             texture_White = manager.Load<Texture2D>("Images//white");
             texture_BG = manager.Load<Texture2D>("Images/CrappyBG");
+            cloudBottom = manager.Load<Texture2D>("Images/Clouds_BottomFast");
+            cloudMid = manager.Load<Texture2D>("Images/Clouds_Middle_Medium");
+            cloudTop = manager.Load<Texture2D>("Images/Clouds_Top_Small");
             font_Common = manager.Load<SpriteFont>("Font//Common");
 
 

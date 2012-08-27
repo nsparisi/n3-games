@@ -65,6 +65,18 @@ namespace CyborgPunch.Game
             enemySpawner.AddComponent(new EnemySpawner());
             enemySpawner.transform.Position = new Vector2(Constants.GAME_WIDTH / 2, -120);
             enemySpawner.GetComponent<EnemySpawner>().SpawnEnemy();
+
+            Blob high = new Blob();
+            high.transform.Position = new Vector2(0, 0);
+            high.AddComponent(new CloudRepeater(ResourceManager.cloudTop, -5, 0.9999f));
+
+            Blob mid = new Blob();
+            mid.transform.Position = new Vector2(0, 90);
+            mid.AddComponent(new CloudRepeater(ResourceManager.cloudMid, -10, 0.9995f));
+
+            Blob bottom = new Blob();
+            bottom.transform.Position = new Vector2(0, 330);
+            bottom.AddComponent(new CloudRepeater(ResourceManager.cloudBottom, -15, 0.9990f));
         }
 
         float timer;

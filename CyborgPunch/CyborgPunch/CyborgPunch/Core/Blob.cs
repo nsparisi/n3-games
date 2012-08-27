@@ -115,6 +115,17 @@ namespace CyborgPunch.Core
             }
         }
 
+        public void DrawNonPreMult(SpriteBatch spriteBatch)
+        {
+            for (int i = 0; i < components.Count; i++)
+            {
+                if (components[i].enabled)
+                {
+                    components[i].DrawNonPreMult(spriteBatch);
+                }
+            }
+        }
+
         public bool Collides(Blob other)
         {
             Collider myCollider = this.GetComponent<Collider>();
