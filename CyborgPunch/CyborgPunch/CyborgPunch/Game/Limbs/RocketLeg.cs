@@ -34,7 +34,9 @@ namespace CyborgPunch.Game.Limbs
         public override void Throw()
         {
             base.Throw();
+            blob.GetComponent<Damage>().damageValue = 2;
             velocity = VectorFacing.RotateVectorToFacing(velocity, body.GetFacing());
+            body.movement.velocity += -velocity * 5;
         }
 
         public override void ThrowUpdate()

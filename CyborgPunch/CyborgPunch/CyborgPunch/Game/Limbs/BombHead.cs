@@ -41,6 +41,7 @@ namespace CyborgPunch.Game.Limbs
         {
             base.Throw();
             blob.RemoveComponent<Damage>();
+            velocity = VectorFacing.RotateVectorToFacing(velocity, body.GetFacing());
             storedCharge = chargePower+(IsSweet()?sweetBonus:0);
         }
 
@@ -56,6 +57,12 @@ namespace CyborgPunch.Game.Limbs
                 velocity *= .75f;
                 FadeAway();
             }
+
+            if (keyState.IsKeyDown(activationKey))
+            {
+                Explode(collider.Center());
+            }
+
             blob.transform.Translate(velocity * Time.deltaTime);
             List<Enemy> enemies = EnemyManager.Instance.GetEnemies();
             for (int i = 0; i < enemies.Count; i++)

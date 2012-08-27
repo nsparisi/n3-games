@@ -16,6 +16,7 @@ namespace CyborgPunch.Game
         {
         }
 
+        public DudeMovement movement { get { return blob.GetComponent<DudeMovement>(); } }
         bool previousHead;
         bool previousRightLeg;
         bool previousLeftLeg;
@@ -33,7 +34,7 @@ namespace CyborgPunch.Game
             AddLimb(LimbType.RightLeg, true);
             AddLimb(LimbType.Torso, true);
 
-            GetBodyPart(LimbType.Head).AddComponent(new HumanHead(this, LimbType.Head));
+            GetBodyPart(LimbType.Head).AddComponent(new BombHead(this, LimbType.Head));
             GetBodyPart(LimbType.LeftArm).AddComponent(new HumanArm(this, LimbType.LeftArm));
             GetBodyPart(LimbType.RightArm).AddComponent(new HumanArm(this, LimbType.RightArm));
             GetBodyPart(LimbType.RightLeg).AddComponent(new RocketLeg(this, LimbType.RightLeg));
