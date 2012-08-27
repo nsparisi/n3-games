@@ -41,15 +41,14 @@ namespace CyborgPunch.Game.Limbs
         {
             base.Throw();
             blob.RemoveComponent<Damage>();
-            storedCharge = chargePower;
+            storedCharge = chargePower+(IsSweet()?sweetBonus:0);
         }
 
         public override void ThrowUpdate()
         {
             KeyboardState keyState = Keyboard.GetState();
 
-            if (!keyState.IsKeyDown(activationKey))
-                hasBeenUnpressed = true;
+            hasBeenUnpressed |= !keyState.IsKeyDown(activationKey);
 
             throwTime += Time.deltaTime;
             if (throwTime > maxThrowTime)
@@ -79,6 +78,11 @@ namespace CyborgPunch.Game.Limbs
 
         public override void StartPunch()
         {
+        }
+
+        public bool IsSweet()
+        {
+            return chargePower > sweetMin && chargePower < sweetMax;
         }
 
         public override void ContinuePunch()

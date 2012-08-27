@@ -21,12 +21,14 @@ namespace CyborgPunch.Game.Limbs
         float sweetMin;
         float sweetMax;
         float sweetBonus;
+        bool hasBeenUnpressed;
 
         Vector2 bulletFireTrajectory;
 
         public GunLeg(Dude myBody, LimbType whichLimb)
             : base(myBody, whichLimb)
         {
+            hasBeenUnpressed = false;
             velocity = new Vector2(0, 420);
             throwTime = 0f;
             maxThrowTime = .75f;
@@ -89,13 +91,19 @@ namespace CyborgPunch.Game.Limbs
             keyWasDown = keyIsDown;
         }
 
+        public override void Update()
+        {
+            base.Update();
+            hasBeenUnpressed |= !keyWasDown;
+        }
+
         public void FireGun()
         {
-            if (ammo > 0)
+            if (ammo > 0 && hasBeenUnpressed)
             {
                 Blob bulletBlob = new Blob();
                 bulletBlob.transform.Position = blob.transform.Position;
-                Sprite headSprite = new Sprite(ResourceManager.TEXTURE_HUMAN_DOWN_HEAD);
+                Sprite headSprite = new Sprite(ResourceManager.bullet);
                 bulletBlob.AddComponent(headSprite);
                 Collider collider = new Collider();
                 collider.bounds = ResourceManager.GetBounds(headSprite.texture);
