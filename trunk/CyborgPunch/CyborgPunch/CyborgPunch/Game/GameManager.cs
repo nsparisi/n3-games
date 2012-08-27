@@ -74,15 +74,15 @@ namespace CyborgPunch.Game
             background.AddComponent(new CloudRepeater(ResourceManager.texture_BG, -100, 1));
 
             Blob high = new Blob();
-            high.transform.Position = new Vector2(0, 0);
+            high.transform.Position = new Vector2(0, 50);
             high.AddComponent(new CloudRepeater(ResourceManager.cloudTop, -80, 0.9999f));
 
             Blob mid = new Blob();
-            mid.transform.Position = new Vector2(0, 90);
+            mid.transform.Position = new Vector2(0, 140);
             mid.AddComponent(new CloudRepeater(ResourceManager.cloudMid, -100, 0.9995f));
 
             Blob bottom = new Blob();
-            bottom.transform.Position = new Vector2(0, 360);
+            bottom.transform.Position = new Vector2(0, 380);
             bottom.AddComponent(new CloudRepeater(ResourceManager.cloudBottom, -180, 0.9990f));
         }
 
@@ -103,6 +103,14 @@ namespace CyborgPunch.Game
             }
         }
 
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+
+            //Rectangle r = new Rectangle(150, 100, Constants.GAME_WIDTH - 300, Constants.GAME_HEIGHT - 200);
+            //Gizmos.DrawRectangle(spriteBatch, r);
+        }
+
         public void SetSecondLabel(string thing)
         {
             secondLabel.GetComponent<Label>().text = thing;
@@ -117,7 +125,10 @@ namespace CyborgPunch.Game
 
         public bool InVisualBounds(Rectangle rect)
         {
-            return rect.Left > 0 && rect.Top > 0 && rect.Right < Constants.GAME_WIDTH && rect.Top < Constants.GAME_HEIGHT;
+            return rect.Left > 150 &&
+                rect.Top > 50 &&
+                rect.Right < Constants.GAME_WIDTH - 150 &&
+                rect.Top < Constants.GAME_HEIGHT - 100;
         }
     }
 }

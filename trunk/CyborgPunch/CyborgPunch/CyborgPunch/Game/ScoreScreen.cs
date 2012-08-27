@@ -23,7 +23,7 @@ namespace CyborgPunch.Game
             Instance = this;
 
             Blob background = new Blob();
-            background.AddComponent(new Sprite(ResourceManager.TEXTURE_HUMAN_DOWN_HEAD));
+            background.AddComponent(new Sprite(ResourceManager.DeadHead));
             background.GetComponent<Sprite>().z = 1;
             background.GetComponent<Sprite>().color = Color.White;
             background.GetComponent<Sprite>().SetAnchor(Sprite.AnchorType.Middle_Center);

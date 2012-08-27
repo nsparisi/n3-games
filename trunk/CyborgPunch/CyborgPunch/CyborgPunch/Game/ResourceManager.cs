@@ -154,6 +154,7 @@ namespace CyborgPunch.Game
         public static Texture2D cloudMid;
         public static Texture2D cloudTop;
         public static Texture2D Stage;
+        public static Texture2D DeadHead;
 
         public static SpriteFont font_Common;
 
@@ -291,6 +292,7 @@ namespace CyborgPunch.Game
             cloudMid = manager.Load<Texture2D>("Images/Clouds_Middle_Medium");
             cloudTop = manager.Load<Texture2D>("Images/Clouds_Top_Small");
             Stage = manager.Load<Texture2D>("Images//Stage");
+            DeadHead = manager.Load<Texture2D>("Images//Sprite/Human/Dead_Head");
 
             font_Common = manager.Load<SpriteFont>("Font//Common");
 
