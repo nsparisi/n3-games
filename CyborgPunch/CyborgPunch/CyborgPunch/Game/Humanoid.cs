@@ -42,7 +42,8 @@ namespace CyborgPunch.Game
             this.blob.ToString();
         
             collider = new Collider();
-            collider.bounds = new Rectangle(0, 0, 55, 86);
+            collider.bounds = new Rectangle(0, 0, 30, 40);
+            collider.offset = new Vector2(10, 25); 
             blob.AddComponent(collider);
         }
 
