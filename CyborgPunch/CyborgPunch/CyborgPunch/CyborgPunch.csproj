@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\RandomCore.cs" />
     <Compile Include="Core\Component.cs" />
     <Compile Include="Core\BlobManager.cs" />
     <Compile Include="Core\Constants.cs" />

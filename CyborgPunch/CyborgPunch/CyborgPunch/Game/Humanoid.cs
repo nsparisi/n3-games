@@ -23,7 +23,7 @@ namespace CyborgPunch.Game
                                          29 //torso
                                      };
 
-        static Random rand = new Random();
+        static Random rand { get { return RandomCore.random; } }
 
         protected Collider collider;
 

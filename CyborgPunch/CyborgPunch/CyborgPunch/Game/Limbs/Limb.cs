@@ -27,7 +27,11 @@ namespace CyborgPunch.Game.Limbs
 
         float humanoidZ = 0;
 
-        static Random random = new Random();
+        static Random random { get { return RandomCore.random; } }
+
+        HeadSubType[] headChoice = { HeadSubType.Bite, HeadSubType.Bite, HeadSubType.Bite, HeadSubType.Bite,
+                                       HeadSubType.Bite, HeadSubType.Bomb, HeadSubType.Laser, HeadSubType.Laser,
+                                       HeadSubType.Laser, HeadSubType.Laser, HeadSubType.Laser };
 
         //make a random limb of this type
         public Limb(LimbComponentType type, LimbPosition position, float humanoidZ)
@@ -36,7 +40,7 @@ namespace CyborgPunch.Game.Limbs
             this.type = type;
             this.position = position;
             this.arm = (ArmSubType)random.Next(0, 3);
-            this.head = (HeadSubType)random.Next(0, 3);
+            this.head = (HeadSubType)headChoice[random.Next(0, headChoice.Length)];
             this.leg = (LegSubType)random.Next(0, 2);
             this.torso = (TorsoSubType)random.Next(0, 1);
             this.humanoidZ = humanoidZ;

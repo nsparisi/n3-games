@@ -19,7 +19,7 @@ namespace CyborgPunch.Game.Enemies
 
         Rectangle target;
 
-        static Random rand = new Random();
+        static Random rand { get { return RandomCore.random; } }
 
         public EnemySpawner(Rectangle target)
             : base()

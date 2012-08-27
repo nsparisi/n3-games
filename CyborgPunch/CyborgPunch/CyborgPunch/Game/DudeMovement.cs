@@ -27,7 +27,7 @@ namespace CyborgPunch.Game
         {
             base.Update();
 
-            float movementForce = 2000;
+            float movementForce = 3000;
             Vector2 acceleration = Vector2.Zero;
             float speedModifier = (LegCount() * .25f) + .5f;
             if (Keyboard.GetState().IsKeyDown(KeyBindings.MoveUp))

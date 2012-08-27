@@ -43,9 +43,6 @@ namespace CyborgPunch.Game.Limbs
                 GameManager.Instance.SetSecondLabel("SWEET SHOT");
             }
 
-            //ouch
-            SoundManager.PlaySound(SoundManager.SFX_RIP_HUMAN_LIMB);
-
             velocity *= chargePower + (IsSweet() ? sweetBonus : 0f);
         }
 

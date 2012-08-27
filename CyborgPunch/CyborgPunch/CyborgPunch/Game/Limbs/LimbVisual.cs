@@ -80,7 +80,7 @@ namespace CyborgPunch.Game.Limbs
         float initialPower = 200f;
         float gravity = 300;
         float rotateSpeed = (float)(Math.PI * 3);
-        static Random random = new Random();
+        static Random random { get { return RandomCore.random; } }
         public void FlyInRandomDirection()
         {
             Vector3 randomDirection = new Vector3(
@@ -137,7 +137,7 @@ namespace CyborgPunch.Game.Limbs
             {
                 currentUpdate = Update_OnGround;
                 float dieTime = 8f;
-                blob.AddComponent(new FadeInSeconds(30));
+                //blob.AddComponent(new FadeInSeconds(128));
                 blob.AddComponent(new DieInSeconds(8));
 
                 LimbPickup pickup = new LimbPickup();
