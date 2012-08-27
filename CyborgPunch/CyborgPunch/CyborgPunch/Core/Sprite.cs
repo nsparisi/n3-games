@@ -16,7 +16,7 @@ namespace CyborgPunch.Core
         public float scale;
         public bool drawNonPremultiply;
 
-        private Rectangle rectangle;
+        protected Rectangle rectangle;
         private Rectangle source;
 
 
