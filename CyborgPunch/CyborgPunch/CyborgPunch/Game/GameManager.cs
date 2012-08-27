@@ -12,7 +12,6 @@ namespace CyborgPunch.Game
     {
         public Blob characterSheet;
         public Blob dude;
-        public Blob enemySpawner;
         public Blob secondLabel;
 
         public Blob blobShake;
@@ -45,7 +44,7 @@ namespace CyborgPunch.Game
             dude.AddComponent(dudeComp);
             DudeMovement movement = new DudeMovement(dudeComp);
             dude.AddComponent(movement);
-            dude.transform.Translate(400, 400);
+            dude.transform.Translate(Constants.GAME_WIDTH / 2 - 30, 550);
 
             blobShake = new Blob();
             blobShake.AddComponent(new Shake());
@@ -54,8 +53,18 @@ namespace CyborgPunch.Game
             background.AddComponent(new Sprite(ResourceManager.texture_BG));
             background.GetComponent<Sprite>().z = 1;
 
+            Blob enemySpawner = new Blob();
+            enemySpawner.AddComponent(new EnemySpawner());
+            enemySpawner.transform.Position = new Vector2(Constants.GAME_WIDTH + 100, Constants.GAME_HEIGHT / 2);
+
             enemySpawner = new Blob();
             enemySpawner.AddComponent(new EnemySpawner());
+            enemySpawner.transform.Position = new Vector2(-100, Constants.GAME_HEIGHT / 2);
+
+            enemySpawner = new Blob();
+            enemySpawner.AddComponent(new EnemySpawner());
+            enemySpawner.transform.Position = new Vector2(Constants.GAME_WIDTH / 2, -120);
+            enemySpawner.GetComponent<EnemySpawner>().SpawnEnemy();
         }
 
         float timer;
