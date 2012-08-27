@@ -142,5 +142,10 @@ namespace CyborgPunch.Game
                 GetBodyPart(type).GetComponent<LimbVisual>().SetFacing(face);
             }
         }
+
+        public Vector2 GetColliderCenter()
+        {
+            return collider.Center();
+        }
     }
 }
