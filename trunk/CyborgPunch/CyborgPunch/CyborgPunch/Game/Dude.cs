@@ -187,6 +187,7 @@ namespace CyborgPunch.Game
                     part.Pickup();
                     AddLimbFromLimb(type, limb);
                     AttachAbilityToPart(type, limb);
+                    SoundManager.PlaySound(SoundManager.SFX_ATTACH_LIMB);
                     return;
                 }
             }

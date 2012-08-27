@@ -112,6 +112,9 @@ namespace CyborgPunch.Game.Limbs
                 bulletBlob.AddComponent(new Damage(1));
                 bulletBlob.AddComponent(new DieOutOfBounds());
 
+
+                SoundManager.PlaySound(SoundManager.SFX_GUN_LEG_SHOT);
+
                 if (!thrown)
                 {
                     facing = body.GetFacing();

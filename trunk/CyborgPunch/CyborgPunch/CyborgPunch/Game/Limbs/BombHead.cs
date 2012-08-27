@@ -121,6 +121,9 @@ namespace CyborgPunch.Game.Limbs
             explosion.AddComponent(new FadeInSeconds(.7f));
             explosion.transform.Position = atPosition -(explosionSprite.GetSize() / 2) + (limbSprite.GetSize()/2);
 
+
+            SoundManager.PlaySound(SoundManager.SFX_BOMB_EXPLODE);
+
             if (!thrown)
                 body.RemoveBodyPart(limbType);
             blob.Destroy();

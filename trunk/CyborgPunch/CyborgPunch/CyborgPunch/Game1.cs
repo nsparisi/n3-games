@@ -68,6 +68,7 @@ namespace CyborgPunch
 
             // TODO: use this.Content to load your game content here
             ResourceManager.LoadAll(this.Content);
+            SoundManager.LoadAll(this.Content);
         }
 
         /// <summary>

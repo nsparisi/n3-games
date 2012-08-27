@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics.PackedVector;
 using Microsoft.Xna.Framework;
 using System;
+using Microsoft.Xna.Framework.Audio;
 
 namespace CyborgPunch.Game
 {
@@ -151,6 +152,21 @@ namespace CyborgPunch.Game
 
         public static SpriteFont font_Common;
 
+
+        //sounds
+        public static SoundEffect SFX_ATTACH_LIMB;
+        public static SoundEffect SFX_BOMB_EXPLODE;
+        public static SoundEffect SFX_ENEMY_DEATH;
+        public static SoundEffect SFX_GUN_LEG_SHOT;
+        public static SoundEffect SFX_HIT_1;
+        public static SoundEffect SFX_HIT_2;
+        public static SoundEffect SFX_KICK;
+        public static SoundEffect SFX_LASER_FIRE;
+        public static SoundEffect SFX_PUNCH;
+        public static SoundEffect SFX_RIP_HUMAN_LIMB;
+        public static SoundEffect SFX_ROCKET_BLAST;
+        public static SoundEffect SFX_THROW_LIMB;
+
         public static void LoadAll(ContentManager manager)
         {
             TEXTURE_HUMAN_UP_HEAD = manager.Load<Texture2D>("Images//Sprite//Human//Up_Head");
@@ -267,6 +283,8 @@ namespace CyborgPunch.Game
             texture_White = manager.Load<Texture2D>("Images//white");
             texture_BG = manager.Load<Texture2D>("Images/CrappyBG");
             font_Common = manager.Load<SpriteFont>("Font//Common");
+
+
 
             partTextureLookup = new Texture2D[Enum.GetValues(typeof(PartTypes)).Length][];
             for (int i = 0; i < partTextureLookup.Length; i++)
