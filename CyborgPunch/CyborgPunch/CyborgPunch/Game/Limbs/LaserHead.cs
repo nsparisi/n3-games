@@ -13,7 +13,7 @@ namespace CyborgPunch.Game.Limbs
         Vector2 meleeAhead;
         Vector2 meleeSize;
 
-        int ammo = 99;
+        int ammo = 1;
         Facing facing;
         Vector2 velocity;
         float maxThrowTime;
