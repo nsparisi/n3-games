@@ -11,6 +11,7 @@ namespace CyborgPunch.Game.Limbs
 {
     public class HitFlash : Component
     {
+        public Collider relativeCollider;
         public float duration = 0.2f;
         float timer;
         float knockback;
@@ -19,9 +20,10 @@ namespace CyborgPunch.Game.Limbs
         Facing face;
         Damage damageComp;
 
-        public HitFlash(int damage, float knockback, Facing face, int piercing)
+        public HitFlash(int damage, float knockback, Facing face, int piercing, Collider relativeCollider)
             : base()
         {
+            this.relativeCollider = relativeCollider;
             this.piercing = piercing;
             this.damage = damage;
             this.face = face;
@@ -33,6 +35,7 @@ namespace CyborgPunch.Game.Limbs
             base.Start();
 
             damageComp = new Damage(damage, piercing);
+            damageComp.relativeKnockbackCollider = relativeCollider;
             damageComp.knockbackPower = knockback;
             Sprite sprite = new Sprite(ResourceManager.hitFlash);
             sprite.SetAnchor(Sprite.AnchorType.Middle_Center);

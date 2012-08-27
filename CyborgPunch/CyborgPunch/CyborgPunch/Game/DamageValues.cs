@@ -25,6 +25,6 @@ namespace CyborgPunch.Game
 
         public const int gunLegPiercing = 1;
 
-        public const float rocketKick = 5f;
+        public const float rocketKick = 2f;
     }
 }

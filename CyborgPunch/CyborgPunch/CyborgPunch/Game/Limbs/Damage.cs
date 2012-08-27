@@ -11,6 +11,7 @@ namespace CyborgPunch.Game.Limbs
 {
     public class Damage : Component
     {
+        public Collider relativeKnockbackCollider;
         public int damageValue;
         public float shakeStrength = 10f;
         public int shakeFrames = 20;
@@ -21,6 +22,7 @@ namespace CyborgPunch.Game.Limbs
         public Damage(int damage)
             : base()
         {
+            relativeKnockbackCollider = null;
             hits = -1;
             damageValue = damage;
         }
@@ -47,7 +49,7 @@ namespace CyborgPunch.Game.Limbs
                 if (enemies[i].blob.Collides(this.blob))
                 {
                     //hit enemy
-                    enemies[i].Hit(this);
+                    enemies[i].Hit(this, relativeKnockbackCollider);
                     Shake.ShakeIt(shakeStrength, shakeFrames);
                     BlobManager.Instance.PauseForDuration(stickLength);
                     if (--hits == 0)

@@ -11,7 +11,7 @@ namespace CyborgPunch.Game.Limbs
 {
     class BombHead : LimbPunch
     {
-        float baseExplosionSize = 100f;
+        float baseExplosionSize = 200f;
         Vector2 velocity;
         float maxThrowTime;
         float throwTime;

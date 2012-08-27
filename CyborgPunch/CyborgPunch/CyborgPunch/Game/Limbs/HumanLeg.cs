@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using CyborgPunch.Core;
 
 namespace CyborgPunch.Game.Limbs
 {
-    class HumanArm : LimbPunch
+    class HumanLeg : LimbPunch
     {
         float maxThrowTime;
         float throwTime;
@@ -17,7 +16,7 @@ namespace CyborgPunch.Game.Limbs
         float sweetMax;
         float sweetBonus;
 
-        public HumanArm(Dude body, LimbType limbType)
+        public HumanLeg(Dude body, LimbType limbType)
             : base(body, limbType)
         {
             velocity = new Vector2(0, 420);
@@ -80,7 +79,7 @@ namespace CyborgPunch.Game.Limbs
                 //make an attack
                 int damage = IsSweet() ? 2 : 1;
                 Blob b = new Blob();
-                b.AddComponent(new HitFlash(DamageValues.humanArm*damage, 50f, body.GetFacing(), DamageValues.humanPiercing, body.Collider));
+                b.AddComponent(new HitFlash(1*damage, 100f, body.GetFacing(), DamageValues.humanPiercing, body.Collider));
                 b.transform.Parent = this.blob.transform;
 
                 Vector2 position = VectorFacing.RotateVectorToFacing(new Vector2(0, 50), body.GetFacing());
