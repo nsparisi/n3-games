@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CyborgPunch.Core;
+using CyborgPunch.Game.Limbs;
 
 namespace CyborgPunch.Game
 {
@@ -21,6 +22,9 @@ namespace CyborgPunch.Game
             lifeSeconds -= Time.deltaTime;
             if (lifeSeconds <= 0f)
             {
+                LimbPickup limbPickup = blob.GetComponent<LimbPickup>();
+                if (limbPickup != null)
+                    limbPickup.Remove();
                 blob.transform.Parent = null;
                 blob.Destroy();
             }

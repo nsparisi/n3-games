@@ -34,5 +34,10 @@ namespace CyborgPunch.Game.Limbs
             LimbManager.Instance.UnregisterLimb(this);
             this.blob.Destroy();
         }
+
+        public void Remove()
+        {
+            LimbManager.Instance.UnregisterLimb(this);
+        }
     }
 }
