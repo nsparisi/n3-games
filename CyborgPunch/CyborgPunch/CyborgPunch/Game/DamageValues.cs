@@ -17,7 +17,7 @@ namespace CyborgPunch.Game
         public const int robotLaserAmmo = 2;
 
         public const int humanMelee = 2;
-        public const int humanArm = 3;
+        public const int humanArm = 2;
         public const int humanPiercing = 2;
 
         public const int robotMelee = 5;

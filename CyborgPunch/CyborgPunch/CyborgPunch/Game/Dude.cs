@@ -51,8 +51,6 @@ namespace CyborgPunch.Game
             GetBodyPart(LimbType.RightArm).AddComponent(new HumanArm(this, LimbType.RightArm));
             GetBodyPart(LimbType.RightLeg).AddComponent(new HumanLeg(this, LimbType.RightLeg));
             GetBodyPart(LimbType.LeftLeg).AddComponent(new HumanLeg(this, LimbType.LeftLeg));
-            //GetBodyPart(LimbType.RightLeg).AddComponent(new HumanArm(this, LimbType.RightLeg, KeyBindings.LegRightAction));
-
         }
 
 
