@@ -15,7 +15,7 @@ namespace CyborgPunch.Core
                 if (instance == null)
                 {
                     instance = new BlobManager();
-                    instance.RootBlob = new Blob(true);
+                    instance.ResetRoot();
                 }
 
                 return instance; 
@@ -23,6 +23,16 @@ namespace CyborgPunch.Core
         }
 
         public Blob RootBlob;
+
+        public void ResetRoot()
+        {
+            if(RootBlob != null)
+            {
+                RootBlob.Destroy();
+            }
+
+            instance.RootBlob = new Blob(true);
+        }
 
         private HashSet<int> blobIDs;
         private List<Blob> blobs;

@@ -116,7 +116,9 @@
     <Compile Include="Core\Debug.cs" />
     <Compile Include="Core\Label.cs" />
     <Compile Include="Core\VectorHelpers.cs" />
+    <Compile Include="Game\ScoreManager.cs" />
     <Compile Include="Game\Bullet.cs" />
+    <Compile Include="Game\ScoreScreen.cs" />
     <Compile Include="Game\DieInSeconds.cs" />
     <Compile Include="Game\DieOutOfBounds.cs" />
     <Compile Include="Game\Enemies\EnemyManager.cs" />

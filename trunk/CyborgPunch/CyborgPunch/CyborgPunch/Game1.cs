@@ -28,6 +28,8 @@ namespace CyborgPunch
         //main game blob
         Blob mainGame;
 
+        public static Game1 Instance { get; private set; }
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -35,6 +37,7 @@ namespace CyborgPunch
 
             graphics.PreferredBackBufferWidth = Constants.GAME_WIDTH;
             graphics.PreferredBackBufferHeight = Constants.GAME_HEIGHT;
+            Instance = this;
         }
 
         /// <summary>
@@ -51,10 +54,7 @@ namespace CyborgPunch
             time = new Time();
             blobManager = BlobManager.Instance;
 
-            //main logic components
-            mainGame = new Blob();
-            GameManager gameLogic = new GameManager();
-            mainGame.AddComponent(gameLogic);
+            GoToNewGame();
         }
 
         /// <summary>
@@ -108,6 +108,22 @@ namespace CyborgPunch
             // TODO: Add your drawing code here
             blobManager.Draw(spriteBatch);
             base.Draw(gameTime);
+        }
+
+        public void GoToEndScreen()
+        {
+            //main logic components
+            mainGame = new Blob();
+            ScoreScreen gameLogic = new ScoreScreen();
+            mainGame.AddComponent(gameLogic);
+        }
+
+        public void GoToNewGame()
+        {
+            //main logic components
+            mainGame = new Blob();
+            GameManager gameLogic = new GameManager();
+            mainGame.AddComponent(gameLogic);
         }
     }
 }

@@ -191,5 +191,13 @@ namespace CyborgPunch.Game
                 }
             }
         }
+
+        public void Hit()
+        {
+            //gameover
+            BlobManager.Instance.ResetRoot();
+
+            Game1.Instance.GoToEndScreen();
+        }
     }
 }
