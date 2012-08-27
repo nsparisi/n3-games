@@ -28,7 +28,7 @@ namespace CyborgPunch.Game.Enemies
             float variation = (float)(RandomCore.random.NextDouble() - 0.5) * 0.5f;
             speed += speed * variation;
 
-            float multiplier = MathHelper.Lerp(1, 2, ScoreManager.Instance.Score / maxScoreMultiplier);
+            float multiplier = MathHelper.Lerp(1, 2, (ScoreManager.Instance.Score + EnemyManager.Instance.GetEnemies().Count) / maxScoreMultiplier);
             multiplier = MathHelper.Clamp(multiplier, 1, 2);
             speed *= multiplier;
 
