@@ -273,6 +273,22 @@ namespace CyborgPunch.Game
                 }
 
 
+                Blob blood = new Blob();
+                blood.AddComponent(new Sprite(ResourceManager.Blood));
+                blood.transform.Parent = this.blob.transform;
+                blood.transform.LocalPosition = new Vector2(-17,20);
+                blood.GetComponent<Sprite>().SetAnchor(Sprite.AnchorType.Upper_Left);
+                blood.GetComponent<Sprite>().z = 0.99f;
+
+                blood = new Blob();
+                blood.AddComponent(new Sprite(ResourceManager.Blood));
+                blood.transform.Parent = this.blob.transform;
+                blood.transform.LocalPosition = new Vector2(15, 40);
+                blood.GetComponent<Sprite>().SetAnchor(Sprite.AnchorType.Middle_Center);
+                blood.GetComponent<Sprite>().z = 0.0f;
+                blood.GetComponent<Sprite>().scale = 3f;
+                blood.AddComponent(new FadeInSeconds(1));
+
                 SoundManager.PlaySound(SoundManager.SFX_PLAYER_DIES_MAYBE);
             }
         }
