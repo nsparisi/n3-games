@@ -19,6 +19,7 @@ namespace CyborgPunch.Core
         public static void PlaySong(Song song)
         {
             MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 0.3f;
             MediaPlayer.Play(song);
         }
 
@@ -38,6 +39,8 @@ namespace CyborgPunch.Core
         public static SoundEffect SFX_PLAYER_DIES_MAYBE;
         public static SoundEffect SFX_SMASH_MEH;
 
+        public static Song BGM_THEME;
+
         public static void LoadAll(ContentManager manager)
         {
             SFX_ATTACH_LIMB = manager.Load<SoundEffect>("Sounds//AttachLimb");
@@ -54,6 +57,8 @@ namespace CyborgPunch.Core
             SFX_THROW_LIMB = manager.Load<SoundEffect>("Sounds//ThrowLimb");
             SFX_PLAYER_DIES_MAYBE = manager.Load<SoundEffect>("Sounds//PlayerDiesMaybe");
             SFX_SMASH_MEH = manager.Load<SoundEffect>("Sounds//SmashMeh");
+
+            BGM_THEME = manager.Load<Song>("Sounds//BGM");
         }
     }
 }

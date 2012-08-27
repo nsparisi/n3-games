@@ -9,6 +9,6 @@ namespace CyborgPunch.Core
     {
         public static int GAME_WIDTH = 1280;
         public static int GAME_HEIGHT = 768;
-        public static bool DEBUG = true;
+        public static bool DEBUG = false;
     }
 }

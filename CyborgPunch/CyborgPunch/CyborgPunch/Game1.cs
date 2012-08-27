@@ -54,7 +54,7 @@ namespace CyborgPunch
             time = new Time();
             blobManager = BlobManager.Instance;
 
-            GoToNewGame();
+            GoToTitle();
         }
 
         /// <summary>
@@ -69,6 +69,8 @@ namespace CyborgPunch
             // TODO: use this.Content to load your game content here
             ResourceManager.LoadAll(this.Content);
             SoundManager.LoadAll(this.Content);
+
+            SoundManager.PlaySong(SoundManager.BGM_THEME);
         }
 
         /// <summary>
@@ -124,6 +126,14 @@ namespace CyborgPunch
             //main logic components
             mainGame = new Blob();
             GameManager gameLogic = new GameManager();
+            mainGame.AddComponent(gameLogic);
+        }
+
+        public void GoToTitle()
+        {
+            //main logic components
+            mainGame = new Blob();
+            TitleScreen gameLogic = new TitleScreen();
             mainGame.AddComponent(gameLogic);
         }
     }
