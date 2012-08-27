@@ -13,7 +13,7 @@ namespace CyborgPunch.Game
         Humanoid body;
         //public float speed = 300;
 
-        float friction = .00001f;
+        float friction = .00000001f;
 
         public Vector2 velocity;
 
@@ -27,9 +27,9 @@ namespace CyborgPunch.Game
         {
             base.Update();
 
-            float movementForce = 3500;
+            float movementForce = 2000;
             Vector2 acceleration = Vector2.Zero;
-            float speedModifier = Math.Max((LegCount() / 2f), .25f);
+            float speedModifier = (LegCount() * .25f) + .5f;
             if (Keyboard.GetState().IsKeyDown(KeyBindings.MoveUp))
             {
                 //blob.transform.Translate(0, -modifiedSpeed * Time.deltaTime);

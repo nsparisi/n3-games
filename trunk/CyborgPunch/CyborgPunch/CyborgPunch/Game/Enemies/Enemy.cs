@@ -9,8 +9,8 @@ namespace CyborgPunch.Game.Enemies
     public class Enemy : Humanoid
     {
         Blob dude;
-        public float speed = 70;
-        int health = 2;
+        public float speed = DamageValues.enemySpeed;
+        int health = DamageValues.enemyHealth;
 
         Vector3 start, target;
         Vector3 initialLaunch;

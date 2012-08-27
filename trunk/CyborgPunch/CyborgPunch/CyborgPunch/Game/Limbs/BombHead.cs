@@ -11,7 +11,7 @@ namespace CyborgPunch.Game.Limbs
 {
     class BombHead : LimbPunch
     {
-        float baseExplosionSize = 200f;
+        float baseExplosionSize = 100f;
         Vector2 velocity;
         float maxThrowTime;
         float throwTime;
@@ -33,7 +33,7 @@ namespace CyborgPunch.Game.Limbs
             sweetMax = .9f;
             sweetBonus = 2f;
             chargePower = 0f;
-            chargeSpeed = 10f;
+            chargeSpeed = 5f;
             chargeMax = 5f;
         }
 
@@ -111,7 +111,7 @@ namespace CyborgPunch.Game.Limbs
         {
             Blob explosion = new Blob();
             Sprite explosionSprite = new Sprite(ResourceManager.explosion);
-            Damage bombDamage = new Damage(2);
+            Damage bombDamage = new Damage(5);
             Collider newCollider = new Collider();
             
             float chargedExplosionSize = baseExplosionSize * chargePower;

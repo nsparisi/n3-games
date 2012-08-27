@@ -10,10 +10,7 @@ namespace CyborgPunch.Game.Limbs
 {
     class GunLeg : LimbPunch
     {
-        Vector2 meleeAhead;
-        Vector2 meleeSize;
-
-        int ammo = 5;
+        int ammo = 40;
         Facing facing;
         Vector2 velocity;
         float maxThrowTime;
@@ -78,7 +75,8 @@ namespace CyborgPunch.Game.Limbs
             if (throwTime > maxThrowTime)
             {
                 velocity *= .75f;
-                FadeAway();
+                if (ammo == 0)
+                    FadeAway();
             }
             blob.transform.Translate(velocity * Time.deltaTime);
             KeyboardState keyState = Keyboard.GetState();
@@ -109,7 +107,7 @@ namespace CyborgPunch.Game.Limbs
                 collider.bounds = ResourceManager.GetBounds(headSprite.texture);
                 collider.offset = new Vector2(collider.bounds.X, collider.bounds.Y);
                 bulletBlob.AddComponent(collider);
-                bulletBlob.AddComponent(new Damage(1));
+                bulletBlob.AddComponent(new Damage(DamageValues.throwDamage, DamageValues.gunLegPiercing));
                 bulletBlob.AddComponent(new DieOutOfBounds());
 
 

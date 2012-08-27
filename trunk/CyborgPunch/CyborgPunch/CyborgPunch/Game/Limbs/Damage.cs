@@ -16,10 +16,19 @@ namespace CyborgPunch.Game.Limbs
         public int shakeFrames = 20;
         public float stickLength = .1f;
         public float knockbackPower = 50f;
+        public int hits;
 
         public Damage(int damage)
             : base()
         {
+            hits = -1;
+            damageValue = damage;
+        }
+
+        public Damage(int damage, int hits)
+            : base()
+        {
+            this.hits = hits;
             damageValue = damage;
         }
 
@@ -41,6 +50,11 @@ namespace CyborgPunch.Game.Limbs
                     enemies[i].Hit(this);
                     Shake.ShakeIt(shakeStrength, shakeFrames);
                     BlobManager.Instance.PauseForDuration(stickLength);
+                    if (--hits == 0)
+                    {
+                        blob.Destroy();
+                        break;
+                    }
                 }
             }
         }

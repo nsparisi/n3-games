@@ -10,7 +10,7 @@ namespace CyborgPunch.Game.Limbs
 {
     class BiteHead : LimbPunch
     {
-        int ammo = 5;
+        int ammo = DamageValues.robotMeleeAmmo;
         float maxThrowTime;
         float throwTime;
         Vector2 velocity;
@@ -79,13 +79,10 @@ namespace CyborgPunch.Game.Limbs
             if (chargePower > 0 && ammo-- >= 0)
             {
                 //make an attack
-                int damage = IsSweet() ? 2 : 1;
                 Blob b = new Blob();
-                b.AddComponent(new HitFlash(damage, 20f,body.GetFacing()));
-                b.transform.Parent = this.blob.transform;
-
+                b.AddComponent(new HitFlash(DamageValues.robotMelee, 20f,body.GetFacing(), DamageValues.robotPiercing));
                 Vector2 position = VectorFacing.RotateVectorToFacing(new Vector2(0, 50), body.GetFacing());
-                b.transform.LocalPosition = position + new Vector2(25, 0);
+                b.transform.Position = body.GetColliderCenter() + position + new Vector2(0,-20);
 
                 SoundManager.PlaySound(SoundManager.SFX_PUNCH);
             }
