@@ -10,7 +10,7 @@ namespace CyborgPunch.Game.Limbs
 {
     class LongArm : LimbPunch
     {
-        int ammo = 5;
+        int ammo = DamageValues.robotMeleeAmmo;
         float maxThrowTime;
         float throwTime;
         Vector2 velocity;
@@ -78,7 +78,7 @@ namespace CyborgPunch.Game.Limbs
                 //make an attack
                 int damage = IsSweet() ? 2 : 1;
                 Blob b = new Blob();
-                b.AddComponent(new HitFlash(damage, 20f,body.GetFacing(), DamageValues.robotPiercing, body.Collider));
+                b.AddComponent(new HitFlash(DamageValues.robotMelee, 20f,body.GetFacing(), DamageValues.robotPiercing, body.Collider));
                 b.transform.Parent = this.blob.transform;
 
                 Vector2 position = VectorFacing.RotateVectorToFacing(new Vector2(0, 50), body.GetFacing());
