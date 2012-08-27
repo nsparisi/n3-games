@@ -359,7 +359,7 @@ namespace CyborgPunch.Game
             partTextureLookup[(int)PartTypes.LeftLeg][(int)Facing.Up] = TEXTURE_HUMAN_UP_LEFTLEG;
             partTextureLookup[(int)PartTypes.LeftLeg][(int)Facing.Down] = TEXTURE_HUMAN_DOWN_LEFTLEG;
             partTextureLookup[(int)PartTypes.LeftLeg][(int)Facing.Left] = TEXTURE_HUMAN_LEFT_LEFTLEG;
-            partTextureLookup[(int)PartTypes.LeftLeg][(int)Facing.Right] = TEXTURE_HUMAN_LEFT_LEFTLEG;
+            partTextureLookup[(int)PartTypes.LeftLeg][(int)Facing.Right] = TEXTURE_HUMAN_RIGHT_RIGHTLEG;
 
             partTextureLookup[(int)PartTypes.GunLegLeft][(int)Facing.Up] = TEXTURE_ROBOT_GUNLEG_LEFTLEG_UP;
             partTextureLookup[(int)PartTypes.GunLegLeft][(int)Facing.Down] = TEXTURE_ROBOT_GUNLEG_LEFTLEG_DOWN;
@@ -374,7 +374,7 @@ namespace CyborgPunch.Game
             //right leg
             partTextureLookup[(int)PartTypes.RightLeg][(int)Facing.Up] = TEXTURE_HUMAN_UP_RIGHTLEG;
             partTextureLookup[(int)PartTypes.RightLeg][(int)Facing.Down] = TEXTURE_HUMAN_DOWN_RIGHTLEG;
-            partTextureLookup[(int)PartTypes.RightLeg][(int)Facing.Left] = TEXTURE_HUMAN_RIGHT_RIGHTLEG;
+            partTextureLookup[(int)PartTypes.RightLeg][(int)Facing.Left] = TEXTURE_HUMAN_LEFT_LEFTLEG;
             partTextureLookup[(int)PartTypes.RightLeg][(int)Facing.Right] = TEXTURE_HUMAN_RIGHT_RIGHTLEG;
 
             partTextureLookup[(int)PartTypes.GunLegRight][(int)Facing.Up] = TEXTURE_ROBOT_GUNLEG_RIGHTLEG_UP;
