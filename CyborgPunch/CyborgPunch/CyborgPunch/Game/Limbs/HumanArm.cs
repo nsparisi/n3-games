@@ -24,11 +24,11 @@ namespace CyborgPunch.Game.Limbs
 
             maxThrowTime = .75f;
             throwTime = 0f;
-            sweetMin = .7f;
+            sweetMin = .8f;
             sweetMax = .9f;
             sweetBonus = 2f;
             chargePower = 0f;
-            chargeSpeed = 2f;
+            chargeSpeed = .4f;
             chargeMax = 1;
         }
 
@@ -76,12 +76,12 @@ namespace CyborgPunch.Game.Limbs
         public override void EndPunch()
         {
             //TODO nick tweak pubch attack
-            if (chargePower > chargeMax * 0.5f)
+            if (chargePower >= .7)
             {
                 //make an attack
                 int damage = IsSweet() ? 2 : 1;
                 Blob b = new Blob();
-                b.AddComponent(new HitFlash(damage, body.GetFacing()));
+                b.AddComponent(new HitFlash(damage, 10f, body.GetFacing()));
                 b.transform.Parent = this.blob.transform;
 
                 Vector2 position = VectorFacing.RotateVectorToFacing(new Vector2(0, 50), body.GetFacing());
