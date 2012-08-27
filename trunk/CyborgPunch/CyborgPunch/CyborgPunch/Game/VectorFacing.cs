@@ -75,5 +75,21 @@ namespace CyborgPunch.Game
 
             return retVal;
         }
+
+        public static float FacingToPi(Facing facing)
+        {
+            switch(facing)
+            {
+                case Facing.Down:
+                    return 0f;
+                case Facing.Left:
+                    return MathHelper.PiOver2;
+                case Facing.Right:
+                    return -MathHelper.PiOver2;
+                case Facing.Up:
+                    return MathHelper.Pi;
+            }
+            return 0f;
+        }
     }
 }

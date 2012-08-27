@@ -30,6 +30,10 @@ namespace CyborgPunch.Game
 
             Color spriteColor = sprite.color;
             float newAlpha = (spriteColor.A - (Time.deltaTime * (1f / fadeTime) * byte.MaxValue));
+            if (newAlpha <= 0)
+            {
+                newAlpha = 0;
+            }
             spriteColor.A = (byte)newAlpha;
             sprite.color = spriteColor;
         }
