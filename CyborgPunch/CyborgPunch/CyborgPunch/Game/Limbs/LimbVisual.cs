@@ -96,6 +96,8 @@ namespace CyborgPunch.Game.Limbs
 
             position = new Vector3(this.blob.transform.Position.X, this.blob.transform.Position.Y, 0);
             currentUpdate = Update_Flying;
+
+            z = 0.98f;
         }
 
         private delegate void UpdateFunc();
