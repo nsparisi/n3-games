@@ -78,7 +78,7 @@ namespace CyborgPunch.Game.Limbs
             if (chargePower >= sweetMin)
             {
                 Blob b = new Blob();
-                b.AddComponent(new HitFlash(DamageValues.humanMelee+(chargePower==chargeMax?1:0), 0f, body.GetFacing(), DamageValues.humanPiercing));
+                b.AddComponent(new HitFlash(DamageValues.humanMelee+(chargePower==chargeMax?1:0), 0f, body.GetFacing(), DamageValues.humanPiercing, body.Collider));
                 Vector2 position = VectorFacing.RotateVectorToFacing(new Vector2(0, 50), body.GetFacing());
                 b.transform.Position = body.GetColliderCenter() + position + new Vector2(0, -20);
 

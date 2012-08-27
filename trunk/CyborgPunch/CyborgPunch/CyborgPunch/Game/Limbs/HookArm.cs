@@ -76,7 +76,7 @@ namespace CyborgPunch.Game.Limbs
             if (chargePower > 0 && ammo-- >= 0)
             {
                 Blob b = new Blob();
-                b.AddComponent(new HitFlash(DamageValues.robotMelee, 20f,body.GetFacing(), DamageValues.robotPiercing));
+                b.AddComponent(new HitFlash(DamageValues.robotMelee, 20f,body.GetFacing(), DamageValues.robotPiercing, body.Collider));
                 b.transform.Parent = this.blob.transform;
 
                 Vector2 position = VectorFacing.RotateVectorToFacing(new Vector2(0, 50), body.GetFacing());

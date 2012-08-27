@@ -17,6 +17,17 @@ namespace CyborgPunch.Game
         }
 
         public DudeMovement movement { get { return blob.GetComponent<DudeMovement>(); } }
+
+        public Collider Collider
+        {
+            get
+            {
+                if (collider == null)
+                    collider = blob.GetComponent<Collider>();
+                return collider;
+            }
+        }
+
         bool previousHead;
         bool previousRightLeg;
         bool previousLeftLeg;
@@ -38,8 +49,8 @@ namespace CyborgPunch.Game
             GetBodyPart(LimbType.Head).AddComponent(new HumanHead(this, LimbType.Head));
             GetBodyPart(LimbType.LeftArm).AddComponent(new HumanArm(this, LimbType.LeftArm));
             GetBodyPart(LimbType.RightArm).AddComponent(new HumanArm(this, LimbType.RightArm));
-            GetBodyPart(LimbType.RightLeg).AddComponent(new HumanArm(this, LimbType.RightLeg));
-            GetBodyPart(LimbType.LeftLeg).AddComponent(new HumanArm(this, LimbType.LeftLeg));
+            GetBodyPart(LimbType.RightLeg).AddComponent(new HumanLeg(this, LimbType.RightLeg));
+            GetBodyPart(LimbType.LeftLeg).AddComponent(new HumanLeg(this, LimbType.LeftLeg));
             //GetBodyPart(LimbType.RightLeg).AddComponent(new HumanArm(this, LimbType.RightLeg, KeyBindings.LegRightAction));
 
         }

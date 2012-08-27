@@ -77,7 +77,7 @@ namespace CyborgPunch.Game.Limbs
             {
                 //make an attack
                 Blob b = new Blob();
-                b.AddComponent(new HitFlash(DamageValues.robotMelee, 20f,body.GetFacing(), DamageValues.robotPiercing));
+                b.AddComponent(new HitFlash(DamageValues.robotMelee, 20f,body.GetFacing(), DamageValues.robotPiercing, body.Collider));
                 Vector2 position = VectorFacing.RotateVectorToFacing(new Vector2(0, 50), body.GetFacing());
                 b.transform.Position = body.GetColliderCenter() + position + new Vector2(0,-20);
 

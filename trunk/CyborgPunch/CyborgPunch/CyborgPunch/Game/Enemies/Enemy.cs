@@ -90,7 +90,7 @@ namespace CyborgPunch.Game.Enemies
             ScoreManager.Instance.IncrementScore();
         }
 
-        public void Hit(Damage damage)
+        public void Hit(Damage damage, Collider relativeCollider)
         {
             health -= damage.damageValue;
 
@@ -102,7 +102,12 @@ namespace CyborgPunch.Game.Enemies
             else
             {
                 //knockback
-                Vector2 direction = collider.Center() - damage.blob.collider.Center();
+                if (relativeCollider == null)
+                {
+                    relativeCollider = damage.blob.collider;
+                }
+
+                Vector2 direction = collider.Center() - relativeCollider.Center();
                 direction.Normalize();
                 blob.transform.Translate(direction * damage.knockbackPower);
                 
