@@ -137,38 +137,41 @@ namespace CyborgPunch.Game.Enemies
             //attacking
             else
             {
-
-                Vector2 direction = dude.transform.Position - blob.transform.Position;
-                direction.Normalize();
-                blob.transform.Translate(direction * speed * Time.deltaTime);
-
-                if (Math.Abs(direction.X) > Math.Abs(direction.Y))
+                if (!dude.GetComponent<Dude>().dying)
                 {
-                    if (direction.X <= 0)
+
+                    Vector2 direction = dude.transform.Position - blob.transform.Position;
+                    direction.Normalize();
+                    blob.transform.Translate(direction * speed * Time.deltaTime);
+
+                    if (Math.Abs(direction.X) > Math.Abs(direction.Y))
                     {
-                        SetFacing(Facing.Left);
+                        if (direction.X <= 0)
+                        {
+                            SetFacing(Facing.Left);
+                        }
+                        else
+                        {
+                            SetFacing(Facing.Right);
+                        }
                     }
                     else
                     {
-                        SetFacing(Facing.Right);
+                        if (direction.Y <= 0)
+                        {
+                            SetFacing(Facing.Up);
+                        }
+                        else
+                        {
+                            SetFacing(Facing.Down);
+                        }
                     }
-                }
-                else
-                {
-                    if (direction.Y <= 0)
-                    {
-                        SetFacing(Facing.Up);
-                    }
-                    else
-                    {
-                        SetFacing(Facing.Down);
-                    }
-                }
 
-                if (blob.Collides(GameManager.Instance.dude))
-                {
-                    //kill dude
-                    GameManager.Instance.dude.GetComponent<Dude>().Hit();
+                    if (blob.Collides(GameManager.Instance.dude))
+                    {
+                        //kill dude
+                        GameManager.Instance.dude.GetComponent<Dude>().Hit();
+                    }
                 }
             }
         }

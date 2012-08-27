@@ -23,19 +23,25 @@ namespace CyborgPunch.Game.Limbs
         }
 
         private HashSet<int> blobIDs;
-        private List<LimbPickup> enemies;
+        private List<LimbPickup> allLimbs;
 
         private LimbManager()
         {
-            enemies = new List<LimbPickup>();
+            allLimbs = new List<LimbPickup>();
             blobIDs = new HashSet<int>();
+        }
+
+        public void Clean()
+        {
+            allLimbs.Clear();
+            blobIDs.Clear();
         }
 
         public void RegisterLimb(LimbPickup limb)
         {
             if (blobIDs.Add(limb.blob.ID))
             {
-                enemies.Add(limb);
+                allLimbs.Add(limb);
             }
         }
 
@@ -43,14 +49,14 @@ namespace CyborgPunch.Game.Limbs
         {
             if (blobIDs.Contains(limb.blob.ID))
             {
-                enemies.Remove(limb);
+                allLimbs.Remove(limb);
                 blobIDs.Remove(limb.blob.ID);
             }
         }
 
         public List<LimbPickup> GetLimbs()
         {
-            return enemies;
+            return allLimbs;
         }
     }
 }

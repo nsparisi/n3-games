@@ -114,7 +114,7 @@ namespace CyborgPunch.Game.Limbs
                 Sprite laserSprite = new Sprite(ResourceManager.laserBeam);
                 laserSprite.SetAnchor(Sprite.AnchorType.Upper_Center);
                 laserSprite.rotation = VectorFacing.FacingToPi(facing);
-                laserSprite.SetSize(laserWidth*2, 1000);
+                laserSprite.SetSize(laserWidth * 2, 1000);
                 bulletBlob.AddComponent(laserSprite);
                 Collider collider = new Collider();
                 bulletBlob.AddComponent(collider);
@@ -124,20 +124,20 @@ namespace CyborgPunch.Game.Limbs
                 switch (facing)
                 {
                     case Facing.Down:
-                        colliderRectangle = new Rectangle(0,0,laserWidth,1000);
-                        collider.offset = new Vector2(-laserWidth/20, 0);
+                        colliderRectangle = new Rectangle(0, 0, laserWidth, 1000);
+                        collider.offset = new Vector2(-laserWidth / 20, 0);
                         break;
                     case Facing.Left:
-                        colliderRectangle = new Rectangle(0,0,1000,laserWidth);
-                        collider.offset = new Vector2(-1000, -laserWidth/2);
+                        colliderRectangle = new Rectangle(0, 0, 1000, laserWidth);
+                        collider.offset = new Vector2(-1000, -laserWidth / 2);
                         break;
                     case Facing.Right:
-                        colliderRectangle = new Rectangle(0,0,1000,laserWidth);
-                        collider.offset = new Vector2(0, -laserWidth/2);
+                        colliderRectangle = new Rectangle(0, 0, 1000, laserWidth);
+                        collider.offset = new Vector2(0, -laserWidth / 2);
                         break;
                     case Facing.Up:
-                        colliderRectangle = new Rectangle(0,0,laserWidth,1000);
-                        collider.offset = new Vector2(-laserWidth/2, -1000);
+                        colliderRectangle = new Rectangle(0, 0, laserWidth, 1000);
+                        collider.offset = new Vector2(-laserWidth / 2, -1000);
                         break;
                 }
 
@@ -153,6 +153,12 @@ namespace CyborgPunch.Game.Limbs
 
                 //bulletBlob.AddComponent(new Bullet(VectorFacing.RotateVectorToFacing(bulletFireTrajectory, facing)));
                 ammo--;
+
+                SoundManager.PlaySound(SoundManager.SFX_LASER_FIRE);
+            }
+            else if (ammo <= 0 && hasBeenUnpressed)
+            {
+                SoundManager.PlaySound(SoundManager.SFX_EMPTY_GUN);
             }
         }
 

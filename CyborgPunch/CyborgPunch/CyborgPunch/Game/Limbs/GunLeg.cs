@@ -120,6 +120,10 @@ namespace CyborgPunch.Game.Limbs
                 bulletBlob.AddComponent(new Bullet(VectorFacing.RotateVectorToFacing(bulletFireTrajectory, facing)));
                 ammo--;
             }
+            else if (ammo <= 0 && hasBeenUnpressed)
+            {
+                SoundManager.PlaySound(SoundManager.SFX_EMPTY_GUN);
+            }
         }
 
         public override void StartPunch()

@@ -31,6 +31,12 @@ namespace CyborgPunch.Game.Enemies
             blobIDs = new HashSet<int>();
         }
 
+        public void Clean()
+        {
+            enemies.Clear();
+            blobIDs.Clear();
+        }
+
         public void RegisterEnemy(Enemy enemy)
         {
             if (blobIDs.Add(enemy.blob.ID))
