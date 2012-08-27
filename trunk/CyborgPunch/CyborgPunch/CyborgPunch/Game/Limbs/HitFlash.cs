@@ -13,14 +13,16 @@ namespace CyborgPunch.Game.Limbs
     {
         public float duration = 0.2f;
         float timer;
+        float knockback;
         int damage;
         Facing face;
 
-        public HitFlash(int damage, Facing face)
+        public HitFlash(int damage, float knockback, Facing face)
             : base()
         {
             this.damage = damage;
             this.face = face;
+            this.knockback = knockback;
         }
 
         public override void Start()
@@ -28,6 +30,7 @@ namespace CyborgPunch.Game.Limbs
             base.Start();
 
             Damage damageComp = new Damage(damage);
+            damageComp.knockbackPower = knockback;
             Sprite sprite = new Sprite(ResourceManager.hitFlash);
             sprite.SetAnchor(Sprite.AnchorType.Middle_Center);
             float rotation = VectorFacing.FacingToPi(face);

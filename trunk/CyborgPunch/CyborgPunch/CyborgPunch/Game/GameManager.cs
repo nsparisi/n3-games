@@ -107,5 +107,10 @@ namespace CyborgPunch.Game
             return checkPosition.X > 0 - gutter && checkPosition.Y > 0 - gutter &&
                 checkPosition.X < Constants.GAME_WIDTH + gutter && checkPosition.Y < Constants.GAME_HEIGHT + gutter;
         }
+
+        public bool InVisualBounds(Rectangle rect)
+        {
+            return rect.Left > 0 && rect.Top > 0 && rect.Right < Constants.GAME_WIDTH && rect.Top < Constants.GAME_HEIGHT;
+        }
     }
 }

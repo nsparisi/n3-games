@@ -13,7 +13,7 @@ namespace CyborgPunch.Game
         Humanoid body;
         //public float speed = 300;
 
-        float friction = .0001f;
+        float friction = .00001f;
 
         public Vector2 velocity;
 
@@ -27,7 +27,7 @@ namespace CyborgPunch.Game
         {
             base.Update();
 
-            float movementForce = 2000;
+            float movementForce = 3500;
             Vector2 acceleration = Vector2.Zero;
             float speedModifier = Math.Max((LegCount() / 2f), .25f);
             if (Keyboard.GetState().IsKeyDown(KeyBindings.MoveUp))
@@ -57,6 +57,12 @@ namespace CyborgPunch.Game
             }
             velocity += acceleration*Time.deltaTime;
             blob.transform.Translate(velocity*Time.deltaTime*speedModifier);
+            if (!GameManager.Instance.InVisualBounds(blob.collider.bounds))
+            {
+                blob.transform.Translate(-velocity*2 * Time.deltaTime * speedModifier);
+                velocity *= -2f;
+            }
+
             velocity *= (float)Math.Pow(friction, Time.deltaTime);
         }
 
