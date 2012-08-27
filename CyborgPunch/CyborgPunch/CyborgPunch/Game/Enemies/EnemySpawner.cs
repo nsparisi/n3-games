@@ -8,7 +8,7 @@ namespace CyborgPunch.Game.Enemies
     public class EnemySpawner : Component
     {
         Blob dude;
-        public float speed = 70;
+        public float speed = 70f;
 
         int spawnTime = 5;
         int spawnTimeMax = 10;

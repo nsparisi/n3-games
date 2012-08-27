@@ -23,6 +23,8 @@ namespace CyborgPunch.Game.Enemies
         public Enemy(Vector2 start, Vector2 target)
             : base()
         {
+            float newSpeed = speed / 2f + (float)RandomCore.random.NextDouble() * speed;
+            speed = newSpeed;
             this.start = new Vector3(start.X, start.Y, 0);
             this.target = new Vector3(target.X, target.Y, 0);
 
