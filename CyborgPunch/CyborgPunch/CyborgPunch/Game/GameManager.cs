@@ -55,16 +55,22 @@ namespace CyborgPunch.Game
             platform.GetComponent<Sprite>().SetAnchor(Sprite.AnchorType.Middle_Center);
             platform.transform.Position = new Vector2(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
 
+            //right
+            Rectangle landingZone = new Rectangle(Constants.GAME_WIDTH - 290, 80, 10, 500);
             Blob enemySpawner = new Blob();
-            enemySpawner.AddComponent(new EnemySpawner());
+            enemySpawner.AddComponent(new EnemySpawner(landingZone));
             enemySpawner.transform.Position = new Vector2(Constants.GAME_WIDTH + 100, Constants.GAME_HEIGHT / 2);
 
+            //left
+            landingZone = new Rectangle(260, 80, 10, 500);
             enemySpawner = new Blob();
-            enemySpawner.AddComponent(new EnemySpawner());
+            enemySpawner.AddComponent(new EnemySpawner(landingZone));
             enemySpawner.transform.Position = new Vector2(-100, Constants.GAME_HEIGHT / 2);
 
+            //top
             enemySpawner = new Blob();
-            enemySpawner.AddComponent(new EnemySpawner());
+            landingZone = new Rectangle(260, 80, 700, 10);
+            enemySpawner.AddComponent(new EnemySpawner(landingZone));
             enemySpawner.transform.Position = new Vector2(Constants.GAME_WIDTH / 2, -120);
             enemySpawner.GetComponent<EnemySpawner>().SpawnEnemy();
 
@@ -107,8 +113,14 @@ namespace CyborgPunch.Game
         {
             base.Draw(spriteBatch);
 
+
+            //Rectangle landingZone = new Rectangle(Constants.GAME_WIDTH - 290, 80, 10, 500);
+            //Gizmos.DrawRectangle(spriteBatch, landingZone);
+            //landingZone = new Rectangle(260, 80, 10, 500);
+            //landingZone = new Rectangle(260, 80, 700, 10);
+            //Gizmos.DrawRectangle(spriteBatch, landingZone);
+
             //Rectangle r = new Rectangle(150, 100, Constants.GAME_WIDTH - 300, Constants.GAME_HEIGHT - 200);
-            //Gizmos.DrawRectangle(spriteBatch, r);
         }
 
         public void SetSecondLabel(string thing)

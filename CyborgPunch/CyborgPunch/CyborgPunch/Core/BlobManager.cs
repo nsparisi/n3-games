@@ -48,7 +48,7 @@ namespace CyborgPunch.Core
         public void PauseForDuration(float duration)
         {
             timer = duration;
-            paused = true;
+            //paused = true;
         }
 
         public void RegisterBlob(Blob blob)
