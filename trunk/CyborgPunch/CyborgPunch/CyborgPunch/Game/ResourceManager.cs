@@ -163,12 +163,14 @@ namespace CyborgPunch.Game
 
         private static ContentManager manager;
 
-        private static Dictionary<string, Rectangle> texToBoundsMap;
-
+        private static int resourceCount = 0;
         private static Texture2D LoadTexture(string name)
         {
             Texture2D tex = manager.Load<Texture2D>(name);
-            tex.Name = name;
+
+            texToBoundsMap.Add(tex, boundsInOrder[resourceCount]);
+            resourceCount++;
+
             //records the bounds to a string to output
             //RecordBoundsAsString(tex, name);
 
@@ -181,6 +183,7 @@ namespace CyborgPunch.Game
             ResourceManager.manager = manager;
             LoadAllBounds();
 
+            //WARNING DON'T MESS UP THE ORDER
             TEXTURE_HUMAN_UP_HEAD = LoadTexture("Images//Sprite//Human//Up_Head");
             TEXTURE_HUMAN_UP_TORSO = LoadTexture("Images//Sprite//Human//Up_Torso");
             TEXTURE_HUMAN_UP_LEFTARM = LoadTexture("Images//Sprite//Human//Up_LeftArm");
@@ -205,6 +208,7 @@ namespace CyborgPunch.Game
             TEXTURE_HUMAN_RIGHT_RIGHTARM = LoadTexture("Images//Sprite//Human//Right_RightArm");
             TEXTURE_HUMAN_RIGHT_RIGHTLEG = LoadTexture("Images//Sprite//Human//Right_RightLeg");
 
+            //WARNING DON'T MESS UP THE ORDER
             /* Heads */
             TEXTURE_ROBOT_BITEHEAD_UP = LoadTexture("Images//Sprite//Robot//BiteHead//BiteHead_Up");
             TEXTURE_ROBOT_BITEHEAD_DOWN = LoadTexture("Images//Sprite//Robot//BiteHead//BiteHead_Down");
@@ -226,8 +230,9 @@ namespace CyborgPunch.Game
             TEXTURE_ROBOT_TORSO_DOWN = LoadTexture("Images//Sprite//Robot//Torso_Down");
             TEXTURE_ROBOT_TORSO_LEFT = LoadTexture("Images//Sprite//Robot//Torso_Left");
             TEXTURE_ROBOT_TORSO_RIGHT = LoadTexture("Images//Sprite//Robot//Torso_Right");
-            
 
+
+            //WARNING DON'T MESS UP THE ORDER
             /* Long Arm */
             TEXTURE_ROBOT_LONGARM_LEFTARM_UP = LoadTexture("Images//Sprite//Robot//LongArm//LongArm_Up_LeftArm");
             TEXTURE_ROBOT_LONGARM_RIGHTARM_UP = LoadTexture("Images//Sprite//Robot//LongArm//LongArm_Up_RightArm");
@@ -240,6 +245,7 @@ namespace CyborgPunch.Game
             TEXTURE_ROBOT_LONGARM_RIGHTARM_RIGHT = LoadTexture("Images//Sprite//Robot//LongArm//LongArm_Right_RightArm");
 
 
+            //WARNING DON'T MESS UP THE ORDER
             /* Hammer Arm */
             TEXTURE_ROBOT_HAMMERARM_LEFTARM_UP = LoadTexture("Images//Sprite//Robot//HammerArm//HammerArm_Up_LeftArm");
             TEXTURE_ROBOT_HAMMERARM_RIGHTARM_UP = LoadTexture("Images//Sprite//Robot//HammerArm//HammerArm_Up_RightArm");
@@ -251,6 +257,7 @@ namespace CyborgPunch.Game
 
             TEXTURE_ROBOT_HAMMERARM_RIGHTARM_RIGHT = LoadTexture("Images//Sprite//Robot//HammerArm//HammerArm_Right_RightArm");
 
+            //WARNING DON'T MESS UP THE ORDER
             /* Hook Arm */
             TEXTURE_ROBOT_HOOKARM_LEFTARM_UP = LoadTexture("Images//Sprite//Robot//HookArm//HookArm_Up_LeftArm");
             TEXTURE_ROBOT_HOOKARM_RIGHTARM_UP = LoadTexture("Images//Sprite//Robot//HookArm//HookArm_Up_RightArm");
@@ -262,6 +269,7 @@ namespace CyborgPunch.Game
 
             TEXTURE_ROBOT_HOOKARM_RIGHTARM_RIGHT = LoadTexture("Images//Sprite//Robot//HookArm//HookArm_Right_RightArm");
 
+            //WARNING DON'T MESS UP THE ORDER
             /* Rocket Leg */
             
             TEXTURE_ROBOT_ROCKETLEG_LEFTLEG_UP = LoadTexture("Images//Sprite//Robot//RocketLeg//RocketLeg_Up_LeftLeg");
@@ -273,7 +281,8 @@ namespace CyborgPunch.Game
             TEXTURE_ROBOT_ROCKETLEG_LEFTLEG_LEFT = LoadTexture("Images//Sprite//Robot//RocketLeg//RocketLeg_Left_LeftLeg");
 
             TEXTURE_ROBOT_ROCKETLEG_RIGHTLEG_RIGHT = LoadTexture("Images//Sprite//Robot//RocketLeg//RocketLeg_Right_RightLeg");
-            
+
+            //WARNING DON'T MESS UP THE ORDER
             /* Gun Leg */
             
             TEXTURE_ROBOT_GUNLEG_LEFTLEG_UP = LoadTexture("Images//Sprite//Robot//GunLeg//GunLeg_Up_LeftLeg");
@@ -285,8 +294,9 @@ namespace CyborgPunch.Game
             TEXTURE_ROBOT_GUNLEG_LEFTLEG_LEFT = LoadTexture("Images//Sprite//Robot//GunLeg//GunLeg_Left_LeftLeg");
 
             TEXTURE_ROBOT_GUNLEG_RIGHTLEG_RIGHT = LoadTexture("Images//Sprite//Robot//GunLeg//GunLeg_Right_RightLeg");
-            
 
+
+            //WARNING DON'T MESS UP THE ORDER
             //additional
             bullet = LoadTexture("Images//Sprite//Bullet");
             explosion = LoadTexture("Images//Sprite//Explosion");
@@ -420,7 +430,7 @@ namespace CyborgPunch.Game
 
             
 
-            File.WriteAllText("output.txt", outputText);
+            //File.WriteAllText("output.txt", outputText);
         }
 
         public static Rectangle GetBoundsHack(Texture2D tex)
@@ -448,102 +458,109 @@ namespace CyborgPunch.Game
             return new Rectangle(left, up, right - left, down - up);
         }
 
+
+        private static Dictionary<Texture2D, Rectangle> texToBoundsMap;
+        private static List<Rectangle> boundsInOrder;
         public static Rectangle GetBounds(Texture2D tex)
         {
-            return texToBoundsMap[tex.Name];
+            return texToBoundsMap[tex];
         }
 
         //autogenerating code
         static string outputText = "";
         static void RecordBoundsAsString(Texture2D tex, string name)
         {
-            Rectangle bounds = GetBounds(tex);
-            outputText += String.Format("texToBoundsMap.Add(\"{0}\", new Rectangle({1},{2},{3},{4}));", name, bounds.X, bounds.Y, bounds.Width, bounds.Height) + "\n";
+            Rectangle bounds = GetBoundsHack(tex);
+            //outputText += String.Format("texToBoundsMap.Add(\"{0}\", new Rectangle({1},{2},{3},{4}));", name, bounds.X, bounds.Y, bounds.Width, bounds.Height) + "\n";
+            outputText += String.Format("boundsInOrder.Add(new Rectangle({0},{1},{2},{3}));", bounds.X, bounds.Y, bounds.Width, bounds.Height) + "\n";
         }
 
         //autogenerated
         static void LoadAllBounds()
         {
-            texToBoundsMap = new Dictionary<string, Rectangle>();
-            texToBoundsMap.Add("Images//Sprite//Human//Up_Head", new Rectangle(4, 0, 43, 44));
-            texToBoundsMap.Add("Images//Sprite//Human//Up_Torso", new Rectangle(9, 1, 31, 33));
-            texToBoundsMap.Add("Images//Sprite//Human//Up_LeftArm", new Rectangle(3, 0, 12, 26));
-            texToBoundsMap.Add("Images//Sprite//Human//Up_RightArm", new Rectangle(34, 0, 12, 26));
-            texToBoundsMap.Add("Images//Sprite//Human//Up_LeftLeg", new Rectangle(9, 1, 13, 19));
-            texToBoundsMap.Add("Images//Sprite//Human//Up_RightLeg", new Rectangle(27, 1, 13, 19));
-            texToBoundsMap.Add("Images//Sprite//Human//Down_Head", new Rectangle(1, 0, 43, 48));
-            texToBoundsMap.Add("Images//Sprite//Human//Down_Torso", new Rectangle(9, 0, 31, 34));
-            texToBoundsMap.Add("Images//Sprite//Human//Down_LeftArm", new Rectangle(34, 0, 12, 26));
-            texToBoundsMap.Add("Images//Sprite//Human//Down_RightArm", new Rectangle(3, 0, 12, 26));
-            texToBoundsMap.Add("Images//Sprite//Human//Down_LeftLeg", new Rectangle(27, 1, 14, 20));
-            texToBoundsMap.Add("Images//Sprite//Human//Down_RightLeg", new Rectangle(8, 1, 14, 20));
-            texToBoundsMap.Add("Images//Sprite//Human//Left_Head", new Rectangle(0, 0, 43, 46));
-            texToBoundsMap.Add("Images//Sprite//Human//Left_Torso", new Rectangle(9, 3, 29, 31));
-            texToBoundsMap.Add("Images//Sprite//Human//Left_LeftArm", new Rectangle(19, 4, 11, 26));
-            texToBoundsMap.Add("Images//Sprite//Human//Left_LeftLeg", new Rectangle(16, 1, 14, 20));
-            texToBoundsMap.Add("Images//Sprite//Human//Right_Head", new Rectangle(7, 0, 41, 44));
-            texToBoundsMap.Add("Images//Sprite//Human//Right_Torso", new Rectangle(11, 3, 29, 31));
-            texToBoundsMap.Add("Images//Sprite//Human//Right_RightArm", new Rectangle(19, 4, 11, 26));
-            texToBoundsMap.Add("Images//Sprite//Human//Right_RightLeg", new Rectangle(19, 1, 14, 20));
-            texToBoundsMap.Add("Images//Sprite//Robot//BiteHead//BiteHead_Up", new Rectangle(5, 10, 39, 36));
-            texToBoundsMap.Add("Images//Sprite//Robot//BiteHead//BiteHead_Down", new Rectangle(5, 10, 38, 36));
-            texToBoundsMap.Add("Images//Sprite//Robot//BiteHead//BiteHead_Left", new Rectangle(7, 10, 34, 36));
-            texToBoundsMap.Add("Images//Sprite//Robot//BiteHead//BiteHead_Right", new Rectangle(7, 10, 34, 36));
-            texToBoundsMap.Add("Images//Sprite//Robot//LaserHead//LaserHead_Up", new Rectangle(3, 10, 42, 36));
-            texToBoundsMap.Add("Images//Sprite//Robot//LaserHead//LaserHead_Down", new Rectangle(3, 10, 42, 36));
-            texToBoundsMap.Add("Images//Sprite//Robot//LaserHead//LaserHead_Left", new Rectangle(4, 10, 37, 36));
-            texToBoundsMap.Add("Images//Sprite//Robot//LaserHead//LaserHead_Right", new Rectangle(7, 10, 37, 36));
-            texToBoundsMap.Add("Images//Sprite//Robot//BombHead//BombHead_Up", new Rectangle(7, 2, 42, 44));
-            texToBoundsMap.Add("Images//Sprite//Robot//BombHead//BombHead_Down", new Rectangle(0, 2, 41, 44));
-            texToBoundsMap.Add("Images//Sprite//Robot//BombHead//BombHead_Left", new Rectangle(7, 6, 34, 40));
-            texToBoundsMap.Add("Images//Sprite//Robot//BombHead//BombHead_Right", new Rectangle(7, 6, 34, 40));
-            texToBoundsMap.Add("Images//Sprite//Robot//Torso_Up", new Rectangle(12, 5, 26, 28));
-            texToBoundsMap.Add("Images//Sprite//Robot//Torso_Down", new Rectangle(12, 5, 26, 28));
-            texToBoundsMap.Add("Images//Sprite//Robot//Torso_Left", new Rectangle(18, 5, 20, 28));
-            texToBoundsMap.Add("Images//Sprite//Robot//Torso_Right", new Rectangle(11, 5, 20, 28));
-            texToBoundsMap.Add("Images//Sprite//Robot//LongArm//LongArm_Up_LeftArm", new Rectangle(1, 6, 15, 28));
-            texToBoundsMap.Add("Images//Sprite//Robot//LongArm//LongArm_Up_RightArm", new Rectangle(34, 6, 14, 28));
-            texToBoundsMap.Add("Images//Sprite//Robot//LongArm//LongArm_Down_LeftArm", new Rectangle(34, 6, 14, 28));
-            texToBoundsMap.Add("Images//Sprite//Robot//LongArm//LongArm_Down_RightArm", new Rectangle(1, 6, 15, 28));
-            texToBoundsMap.Add("Images//Sprite//Robot//LongArm//LongArm_Left_LeftArm", new Rectangle(21, 6, 14, 28));
-            texToBoundsMap.Add("Images//Sprite//Robot//LongArm//LongArm_Right_RightArm", new Rectangle(14, 6, 14, 28));
-            texToBoundsMap.Add("Images//Sprite//Robot//HammerArm//HammerArm_Up_LeftArm", new Rectangle(0, 6, 16, 26));
-            texToBoundsMap.Add("Images//Sprite//Robot//HammerArm//HammerArm_Up_RightArm", new Rectangle(34, 6, 15, 26));
-            texToBoundsMap.Add("Images//Sprite//Robot//HammerArm//HammerArm_Down_LeftArm", new Rectangle(34, 6, 15, 26));
-            texToBoundsMap.Add("Images//Sprite//Robot//HammerArm//HammerArm_Down_RightArm", new Rectangle(0, 6, 16, 26));
-            texToBoundsMap.Add("Images//Sprite//Robot//HammerArm//HammerArm_Left_LeftArm", new Rectangle(21, 6, 16, 26));
-            texToBoundsMap.Add("Images//Sprite//Robot//HammerArm//HammerArm_Right_RightArm", new Rectangle(13, 6, 15, 26));
-            texToBoundsMap.Add("Images//Sprite//Robot//HookArm//HookArm_Up_LeftArm", new Rectangle(1, 6, 15, 26));
-            texToBoundsMap.Add("Images//Sprite//Robot//HookArm//HookArm_Up_RightArm", new Rectangle(34, 6, 14, 26));
-            texToBoundsMap.Add("Images//Sprite//Robot//HookArm//HookArm_Down_LeftArm", new Rectangle(34, 6, 14, 26));
-            texToBoundsMap.Add("Images//Sprite//Robot//HookArm//HookArm_Down_RightArm", new Rectangle(1, 6, 15, 26));
-            texToBoundsMap.Add("Images//Sprite//Robot//HookArm//HookArm_Left_LeftArm", new Rectangle(21, 6, 15, 26));
-            texToBoundsMap.Add("Images//Sprite//Robot//HookArm//HookArm_Right_RightArm", new Rectangle(14, 6, 14, 26));
-            texToBoundsMap.Add("Images//Sprite//Robot//RocketLeg//RocketLeg_Up_LeftLeg", new Rectangle(12, 0, 9, 21));
-            texToBoundsMap.Add("Images//Sprite//Robot//RocketLeg//RocketLeg_Up_RightLeg", new Rectangle(28, 0, 10, 21));
-            texToBoundsMap.Add("Images//Sprite//Robot//RocketLeg//RocketLeg_Down_LeftLeg", new Rectangle(28, 0, 10, 21));
-            texToBoundsMap.Add("Images//Sprite//Robot//RocketLeg//RocketLeg_Down_RightLeg", new Rectangle(12, 0, 9, 21));
-            texToBoundsMap.Add("Images//Sprite//Robot//RocketLeg//RocketLeg_Left_LeftLeg", new Rectangle(24, 0, 9, 21));
-            texToBoundsMap.Add("Images//Sprite//Robot//RocketLeg//RocketLeg_Right_RightLeg", new Rectangle(16, 0, 11, 21));
-            texToBoundsMap.Add("Images//Sprite//Robot//GunLeg//GunLeg_Up_LeftLeg", new Rectangle(7, 0, 19, 21));
-            texToBoundsMap.Add("Images//Sprite//Robot//GunLeg//GunLeg_Up_RightLeg", new Rectangle(24, 0, 18, 21));
-            texToBoundsMap.Add("Images//Sprite//Robot//GunLeg//GunLeg_Down_LeftLeg", new Rectangle(24, 0, 18, 21));
-            texToBoundsMap.Add("Images//Sprite//Robot//GunLeg//GunLeg_Down_RightLeg", new Rectangle(7, 0, 19, 21));
-            texToBoundsMap.Add("Images//Sprite//Robot//GunLeg//GunLeg_Left_LeftLeg", new Rectangle(21, 0, 13, 21));
-            texToBoundsMap.Add("Images//Sprite//Robot//GunLeg//GunLeg_Right_RightLeg", new Rectangle(17, 0, 8, 20));
-            texToBoundsMap.Add("Images//Sprite//Bullet", new Rectangle(0, 0, 18, 21));
-            texToBoundsMap.Add("Images//Sprite//Explosion", new Rectangle(0, 0, 76, 68));
-            texToBoundsMap.Add("Images//Sprite//LaserBeam", new Rectangle(11, 0, 13, 35));
-            texToBoundsMap.Add("Images//Sprite//HitFlash", new Rectangle(0, 7, 48, 34));
-            texToBoundsMap.Add("Images//white", new Rectangle(0, 0, 1, 1));
-            texToBoundsMap.Add("Images/CrappyBG", new Rectangle(0, 0, 1279, 767));
-            texToBoundsMap.Add("Images/Clouds_BottomFast", new Rectangle(0, 0, 1279, 431));
-            texToBoundsMap.Add("Images/Clouds_Middle_Medium", new Rectangle(0, 0, 1279, 363));
-            texToBoundsMap.Add("Images/Clouds_Top_Small", new Rectangle(0, 0, 1279, 129));
-            texToBoundsMap.Add("Images//Stage", new Rectangle(0, 0, 1042, 616));
-            texToBoundsMap.Add("Images//Sprite/Human/Dead_Head", new Rectangle(1, 0, 43, 48));
-            texToBoundsMap.Add("Images//Instructions", new Rectangle(0, 0, 1279, 767));
-            texToBoundsMap.Add("Images//Sprite//BloodSplatter", new Rectangle(0, 0, 76, 68));
+            texToBoundsMap = new Dictionary<Texture2D, Rectangle>();
+            boundsInOrder = new List<Rectangle>();
+            
+            boundsInOrder.Add(new Rectangle(4, 0, 43, 44));
+            boundsInOrder.Add(new Rectangle(9, 1, 31, 33));
+            boundsInOrder.Add(new Rectangle(3, 0, 12, 26));
+            boundsInOrder.Add(new Rectangle(34, 0, 12, 26));
+            boundsInOrder.Add(new Rectangle(9, 1, 13, 19));
+            boundsInOrder.Add(new Rectangle(27, 1, 13, 19));
+            boundsInOrder.Add(new Rectangle(1, 0, 43, 48));
+            boundsInOrder.Add(new Rectangle(9, 0, 31, 34));
+            boundsInOrder.Add(new Rectangle(34, 0, 12, 26));
+            boundsInOrder.Add(new Rectangle(3, 0, 12, 26));
+            boundsInOrder.Add(new Rectangle(27, 1, 14, 20));
+            boundsInOrder.Add(new Rectangle(8, 1, 14, 20));
+            boundsInOrder.Add(new Rectangle(0, 0, 43, 46));
+            boundsInOrder.Add(new Rectangle(9, 3, 29, 31));
+            boundsInOrder.Add(new Rectangle(19, 4, 11, 26));
+            boundsInOrder.Add(new Rectangle(16, 1, 14, 20));
+            boundsInOrder.Add(new Rectangle(7, 0, 41, 44));
+            boundsInOrder.Add(new Rectangle(11, 3, 29, 31));
+            boundsInOrder.Add(new Rectangle(19, 4, 11, 26));
+            boundsInOrder.Add(new Rectangle(19, 1, 14, 20));
+            boundsInOrder.Add(new Rectangle(5, 10, 39, 36));
+            boundsInOrder.Add(new Rectangle(5, 10, 38, 36));
+            boundsInOrder.Add(new Rectangle(7, 10, 34, 36));
+            boundsInOrder.Add(new Rectangle(7, 10, 34, 36));
+            boundsInOrder.Add(new Rectangle(3, 10, 42, 36));
+            boundsInOrder.Add(new Rectangle(3, 10, 42, 36));
+            boundsInOrder.Add(new Rectangle(4, 10, 37, 36));
+            boundsInOrder.Add(new Rectangle(7, 10, 37, 36));
+            boundsInOrder.Add(new Rectangle(7, 2, 42, 44));
+            boundsInOrder.Add(new Rectangle(0, 2, 41, 44));
+            boundsInOrder.Add(new Rectangle(7, 6, 34, 40));
+            boundsInOrder.Add(new Rectangle(7, 6, 34, 40));
+            boundsInOrder.Add(new Rectangle(12, 5, 26, 28));
+            boundsInOrder.Add(new Rectangle(12, 5, 26, 28));
+            boundsInOrder.Add(new Rectangle(18, 5, 20, 28));
+            boundsInOrder.Add(new Rectangle(11, 5, 20, 28));
+            boundsInOrder.Add(new Rectangle(1, 6, 15, 28));
+            boundsInOrder.Add(new Rectangle(34, 6, 14, 28));
+            boundsInOrder.Add(new Rectangle(34, 6, 14, 28));
+            boundsInOrder.Add(new Rectangle(1, 6, 15, 28));
+            boundsInOrder.Add(new Rectangle(21, 6, 14, 28));
+            boundsInOrder.Add(new Rectangle(14, 6, 14, 28));
+            boundsInOrder.Add(new Rectangle(0, 6, 16, 26));
+            boundsInOrder.Add(new Rectangle(34, 6, 15, 26));
+            boundsInOrder.Add(new Rectangle(34, 6, 15, 26));
+            boundsInOrder.Add(new Rectangle(0, 6, 16, 26));
+            boundsInOrder.Add(new Rectangle(21, 6, 16, 26));
+            boundsInOrder.Add(new Rectangle(13, 6, 15, 26));
+            boundsInOrder.Add(new Rectangle(1, 6, 15, 26));
+            boundsInOrder.Add(new Rectangle(34, 6, 14, 26));
+            boundsInOrder.Add(new Rectangle(34, 6, 14, 26));
+            boundsInOrder.Add(new Rectangle(1, 6, 15, 26));
+            boundsInOrder.Add(new Rectangle(21, 6, 15, 26));
+            boundsInOrder.Add(new Rectangle(14, 6, 14, 26));
+            boundsInOrder.Add(new Rectangle(12, 0, 9, 21));
+            boundsInOrder.Add(new Rectangle(28, 0, 10, 21));
+            boundsInOrder.Add(new Rectangle(28, 0, 10, 21));
+            boundsInOrder.Add(new Rectangle(12, 0, 9, 21));
+            boundsInOrder.Add(new Rectangle(24, 0, 9, 21));
+            boundsInOrder.Add(new Rectangle(16, 0, 11, 21));
+            boundsInOrder.Add(new Rectangle(7, 0, 19, 21));
+            boundsInOrder.Add(new Rectangle(24, 0, 18, 21));
+            boundsInOrder.Add(new Rectangle(24, 0, 18, 21));
+            boundsInOrder.Add(new Rectangle(7, 0, 19, 21));
+            boundsInOrder.Add(new Rectangle(21, 0, 13, 21));
+            boundsInOrder.Add(new Rectangle(17, 0, 8, 20));
+            boundsInOrder.Add(new Rectangle(0, 0, 18, 21));
+            boundsInOrder.Add(new Rectangle(0, 0, 76, 68));
+            boundsInOrder.Add(new Rectangle(11, 0, 13, 35));
+            boundsInOrder.Add(new Rectangle(0, 7, 48, 34));
+            boundsInOrder.Add(new Rectangle(0, 0, 1, 1));
+            boundsInOrder.Add(new Rectangle(0, 0, 1279, 767));
+            boundsInOrder.Add(new Rectangle(0, 0, 1279, 431));
+            boundsInOrder.Add(new Rectangle(0, 0, 1279, 363));
+            boundsInOrder.Add(new Rectangle(0, 0, 1279, 129));
+            boundsInOrder.Add(new Rectangle(0, 0, 1042, 616));
+            boundsInOrder.Add(new Rectangle(1, 0, 43, 48));
+            boundsInOrder.Add(new Rectangle(0, 0, 1279, 767));
+            boundsInOrder.Add(new Rectangle(0, 0, 76, 68));
+
         }
     }
 }

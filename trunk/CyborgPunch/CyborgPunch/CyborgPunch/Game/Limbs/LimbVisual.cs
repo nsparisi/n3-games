@@ -126,7 +126,7 @@ namespace CyborgPunch.Game.Limbs
             if (position.Z >= 0)
             {
                 velocity *= friction;
-                velocity = Vector3.Reflect(velocity, new Vector3(0, 0, -1));
+                velocity.Z *= -1;
 
                 if (!GameManager.Instance.InVisualBounds(rectangle))
                 {
