@@ -80,25 +80,61 @@ namespace CyborgPunch.Game.Enemies
                 head.GetComponent<LimbVisual>().FlyInRandomDirection();
             }
 
-            Blob lLeg = RemoveBodyPart(LimbType.LeftArm);
-            lLeg.transform.Parent = null;
-            lLeg.GetComponent<LimbVisual>().FlyInRandomDirection();
+            Blob lLeg = RemoveBodyPart(LimbType.LeftLeg);
+            if (lLeg != null)
+            {
+                lLeg.transform.Parent = null;
+                lLeg.GetComponent<LimbVisual>().FlyInRandomDirection();
+            }
 
-            Blob rLeg = RemoveBodyPart(LimbType.LeftLeg);
-            rLeg.transform.Parent = null;
-            rLeg.GetComponent<LimbVisual>().FlyInRandomDirection();
+            Blob rLeg = RemoveBodyPart(LimbType.RightLeg);
+            if (rLeg != null)
+            {
+                rLeg.transform.Parent = null;
+                rLeg.GetComponent<LimbVisual>().FlyInRandomDirection();
+            }
 
             Blob rArm = RemoveBodyPart(LimbType.RightArm);
-            rArm.transform.Parent = null;
-            rArm.GetComponent<LimbVisual>().FlyInRandomDirection();
+            if (rArm != null)
+            {
+                rArm.transform.Parent = null;
+                rArm.GetComponent<LimbVisual>().FlyInRandomDirection();
+            }
 
-            Blob lArm = RemoveBodyPart(LimbType.RightLeg);
-            lArm.transform.Parent = null;
-            lArm.GetComponent<LimbVisual>().FlyInRandomDirection();
+            Blob lArm = RemoveBodyPart(LimbType.LeftArm);
+            if (lArm != null)
+            {
+                lArm.transform.Parent = null;
+                lArm.GetComponent<LimbVisual>().FlyInRandomDirection();
+            }
 
             blob.Destroy();
 
             ScoreManager.Instance.IncrementScore();
+        }
+
+        public void LimbFly(int health, int damage)
+        {
+            while (damage-- > 0)
+            {
+                int numLimbs = Enum.GetValues(typeof(LimbType)).Length;
+                LimbType whichLimb = (LimbType)RandomCore.random.Next(numLimbs);
+                for(int tries = 0; tries < numLimbs; tries++)
+                {
+                    whichLimb = (LimbType)whichLimb + 1;
+                    if ((int)whichLimb >= numLimbs-1)
+                    {
+                        whichLimb = (LimbType)0;
+                    }
+                    Blob part = RemoveBodyPart(whichLimb);
+                    if (part != null)
+                    {
+                        part.transform.Parent = null;
+                        part.GetComponent<LimbVisual>().FlyInRandomDirection();
+                        break;
+                    }
+                }
+            }
         }
 
         public void Hit(Damage damage, Collider relativeCollider)
@@ -127,6 +163,7 @@ namespace CyborgPunch.Game.Enemies
             }
             else
             {
+                LimbFly(health, damage.damageValue);
                 //knockback
                 if (relativeCollider == null)
                 {
