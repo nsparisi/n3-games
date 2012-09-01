@@ -46,6 +46,7 @@ namespace SumoPongXNA
             gameManager = GameManager.Instance;;
             actorManager = ActorManager.Instance;
             IsMouseVisible = true;
+            
         }
 
         /// <summary>

@@ -16,15 +16,9 @@ namespace CyborgPunch.Core
             sound.Play();
         }
 
-        public static void PlaySound(SoundEffect sound, float vol)
-        {
-            sound.Play(vol, 0f, 0);
-        }
-
         public static void PlaySong(Song song)
         {
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 0.3f;
             MediaPlayer.Play(song);
         }
 
