@@ -22,6 +22,29 @@ namespace CyborgPunch.Core
             MediaPlayer.Play(song);
         }
 
+        public static void PauseMusic()
+        {
+            MediaPlayer.Pause();
+        }
+
+        public static void UnpauseMusic()
+        {
+            MediaPlayer.Resume();
+        }
+
+        public static void TogglePause()
+        {
+            if (MediaPlayer.State == MediaState.Paused)
+            {
+                UnpauseMusic();
+            }
+            else if (MediaPlayer.State == MediaState.Playing)
+            {
+                PauseMusic();
+            }
+
+        }
+
         //sounds
         public static SoundEffect SFX_ATTACH_LIMB;
         public static SoundEffect SFX_BOMB_EXPLODE;

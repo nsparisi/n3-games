@@ -6,6 +6,7 @@ using CyborgPunch.Core;
 using Microsoft.Xna.Framework;
 using CyborgPunch.Game.Enemies;
 using CyborgPunch.Game.Limbs;
+using Microsoft.Xna.Framework.Input;
 
 namespace CyborgPunch.Game
 {
@@ -20,6 +21,8 @@ namespace CyborgPunch.Game
         Blob label;
 
         public static GameManager Instance { get; private set; }
+
+        KeyboardState lastKeyboard;
 
         public GameManager()
         {
@@ -98,11 +101,20 @@ namespace CyborgPunch.Game
             bottom.AddComponent(new CloudRepeater(ResourceManager.cloudBottom, -170, 0.9990f));
         }
 
+        public bool KeyJustDown(Keys key, KeyboardState thisState, KeyboardState lastState)
+        {
+            if (thisState != null)
+                return !lastState.IsKeyDown(key) && thisState.IsKeyDown(key);
+            return false;
+        }
+
         float timer;
         int counts = 0;
         public override void Update()
         {
             base.Update();
+
+            KeyboardState thisKeyboard = Keyboard.GetState();
 
             timer += Time.deltaTime;
             counts++;
@@ -113,6 +125,13 @@ namespace CyborgPunch.Game
                 counts = 0;
                 label.GetComponent<Label>().text = fps.ToString("00.0");
             }
+
+            if (KeyJustDown(Keys.M, thisKeyboard, lastKeyboard))
+            {
+                SoundManager.TogglePause();
+            }
+
+            lastKeyboard = thisKeyboard;
         }
 
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)

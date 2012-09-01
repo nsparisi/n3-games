@@ -23,11 +23,20 @@ namespace CyborgPunch.Game
             instructions.AddComponent(new Sprite(ResourceManager.Instructions));
             instructions.GetComponent<Sprite>().z = 0.1f;
             instructions.GetComponent<Sprite>().color = Color.White;
+            lastState = Keyboard.GetState();
         }
 
+        public bool KeyJustDown(Keys key, KeyboardState thisState, KeyboardState lastState)
+        {
+            return !lastState.IsKeyDown(key) && thisState.IsKeyDown(key);
+        }
+
+        KeyboardState lastState;
         public override void Update()
         {
             base.Update();
+
+            KeyboardState thisState = Keyboard.GetState();
 
             if (Keyboard.GetState().IsKeyDown(Keys.Enter) || Keyboard.GetState().IsKeyDown(Keys.Space))
             {
@@ -35,6 +44,13 @@ namespace CyborgPunch.Game
                 BlobManager.Instance.ResetRoot();
                 Game1.Instance.GoToNewGame();
             }
+
+            if (KeyJustDown(Keys.M, thisState, lastState))
+            {
+                SoundManager.TogglePause();
+            }
+
+            lastState = thisState;
         }
     }
 }
