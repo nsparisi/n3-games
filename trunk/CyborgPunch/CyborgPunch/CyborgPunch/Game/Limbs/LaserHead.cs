@@ -112,7 +112,7 @@ namespace CyborgPunch.Game.Limbs
                 bulletBlob.transform.Position = position;
 
                 Sprite laserSprite = new Sprite(ResourceManager.laserBeam);
-                laserSprite.SetAnchor(Sprite.AnchorType.Upper_Center);
+                //laserSprite.SetAnchor(Sprite.AnchorType.Upper_Center);
                 laserSprite.rotation = VectorFacing.FacingToPi(facing);
                 laserSprite.SetSize(laserWidth * 2, 1000);
                 bulletBlob.AddComponent(laserSprite);
@@ -125,19 +125,23 @@ namespace CyborgPunch.Game.Limbs
                 {
                     case Facing.Down:
                         colliderRectangle = new Rectangle(0, 0, laserWidth, 1000);
-                        collider.offset = new Vector2(-laserWidth / 20, 0);
+                        collider.offset = new Vector2(laserWidth*1.5f, 0);
+                        bulletBlob.transform.Translate(new Vector2(-laserWidth*2, 0));
                         break;
                     case Facing.Left:
                         colliderRectangle = new Rectangle(0, 0, 1000, laserWidth);
-                        collider.offset = new Vector2(-1000, -laserWidth / 2);
+                        collider.offset = new Vector2(-1000, laserWidth*1.5f);
+                        bulletBlob.transform.Translate(new Vector2(0, -laserWidth*2));
                         break;
                     case Facing.Right:
                         colliderRectangle = new Rectangle(0, 0, 1000, laserWidth);
-                        collider.offset = new Vector2(0, -laserWidth / 2);
+                        collider.offset = new Vector2(0, -laserWidth*2.5f);
+                        bulletBlob.transform.Translate(new Vector2(0, laserWidth*2));
                         break;
                     case Facing.Up:
                         colliderRectangle = new Rectangle(0, 0, laserWidth, 1000);
-                        collider.offset = new Vector2(-laserWidth / 2, -1000);
+                        collider.offset = new Vector2(-laserWidth*2.5f, -1000);
+                        bulletBlob.transform.Translate(new Vector2(laserWidth*2, 0f));
                         break;
                 }
 
