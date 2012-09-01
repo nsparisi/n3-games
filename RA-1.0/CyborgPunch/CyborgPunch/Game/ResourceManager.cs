@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics.PackedVector;
 using Microsoft.Xna.Framework;
 using System;
 using Microsoft.Xna.Framework.Audio;
+using System.IO;
 
 namespace CyborgPunch.Game
 {
@@ -160,129 +161,146 @@ namespace CyborgPunch.Game
 
         public static SpriteFont font_Common;
 
+        private static ContentManager manager;
+
+        private static Dictionary<string, Rectangle> texToBoundsMap;
+
+        private static Texture2D LoadTexture(string name)
+        {
+            Texture2D tex = manager.Load<Texture2D>(name);
+            tex.Name = name;
+            //records the bounds to a string to output
+            //RecordBoundsAsString(tex, name);
+
+            return tex;
+        }
+
 
         public static void LoadAll(ContentManager manager)
         {
-            TEXTURE_HUMAN_UP_HEAD = manager.Load<Texture2D>("Images//Sprite//Human//Up_Head");
-            TEXTURE_HUMAN_UP_TORSO = manager.Load<Texture2D>("Images//Sprite//Human//Up_Torso");
-            TEXTURE_HUMAN_UP_LEFTARM = manager.Load<Texture2D>("Images//Sprite//Human//Up_LeftArm");
-            TEXTURE_HUMAN_UP_RIGHTARM = manager.Load<Texture2D>("Images//Sprite//Human//Up_RightArm");
-            TEXTURE_HUMAN_UP_LEFTLEG = manager.Load<Texture2D>("Images//Sprite//Human//Up_LeftLeg");
-            TEXTURE_HUMAN_UP_RIGHTLEG = manager.Load<Texture2D>("Images//Sprite//Human//Up_RightLeg");
+            ResourceManager.manager = manager;
+            LoadAllBounds();
 
-            TEXTURE_HUMAN_DOWN_HEAD = manager.Load<Texture2D>("Images//Sprite//Human//Down_Head");
-            TEXTURE_HUMAN_DOWN_TORSO = manager.Load<Texture2D>("Images//Sprite//Human//Down_Torso");
-            TEXTURE_HUMAN_DOWN_LEFTARM = manager.Load<Texture2D>("Images//Sprite//Human//Down_LeftArm");
-            TEXTURE_HUMAN_DOWN_RIGHTARM = manager.Load<Texture2D>("Images//Sprite//Human//Down_RightArm");
-            TEXTURE_HUMAN_DOWN_LEFTLEG = manager.Load<Texture2D>("Images//Sprite//Human//Down_LeftLeg");
-            TEXTURE_HUMAN_DOWN_RIGHTLEG = manager.Load<Texture2D>("Images//Sprite//Human//Down_RightLeg");
+            TEXTURE_HUMAN_UP_HEAD = LoadTexture("Images//Sprite//Human//Up_Head");
+            TEXTURE_HUMAN_UP_TORSO = LoadTexture("Images//Sprite//Human//Up_Torso");
+            TEXTURE_HUMAN_UP_LEFTARM = LoadTexture("Images//Sprite//Human//Up_LeftArm");
+            TEXTURE_HUMAN_UP_RIGHTARM = LoadTexture("Images//Sprite//Human//Up_RightArm");
+            TEXTURE_HUMAN_UP_LEFTLEG = LoadTexture("Images//Sprite//Human//Up_LeftLeg");
+            TEXTURE_HUMAN_UP_RIGHTLEG = LoadTexture("Images//Sprite//Human//Up_RightLeg");
 
-            TEXTURE_HUMAN_LEFT_HEAD = manager.Load<Texture2D>("Images//Sprite//Human//Left_Head");
-            TEXTURE_HUMAN_LEFT_TORSO = manager.Load<Texture2D>("Images//Sprite//Human//Left_Torso");
-            TEXTURE_HUMAN_LEFT_LEFTARM = manager.Load<Texture2D>("Images//Sprite//Human//Left_LeftArm");
-            TEXTURE_HUMAN_LEFT_LEFTLEG = manager.Load<Texture2D>("Images//Sprite//Human//Left_LeftLeg");
+            TEXTURE_HUMAN_DOWN_HEAD = LoadTexture("Images//Sprite//Human//Down_Head");
+            TEXTURE_HUMAN_DOWN_TORSO = LoadTexture("Images//Sprite//Human//Down_Torso");
+            TEXTURE_HUMAN_DOWN_LEFTARM = LoadTexture("Images//Sprite//Human//Down_LeftArm");
+            TEXTURE_HUMAN_DOWN_RIGHTARM = LoadTexture("Images//Sprite//Human//Down_RightArm");
+            TEXTURE_HUMAN_DOWN_LEFTLEG = LoadTexture("Images//Sprite//Human//Down_LeftLeg");
+            TEXTURE_HUMAN_DOWN_RIGHTLEG = LoadTexture("Images//Sprite//Human//Down_RightLeg");
 
-            TEXTURE_HUMAN_RIGHT_HEAD = manager.Load<Texture2D>("Images//Sprite//Human//Right_Head");
-            TEXTURE_HUMAN_RIGHT_TORSO = manager.Load<Texture2D>("Images//Sprite//Human//Right_Torso");
-            TEXTURE_HUMAN_RIGHT_RIGHTARM = manager.Load<Texture2D>("Images//Sprite//Human//Right_RightArm");
-            TEXTURE_HUMAN_RIGHT_RIGHTLEG = manager.Load<Texture2D>("Images//Sprite//Human//Right_RightLeg");
+            TEXTURE_HUMAN_LEFT_HEAD = LoadTexture("Images//Sprite//Human//Left_Head");
+            TEXTURE_HUMAN_LEFT_TORSO = LoadTexture("Images//Sprite//Human//Left_Torso");
+            TEXTURE_HUMAN_LEFT_LEFTARM = LoadTexture("Images//Sprite//Human//Left_LeftArm");
+            TEXTURE_HUMAN_LEFT_LEFTLEG = LoadTexture("Images//Sprite//Human//Left_LeftLeg");
+
+            TEXTURE_HUMAN_RIGHT_HEAD = LoadTexture("Images//Sprite//Human//Right_Head");
+            TEXTURE_HUMAN_RIGHT_TORSO = LoadTexture("Images//Sprite//Human//Right_Torso");
+            TEXTURE_HUMAN_RIGHT_RIGHTARM = LoadTexture("Images//Sprite//Human//Right_RightArm");
+            TEXTURE_HUMAN_RIGHT_RIGHTLEG = LoadTexture("Images//Sprite//Human//Right_RightLeg");
 
             /* Heads */
-            TEXTURE_ROBOT_BITEHEAD_UP = manager.Load<Texture2D>("Images//Sprite//Robot//BiteHead//BiteHead_Up");
-            TEXTURE_ROBOT_BITEHEAD_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//BiteHead//BiteHead_Down");
-            TEXTURE_ROBOT_BITEHEAD_LEFT = manager.Load<Texture2D>("Images//Sprite//Robot//BiteHead//BiteHead_Left");
-            TEXTURE_ROBOT_BITEHEAD_RIGHT = manager.Load<Texture2D>("Images//Sprite//Robot//BiteHead//BiteHead_Right");
+            TEXTURE_ROBOT_BITEHEAD_UP = LoadTexture("Images//Sprite//Robot//BiteHead//BiteHead_Up");
+            TEXTURE_ROBOT_BITEHEAD_DOWN = LoadTexture("Images//Sprite//Robot//BiteHead//BiteHead_Down");
+            TEXTURE_ROBOT_BITEHEAD_LEFT = LoadTexture("Images//Sprite//Robot//BiteHead//BiteHead_Left");
+            TEXTURE_ROBOT_BITEHEAD_RIGHT = LoadTexture("Images//Sprite//Robot//BiteHead//BiteHead_Right");
 
-            TEXTURE_ROBOT_LASERHEAD_UP = manager.Load<Texture2D>("Images//Sprite//Robot//LaserHead//LaserHead_Up");
-            TEXTURE_ROBOT_LASERHEAD_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//LaserHead//LaserHead_Down");
-            TEXTURE_ROBOT_LASERHEAD_LEFT = manager.Load<Texture2D>("Images//Sprite//Robot//LaserHead//LaserHead_Left");
-            TEXTURE_ROBOT_LASERHEAD_RIGHT = manager.Load<Texture2D>("Images//Sprite//Robot//LaserHead//LaserHead_Right");
+            TEXTURE_ROBOT_LASERHEAD_UP = LoadTexture("Images//Sprite//Robot//LaserHead//LaserHead_Up");
+            TEXTURE_ROBOT_LASERHEAD_DOWN = LoadTexture("Images//Sprite//Robot//LaserHead//LaserHead_Down");
+            TEXTURE_ROBOT_LASERHEAD_LEFT = LoadTexture("Images//Sprite//Robot//LaserHead//LaserHead_Left");
+            TEXTURE_ROBOT_LASERHEAD_RIGHT = LoadTexture("Images//Sprite//Robot//LaserHead//LaserHead_Right");
 
-            TEXTURE_ROBOT_BOMBHEAD_UP = manager.Load<Texture2D>("Images//Sprite//Robot//BombHead//BombHead_Up");
-            TEXTURE_ROBOT_BOMBHEAD_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//BombHead//BombHead_Down");
-            TEXTURE_ROBOT_BOMBHEAD_LEFT = manager.Load<Texture2D>("Images//Sprite//Robot//BombHead//BombHead_Left");
-            TEXTURE_ROBOT_BOMBHEAD_RIGHT = manager.Load<Texture2D>("Images//Sprite//Robot//BombHead//BombHead_Right");
+            TEXTURE_ROBOT_BOMBHEAD_UP = LoadTexture("Images//Sprite//Robot//BombHead//BombHead_Up");
+            TEXTURE_ROBOT_BOMBHEAD_DOWN = LoadTexture("Images//Sprite//Robot//BombHead//BombHead_Down");
+            TEXTURE_ROBOT_BOMBHEAD_LEFT = LoadTexture("Images//Sprite//Robot//BombHead//BombHead_Left");
+            TEXTURE_ROBOT_BOMBHEAD_RIGHT = LoadTexture("Images//Sprite//Robot//BombHead//BombHead_Right");
 
             
-            TEXTURE_ROBOT_TORSO_UP = manager.Load<Texture2D>("Images//Sprite//Robot//Torso_Up");
-            TEXTURE_ROBOT_TORSO_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//Torso_Down");
-            TEXTURE_ROBOT_TORSO_LEFT = manager.Load<Texture2D>("Images//Sprite//Robot//Torso_Left");
-            TEXTURE_ROBOT_TORSO_RIGHT = manager.Load<Texture2D>("Images//Sprite//Robot//Torso_Right");
+            TEXTURE_ROBOT_TORSO_UP = LoadTexture("Images//Sprite//Robot//Torso_Up");
+            TEXTURE_ROBOT_TORSO_DOWN = LoadTexture("Images//Sprite//Robot//Torso_Down");
+            TEXTURE_ROBOT_TORSO_LEFT = LoadTexture("Images//Sprite//Robot//Torso_Left");
+            TEXTURE_ROBOT_TORSO_RIGHT = LoadTexture("Images//Sprite//Robot//Torso_Right");
             
 
             /* Long Arm */
-            TEXTURE_ROBOT_LONGARM_LEFTARM_UP = manager.Load<Texture2D>("Images//Sprite//Robot//LongArm//LongArm_Up_LeftArm");
-            TEXTURE_ROBOT_LONGARM_RIGHTARM_UP = manager.Load<Texture2D>("Images//Sprite//Robot//LongArm//LongArm_Up_RightArm");
+            TEXTURE_ROBOT_LONGARM_LEFTARM_UP = LoadTexture("Images//Sprite//Robot//LongArm//LongArm_Up_LeftArm");
+            TEXTURE_ROBOT_LONGARM_RIGHTARM_UP = LoadTexture("Images//Sprite//Robot//LongArm//LongArm_Up_RightArm");
 
-            TEXTURE_ROBOT_LONGARM_LEFTARM_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//LongArm//LongArm_Down_LeftArm");
-            TEXTURE_ROBOT_LONGARM_RIGHTARM_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//LongArm//LongArm_Down_RightArm");
+            TEXTURE_ROBOT_LONGARM_LEFTARM_DOWN = LoadTexture("Images//Sprite//Robot//LongArm//LongArm_Down_LeftArm");
+            TEXTURE_ROBOT_LONGARM_RIGHTARM_DOWN = LoadTexture("Images//Sprite//Robot//LongArm//LongArm_Down_RightArm");
 
-            TEXTURE_ROBOT_LONGARM_LEFTARM_LEFT = manager.Load<Texture2D>("Images//Sprite//Robot//LongArm//LongArm_Left_LeftArm");
+            TEXTURE_ROBOT_LONGARM_LEFTARM_LEFT = LoadTexture("Images//Sprite//Robot//LongArm//LongArm_Left_LeftArm");
 
-            TEXTURE_ROBOT_LONGARM_RIGHTARM_RIGHT = manager.Load<Texture2D>("Images//Sprite//Robot//LongArm//LongArm_Right_RightArm");
+            TEXTURE_ROBOT_LONGARM_RIGHTARM_RIGHT = LoadTexture("Images//Sprite//Robot//LongArm//LongArm_Right_RightArm");
 
 
             /* Hammer Arm */
-            TEXTURE_ROBOT_HAMMERARM_LEFTARM_UP = manager.Load<Texture2D>("Images//Sprite//Robot//HammerArm//HammerArm_Up_LeftArm");
-            TEXTURE_ROBOT_HAMMERARM_RIGHTARM_UP = manager.Load<Texture2D>("Images//Sprite//Robot//HammerArm//HammerArm_Up_RightArm");
+            TEXTURE_ROBOT_HAMMERARM_LEFTARM_UP = LoadTexture("Images//Sprite//Robot//HammerArm//HammerArm_Up_LeftArm");
+            TEXTURE_ROBOT_HAMMERARM_RIGHTARM_UP = LoadTexture("Images//Sprite//Robot//HammerArm//HammerArm_Up_RightArm");
 
-            TEXTURE_ROBOT_HAMMERARM_LEFTARM_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//HammerArm//HammerArm_Down_LeftArm");
-            TEXTURE_ROBOT_HAMMERARM_RIGHTARM_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//HammerArm//HammerArm_Down_RightArm");
+            TEXTURE_ROBOT_HAMMERARM_LEFTARM_DOWN = LoadTexture("Images//Sprite//Robot//HammerArm//HammerArm_Down_LeftArm");
+            TEXTURE_ROBOT_HAMMERARM_RIGHTARM_DOWN = LoadTexture("Images//Sprite//Robot//HammerArm//HammerArm_Down_RightArm");
 
-            TEXTURE_ROBOT_HAMMERARM_LEFTARM_LEFT = manager.Load<Texture2D>("Images//Sprite//Robot//HammerArm//HammerArm_Left_LeftArm");
+            TEXTURE_ROBOT_HAMMERARM_LEFTARM_LEFT = LoadTexture("Images//Sprite//Robot//HammerArm//HammerArm_Left_LeftArm");
 
-            TEXTURE_ROBOT_HAMMERARM_RIGHTARM_RIGHT = manager.Load<Texture2D>("Images//Sprite//Robot//HammerArm//HammerArm_Right_RightArm");
+            TEXTURE_ROBOT_HAMMERARM_RIGHTARM_RIGHT = LoadTexture("Images//Sprite//Robot//HammerArm//HammerArm_Right_RightArm");
 
             /* Hook Arm */
-            TEXTURE_ROBOT_HOOKARM_LEFTARM_UP = manager.Load<Texture2D>("Images//Sprite//Robot//HookArm//HookArm_Up_LeftArm");
-            TEXTURE_ROBOT_HOOKARM_RIGHTARM_UP = manager.Load<Texture2D>("Images//Sprite//Robot//HookArm//HookArm_Up_RightArm");
+            TEXTURE_ROBOT_HOOKARM_LEFTARM_UP = LoadTexture("Images//Sprite//Robot//HookArm//HookArm_Up_LeftArm");
+            TEXTURE_ROBOT_HOOKARM_RIGHTARM_UP = LoadTexture("Images//Sprite//Robot//HookArm//HookArm_Up_RightArm");
 
-            TEXTURE_ROBOT_HOOKARM_LEFTARM_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//HookArm//HookArm_Down_LeftArm");
-            TEXTURE_ROBOT_HOOKARM_RIGHTARM_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//HookArm//HookArm_Down_RightArm");
+            TEXTURE_ROBOT_HOOKARM_LEFTARM_DOWN = LoadTexture("Images//Sprite//Robot//HookArm//HookArm_Down_LeftArm");
+            TEXTURE_ROBOT_HOOKARM_RIGHTARM_DOWN = LoadTexture("Images//Sprite//Robot//HookArm//HookArm_Down_RightArm");
 
-            TEXTURE_ROBOT_HOOKARM_LEFTARM_LEFT = manager.Load<Texture2D>("Images//Sprite//Robot//HookArm//HookArm_Left_LeftArm");
+            TEXTURE_ROBOT_HOOKARM_LEFTARM_LEFT = LoadTexture("Images//Sprite//Robot//HookArm//HookArm_Left_LeftArm");
 
-            TEXTURE_ROBOT_HOOKARM_RIGHTARM_RIGHT = manager.Load<Texture2D>("Images//Sprite//Robot//HookArm//HookArm_Right_RightArm");
+            TEXTURE_ROBOT_HOOKARM_RIGHTARM_RIGHT = LoadTexture("Images//Sprite//Robot//HookArm//HookArm_Right_RightArm");
 
             /* Rocket Leg */
             
-            TEXTURE_ROBOT_ROCKETLEG_LEFTLEG_UP = manager.Load<Texture2D>("Images//Sprite//Robot//RocketLeg//RocketLeg_Up_LeftLeg");
-            TEXTURE_ROBOT_ROCKETLEG_RIGHTLEG_UP = manager.Load<Texture2D>("Images//Sprite//Robot//RocketLeg//RocketLeg_Up_RightLeg");
+            TEXTURE_ROBOT_ROCKETLEG_LEFTLEG_UP = LoadTexture("Images//Sprite//Robot//RocketLeg//RocketLeg_Up_LeftLeg");
+            TEXTURE_ROBOT_ROCKETLEG_RIGHTLEG_UP = LoadTexture("Images//Sprite//Robot//RocketLeg//RocketLeg_Up_RightLeg");
 
-            TEXTURE_ROBOT_ROCKETLEG_LEFTLEG_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//RocketLeg//RocketLeg_Down_LeftLeg");
-            TEXTURE_ROBOT_ROCKETLEG_RIGHTLEG_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//RocketLeg//RocketLeg_Down_RightLeg");
+            TEXTURE_ROBOT_ROCKETLEG_LEFTLEG_DOWN = LoadTexture("Images//Sprite//Robot//RocketLeg//RocketLeg_Down_LeftLeg");
+            TEXTURE_ROBOT_ROCKETLEG_RIGHTLEG_DOWN = LoadTexture("Images//Sprite//Robot//RocketLeg//RocketLeg_Down_RightLeg");
 
-            TEXTURE_ROBOT_ROCKETLEG_LEFTLEG_LEFT = manager.Load<Texture2D>("Images//Sprite//Robot//RocketLeg//RocketLeg_Left_LeftLeg");
+            TEXTURE_ROBOT_ROCKETLEG_LEFTLEG_LEFT = LoadTexture("Images//Sprite//Robot//RocketLeg//RocketLeg_Left_LeftLeg");
 
-            TEXTURE_ROBOT_ROCKETLEG_RIGHTLEG_RIGHT = manager.Load<Texture2D>("Images//Sprite//Robot//RocketLeg//RocketLeg_Right_RightLeg");
+            TEXTURE_ROBOT_ROCKETLEG_RIGHTLEG_RIGHT = LoadTexture("Images//Sprite//Robot//RocketLeg//RocketLeg_Right_RightLeg");
             
             /* Gun Leg */
             
-            TEXTURE_ROBOT_GUNLEG_LEFTLEG_UP = manager.Load<Texture2D>("Images//Sprite//Robot//GunLeg//GunLeg_Up_LeftLeg");
-            TEXTURE_ROBOT_GUNLEG_RIGHTLEG_UP = manager.Load<Texture2D>("Images//Sprite//Robot//GunLeg//GunLeg_Up_RightLeg");
+            TEXTURE_ROBOT_GUNLEG_LEFTLEG_UP = LoadTexture("Images//Sprite//Robot//GunLeg//GunLeg_Up_LeftLeg");
+            TEXTURE_ROBOT_GUNLEG_RIGHTLEG_UP = LoadTexture("Images//Sprite//Robot//GunLeg//GunLeg_Up_RightLeg");
 
-            TEXTURE_ROBOT_GUNLEG_LEFTLEG_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//GunLeg//GunLeg_Down_LeftLeg");
-            TEXTURE_ROBOT_GUNLEG_RIGHTLEG_DOWN = manager.Load<Texture2D>("Images//Sprite//Robot//GunLeg//GunLeg_Down_RightLeg");
+            TEXTURE_ROBOT_GUNLEG_LEFTLEG_DOWN = LoadTexture("Images//Sprite//Robot//GunLeg//GunLeg_Down_LeftLeg");
+            TEXTURE_ROBOT_GUNLEG_RIGHTLEG_DOWN = LoadTexture("Images//Sprite//Robot//GunLeg//GunLeg_Down_RightLeg");
 
-            TEXTURE_ROBOT_GUNLEG_LEFTLEG_LEFT = manager.Load<Texture2D>("Images//Sprite//Robot//GunLeg//GunLeg_Left_LeftLeg");
+            TEXTURE_ROBOT_GUNLEG_LEFTLEG_LEFT = LoadTexture("Images//Sprite//Robot//GunLeg//GunLeg_Left_LeftLeg");
 
-            TEXTURE_ROBOT_GUNLEG_RIGHTLEG_RIGHT = manager.Load<Texture2D>("Images//Sprite//Robot//GunLeg//GunLeg_Right_RightLeg");
+            TEXTURE_ROBOT_GUNLEG_RIGHTLEG_RIGHT = LoadTexture("Images//Sprite//Robot//GunLeg//GunLeg_Right_RightLeg");
             
 
             //additional
-            bullet = manager.Load<Texture2D>("Images//Sprite//Bullet");
-            explosion = manager.Load<Texture2D>("Images//Sprite//Explosion");
-            laserBeam = manager.Load<Texture2D>("Images//Sprite//LaserBeam");
-            hitFlash = manager.Load<Texture2D>("Images//Sprite//HitFlash");
-            texture_White = manager.Load<Texture2D>("Images//white");
-            texture_BG = manager.Load<Texture2D>("Images/CrappyBG");
-            cloudBottom = manager.Load<Texture2D>("Images/Clouds_BottomFast");
-            cloudMid = manager.Load<Texture2D>("Images/Clouds_Middle_Medium");
-            cloudTop = manager.Load<Texture2D>("Images/Clouds_Top_Small");
-            Stage = manager.Load<Texture2D>("Images//Stage");
-            DeadHead = manager.Load<Texture2D>("Images//Sprite/Human/Dead_Head");
-            Instructions = manager.Load<Texture2D>("Images//Instructions");
-            Blood = manager.Load<Texture2D>("Images//Sprite//BloodSplatter");
+            bullet = LoadTexture("Images//Sprite//Bullet");
+            explosion = LoadTexture("Images//Sprite//Explosion");
+            laserBeam = LoadTexture("Images//Sprite//LaserBeam");
+            hitFlash = LoadTexture("Images//Sprite//HitFlash");
+            texture_White = LoadTexture("Images//white");
+            texture_BG = LoadTexture("Images/CrappyBG");
+            cloudBottom = LoadTexture("Images/Clouds_BottomFast");
+            cloudMid = LoadTexture("Images/Clouds_Middle_Medium");
+            cloudTop = LoadTexture("Images/Clouds_Top_Small");
+            Stage = LoadTexture("Images//Stage");
+            DeadHead = LoadTexture("Images//Sprite/Human/Dead_Head");
+            Instructions = LoadTexture("Images//Instructions");
+            Blood = LoadTexture("Images//Sprite//BloodSplatter");
 
             font_Common = manager.Load<SpriteFont>("Font//Common");
 
@@ -399,9 +417,13 @@ namespace CyborgPunch.Game
             partTextureLookup[(int)PartTypes.RobotTorso][(int)Facing.Down] = TEXTURE_ROBOT_TORSO_DOWN;
             partTextureLookup[(int)PartTypes.RobotTorso][(int)Facing.Left] = TEXTURE_ROBOT_TORSO_LEFT;
             partTextureLookup[(int)PartTypes.RobotTorso][(int)Facing.Right] = TEXTURE_ROBOT_TORSO_RIGHT;
+
+            
+
+            File.WriteAllText("output.txt", outputText);
         }
 
-        public static Rectangle GetBounds(Texture2D tex)
+        public static Rectangle GetBoundsHack(Texture2D tex)
         {
             Color[] data = new Color[tex.Width * tex.Height];
             tex.GetData<Color>(data);
@@ -424,6 +446,104 @@ namespace CyborgPunch.Game
             }
 
             return new Rectangle(left, up, right - left, down - up);
+        }
+
+        public static Rectangle GetBounds(Texture2D tex)
+        {
+            return texToBoundsMap[tex.Name];
+        }
+
+        //autogenerating code
+        static string outputText = "";
+        static void RecordBoundsAsString(Texture2D tex, string name)
+        {
+            Rectangle bounds = GetBounds(tex);
+            outputText += String.Format("texToBoundsMap.Add(\"{0}\", new Rectangle({1},{2},{3},{4}));", name, bounds.X, bounds.Y, bounds.Width, bounds.Height) + "\n";
+        }
+
+        //autogenerated
+        static void LoadAllBounds()
+        {
+            texToBoundsMap = new Dictionary<string, Rectangle>();
+            texToBoundsMap.Add("Images//Sprite//Human//Up_Head", new Rectangle(4, 0, 43, 44));
+            texToBoundsMap.Add("Images//Sprite//Human//Up_Torso", new Rectangle(9, 1, 31, 33));
+            texToBoundsMap.Add("Images//Sprite//Human//Up_LeftArm", new Rectangle(3, 0, 12, 26));
+            texToBoundsMap.Add("Images//Sprite//Human//Up_RightArm", new Rectangle(34, 0, 12, 26));
+            texToBoundsMap.Add("Images//Sprite//Human//Up_LeftLeg", new Rectangle(9, 1, 13, 19));
+            texToBoundsMap.Add("Images//Sprite//Human//Up_RightLeg", new Rectangle(27, 1, 13, 19));
+            texToBoundsMap.Add("Images//Sprite//Human//Down_Head", new Rectangle(1, 0, 43, 48));
+            texToBoundsMap.Add("Images//Sprite//Human//Down_Torso", new Rectangle(9, 0, 31, 34));
+            texToBoundsMap.Add("Images//Sprite//Human//Down_LeftArm", new Rectangle(34, 0, 12, 26));
+            texToBoundsMap.Add("Images//Sprite//Human//Down_RightArm", new Rectangle(3, 0, 12, 26));
+            texToBoundsMap.Add("Images//Sprite//Human//Down_LeftLeg", new Rectangle(27, 1, 14, 20));
+            texToBoundsMap.Add("Images//Sprite//Human//Down_RightLeg", new Rectangle(8, 1, 14, 20));
+            texToBoundsMap.Add("Images//Sprite//Human//Left_Head", new Rectangle(0, 0, 43, 46));
+            texToBoundsMap.Add("Images//Sprite//Human//Left_Torso", new Rectangle(9, 3, 29, 31));
+            texToBoundsMap.Add("Images//Sprite//Human//Left_LeftArm", new Rectangle(19, 4, 11, 26));
+            texToBoundsMap.Add("Images//Sprite//Human//Left_LeftLeg", new Rectangle(16, 1, 14, 20));
+            texToBoundsMap.Add("Images//Sprite//Human//Right_Head", new Rectangle(7, 0, 41, 44));
+            texToBoundsMap.Add("Images//Sprite//Human//Right_Torso", new Rectangle(11, 3, 29, 31));
+            texToBoundsMap.Add("Images//Sprite//Human//Right_RightArm", new Rectangle(19, 4, 11, 26));
+            texToBoundsMap.Add("Images//Sprite//Human//Right_RightLeg", new Rectangle(19, 1, 14, 20));
+            texToBoundsMap.Add("Images//Sprite//Robot//BiteHead//BiteHead_Up", new Rectangle(5, 10, 39, 36));
+            texToBoundsMap.Add("Images//Sprite//Robot//BiteHead//BiteHead_Down", new Rectangle(5, 10, 38, 36));
+            texToBoundsMap.Add("Images//Sprite//Robot//BiteHead//BiteHead_Left", new Rectangle(7, 10, 34, 36));
+            texToBoundsMap.Add("Images//Sprite//Robot//BiteHead//BiteHead_Right", new Rectangle(7, 10, 34, 36));
+            texToBoundsMap.Add("Images//Sprite//Robot//LaserHead//LaserHead_Up", new Rectangle(3, 10, 42, 36));
+            texToBoundsMap.Add("Images//Sprite//Robot//LaserHead//LaserHead_Down", new Rectangle(3, 10, 42, 36));
+            texToBoundsMap.Add("Images//Sprite//Robot//LaserHead//LaserHead_Left", new Rectangle(4, 10, 37, 36));
+            texToBoundsMap.Add("Images//Sprite//Robot//LaserHead//LaserHead_Right", new Rectangle(7, 10, 37, 36));
+            texToBoundsMap.Add("Images//Sprite//Robot//BombHead//BombHead_Up", new Rectangle(7, 2, 42, 44));
+            texToBoundsMap.Add("Images//Sprite//Robot//BombHead//BombHead_Down", new Rectangle(0, 2, 41, 44));
+            texToBoundsMap.Add("Images//Sprite//Robot//BombHead//BombHead_Left", new Rectangle(7, 6, 34, 40));
+            texToBoundsMap.Add("Images//Sprite//Robot//BombHead//BombHead_Right", new Rectangle(7, 6, 34, 40));
+            texToBoundsMap.Add("Images//Sprite//Robot//Torso_Up", new Rectangle(12, 5, 26, 28));
+            texToBoundsMap.Add("Images//Sprite//Robot//Torso_Down", new Rectangle(12, 5, 26, 28));
+            texToBoundsMap.Add("Images//Sprite//Robot//Torso_Left", new Rectangle(18, 5, 20, 28));
+            texToBoundsMap.Add("Images//Sprite//Robot//Torso_Right", new Rectangle(11, 5, 20, 28));
+            texToBoundsMap.Add("Images//Sprite//Robot//LongArm//LongArm_Up_LeftArm", new Rectangle(1, 6, 15, 28));
+            texToBoundsMap.Add("Images//Sprite//Robot//LongArm//LongArm_Up_RightArm", new Rectangle(34, 6, 14, 28));
+            texToBoundsMap.Add("Images//Sprite//Robot//LongArm//LongArm_Down_LeftArm", new Rectangle(34, 6, 14, 28));
+            texToBoundsMap.Add("Images//Sprite//Robot//LongArm//LongArm_Down_RightArm", new Rectangle(1, 6, 15, 28));
+            texToBoundsMap.Add("Images//Sprite//Robot//LongArm//LongArm_Left_LeftArm", new Rectangle(21, 6, 14, 28));
+            texToBoundsMap.Add("Images//Sprite//Robot//LongArm//LongArm_Right_RightArm", new Rectangle(14, 6, 14, 28));
+            texToBoundsMap.Add("Images//Sprite//Robot//HammerArm//HammerArm_Up_LeftArm", new Rectangle(0, 6, 16, 26));
+            texToBoundsMap.Add("Images//Sprite//Robot//HammerArm//HammerArm_Up_RightArm", new Rectangle(34, 6, 15, 26));
+            texToBoundsMap.Add("Images//Sprite//Robot//HammerArm//HammerArm_Down_LeftArm", new Rectangle(34, 6, 15, 26));
+            texToBoundsMap.Add("Images//Sprite//Robot//HammerArm//HammerArm_Down_RightArm", new Rectangle(0, 6, 16, 26));
+            texToBoundsMap.Add("Images//Sprite//Robot//HammerArm//HammerArm_Left_LeftArm", new Rectangle(21, 6, 16, 26));
+            texToBoundsMap.Add("Images//Sprite//Robot//HammerArm//HammerArm_Right_RightArm", new Rectangle(13, 6, 15, 26));
+            texToBoundsMap.Add("Images//Sprite//Robot//HookArm//HookArm_Up_LeftArm", new Rectangle(1, 6, 15, 26));
+            texToBoundsMap.Add("Images//Sprite//Robot//HookArm//HookArm_Up_RightArm", new Rectangle(34, 6, 14, 26));
+            texToBoundsMap.Add("Images//Sprite//Robot//HookArm//HookArm_Down_LeftArm", new Rectangle(34, 6, 14, 26));
+            texToBoundsMap.Add("Images//Sprite//Robot//HookArm//HookArm_Down_RightArm", new Rectangle(1, 6, 15, 26));
+            texToBoundsMap.Add("Images//Sprite//Robot//HookArm//HookArm_Left_LeftArm", new Rectangle(21, 6, 15, 26));
+            texToBoundsMap.Add("Images//Sprite//Robot//HookArm//HookArm_Right_RightArm", new Rectangle(14, 6, 14, 26));
+            texToBoundsMap.Add("Images//Sprite//Robot//RocketLeg//RocketLeg_Up_LeftLeg", new Rectangle(12, 0, 9, 21));
+            texToBoundsMap.Add("Images//Sprite//Robot//RocketLeg//RocketLeg_Up_RightLeg", new Rectangle(28, 0, 10, 21));
+            texToBoundsMap.Add("Images//Sprite//Robot//RocketLeg//RocketLeg_Down_LeftLeg", new Rectangle(28, 0, 10, 21));
+            texToBoundsMap.Add("Images//Sprite//Robot//RocketLeg//RocketLeg_Down_RightLeg", new Rectangle(12, 0, 9, 21));
+            texToBoundsMap.Add("Images//Sprite//Robot//RocketLeg//RocketLeg_Left_LeftLeg", new Rectangle(24, 0, 9, 21));
+            texToBoundsMap.Add("Images//Sprite//Robot//RocketLeg//RocketLeg_Right_RightLeg", new Rectangle(16, 0, 11, 21));
+            texToBoundsMap.Add("Images//Sprite//Robot//GunLeg//GunLeg_Up_LeftLeg", new Rectangle(7, 0, 19, 21));
+            texToBoundsMap.Add("Images//Sprite//Robot//GunLeg//GunLeg_Up_RightLeg", new Rectangle(24, 0, 18, 21));
+            texToBoundsMap.Add("Images//Sprite//Robot//GunLeg//GunLeg_Down_LeftLeg", new Rectangle(24, 0, 18, 21));
+            texToBoundsMap.Add("Images//Sprite//Robot//GunLeg//GunLeg_Down_RightLeg", new Rectangle(7, 0, 19, 21));
+            texToBoundsMap.Add("Images//Sprite//Robot//GunLeg//GunLeg_Left_LeftLeg", new Rectangle(21, 0, 13, 21));
+            texToBoundsMap.Add("Images//Sprite//Robot//GunLeg//GunLeg_Right_RightLeg", new Rectangle(17, 0, 8, 20));
+            texToBoundsMap.Add("Images//Sprite//Bullet", new Rectangle(0, 0, 18, 21));
+            texToBoundsMap.Add("Images//Sprite//Explosion", new Rectangle(0, 0, 76, 68));
+            texToBoundsMap.Add("Images//Sprite//LaserBeam", new Rectangle(11, 0, 13, 35));
+            texToBoundsMap.Add("Images//Sprite//HitFlash", new Rectangle(0, 7, 48, 34));
+            texToBoundsMap.Add("Images//white", new Rectangle(0, 0, 1, 1));
+            texToBoundsMap.Add("Images/CrappyBG", new Rectangle(0, 0, 1279, 767));
+            texToBoundsMap.Add("Images/Clouds_BottomFast", new Rectangle(0, 0, 1279, 431));
+            texToBoundsMap.Add("Images/Clouds_Middle_Medium", new Rectangle(0, 0, 1279, 363));
+            texToBoundsMap.Add("Images/Clouds_Top_Small", new Rectangle(0, 0, 1279, 129));
+            texToBoundsMap.Add("Images//Stage", new Rectangle(0, 0, 1042, 616));
+            texToBoundsMap.Add("Images//Sprite/Human/Dead_Head", new Rectangle(1, 0, 43, 48));
+            texToBoundsMap.Add("Images//Instructions", new Rectangle(0, 0, 1279, 767));
+            texToBoundsMap.Add("Images//Sprite//BloodSplatter", new Rectangle(0, 0, 76, 68));
         }
     }
 }
