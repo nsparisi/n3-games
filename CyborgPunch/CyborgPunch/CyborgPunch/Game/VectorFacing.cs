@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using CyborgPunch.Core;
 
 namespace CyborgPunch.Game
 {
@@ -38,7 +39,43 @@ namespace CyborgPunch.Game
 
         public static Vector2 RotateVector(Vector2 vector, float rotation)
         {
-            return Vector2.Transform(vector, Quaternion.CreateFromAxisAngle(Vector3.UnitZ, rotation));
+            double angle = GetProperAngle(vector);
+            angle += (double)rotation;
+            Vector2 newDirection = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
+            return newDirection * vector.Length();
+        }
+
+        public static double GetProperAngle(Vector2 vector)
+        {
+            if (vector.X == 0 && vector.Y == 0)
+            {
+                return 0;
+            }
+
+            double angle = Math.Atan((double)(vector.Y / vector.X));
+
+            //q1
+            if (vector.X >= 0 && vector.Y >= 0)
+            {
+                angle += 0;
+            }
+            //q2
+            else if (vector.X <= 0 && vector.Y >= 0)
+            {
+                angle += Math.PI;
+            }
+            //q3
+            else if (vector.X < 0 && vector.Y <= 0)
+            {
+                angle += Math.PI;
+            }
+            //q4
+            else if (vector.X >= 0 && vector.Y <= 0)
+            {
+                angle += 2 * Math.PI;
+            }
+
+            return angle;
         }
 
         //turn left or right
