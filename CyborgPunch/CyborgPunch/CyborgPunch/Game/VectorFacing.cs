@@ -45,6 +45,11 @@ namespace CyborgPunch.Game
             return newDirection * vector.Length();
         }
 
+        public static double ArctanApproximately(double x)
+        {
+            return Math.PI/4 * x - x * (Math.Abs(x) - 1) * (0.2447 + 0.0663 * Math.Abs(x));
+        }
+
         public static double GetProperAngle(Vector2 vector)
         {
             if (vector.X == 0 && vector.Y == 0)
@@ -52,7 +57,7 @@ namespace CyborgPunch.Game
                 return 0;
             }
 
-            double angle = Math.Atan((double)(vector.Y / vector.X));
+            double angle = ArctanApproximately((double)(vector.Y / vector.X));
 
             //q1
             if (vector.X >= 0 && vector.Y >= 0)
