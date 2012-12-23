@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1355969219 source:c:\users\nick\desktop\projects\n3-games\punchharder\trunk\punchharder\main.cpp
+1356233955 source:c:\users\nick\desktop\projects\n3-games\punchharder\trunk\punchharder\main.cpp
+	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
 

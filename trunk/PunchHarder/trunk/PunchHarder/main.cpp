@@ -2,9 +2,47 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+
+void draw_cube()
+{
+    // Draw a cube
+    glBegin(GL_QUADS);
+
+        glVertex3f(-50.f, -50.f, -50.f);
+        glVertex3f(-50.f,  50.f, -50.f);
+        glVertex3f( 50.f,  50.f, -50.f);
+        glVertex3f( 50.f, -50.f, -50.f);
+
+        glVertex3f(-50.f, -50.f, 50.f);
+        glVertex3f(-50.f,  50.f, 50.f);
+        glVertex3f( 50.f,  50.f, 50.f);
+        glVertex3f( 50.f, -50.f, 50.f);
+
+        glVertex3f(-50.f, -50.f, -50.f);
+        glVertex3f(-50.f,  50.f, -50.f);
+        glVertex3f(-50.f,  50.f,  50.f);
+        glVertex3f(-50.f, -50.f,  50.f);
+
+        glVertex3f(50.f, -50.f, -50.f);
+        glVertex3f(50.f,  50.f, -50.f);
+        glVertex3f(50.f,  50.f,  50.f);
+        glVertex3f(50.f, -50.f,  50.f);
+
+        glVertex3f(-50.f, -50.f,  50.f);
+        glVertex3f(-50.f, -50.f, -50.f);
+        glVertex3f( 50.f, -50.f, -50.f);
+        glVertex3f( 50.f, -50.f,  50.f);
+
+        glVertex3f(-50.f, 50.f,  50.f);
+        glVertex3f(-50.f, 50.f, -50.f);
+        glVertex3f( 50.f, 50.f, -50.f);
+        glVertex3f( 50.f, 50.f,  50.f);
+    glEnd();
+}
 
 ////////////////////////////////////////////////////////////
 /// Entry point of application
@@ -15,7 +53,23 @@
 int main()
 {
     // Create main window
-    sf::RenderWindow App(sf::VideoMode(800, 600), "SFML Shapes");
+    sf::RenderWindow App(sf::VideoMode(800, 600), "Punch Harder");
+
+    //clock does time calculations
+    sf::Clock Clock;
+
+    //set color and depth clear value
+    glClearDepth(1.0f);
+    glClearColor(0.0f,0.0f,0.0f,0.0f);
+
+    //enable z-buffer read and write
+    glEnable(GL_DEPTH_TEST);
+    glDepthMask(GL_TRUE);
+
+    //setup a perspective projection
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(90.0f,1.0f,1.0f,500.0f);
 
     // Start game loop
     while (App.IsOpened())
@@ -28,47 +82,41 @@ int main()
             if (Event.Type == sf::Event::Closed)
                 App.Close();
 
-            if (Event.Key.Code == sf::Key::F12)
-            {
-                sf::Image Screen = App.Capture();
-                Screen.SaveToFile("screenshot.jpg");
-            }
+            // Escape key : exit
+            if ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Key::Escape))
+                App.Close();
+
+            //when resized, recalc drawing viewport
+            if (Event.Type == sf::Event::Resized)
+                glViewport(0, 0, Event.Size.Width, Event.Size.Height);
         }
 
-        // Clear screen
-        App.Clear(sf::Color(212,55,71));
+        // Set the active window before using OpenGL commands
+        // It's useless here because active window is always the same,
+        // but don't forget it if you use multiple windows or controls
+        App.SetActive();
 
-        // Draw predefined shapes
-        App.Draw(sf::Shape::Line(10, 10, 710, 100, 15, sf::Color::Red));
-        App.Draw(sf::Shape::Circle(200, 200, 100, sf::Color::Yellow, 10, sf::Color::Blue));
-        App.Draw(sf::Shape::Rectangle(350, 200, 600, 350, sf::Color::Green));
+        // Clear color and depth buffer
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Build a custom convex shape
-        sf::Shape Polygon;
-        Polygon.AddPoint(0, -50,  sf::Color(255, 0, 0),     sf::Color(0, 128, 128));
-        Polygon.AddPoint(50, 0,   sf::Color(255, 85, 85),   sf::Color(0, 128, 128));
-        Polygon.AddPoint(50, 50,  sf::Color(255, 170, 170), sf::Color(0, 128, 128));
-        Polygon.AddPoint(0, 100,  sf::Color(255, 255, 255), sf::Color(0, 128, 128));
-        Polygon.AddPoint(-50, 50, sf::Color(255, 170, 170), sf::Color(0, 128, 128));
-        Polygon.AddPoint(-50, 0,  sf::Color(255, 85, 85),   sf::Color(0, 128, 128));
+        // Apply some transformations
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glPushMatrix();
+            glTranslatef(100.f, -20.f, -300.f);
+            glRotatef(Clock.GetElapsedTime() * 30, 0.f, 1.f, 0.f);
+            glRotatef(Clock.GetElapsedTime() * 90, 0.f, 0.f, 1.f);
+            draw_cube();
+        glPopMatrix();
 
-        // Define an outline width
-        Polygon.SetOutlineWidth(10);
+        glPushMatrix();
+            glTranslatef(-50.f, 50.f, -400.f);
+            glRotatef(Clock.GetElapsedTime() * 50, 1.f, 0.f, 0.f);
+            glRotatef(Clock.GetElapsedTime() * 30, 0.f, 1.f, 0.f);
+            draw_cube();
+        glPopMatrix();
 
-        // Disable filling and enable the outline
-        Polygon.EnableFill(false);
-        Polygon.EnableOutline(true);
-
-        // We can still use the functions common to all SFML drawable objects
-        Polygon.SetColor(sf::Color(255, 255, 255, 200));
-        Polygon.Move(300, 300);
-        Polygon.Scale(3, 2);
-        Polygon.Rotate(45);
-
-        // Draw it
-        App.Draw(Polygon);
-
-        // Finally, display the rendered frame on screen
+        // Finally, display rendered frame on screen
         App.Display();
     }
 
