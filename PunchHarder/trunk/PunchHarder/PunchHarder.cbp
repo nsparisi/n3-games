@@ -38,6 +38,8 @@
 			<Add option="-lsfml-window-d" />
 			<Add option="-lsfml-audio-d" />
 			<Add option="-lsfml-system-d" />
+			<Add option="-lopengl32" />
+			<Add option="-lglu32" />
 			<Add directory="sfml\SFML-1.6-codeblocks\lib" />
 		</Linker>
 		<Unit filename="main.cpp" />
