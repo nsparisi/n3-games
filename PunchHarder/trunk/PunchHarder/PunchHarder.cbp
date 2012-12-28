@@ -31,7 +31,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
-			<Add directory="sfml\include" />
+			<Add directory="sfml-2.0\include" />
 		</Compiler>
 		<Linker>
 			<Add option="-lsfml-graphics-d" />
@@ -40,7 +40,7 @@
 			<Add option="-lsfml-system-d" />
 			<Add option="-lopengl32" />
 			<Add option="-lglu32" />
-			<Add directory="sfml\SFML-1.6-codeblocks\lib" />
+			<Add directory="sfml-2.0\lib" />
 		</Linker>
 		<Unit filename="main.cpp" />
 		<Extensions>
