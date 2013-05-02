@@ -10,7 +10,6 @@ int main()
     window.setVerticalSyncEnabled(true);
 
     // load resources, initialize the OpenGL states, ...
-
     //clock does time calculations
     sf::Clock clock; // starts the clock
     sf::Clock deltaClock;
@@ -27,7 +26,6 @@ int main()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(90.0f,1.0f,1.0f,1000.0f);
-
 
     // run the main loop
     bool running = true;
