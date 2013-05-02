@@ -52,4 +52,4 @@ Remove Spell Check
 How to add files to project quicker
 ******************************
 Drag n drop file to open code blocks project
-right click the file's tab -> add file to active project
+right click the file's tab (filename) -> add file to active project
