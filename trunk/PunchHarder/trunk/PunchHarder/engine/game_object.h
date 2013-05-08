@@ -9,9 +9,11 @@ typedef std::weak_ptr<GameObject> WeakGameObjectPtr;
 #define GAME_OBJECT_H
 
 #include "component.h"
+#include "debug.h"
 
 class GameObject
 {
+    typedef std::list<StrongComponentPtr>::iterator ComponentsIterator;
     std::list<StrongComponentPtr> m_Components;
 
 public:
@@ -24,7 +26,8 @@ public:
     void Destroy();
     void Update();
     StrongComponentPtr AddComponent(StrongComponentPtr component);
-    StrongComponentPtr RemoveComponent();
+
+
     StrongComponentPtr GetComponent();
 
     //accessors
@@ -32,6 +35,28 @@ public:
 
     //why can't I make this private?
     ~GameObject();
+
+    // can't implement templates in .cpp file >:(
+    template<class T>
+    void RemoveComponent()
+    {
+        ComponentsIterator itr = m_Components.begin();
+        StrongComponentPtr removedComponent = 0;
+
+        for(; itr != m_Components.end(); ++itr)
+        {
+            if(typeid(T).name() == typeid(*itr).name())
+            {
+                Debug::Log("Removing!");
+                m_Components.erase(itr);
+                return;
+            }
+            else
+            {
+                Debug::Log("Not Removing! " + string(typeid(*itr).name()));
+            }
+        }
+    }
 
 private:
     //constructors

@@ -1,6 +1,6 @@
 #include "program.cpp"
-#include "engine\test.cpp"
-#include "engine\debug.cpp"
+#include "engine/test.cpp"
+#include "engine/engine.h"
 
 int main()
 {

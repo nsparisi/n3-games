@@ -1,5 +1,4 @@
-#include "component.h"
-#include "debug.cpp"
+#include "engine.h"
 
 Component::Component()
 {
