@@ -53,7 +53,8 @@
 		</Linker>
 		<Unit filename="engine/component.cpp" />
 		<Unit filename="engine/component.h" />
-		<Unit filename="engine/debug.cpp" />
+		<Unit filename="engine/debug.h" />
+		<Unit filename="engine/engine.h" />
 		<Unit filename="engine/game_object.cpp" />
 		<Unit filename="engine/game_object.h" />
 		<Unit filename="engine/game_object_manager.cpp" />
