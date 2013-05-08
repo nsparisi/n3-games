@@ -595,10 +595,10 @@
 	<OpenGL/gl.h>
 	<OpenGL/glu.h>
 
-1367823299 source:f:\projects\n3-games\punchharder\trunk\punchharder\main.cpp
+1367989893 source:f:\projects\n3-games\punchharder\trunk\punchharder\main.cpp
 	"program.cpp"
-	"engine\test.cpp"
-	"engine\debug.cpp"
+	"engine/test.cpp"
+	"engine/engine.h"
 
 1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\window.hpp
 	<SFML/System.hpp>
@@ -767,12 +767,11 @@
 	<OpenGL/gl.h>
 	<OpenGL/glu.h>
 
-1367912746 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\test.cpp
+1367993929 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\test.cpp
 	<memory>
 	<iostream>
-	"game_object.h"
-	"component.h"
-	"game_object_manager.h"
+	<typeinfo>
+	"engine.h"
 
 1367813944 source:f:\projects\n3-games\punchharder\trunk\punchharder\program.cpp
 	<SFML/Window.hpp>
@@ -786,22 +785,19 @@
 	<string>
 	<iostream>
 
-1367912823 f:\projects\n3-games\punchharder\trunk\punchharder\engine\test.cpp
+1367993961 f:\projects\n3-games\punchharder\trunk\punchharder\engine\test.cpp
 	<memory>
 	<iostream>
-	"game_object.h"
-	"component.h"
-	"game_object_manager.h"
+	<typeinfo>
+	"engine.h"
 
 1367823155 f:\projects\n3-games\punchharder\trunk\punchharder\engine\debug.cpp
 	<string>
 	<iostream>
 
-1367912802 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object.cpp
-	"game_object.h"
-	<string>
-	"debug.cpp"
-	"game_object_manager.h"
+1367991985 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object.cpp
+	"engine.h"
+	<typeinfo>
 
 1367818250 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object_factory.cpp
 	"game_object_factory.h"
@@ -815,27 +811,36 @@
 	<memory>
 	"game_object.h"
 
-1367912606 f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object.h
+1367993049 f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object.h
 	<memory>
 	<list>
 	<string>
 	"component.h"
+	"debug.h"
 
 1367822914 f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object.cpp
 	"game_object.h"
 	<string>
 	"debug.cpp"
 
-1367908686 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\component.cpp
-	"component.h"
-	"debug.cpp"
+1367988336 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\component.cpp
+	"engine.h"
 
-1367912413 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object_manager.cpp
-	"game_object_manager.h"
-	"debug.cpp"
+1367988366 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object_manager.cpp
+	"engine.h"
 
 1367912156 f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object_manager.h
 	<memory>
 	<map>
 	"game_object.h"
+
+1367988435 f:\projects\n3-games\punchharder\trunk\punchharder\engine\engine.h
+	"component.h"
+	"debug.h"
+	"game_object.h"
+	"game_object_manager.h"
+
+1367991079 f:\projects\n3-games\punchharder\trunk\punchharder\engine\debug.h
+	<string>
+	<iostream>
 

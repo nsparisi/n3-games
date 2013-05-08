@@ -1,6 +1,4 @@
-#include "game_object_manager.h"
-#include "debug.cpp"
-using namespace std;
+#include "engine.h"
 
 StrongGameObjectManagerPtr GameObjectManager::m_pInstance = 0;
 
@@ -28,8 +26,6 @@ GameObjectManager::~GameObjectManager()
 void GameObjectManager::RegisterGameObject(StrongGameObjectPtr go)
 {
     // insert doesn't act if already exists
-    //GameObjectsMapItem item(go->GetId(), go);
-    //m_GameObjectsMap.insert(item);
     Debug::Log("Registering GO");
 
     m_GameObjectsMap[go->GetId()] = go;

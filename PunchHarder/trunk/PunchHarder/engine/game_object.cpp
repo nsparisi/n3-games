@@ -1,7 +1,5 @@
-#include "game_object.h"
-#include <string>
-#include "debug.cpp"
-#include "game_object_manager.h"
+#include "engine.h"
+#include <typeinfo>
 
 long GameObject::m_LastId = 0;
 
@@ -30,12 +28,8 @@ StrongComponentPtr GameObject::AddComponent(StrongComponentPtr pComponent)
 
 StrongComponentPtr GameObject::GetComponent()
 {
-    //todo
-    return 0;
-}
 
-StrongComponentPtr GameObject::RemoveComponent()
-{
+
     //todo
     return 0;
 }

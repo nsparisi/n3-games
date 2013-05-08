@@ -1,8 +1,7 @@
 #include <memory>
 #include <iostream>
-#include "game_object.h"
-#include "component.h"
-#include "game_object_manager.h"
+#include <typeinfo>
+#include "engine.h"
 
 using namespace std;
 
@@ -36,18 +35,44 @@ public:
         //Both pointers are properly released here
     }
 
+    template<class A>
+    void test_types()
+    {
+        if(typeid(A) == typeid(A))
+        {
+            Debug::Log("Type and object are the same!");
+        }
+        else
+        {
+            Debug::Log("Not the same!");
+        }
+
+    }
+
     void test_gameobjects()
     {
         StrongGameObjectPtr go = GameObject::CreateGameObject();
 
         StrongComponentPtr comp = Component::CreateComponent();
         go->AddComponent(comp);
+        go->RemoveComponent<StrongComponentPtr>();
+
 
         GameObjectManager::GetInstance();
         GameObjectManager::GetInstance()->Update();
 
+        test_types<StrongGameObjectPtr>();
+
         go->Destroy();
 
-    }
+        std::list<string> strings;
+        strings.push_back("hello");
+        strings.push_back("world");
+        strings.push_back("pizza");
 
+        std::list<string>::const_iterator itr;
+        for (itr = strings.begin(); itr != strings.end(); ++itr) {
+        }
+
+    }
 };
