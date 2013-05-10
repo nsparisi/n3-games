@@ -11,24 +11,23 @@ typedef std::weak_ptr<GameObject> WeakGameObjectPtr;
 #include "component.h"
 #include "debug.h"
 
+class Component;
+class Transform;
 class GameObject
 {
-    typedef std::list<StrongComponentPtr>::iterator ComponentsIterator;
-    std::list<StrongComponentPtr> m_Components;
+    typedef std::list<Component*>::iterator ComponentsIterator;
+    std::list<Component*> m_Components;
 
 public:
     std::string m_Name;
     bool m_Enabled;
 
-    static StrongGameObjectPtr CreateGameObject();
+    static GameObject* CreateGameObject();
 
     //main functions
     void Destroy();
     void Update();
-    StrongComponentPtr AddComponent(StrongComponentPtr component);
-
-
-    StrongComponentPtr GetComponent();
+    void Draw();
 
     //accessors
     long GetId() { return m_Id; }
@@ -36,26 +35,48 @@ public:
     //why can't I make this private?
     ~GameObject();
 
+    Component* AddComponent(Component* component);
+
     // can't implement templates in .cpp file >:(
     template<class T>
     void RemoveComponent()
     {
-        ComponentsIterator itr = m_Components.begin();
-        StrongComponentPtr removedComponent = 0;
+        // can't remove transform
+        if(typeid(T).name() == typeid(Transform).name())
+        {
+            return;
+        }
 
+        // find and remove the component
+        ComponentsIterator itr = m_Components.begin();
         for(; itr != m_Components.end(); ++itr)
         {
-            if(typeid(T).name() == typeid(*itr).name())
+            Component* comp = *itr;
+            if(typeid(T).name() == typeid(*comp).name())
             {
-                Debug::Log("Removing!");
+                Debug::Log("Removing!" + string(typeid(T).name()));
                 m_Components.erase(itr);
+                DestroyComponent(comp);
                 return;
             }
-            else
+        }
+    }
+
+    template<class T>
+    Component* GetComponent()
+    {
+        // find and return the component
+        ComponentsIterator itr = m_Components.begin();
+        for(; itr != m_Components.end(); ++itr)
+        {
+            Component* pComp = *itr;
+            if(typeid(T).name() == typeid(*pComp).name())
             {
-                Debug::Log("Not Removing! " + string(typeid(*itr).name()));
+                return pComp;
             }
         }
+
+        return NULL;
     }
 
 private:
@@ -69,6 +90,7 @@ private:
 
     //methods
     long GetNextId();
+    void DestroyComponent(Component* comp);
 };
 
 #endif // GAME_OBJECT_H

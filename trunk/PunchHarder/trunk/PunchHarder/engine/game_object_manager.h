@@ -17,6 +17,7 @@ public:
     void RegisterGameObject(StrongGameObjectPtr go);
     void UnregisterGameObject(StrongGameObjectPtr go);
     void Update();
+    void Draw();
     ~GameObjectManager();
 
 private:

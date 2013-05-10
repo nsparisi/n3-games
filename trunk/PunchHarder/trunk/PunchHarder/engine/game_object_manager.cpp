@@ -41,7 +41,15 @@ void GameObjectManager::Update()
     GameObjectsMapIterator goIterator = m_GameObjectsMap.begin();
     for (; goIterator != m_GameObjectsMap.end(); ++goIterator)
     {
-        //update
         goIterator->second->Update();
+    }
+}
+
+void GameObjectManager::Draw()
+{
+    GameObjectsMapIterator goIterator = m_GameObjectsMap.begin();
+    for (; goIterator != m_GameObjectsMap.end(); ++goIterator)
+    {
+        goIterator->second->Draw();
     }
 }
