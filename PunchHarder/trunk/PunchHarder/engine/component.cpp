@@ -2,17 +2,31 @@
 
 Component::Component()
 {
-    Debug::Log("Creating component");
+    m_Name = "Component";
+    Debug::Log("Component Constructor");
 }
 
 Component::~Component()
 {
-    Debug::Log("Destroying component");
+    Debug::Log("Component Destructor");
 }
 
-StrongComponentPtr Component::CreateComponent()
+void Component::Start()
 {
-    Component* component = new Component();
-    StrongComponentPtr pComponent(component);
-    return pComponent;
+    Debug::Log("Component Start");
+}
+
+void Component::OnDestroy()
+{
+    Debug::Log("Component OnDestroy");
+}
+
+void Component::Update()
+{
+    Debug::Log("Component Update");
+}
+
+void Component::Draw()
+{
+    Debug::Log("Component Draw");
 }

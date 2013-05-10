@@ -1,28 +1,30 @@
-#include <memory>
-class Component;
-typedef std::shared_ptr<Component> StrongComponentPtr;
-
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
+#include <string>
 #include "game_object.h"
-
 
 class Component
 {
 public:
+    std::string m_Name;
     bool m_Enabled;
     WeakGameObjectPtr m_GameObject;
 
-    static StrongComponentPtr CreateComponent();
-
-    virtual void Start(){}
-    virtual void Update(){}
-    virtual void Draw(){}
+    template<class T>
+    static Component* CreateComponent()
+    {
+        Component* pComponent = new T();
+        return pComponent;
+    }
 
     Component();
-    ~Component();
-protected:
+    virtual ~Component();
+    virtual void Start();
+    virtual void OnDestroy();
+    virtual void Update();
+    virtual void Draw();
+
 };
 
 #endif // COMPONENT_H

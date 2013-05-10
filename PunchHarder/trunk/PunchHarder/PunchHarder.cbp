@@ -60,6 +60,9 @@
 		<Unit filename="engine/game_object_manager.cpp" />
 		<Unit filename="engine/game_object_manager.h" />
 		<Unit filename="engine/test.cpp" />
+		<Unit filename="engine/transform .cpp" />
+		<Unit filename="engine/transform.h" />
+		<Unit filename="engine/vector3.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

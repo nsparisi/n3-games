@@ -51,28 +51,21 @@ public:
 
     void test_gameobjects()
     {
-        StrongGameObjectPtr go = GameObject::CreateGameObject();
+        GameObject* go = GameObject::CreateGameObject();
 
-        StrongComponentPtr comp = Component::CreateComponent();
-        go->AddComponent(comp);
-        go->RemoveComponent<StrongComponentPtr>();
+        Component* pComp = Component::CreateComponent<Component>();
+        go->AddComponent(pComp);
+        go->RemoveComponent<Transform>();
 
-
-        GameObjectManager::GetInstance();
-        GameObjectManager::GetInstance()->Update();
-
-        test_types<StrongGameObjectPtr>();
-
-        go->Destroy();
-
-        std::list<string> strings;
-        strings.push_back("hello");
-        strings.push_back("world");
-        strings.push_back("pizza");
-
-        std::list<string>::const_iterator itr;
-        for (itr = strings.begin(); itr != strings.end(); ++itr) {
+        pComp = go->GetComponent<Component>();
+        if(pComp != NULL)
+        {
+            Debug::Log("got: " + pComp->m_Name);
         }
 
+        GameObjectManager::GetInstance()->Update();
+        GameObjectManager::GetInstance()->Draw();
+
+        go->Destroy();
     }
 };
