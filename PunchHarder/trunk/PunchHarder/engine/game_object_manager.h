@@ -14,17 +14,21 @@ class GameObjectManager
 {
 public:
     static StrongGameObjectManagerPtr GetInstance();
+
+    ~GameObjectManager();
+    GameObject* GetRoot(){ return m_pRoot; }
     void RegisterGameObject(StrongGameObjectPtr go);
     void UnregisterGameObject(StrongGameObjectPtr go);
+    void ResetRoot();
     void Update();
     void Draw();
-    ~GameObjectManager();
 
 private:
     std::map<long, StrongGameObjectPtr> m_GameObjectsMap;
     static StrongGameObjectManagerPtr m_pInstance;
-    GameObjectManager(){};
+    GameObject* m_pRoot;
 
+    GameObjectManager();
 };
 
 #endif // GAME_OBJECT_MANAGER_H

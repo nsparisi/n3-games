@@ -10,34 +10,62 @@ typedef std::weak_ptr<GameObject> WeakGameObjectPtr;
 
 #include "component.h"
 #include "debug.h"
+#include "object.h"
 
 class Component;
 class Transform;
-class GameObject
+class Object;
+class GameObject : public Object
 {
+    friend class Component;
+
     typedef std::list<Component*>::iterator ComponentsIterator;
     std::list<Component*> m_Components;
 
 public:
-    std::string m_Name;
-    bool m_Enabled;
 
     static GameObject* CreateGameObject();
+    ~GameObject();
 
-    //main functions
+    // accessors
+    void SetEnabled(bool enable) { m_Enabled = enable; }
+    bool GetEnabled() { return m_Enabled; }
+    Transform* GetTransform() {return m_pTransform; }
+
     void Destroy();
     void Update();
     void Draw();
 
-    //accessors
-    long GetId() { return m_Id; }
-
-    //why can't I make this private?
-    ~GameObject();
-
     Component* AddComponent(Component* component);
 
-    // can't implement templates in .cpp file >:(
+    template<class T>
+    Component* AddComponent()
+    {
+        // can't add component base class
+        if(typeid(T).name() == typeid(Component).name())
+        {
+            Debug::Log("Cannot attach class 'Component'");
+            return NULL;
+        }
+
+        // can't add duplicate component
+        ComponentsIterator itr = m_Components.begin();
+        for(; itr != m_Components.end(); ++itr)
+        {
+            Component* comp = *itr;
+            if(typeid(T).name() == typeid(*comp).name())
+            {
+                Debug::Log("Cannot attach duplicate component " +
+                           string(typeid(comp).name()));
+                return comp;
+            }
+        }
+
+        Component* pComponent = new T();
+        AddComponent(pComponent);
+        return pComponent;
+    }
+
     template<class T>
     void RemoveComponent()
     {
@@ -63,7 +91,7 @@ public:
     }
 
     template<class T>
-    Component* GetComponent()
+    T* GetComponent()
     {
         // find and return the component
         ComponentsIterator itr = m_Components.begin();
@@ -72,7 +100,7 @@ public:
             Component* pComp = *itr;
             if(typeid(T).name() == typeid(*pComp).name())
             {
-                return pComp;
+                return (T*)pComp;
             }
         }
 
@@ -80,16 +108,11 @@ public:
     }
 
 private:
-    //constructors
-    GameObject();
-
-    //fields
-    long m_Id;
-    static long m_LastId;
+    bool m_Enabled;
+    Transform* m_pTransform;
     StrongGameObjectPtr m_pSelf;
 
-    //methods
-    long GetNextId();
+    GameObject();
     void DestroyComponent(Component* comp);
 };
 

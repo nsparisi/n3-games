@@ -5,6 +5,7 @@
 		<Option title="PunchHarder" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="engine\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/PunchHarder" prefix_auto="1" extension_auto="1" />
@@ -53,17 +54,23 @@
 		</Linker>
 		<Unit filename="engine/component.cpp" />
 		<Unit filename="engine/component.h" />
+		<Unit filename="engine/convert.cpp" />
+		<Unit filename="engine/convert.h" />
+		<Unit filename="engine/debug.cpp" />
 		<Unit filename="engine/debug.h" />
 		<Unit filename="engine/engine.h" />
 		<Unit filename="engine/game_object.cpp" />
 		<Unit filename="engine/game_object.h" />
 		<Unit filename="engine/game_object_manager.cpp" />
 		<Unit filename="engine/game_object_manager.h" />
-		<Unit filename="engine/test.cpp" />
+		<Unit filename="engine/object.cpp" />
+		<Unit filename="engine/object.h" />
+		<Unit filename="engine/sfml_headers.h" />
 		<Unit filename="engine/transform .cpp" />
 		<Unit filename="engine/transform.h" />
-		<Unit filename="engine/vector3.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="program.cpp" />
+		<Unit filename="test.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

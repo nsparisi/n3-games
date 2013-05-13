@@ -1,5 +1,5 @@
-#include <SFML/Window.hpp>
-#include <SFML/OpenGL.hpp>
+#include "engine/sfml_headers.h"
+#include "engine/engine.h"
 
 class Program
 {
@@ -71,7 +71,7 @@ public:
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             // draw some cubes
-            float deltaTime = deltaClock.restart().asSeconds();
+            //float deltaTime = deltaClock.restart().asSeconds();
             float elapsedTime = clock.getElapsedTime().asSeconds();
 
             glMatrixMode(GL_MODELVIEW);
