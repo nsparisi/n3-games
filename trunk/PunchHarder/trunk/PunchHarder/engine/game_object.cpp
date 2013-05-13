@@ -1,27 +1,24 @@
 #include "engine.h"
 #include <typeinfo>
 
-long GameObject::m_LastId = 0;
-
 ////////////////////////
 //Constructors
 ////////////////////////
 GameObject::GameObject()
 {
-    m_Id = GetNextId();
     m_Enabled = true;
-
-    Debug::Log("Made a new GameObject.");
 }
 
 GameObject::~GameObject()
 {
-    Debug::Log("Destroying GameObject");
+    Debug::Log("Destructor GameObject");
 }
 
+
 ////////////////////////
-//Public functions
+//Public static functions
 ////////////////////////
+
 GameObject* GameObject::CreateGameObject()
 {
     GameObject* go = new GameObject();
@@ -32,25 +29,48 @@ GameObject* GameObject::CreateGameObject()
     GameObjectManager::GetInstance()->RegisterGameObject(pGameObject);
 
     // associate required components
-    go->AddComponent(Component::CreateComponent<Transform>());
+    go->AddComponent<Transform>();
+    go->m_pTransform = go->GetComponent<Transform>();
 
     return go;
 }
 
+////////////////////////
+//Public functions
+////////////////////////
+
 Component* GameObject::AddComponent(Component* pComponent)
 {
-    pComponent->m_GameObject = m_pSelf;
+    pComponent->SetGameObject(m_pSelf.get());
     pComponent->Start();
     m_Components.push_back(pComponent);
     return pComponent;
 }
 
+//TODO mark for destory, and destroy later.
 void GameObject::Destroy()
 {
-    //todo unregister
+    //unregister
     GameObjectManager::GetInstance()->UnregisterGameObject(m_pSelf);
 
-    //todo destory children
+    //remove from parent
+    GetTransform()->SetParent(NULL);
+
+    //destory children
+    std::list<Transform*> children = GetTransform()->GetChildren();
+    if(!children.empty())
+    {
+        std::list<Transform*>::iterator childrenItr = children.begin();
+        std::list<Transform*>::iterator childrenEnd = children.end();
+
+        for(; childrenItr != childrenEnd; ++childrenItr)
+        {
+            Transform* currentChild = *childrenItr;
+            GameObject* childGo = currentChild->GetGameObject();
+            childGo->Destroy();
+        }
+    }
+
 
     // destory all components
     ComponentsIterator itr = m_Components.begin();
@@ -86,12 +106,6 @@ void GameObject::Draw()
 ////////////////////////
 //Private functions
 ////////////////////////
-
-long GameObject::GetNextId(void)
-{
-    GameObject::m_LastId++;
-    return GameObject::m_LastId;
-}
 
 void GameObject::DestroyComponent(Component* pComp)
 {

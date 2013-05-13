@@ -1,5 +1,5 @@
 #include "program.cpp"
-#include "engine/test.cpp"
+#include "test.cpp"
 #include "engine/engine.h"
 
 int main()

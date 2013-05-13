@@ -595,9 +595,9 @@
 	<OpenGL/gl.h>
 	<OpenGL/glu.h>
 
-1367989893 source:f:\projects\n3-games\punchharder\trunk\punchharder\main.cpp
+1368410576 source:f:\projects\n3-games\punchharder\trunk\punchharder\main.cpp
 	"program.cpp"
-	"engine/test.cpp"
+	"test.cpp"
 	"engine/engine.h"
 
 1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\window.hpp
@@ -773,17 +773,16 @@
 	<typeinfo>
 	"engine.h"
 
-1367813944 source:f:\projects\n3-games\punchharder\trunk\punchharder\program.cpp
-	<SFML/Window.hpp>
-	<SFML/OpenGL.hpp>
+1368417443 source:f:\projects\n3-games\punchharder\trunk\punchharder\program.cpp
+	"engine/sfml_headers.h"
+	"engine/engine.h"
 
-1367813944 f:\projects\n3-games\punchharder\trunk\punchharder\program.cpp
-	<SFML/Window.hpp>
-	<SFML/OpenGL.hpp>
+1368417443 f:\projects\n3-games\punchharder\trunk\punchharder\program.cpp
+	"engine/sfml_headers.h"
+	"engine/engine.h"
 
-1367823155 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\debug.cpp
-	<string>
-	<iostream>
+1368425512 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\debug.cpp
+	"engine.h"
 
 1368170909 f:\projects\n3-games\punchharder\trunk\punchharder\engine\test.cpp
 	<memory>
@@ -795,7 +794,7 @@
 	<string>
 	<iostream>
 
-1368170861 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object.cpp
+1368430242 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object.cpp
 	"engine.h"
 	<typeinfo>
 
@@ -807,55 +806,334 @@
 	"component.h"
 	"game_object.h"
 
-1368170733 f:\projects\n3-games\punchharder\trunk\punchharder\engine\component.h
+1368429798 f:\projects\n3-games\punchharder\trunk\punchharder\engine\component.h
 	<string>
 	"game_object.h"
+	"object.h"
 
-1368170823 f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object.h
+1368428720 f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object.h
 	<memory>
 	<list>
 	<string>
 	"component.h"
 	"debug.h"
+	"object.h"
 
 1367822914 f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object.cpp
 	"game_object.h"
 	<string>
 	"debug.cpp"
 
-1368170380 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\component.cpp
+1368430335 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\component.cpp
 	"engine.h"
 
-1368167060 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object_manager.cpp
+1368423477 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object_manager.cpp
 	"engine.h"
 
-1368167012 f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object_manager.h
+1368428744 f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object_manager.h
 	<memory>
 	<map>
 	"game_object.h"
 
-1368170566 f:\projects\n3-games\punchharder\trunk\punchharder\engine\engine.h
-	"vector3.h"
+1368417292 f:\projects\n3-games\punchharder\trunk\punchharder\engine\engine.h
+	"object.h"
 	"component.h"
 	"game_object_manager.h"
 	"game_object.h"
 	"debug.h"
 	"transform.h"
+	"convert.h"
 
-1367991079 f:\projects\n3-games\punchharder\trunk\punchharder\engine\debug.h
+1368425298 f:\projects\n3-games\punchharder\trunk\punchharder\engine\debug.h
 	<string>
 	<iostream>
+	"object.h"
+	"sfml_headers.h"
 
-1368168699 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\transform .cpp
+1368427330 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\transform .cpp
 	"transform.h"
 	"engine.h"
 
-1368168712 f:\projects\n3-games\punchharder\trunk\punchharder\engine\transform.h
+1368427309 f:\projects\n3-games\punchharder\trunk\punchharder\engine\transform.h
+	"sfml_headers.h"
 	"component.h"
-	"vector3.h"
 
 1368168233 f:\projects\n3-games\punchharder\trunk\punchharder\engine\vector3.h
 
 1368170380 f:\projects\n3-games\punchharder\trunk\punchharder\engine\component.cpp
 	"engine.h"
+
+1368430414 f:\projects\n3-games\punchharder\trunk\punchharder\test.cpp
+	<memory>
+	<iostream>
+	<typeinfo>
+	"engine/engine.h"
+	"engine/sfml_headers.h"
+
+1368430414 source:f:\projects\n3-games\punchharder\trunk\punchharder\test.cpp
+	<memory>
+	<iostream>
+	<typeinfo>
+	"engine/engine.h"
+	"engine/sfml_headers.h"
+
+1368411211 f:\projects\n3-games\punchharder\trunk\punchharder\engine\sfml_headers.h
+	<SFML/Window.hpp>
+	<SFML/OpenGL.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Config.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\audio.hpp
+	<SFML/System.hpp>
+	<SFML/Audio/Listener.hpp>
+	<SFML/Audio/Music.hpp>
+	<SFML/Audio/Sound.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundBufferRecorder.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<SFML/Audio/SoundStream.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\audio\listener.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Vector3.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\audio\export.hpp
+	<SFML/Config.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\audio\music.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundStream.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+	<vector>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\audio\soundstream.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/Time.hpp>
+	<cstdlib>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\audio\soundsource.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Vector3.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\audio\sound.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Time.hpp>
+	<cstdlib>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\audio\soundbuffer.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+	<vector>
+	<set>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\audio\soundbufferrecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<vector>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\audio\soundrecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Thread.hpp>
+	<vector>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics.hpp
+	<SFML/Window.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/RenderTexture.hpp>
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Shader.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<SFML/Graphics/CircleShape.hpp>
+	<SFML/Graphics/RectangleShape.hpp>
+	<SFML/Graphics/ConvexShape.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Text.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/Graphics/View.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\blendmode.hpp
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\color.hpp
+	<SFML/Graphics/Export.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\export.hpp
+	<SFML/Config.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\font.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/String.hpp>
+	<map>
+	<string>
+	<vector>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\glyph.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\rect.hpp
+	<SFML/System/Vector2.hpp>
+	<algorithm>
+	<SFML/Graphics/Rect.inl>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\rect.inl
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\texture.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Window/GlResource.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\image.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+	<vector>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\renderstates.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/Transform.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\transform.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/System/Vector2.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\rendertexture.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\rendertarget.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/View.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\view.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/System/Vector2.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\primitivetype.hpp
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\vertex.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/System/Vector2.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\renderwindow.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Window/Window.hpp>
+	<string>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\shader.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+	<map>
+	<string>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\shape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/System/Vector2.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\drawable.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\transformable.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Transform.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\vertexarray.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<vector>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\circleshape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\rectangleshape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\convexshape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<vector>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\sprite.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1363105557 f:\projects\n3-games\punchharder\trunk\punchharder\sfml-2.0\include\sfml\graphics\text.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/System/String.hpp>
+	<string>
+	<vector>
+
+1368426789 f:\projects\n3-games\punchharder\trunk\punchharder\engine\object.h
+	<string>
+
+1368426621 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\object.cpp
+	"engine.h"
+	<memory>
+
+1368425387 f:\projects\n3-games\punchharder\trunk\punchharder\engine\convert.h
+	<string>
+	"sfml_headers.h"
+
+1368425552 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\convert.cpp
+	"convert.h"
+	<sstream>
 

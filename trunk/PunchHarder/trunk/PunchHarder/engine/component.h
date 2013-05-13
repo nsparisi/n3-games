@@ -3,19 +3,23 @@
 
 #include <string>
 #include "game_object.h"
+#include "object.h"
 
-class Component
+class Object;
+class Component : public Object
 {
 public:
-    std::string m_Name;
-    bool m_Enabled;
-    WeakGameObjectPtr m_GameObject;
+    GameObject* m_pGameObject;
 
-    template<class T>
-    static Component* CreateComponent()
+    void SetEnabled(bool enable) { m_Enabled = enable; }
+    bool GetEnabled() { return m_Enabled; }
+    GameObject* GetGameObject()
     {
-        Component* pComponent = new T();
-        return pComponent;
+        return m_pGameObject;
+    }
+    void SetGameObject(GameObject* pGameObject)
+    {
+        m_pGameObject = pGameObject;
     }
 
     Component();
@@ -24,6 +28,10 @@ public:
     virtual void OnDestroy();
     virtual void Update();
     virtual void Draw();
+
+private:
+    bool m_Enabled;
+
 
 };
 

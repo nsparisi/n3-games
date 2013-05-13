@@ -9,6 +9,7 @@ StrongGameObjectManagerPtr GameObjectManager::GetInstance()
     {
         StrongGameObjectManagerPtr pManager(new GameObjectManager());
         GameObjectManager::m_pInstance = pManager;
+        GameObjectManager::m_pInstance->ResetRoot();
 
         Debug::Log("Made a new instance of Manager");
     }
@@ -16,18 +17,32 @@ StrongGameObjectManagerPtr GameObjectManager::GetInstance()
     return GameObjectManager::m_pInstance;
 }
 
+GameObjectManager::GameObjectManager()
+{
+    m_pRoot = NULL;
+}
 
 GameObjectManager::~GameObjectManager()
 {
     Debug::Log("Destroying Manager");
+
+    //todo destroy the root somehow
+}
+
+void GameObjectManager::ResetRoot()
+{
+    if(m_pRoot != NULL)
+    {
+        m_pRoot->Destroy();
+    }
+
+    m_pRoot = GameObject::CreateGameObject();
 }
 
 
 void GameObjectManager::RegisterGameObject(StrongGameObjectPtr go)
 {
     // insert doesn't act if already exists
-    Debug::Log("Registering GO");
-
     m_GameObjectsMap[go->GetId()] = go;
 }
 

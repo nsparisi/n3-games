@@ -1,15 +1,15 @@
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
 
+#include "sfml_headers.h"
 #include "component.h"
-#include "vector3.h"
 class Component;
-class Vector3;
 
 class Transform : public Component
 {
+    typedef sf::Vector3<float> Vector3f;
     typedef std::list<Transform*>::iterator TransformIterator;
-    std::list<Transform*> m_Children;
+
 
 public:
     Transform();
@@ -18,28 +18,28 @@ public:
     void Update();
     void Draw();
 
-    //TODO implement all of these
-    //TODO use some other vector type
     Transform* GetParent();
     void SetParent(Transform* parent);
-    void AddChild(Transform* child);
-    void RemoveChild(Transform* child);
-    Vector3 GetPosition();
-    void SetPosition(Vector3 pos);
-    Vector3 GetLocalPosition();
-    void SetLocalPosition(Vector3 pos);
+    Vector3f GetPosition();
+    void SetPosition(Vector3f pos);
+    Vector3f GetLocalPosition();
+    std::list<Transform*> GetChildren();
+
+    void SetLocalPosition(Vector3f pos);
     void Translate(float x, float y, float z);
-    void Translate(Vector3 delta);
+    void Translate(Vector3f delta);
 
 private:
     Transform* m_pParent;
-    Vector3 m_pPosition;
-    Vector3 m_pLocalPosition;
+    Vector3f m_Position;
+    Vector3f m_LocalPosition;
+    std::list<Transform*> m_Children;
 
+    void AddChild(Transform* child);
+    void RemoveChild(Transform* child);
     void DeterminePosition();
     void DetermineLocalPosition();
     void RefreshChildren();
-
 };
 
 #endif // TRANSFORM_H
