@@ -41,5 +41,7 @@ public:
         Debug::Log(t2->GetPosition());
 
         go1->Destroy();
+
+        Debug::Log(Random::RangeInt(20, 30));
     }
 };

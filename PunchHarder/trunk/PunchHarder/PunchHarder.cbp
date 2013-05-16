@@ -65,6 +65,8 @@
 		<Unit filename="engine/game_object_manager.h" />
 		<Unit filename="engine/object.cpp" />
 		<Unit filename="engine/object.h" />
+		<Unit filename="engine/random.cpp" />
+		<Unit filename="engine/random.h" />
 		<Unit filename="engine/sfml_headers.h" />
 		<Unit filename="engine/transform .cpp" />
 		<Unit filename="engine/transform.h" />
