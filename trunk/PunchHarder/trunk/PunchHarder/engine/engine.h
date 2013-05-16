@@ -6,6 +6,7 @@
  #ifndef ENGINE_H
  #define ENGINE_H
 
+#include "random.h"
 #include "object.h"
 #include "component.h"
 #include "game_object_manager.h"

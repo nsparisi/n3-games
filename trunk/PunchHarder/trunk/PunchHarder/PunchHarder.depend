@@ -794,7 +794,7 @@
 	<string>
 	<iostream>
 
-1368430242 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object.cpp
+1368430454 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\game_object.cpp
 	"engine.h"
 	<typeinfo>
 
@@ -835,7 +835,8 @@
 	<map>
 	"game_object.h"
 
-1368417292 f:\projects\n3-games\punchharder\trunk\punchharder\engine\engine.h
+1368679217 f:\projects\n3-games\punchharder\trunk\punchharder\engine\engine.h
+	"random.h"
 	"object.h"
 	"component.h"
 	"game_object_manager.h"
@@ -863,14 +864,14 @@
 1368170380 f:\projects\n3-games\punchharder\trunk\punchharder\engine\component.cpp
 	"engine.h"
 
-1368430414 f:\projects\n3-games\punchharder\trunk\punchharder\test.cpp
+1368680033 f:\projects\n3-games\punchharder\trunk\punchharder\test.cpp
 	<memory>
 	<iostream>
 	<typeinfo>
 	"engine/engine.h"
 	"engine/sfml_headers.h"
 
-1368430414 source:f:\projects\n3-games\punchharder\trunk\punchharder\test.cpp
+1368680033 source:f:\projects\n3-games\punchharder\trunk\punchharder\test.cpp
 	<memory>
 	<iostream>
 	<typeinfo>
@@ -1136,4 +1137,11 @@
 1368425552 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\convert.cpp
 	"convert.h"
 	<sstream>
+
+1368679563 f:\projects\n3-games\punchharder\trunk\punchharder\engine\random.h
+
+1368679900 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\random.cpp
+	"random.h"
+	<stdlib.h>
+	<time.h>
 
