@@ -15,9 +15,6 @@ public:
         window.setVerticalSyncEnabled(true);
 
         // load resources, initialize the OpenGL states, ...
-        //clock does time calculations
-        sf::Clock clock; // starts the clock
-        sf::Clock deltaClock;
 
         //set color and depth clear value
         glClearDepth(1.0f);
@@ -70,10 +67,12 @@ public:
             // clear the buffers
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-            // draw some cubes
-            //float deltaTime = deltaClock.restart().asSeconds();
-            float elapsedTime = clock.getElapsedTime().asSeconds();
+            //keep time up to date
+            Time::Update();
+            float deltaTime = Time::DeltaTime();
+            float elapsedTime = Time::TotalElapsedTime();
 
+            // draw some cubes
             glMatrixMode(GL_MODELVIEW);
             glLoadIdentity();
 

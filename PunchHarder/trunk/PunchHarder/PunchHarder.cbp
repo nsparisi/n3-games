@@ -68,6 +68,8 @@
 		<Unit filename="engine/random.cpp" />
 		<Unit filename="engine/random.h" />
 		<Unit filename="engine/sfml_headers.h" />
+		<Unit filename="engine/time.cpp" />
+		<Unit filename="engine/time.h" />
 		<Unit filename="engine/transform .cpp" />
 		<Unit filename="engine/transform.h" />
 		<Unit filename="main.cpp" />
