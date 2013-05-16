@@ -777,7 +777,7 @@
 	"engine/sfml_headers.h"
 	"engine/engine.h"
 
-1368417443 f:\projects\n3-games\punchharder\trunk\punchharder\program.cpp
+1368681056 f:\projects\n3-games\punchharder\trunk\punchharder\program.cpp
 	"engine/sfml_headers.h"
 	"engine/engine.h"
 
@@ -835,8 +835,9 @@
 	<map>
 	"game_object.h"
 
-1368679217 f:\projects\n3-games\punchharder\trunk\punchharder\engine\engine.h
+1368680998 f:\projects\n3-games\punchharder\trunk\punchharder\engine\engine.h
 	"random.h"
+	"time.h"
 	"object.h"
 	"component.h"
 	"game_object_manager.h"
@@ -864,14 +865,14 @@
 1368170380 f:\projects\n3-games\punchharder\trunk\punchharder\engine\component.cpp
 	"engine.h"
 
-1368680033 f:\projects\n3-games\punchharder\trunk\punchharder\test.cpp
+1368680050 f:\projects\n3-games\punchharder\trunk\punchharder\test.cpp
 	<memory>
 	<iostream>
 	<typeinfo>
 	"engine/engine.h"
 	"engine/sfml_headers.h"
 
-1368680033 source:f:\projects\n3-games\punchharder\trunk\punchharder\test.cpp
+1368680050 source:f:\projects\n3-games\punchharder\trunk\punchharder\test.cpp
 	<memory>
 	<iostream>
 	<typeinfo>
@@ -1144,4 +1145,10 @@
 	"random.h"
 	<stdlib.h>
 	<time.h>
+
+1368680894 source:f:\projects\n3-games\punchharder\trunk\punchharder\engine\time.cpp
+	"time.h"
+
+1368680874 f:\projects\n3-games\punchharder\trunk\punchharder\engine\time.h
+	"sfml_headers.h"
 

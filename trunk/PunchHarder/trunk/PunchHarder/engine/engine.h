@@ -7,6 +7,7 @@
  #define ENGINE_H
 
 #include "random.h"
+#include "time.h"
 #include "object.h"
 #include "component.h"
 #include "game_object_manager.h"
