@@ -31,14 +31,13 @@ public class Map : MonoBehaviour
     private int gridWidth;
     private int gridHeight;
 
-    public Vector2 GetClosestCoordinate(Vector3 position)
+    public void GetClosestCoordinate(Vector3 position, out int x, out int y)
     {
-        float x = Mathf.Round(position.x / tileWidth);
-        float y = Mathf.Round(position.z / tileHeight);
+        x = Mathf.RoundToInt(position.x / tileWidth);
+        y = Mathf.RoundToInt(position.z / tileHeight);
 
-        return new Vector2(
-            Mathf.Clamp(x, 0, gridWidth), 
-            Mathf.Clamp(y, 0, gridHeight));
+        x = Mathf.Clamp(x, 0, gridWidth);
+        y = Mathf.Clamp(y, 0, gridHeight);
     }
 
     public Rect? GetTileBounds(int x, int y)
@@ -46,6 +45,16 @@ public class Map : MonoBehaviour
         if (IsInBounds(x, y))
         {
             return tiles[x][y].bounds;
+        }
+
+        return null;
+    }
+
+    public GameObject GetTileGameObject(int x, int y)
+    {
+        if (IsInBounds(x, y))
+        {
+            return tiles[x][y].gameObject;
         }
 
         return null;
