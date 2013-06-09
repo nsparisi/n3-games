@@ -4,12 +4,11 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour 
 {
-    /// <summary>
-    /// Speed in tiles per second
-    /// </summary>
     public float speed = 5;
-
     public Rect bounds = new Rect(0, 0, 10, 10);
+    public int numberOfSeeds = 10;
+    public int plantsHarvested = 0;
+
 
     public static Player Instance { get; private set; }
 
@@ -44,6 +43,22 @@ public class Player : MonoBehaviour
         {
             TryMove(movement);
         }
+
+        if (InputController.GetPlayerInteractDown())
+        {
+            if (PlantSeedAction())
+            {
+                Debug.Log("Planted a seed!");
+            }
+            else if (HarvestPlantAction())
+            {
+                Debug.Log("Harvested a plant!");
+            }
+            else if (WaterPlantAction())
+            {
+                Debug.Log("Watered a plant!");
+            }
+        }
     }
 
 
@@ -53,13 +68,14 @@ public class Player : MonoBehaviour
         Vector3 goToHere = this.transform.localPosition + amountToMove;
 
         // find what tile I'm standing on
-        Vector2 myCoordinate = Map.Instance.GetClosestCoordinate(goToHere);
+        int gridX, gridY;
+        Map.Instance.GetClosestCoordinate(goToHere, out gridX, out gridY);
 
         // check in a box around the player
-        int xMin = Mathf.RoundToInt(myCoordinate.x - 1);
-        int xMax = Mathf.RoundToInt(myCoordinate.x + 1);
-        int yMin = Mathf.RoundToInt(myCoordinate.y - 1);
-        int yMax = Mathf.RoundToInt(myCoordinate.y + 1);
+        int xMin = Mathf.RoundToInt(gridX - 1);
+        int xMax = Mathf.RoundToInt(gridX + 1);
+        int yMin = Mathf.RoundToInt(gridY - 1);
+        int yMax = Mathf.RoundToInt(gridY + 1);
 
         Rect futureBounds = GetActualBounds(goToHere);
 
@@ -78,6 +94,136 @@ public class Player : MonoBehaviour
         {
             this.transform.localPosition = goToHere;
         }
+    }
+
+
+    bool WaterPlantAction()
+    {
+        List<SoilBin> adjacentBins = GetAdjacentBins();
+        foreach (SoilBin bin in adjacentBins)
+        {
+            if (TryWaterSeed(bin))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    bool TryWaterSeed(SoilBin bin)
+    {
+        bin.FillWithWater();
+        return true;
+    }
+
+    bool PlantSeedAction()
+    {
+        List<SoilBin> adjacentBins = GetAdjacentBins();
+        foreach (SoilBin bin in adjacentBins)
+        {
+            if (TryPlantSeed(bin))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    bool TryPlantSeed(SoilBin bin)
+    {
+        if (bin.CanPlantSeed())
+        {
+            Seed seed = UseSeedFromInventory();
+            if (seed != null)
+            {
+                bin.PlantSeed(seed);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    bool HarvestPlantAction()
+    {
+        List<SoilBin> adjacentBins = GetAdjacentBins();
+        foreach (SoilBin bin in adjacentBins)
+        {
+            if (TryHarvestPlant(bin))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    bool TryHarvestPlant(SoilBin bin)
+    {
+        Seed seed = bin.Harvest();
+        if (seed != null)
+        {
+            HarvestedFullyGrownPlant(seed);
+            return true;
+        }
+
+        return false;
+    }
+    
+    List<SoilBin> GetAdjacentBins()
+    {
+        // find what tile I'm standing on
+        int gridX, gridY;
+        Map.Instance.GetClosestCoordinate(this.transform.position, out gridX, out gridY);
+
+        //check up down left right
+        GameObject[] adjacentTiles = new GameObject[4];
+        adjacentTiles[0] = Map.Instance.GetTileGameObject(gridX, gridY + 1);
+        adjacentTiles[1] = Map.Instance.GetTileGameObject(gridX, gridY - 1);
+        adjacentTiles[2] = Map.Instance.GetTileGameObject(gridX - 1, gridY);
+        adjacentTiles[3] = Map.Instance.GetTileGameObject(gridX + 1, gridY);
+
+        //find bins
+        List<SoilBin> adjacentBins = new List<SoilBin>();
+        for (int i = 0; i < adjacentTiles.Length; i++)
+        {
+            SoilBin bin = TryGetBin(adjacentTiles[i]);
+            if (bin != null)
+            {
+                adjacentBins.Add(bin);
+            }
+        }
+        
+        return adjacentBins;
+    }
+
+    SoilBin TryGetBin(GameObject go)
+    {
+        if (go != null)
+        {
+            return go.GetComponent<SoilBin>();
+        }
+
+        return null;
+    }
+
+    Seed UseSeedFromInventory()
+    {
+        if (numberOfSeeds > 0)
+        {
+            numberOfSeeds--;
+            return new Seed();
+        }
+
+        return null;
+    }
+
+    void HarvestedFullyGrownPlant(Seed seed)
+    {
+        numberOfSeeds += seed.SeedYield;
+        plantsHarvested++;
     }
 
     bool Colliding(Rect? A, Rect? B)

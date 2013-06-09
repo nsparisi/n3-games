@@ -3,6 +3,12 @@ using System.Collections;
 
 public class InputController
 {
+    // Using this format:
+    //
+    //   W      I
+    // A S D  J K L 
+    //
+
     public static bool GetDown()
     {
         return Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
@@ -24,10 +30,9 @@ public class InputController
     }
 
     //Inventory
-
     public static bool GetInventoryButton()
     {
-        return Input.GetKey(KeyCode.O);
+        return Input.GetKey(KeyCode.I);
     }
 
     public static bool GetInventoryAccept()
@@ -37,19 +42,17 @@ public class InputController
 
     public static bool GetInventoryDecline()
     {
-        return Input.GetKey(KeyCode.P) || Input.GetKey(KeyCode.O);
+        return Input.GetKey(KeyCode.I) || Input.GetKey(KeyCode.K);
     }
-
 
     // Player Action
-
-    public static bool GetPlayerInspect()
+    public static bool GetPlayerInspectDown()
     {
-        return Input.GetKey(KeyCode.L);
+        return Input.GetKeyDown(KeyCode.K);
     }
 
-    public static bool GetPlayerInteract()
+    public static bool GetPlayerInteractDown()
     {
-        return Input.GetKey(KeyCode.P);
+        return Input.GetKeyDown(KeyCode.L);
     }
 }
