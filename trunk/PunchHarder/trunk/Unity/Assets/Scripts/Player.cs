@@ -8,13 +8,21 @@ public class Player : MonoBehaviour
     public Rect bounds = new Rect(0, 0, 10, 10);
     public int numberOfSeeds = 10;
     public int plantsHarvested = 0;
+    public float actionDuration = 1;
 
-
+    public GameObject DefaultVisual;
+    public GameObject SeedVisual;
+    public GameObject WaterVisual;
+    public GameObject HarvestVisual;
+    
     public static Player Instance { get; private set; }
+
+    private bool isPerformingAction = false;
 
     void Awake()
     {
         Instance = this;
+        SetVisual(VisualType.Default);
     }
 
     void Update()
@@ -38,25 +46,34 @@ public class Player : MonoBehaviour
         {
             movement.x -= distance;
         }
-
-        if (movement != Vector3.zero)
+        
+        // performing an action halts simultaneous movement and actions
+        if (!isPerformingAction)
         {
-            TryMove(movement);
-        }
+            // try to move around
+            if (movement != Vector3.zero)
+            {
+                TryMove(movement);
+            }
 
-        if (InputController.GetPlayerInteractDown())
-        {
-            if (PlantSeedAction())
+            // try to perform an action
+            if (InputController.GetPlayerInteractDown())
             {
-                Debug.Log("Planted a seed!");
-            }
-            else if (HarvestPlantAction())
-            {
-                Debug.Log("Harvested a plant!");
-            }
-            else if (WaterPlantAction())
-            {
-                Debug.Log("Watered a plant!");
+                if (PlantSeedAction())
+                {
+                    Debug.Log("Planted a seed!");
+                    StartCoroutine(DoAction(VisualType.Planting));
+                }
+                else if (HarvestPlantAction())
+                {
+                    Debug.Log("Harvested a plant!");
+                    StartCoroutine(DoAction(VisualType.Harvesting));
+                }
+                else if (WaterPlantAction())
+                {
+                    Debug.Log("Watered a plant!");
+                    StartCoroutine(DoAction(VisualType.Watering));
+                }
             }
         }
     }
@@ -280,6 +297,48 @@ public class Player : MonoBehaviour
             position.z + bounds.y,
             bounds.width,
             bounds.height);
+    }
+
+    IEnumerator DoAction(VisualType actionVisual)
+    {
+        // pre action
+        isPerformingAction = true;
+        SetVisual(actionVisual);
+
+        // do action
+        yield return new WaitForSeconds(actionDuration);
+
+        // post action
+        SetVisual(VisualType.Default);
+        isPerformingAction = false;
+    }
+
+    protected enum VisualType { Default, Planting, Watering, Harvesting }
+    protected VisualType currentVisual;
+    protected void SetVisual(VisualType type)
+    {
+        currentVisual = type;
+
+        HarvestVisual.SetActive(false);
+        SeedVisual.SetActive(false);
+        WaterVisual.SetActive(false);
+        DefaultVisual.SetActive(false);
+
+        switch (type)
+        {
+            case VisualType.Default:
+                DefaultVisual.SetActive(true);
+                break;
+            case VisualType.Planting:
+                SeedVisual.SetActive(true);
+                break;
+            case VisualType.Watering:
+                WaterVisual.SetActive(true);
+                break;
+            case VisualType.Harvesting:
+                HarvestVisual.SetActive(true);
+                break;
+        }
     }
 
 }
