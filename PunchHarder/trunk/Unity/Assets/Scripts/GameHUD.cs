@@ -14,7 +14,7 @@ public class GameHUD : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 150, 50), "Total Harvest: " + Player.Instance.plantsHarvested);
-        GUI.Label(new Rect(10, 25, 150, 50), "Seeds in Inventory: " + Player.Instance.numberOfSeeds);
+        GUI.Label(new Rect(10, 10, 150, 50), "Total Harvest: " + Inventory.PlantsHarvested);
+        GUI.Label(new Rect(10, 25, 150, 50), "Seeds in Inventory: " + Inventory.NumberOfSeeds);
     }
 }

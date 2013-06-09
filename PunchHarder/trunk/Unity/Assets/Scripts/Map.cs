@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Map : MonoBehaviour
 {
@@ -33,11 +34,26 @@ public class Map : MonoBehaviour
 
     public void GetClosestCoordinate(Vector3 position, out int x, out int y)
     {
-        x = Mathf.RoundToInt(position.x / tileWidth);
-        y = Mathf.RoundToInt(position.z / tileHeight);
+        x = Mathf.RoundToInt( (position.x - origin.x) / tileWidth);
+        y = Mathf.RoundToInt((position.z - origin.z) / tileHeight);
 
         x = Mathf.Clamp(x, 0, gridWidth);
         y = Mathf.Clamp(y, 0, gridHeight);
+    }
+
+    public Vector2 GetClosestCoordinate(Vector3 position)
+    {
+        int x, y;
+        GetClosestCoordinate(position, out x, out y);
+        return new Vector2(x, y);
+    }
+
+    public Vector3 TileToWorldCoordinate(int x, int y)
+    {
+        float worldX = x * tileWidth;
+        float worldZ = y * tileHeight;
+
+        return new Vector3(worldX, 0, worldZ) + origin;
     }
 
     public Rect? GetTileBounds(int x, int y)
@@ -55,6 +71,40 @@ public class Map : MonoBehaviour
         if (IsInBounds(x, y))
         {
             return tiles[x][y].gameObject;
+        }
+
+        return null;
+    }
+
+
+    public List<SoilBin> GetAdjacentBins(int x, int y)
+    {
+        //check up down left right
+        GameObject[] adjacentTiles = new GameObject[4];
+        adjacentTiles[0] = GetTileGameObject(x, y + 1);
+        adjacentTiles[1] = GetTileGameObject(x, y - 1);
+        adjacentTiles[2] = GetTileGameObject(x - 1, y);
+        adjacentTiles[3] = GetTileGameObject(x + 1, y);
+
+        //find bins
+        List<SoilBin> adjacentBins = new List<SoilBin>();
+        for (int i = 0; i < adjacentTiles.Length; i++)
+        {
+            SoilBin bin = TryGetBin(adjacentTiles[i]);
+            if (bin != null)
+            {
+                adjacentBins.Add(bin);
+            }
+        }
+
+        return adjacentBins;
+    }
+
+    private SoilBin TryGetBin(GameObject go)
+    {
+        if (go != null)
+        {
+            return go.GetComponent<SoilBin>();
         }
 
         return null;
@@ -183,7 +233,7 @@ public class Map : MonoBehaviour
         return goFloor;
     }
 
-    private bool IsInBounds(int x, int y)
+    public bool IsInBounds(int x, int y)
     {
         return x >= 0 && y >= 0 && x < gridWidth && y < gridHeight;
     }
