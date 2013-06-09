@@ -1,0 +1,9 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class Inventory 
+{
+    public static int NumberOfSeeds = 30;
+    public static int PlantsHarvested = 0;
+}
