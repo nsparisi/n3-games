@@ -2,20 +2,20 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class SeedProgram : AbstractProgram
+public class HarvestProgram : AbstractProgram
 {
-    public SeedProgram(Automaton owner)
+    public HarvestProgram(Automaton owner)
         : base(owner)
     {
     }
 
     protected override void  DoAction()
     {
-        automaton.SeedAction();
+        automaton.HarvestAction();
     }
 
     protected override bool MeetCriteria(SoilBin bin)
     {
-        return bin.CanPlantSeed();
+        return bin.CanHarvest();
     }
 }

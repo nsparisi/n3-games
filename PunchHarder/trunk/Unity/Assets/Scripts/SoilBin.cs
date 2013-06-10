@@ -11,9 +11,49 @@ public class SoilBin : MonoBehaviour
     public GameObject UsedVisual;
 
     public float WaterAvailable { get; set; }
+
     public Type SeedType { get; private set; }
 
+    public float PercentFull
+    {
+        get
+        {
+            return WaterAvailable / maxWaterCapacity;
+        }
+    }
+
+    private bool isGettingWateredSoon;
+    public bool IsGettingWateredSoon
+    {
+        get
+        {
+            return isGettingWateredSoon;
+        }
+
+        set
+        {
+            if (value && !isGettingWateredSoon)
+            {
+                isGettingWateredSoon = true;
+                StartCoroutine(BeginWaitOnWater());
+            }
+
+            if (!value)
+            {
+                StopCoroutine("BeginWaitOnWater");
+                isGettingWateredSoon = false;
+            }
+        }
+    }
+
+    IEnumerator BeginWaitOnWater()
+    {
+        yield return new WaitForSeconds(timeToWaitOnWater);
+        isGettingWateredSoon = false;
+    }
+
     private float maxWaterCapacity = 60.1f;
+    private float timeToWaitOnWater = 5;
 
     private Seed seed;
 
@@ -84,11 +124,30 @@ public class SoilBin : MonoBehaviour
     }
 
     /// <summary>
+    /// True if this bin is ready to receive water
+    /// </summary>
+    /// <returns></returns>
+    public bool CanAddWater()
+    {
+        return seed != null && !seed.ReadyToHarvest;
+    }
+
+    /// <summary>
     /// Adds water to the bin. Returns the amount of water taken.
     /// </summary>
     public void FillWithWater()
     {
         WaterAvailable = maxWaterCapacity;
+        IsGettingWateredSoon = false;
+    }
+
+    /// <summary>
+    /// True if this bin is ready to harvest
+    /// </summary>
+    /// <returns></returns>
+    public bool CanHarvest()
+    {
+        return seed != null && seed.ReadyToHarvest;
     }
 
     /// <summary>

@@ -4,6 +4,6 @@ using System.Collections.Generic;
 
 public class Inventory 
 {
-    public static int NumberOfSeeds = 30;
+    public static int NumberOfSeeds = 10;
     public static int PlantsHarvested = 0;
 }

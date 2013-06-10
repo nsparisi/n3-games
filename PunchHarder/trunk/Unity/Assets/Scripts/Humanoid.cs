@@ -6,7 +6,7 @@ public class Humanoid : MonoBehaviour
 {
     public float speed = 5;
     public Rect bounds = new Rect(0, 0, 10, 10);
-    public float actionDuration = 1;
+    public float actionDuration = 2;
 
     public GameObject DefaultVisual;
     public GameObject SeedVisual;
