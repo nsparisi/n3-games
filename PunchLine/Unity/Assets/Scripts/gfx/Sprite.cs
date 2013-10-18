@@ -30,7 +30,7 @@ public class Sprite : MonoBehaviour {
 	
 	private Vector3[] vertices;
 	private Vector2[] uvs = {new Vector2(0f,0f), new Vector2(1f,0f), new Vector2(0f,1f), new Vector2(1f,1f)};
-	private int[] triangles = {0,1,2,1,3,0};
+	private int[] triangles = {2,1,0,2,3,1};
 	
 	void Awake()
 	{
