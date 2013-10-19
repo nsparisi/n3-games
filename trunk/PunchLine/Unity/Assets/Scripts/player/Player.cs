@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 	
-	public float horizontalSpeed = 2;
-	public float verticalSpeed = 2;
+	public float horizontalSpeed = 4;
+	public float verticalSpeed = 4;
 	public float diagonalSpeedModifier = 0.5f;
 	
 	InputController inputController;
