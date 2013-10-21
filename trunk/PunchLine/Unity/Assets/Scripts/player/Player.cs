@@ -1,13 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
-	
+public class Player : Being 
+{
 	// public fields
-	public float horizontalSpeed = 4;
-	public float verticalSpeed = 4;
+	public float horizontalSpeed = 400;
+	public float verticalSpeed = 400;
 	public float diagonalSpeedModifier = 0.5f;
 	public PlayerSword sword;
+	public float hurtSpeed = 600;
+	public float hurtDuration = 1;
+	public float invulnerabilityDuration = 2;
+	
+	public bool IsInvulnerable 
+	{
+		get 
+		{
+			return hurtTimer < invulnerabilityDuration;
+		}
+	}
 	
 	// private fields
 	InputController inputController;
@@ -19,7 +30,9 @@ public class Player : MonoBehaviour {
 	const string actionBasicAttack = "basic_attack";
 	
 	Vector2 inputMovement;
+	Vector2 hurtMovement;
 	bool attackWasIssued;
+	float hurtTimer;
 	
 	enum PlayerFacingType { Up, Down, Left, Right }
 	PlayerFacingType facing;
@@ -47,6 +60,9 @@ public class Player : MonoBehaviour {
 			KeyCode.Mouse0);
 		
 		sword.CancelSwing();
+		
+		Faction = 1;
+		hurtTimer = invulnerabilityDuration;
 	}
 	
 	// KeyDown/KeyUp events need to occur in Update()
@@ -67,11 +83,23 @@ public class Player : MonoBehaviour {
 			attackWasIssued = false;
 		}
 		
+		// If we're hurt (falling back) 
+		// cannot attack or move.
+		if(hurtTimer < hurtDuration)
+		{
+			HandleHurtMovement();
+		}
+		
 		// If we're in attack animation, don't move. 
 		// Probably should change this in the future
-		if(sword.SwordState == PlayerSword.SwordStateType.NotSwinging)
+		else if(sword.SwordState == PlayerSword.SwordStateType.NotSwinging)
 		{
 			HandleMovement();
+		}
+		
+		if(hurtTimer < invulnerabilityDuration)
+		{
+			hurtTimer += Time.fixedDeltaTime;
 		}
 	}
 	
@@ -93,6 +121,14 @@ public class Player : MonoBehaviour {
 		{
 			sword.SwingRight();
 		} 
+	}
+	
+	void HandleHurtMovement()
+	{
+		this.transform.Translate(
+			hurtMovement.x * Time.fixedDeltaTime,
+			hurtMovement.y * Time.fixedDeltaTime,
+			0);
 	}
 	
 	void HandleMovement()
@@ -173,5 +209,36 @@ public class Player : MonoBehaviour {
 		{
 			facing = PlayerFacingType.Down;
 		}
+	}
+	
+	public void TakeDamage(int damage)
+	{
+	}
+	
+	public override void TouchedByBeing (Being other)
+	{
+		if(other.Faction != this.Faction &&
+			!this.IsInvulnerable)
+		{
+			// take damage
+			TakeDamage(other.Strength);
+			
+			// fly backward
+			hurtTimer = 0;
+			Vector2 direction;
+			direction.x = this.transform.position.x - other.transform.position.x;
+			direction.y = this.transform.position.y - other.transform.position.y;
+			hurtMovement = direction.normalized * hurtSpeed;
+		}
+	}
+	
+	public override void TouchedByWeapon (Weapon other)
+	{
+		
+	}
+	
+	public override void WeaponTouchedByWeapon (Weapon other)
+	{
+		
 	}
 }

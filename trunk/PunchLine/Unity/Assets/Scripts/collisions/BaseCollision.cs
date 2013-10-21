@@ -8,9 +8,4 @@ public class BaseCollision : MonoBehaviour
 	{
 		this.collider.isTrigger = true;
 	}
-	
-	void OnTriggerEnter (Collider other)
-	{
-		Debug.Log(string.Format("{0} touched other: {1}", this.collider.name, other.name));	
-	}
 }
