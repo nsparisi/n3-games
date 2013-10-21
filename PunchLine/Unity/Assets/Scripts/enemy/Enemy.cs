@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Enemy : Being 
 {
+	public float chaseSpeed = 150; 
 	public float hurtSpeed = 400;
 	public float hurtDuration = 0.3f;
 	public float invulnerabilityDuration = 0.3f;
@@ -17,11 +18,13 @@ public class Enemy : Being
 	
 	private Vector2 hurtMovement;
 	private float hurtTimer;
+	private Transform target;
 	
 	void Start()
 	{
 		Faction = -1;
 		hurtTimer = invulnerabilityDuration;
+		target = GameObject.Find("PlayerCollider").transform;
 	}
 	
 	void FixedUpdate()
@@ -31,6 +34,10 @@ public class Enemy : Being
 		if(hurtTimer < hurtDuration)
 		{
 			HandleHurtMovement();
+		}
+		else 
+		{
+			HandleMovement();
 		}
 		
 		if(hurtTimer < invulnerabilityDuration)
@@ -48,6 +55,17 @@ public class Enemy : Being
 			0);
 	}
 	
+	void HandleMovement()
+	{
+		Vector3 direction = target.transform.position - this.transform.position;
+		direction = direction.normalized * chaseSpeed * Time.fixedDeltaTime;
+		
+		this.transform.Translate(
+			direction.x,
+			direction.y,
+			0);
+	}
+	
 	public void TakeDamage(int damage)
 	{
 	}
@@ -59,7 +77,6 @@ public class Enemy : Being
 	
 	public override void TouchedByWeapon (Weapon other)
 	{
-		Debug.Log("Ouch!");
 		if(other.owner.Faction != this.Faction && !IsInvulnerable)
 		{
 			// take damage, knockback

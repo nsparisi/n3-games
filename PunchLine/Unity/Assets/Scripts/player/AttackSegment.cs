@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(BaseCollision))]
 public class AttackSegment : MonoBehaviour
 {
 	public int startFrame;
