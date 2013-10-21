@@ -47,7 +47,7 @@ public class InputController
 		{
 			foreach(KeyCode key in mappings[action])
 			{
-				if(Input.GetKeyUp(key))
+				if(Input.GetKeyDown(key))
 				{
 					return true;
 				}
@@ -63,7 +63,7 @@ public class InputController
 		{
 			foreach(KeyCode key in mappings[action])
 			{
-				if(Input.GetKeyDown(key))
+				if(Input.GetKeyUp(key))
 				{
 					return true;
 				}
