@@ -1,9 +1,0 @@
-Saving	config file	C:\Users\Penny\Desktop\SNES/snes9x.conf
-Sound buffer size: 8192 (2048 samples)
-Found ROM file header (and ignored it).
-Map_LoROMMap
-"THE LEGEND OF ZELDA" [checksum ok] LoROM, 8Mbits, ROM+RAM+BAT, NTSC, SRAM:64Kbits, ID:$__0, CRC32:777AAC2F
-Sound buffer size: 8192 (2048 samples)
-Saving	config file	C:\Users\Penny\Desktop\SNES/snes9x.conf
-Saving	config file	C:\Users\Penny\Desktop\SNES/snes9x.conf
-Saving	config file	C:\Users\Penny\Desktop\SNES/snes9x.conf
