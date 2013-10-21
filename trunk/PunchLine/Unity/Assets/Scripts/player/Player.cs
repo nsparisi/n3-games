@@ -6,7 +6,6 @@ public class Player : Being
 	// public fields
 	public float horizontalSpeed = 400;
 	public float verticalSpeed = 400;
-	public float diagonalSpeedModifier = 0.5f;
 	public PlayerSword sword;
 	public float hurtSpeed = 600;
 	public float hurtDuration = 1;
@@ -23,6 +22,7 @@ public class Player : Being
 	// private fields
 	InputController inputController;
 	
+	const float diagonalSpeedModifier = 0.707106f;
 	const string actionMoveDown = "move_down";
 	const string actionMoveUp = "move_up";
 	const string actionMoveLeft = "move_left";
