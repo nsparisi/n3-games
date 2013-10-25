@@ -6,7 +6,7 @@ using System.Collections;
 
 public class Sprite : MonoBehaviour {
 	
-	public Color color;
+	public Color color = new Color(1f, 1f, 1f, 1f);
 	
 	public Vector2 size;
 	public Vector2 Size {
