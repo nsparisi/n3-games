@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : Being 
+public class Player : Entity 
 {
 	// public fields
 	public float horizontalSpeed = 400;
@@ -215,7 +215,7 @@ public class Player : Being
 	{
 	}
 	
-	public override void TouchedByBeing (Being other)
+	public override void TouchedByEntity (Entity other)
 	{
 		if(other.Faction != this.Faction &&
 			!this.IsInvulnerable)
