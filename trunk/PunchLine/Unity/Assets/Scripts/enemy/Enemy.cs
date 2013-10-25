@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Enemy : Being 
+public class Enemy : Entity 
 {
 	public float chaseSpeed = 150; 
 	public float hurtSpeed = 400;
@@ -70,7 +70,7 @@ public class Enemy : Being
 	{
 	}
 	
-	public override void TouchedByBeing (Being other)
+	public override void TouchedByEntity (Entity other)
 	{
 		// do nothing
 	}

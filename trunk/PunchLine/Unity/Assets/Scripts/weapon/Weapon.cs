@@ -3,6 +3,6 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour
 {
-	public Being owner;
+	public Entity owner;
 	public int Strength = 1;
 }
