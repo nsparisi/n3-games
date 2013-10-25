@@ -36,6 +36,11 @@ public class Player : Entity
 	
 	enum PlayerFacingType { Up, Down, Left, Right }
 	PlayerFacingType facing;
+	bool touchingWall;
+	
+	Vector3 previousPosition;
+	Vector3 previousPreviousPosition;
+	Vector3 previousPreviousPreviousPosition;
 	
 	void Start () {
 		inputController = new InputController();
@@ -101,6 +106,10 @@ public class Player : Entity
 		{
 			hurtTimer += Time.fixedDeltaTime;
 		}
+		
+		previousPreviousPreviousPosition = previousPreviousPosition;
+		previousPreviousPosition = previousPosition;
+		previousPosition = this.transform.position;
 	}
 	
 	void BasicAttack()
@@ -162,7 +171,7 @@ public class Player : Entity
 		{
 			inputMovement.x *= diagonalSpeedModifier;
 			inputMovement.y *= diagonalSpeedModifier;
-		}
+		}		
 		
 		this.transform.Translate(
 			inputMovement.x * Time.fixedDeltaTime,
@@ -232,13 +241,20 @@ public class Player : Entity
 		}
 	}
 	
-	public override void TouchedByWeapon (Weapon other)
+	public override void TouchedByWeapon(Weapon other)
 	{
 		
 	}
 	
-	public override void WeaponTouchedByWeapon (Weapon other)
+	public override void WeaponTouchedByWeapon(Weapon other)
 	{
 		
+	}
+	
+	public override void TouchedByWall(Collider other)
+	{
+		this.transform.position = previousPreviousPreviousPosition;
+		previousPreviousPosition = previousPreviousPreviousPosition;
+		previousPosition = previousPreviousPreviousPosition;
 	}
 }
