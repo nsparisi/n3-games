@@ -21,6 +21,7 @@ public class Player : Entity
 	
 	// private fields
 	InputController inputController;
+	CharacterController characterController;
 	
 	const float diagonalSpeedModifier = 0.707106f;
 	const string actionMoveDown = "move_down";
@@ -39,8 +40,6 @@ public class Player : Entity
 	bool touchingWall;
 	
 	Vector3 previousPosition;
-	Vector3 previousPreviousPosition;
-	Vector3 previousPreviousPreviousPosition;
 	
 	void Start () {
 		inputController = new InputController();
@@ -68,6 +67,7 @@ public class Player : Entity
 		
 		Faction = 1;
 		hurtTimer = invulnerabilityDuration;
+		characterController = this.GetComponent<CharacterController>();
 	}
 	
 	// KeyDown/KeyUp events need to occur in Update()
@@ -107,8 +107,6 @@ public class Player : Entity
 			hurtTimer += Time.fixedDeltaTime;
 		}
 		
-		previousPreviousPreviousPosition = previousPreviousPosition;
-		previousPreviousPosition = previousPosition;
 		previousPosition = this.transform.position;
 	}
 	
@@ -134,10 +132,11 @@ public class Player : Entity
 	
 	void HandleHurtMovement()
 	{
-		this.transform.Translate(
-			hurtMovement.x * Time.fixedDeltaTime,
-			hurtMovement.y * Time.fixedDeltaTime,
-			0);
+		characterController.Move(
+			new Vector3(
+				hurtMovement.x * Time.fixedDeltaTime,
+				hurtMovement.y * Time.fixedDeltaTime,
+				0));
 	}
 	
 	void HandleMovement()
@@ -173,10 +172,73 @@ public class Player : Entity
 			inputMovement.y *= diagonalSpeedModifier;
 		}		
 		
-		this.transform.Translate(
-			inputMovement.x * Time.fixedDeltaTime,
-			inputMovement.y * Time.fixedDeltaTime,
-			0);
+		characterController.Move(
+			new Vector3(
+				inputMovement.x * Time.fixedDeltaTime,
+				inputMovement.y * Time.fixedDeltaTime,
+				0));
+		
+		// if we're only moving vertical, 
+		// see if we can slide on a slope
+		if(this.inputMovement.y != 0 && this.inputMovement.x == 0)
+		{
+			if(this.transform.position == previousPosition)
+			{
+				// try going right
+				characterController.Move(
+					new Vector3(
+						diagonalSpeedModifier * horizontalSpeed * Time.fixedDeltaTime,
+						0,
+						0));
+				
+				// we didn't slide, so this is correct
+				if(UsefulStuff.CloseEnough(this.transform.position.y, previousPosition.y, 0.01f))
+				{
+					characterController.Move(
+						new Vector3(
+							0,
+							inputMovement.y * Time.fixedDeltaTime,
+							0));
+					
+					// if we didn't move, we must be hitting a wall
+					if(UsefulStuff.CloseEnough(this.transform.position.y, previousPosition.y, 0.01f))
+					{
+						this.transform.position = previousPosition;
+					}
+				}
+				else
+				{
+					this.transform.position = previousPosition;
+					
+					// try going left
+					characterController.Move(
+						new Vector3(
+							-diagonalSpeedModifier * horizontalSpeed * Time.fixedDeltaTime,
+							0,
+							0));
+					
+					// we didn't slide, so this is correct
+					if(UsefulStuff.CloseEnough(this.transform.position.y, previousPosition.y, 0.01f))
+					{
+						characterController.Move(
+							new Vector3(
+								0,
+								inputMovement.y * Time.fixedDeltaTime,
+								0));
+						
+						// if we didn't move, we must be hitting a wall
+						if(UsefulStuff.CloseEnough(this.transform.position.y, previousPosition.y, 0.01f))
+						{
+							this.transform.position = previousPosition;
+						}
+					}
+					else 
+					{
+						this.transform.position = previousPosition;
+					}
+				}
+			}
+		}
 		
 		HandleFacing();
 	}
@@ -253,8 +315,6 @@ public class Player : Entity
 	
 	public override void TouchedByWall(Collider other)
 	{
-		this.transform.position = previousPreviousPreviousPosition;
-		previousPreviousPosition = previousPreviousPreviousPosition;
-		previousPosition = previousPreviousPreviousPosition;
+		
 	}
 }
