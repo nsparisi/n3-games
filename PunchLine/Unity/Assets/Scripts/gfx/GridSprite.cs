@@ -35,7 +35,7 @@ public class GridSprite : Sprite {
 		set {
 			currentFrame = value;
 			
-			if (currentFrame >= (FramesHigh*FramesWide)-1)
+			if (currentFrame > (FramesHigh*FramesWide)-1)
 			{
 				currentFrame = 0;
 			}
