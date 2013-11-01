@@ -13,6 +13,8 @@ public class SpriteAnimationController : MonoBehaviour {
 	int frameCount = 0;
 	int animationDirection = 1;
 	
+	bool paused = false;
+	
 	void Awake()
 	{
 		this.sprite = GetComponent<GridSprite>();
@@ -38,6 +40,11 @@ public class SpriteAnimationController : MonoBehaviour {
 	
 	void Update()
 	{
+		if (paused)
+		{
+			return;
+		}
+		
 		if (++frameCount >  currentAnimation.frameCounts[currentAnimationFrame])
 		{
 			currentAnimationFrame += animationDirection;
@@ -81,6 +88,16 @@ public class SpriteAnimationController : MonoBehaviour {
 	void SetFrame(int newFrame)
 	{
 		sprite.CurrentFrame = newFrame;
+	}
+	
+	public void Pause()
+	{
+		paused = true;
+	}
+	
+	public void Play()
+	{
+		paused = false;
 	}
 }
 
