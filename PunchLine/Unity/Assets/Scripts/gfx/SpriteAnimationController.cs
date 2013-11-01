@@ -18,21 +18,22 @@ public class SpriteAnimationController : MonoBehaviour {
 	void Awake()
 	{
 		this.sprite = GetComponent<GridSprite>();
+		animations = new Dictionary<string, SpriteAnimation>();
 	}
 	
 	void Start()
 	{
-		currentAnimation = new SpriteAnimation();
-		currentAnimation.frameIndices = new int[]{ 0, 1, 2, 3 };
-		currentAnimation.frameCounts = new int[]{ 60, 60, 60, 60 };
-		currentAnimation.reverseOnLoop = true;
-		
-		SetCurrentAnimation(currentAnimation);
+		SpriteAnimation newSpriteAnimation = new SpriteAnimation();
+		newSpriteAnimation.frameIndices = new int[]{ 0, 1, 2, 3 };
+		newSpriteAnimation.frameCounts = new int[]{ 60, 60, 60, 60 };
+		newSpriteAnimation.reverseOnLoop = true;
+		AddAnimation("test animation", newSpriteAnimation);
+		PlayAnimation("test animation");
 	}
 	
 	void SetCurrentAnimation(SpriteAnimation newAnimation)
 	{
-		newAnimation = currentAnimation;
+		currentAnimation = newAnimation;
 		frameCount = 0;
 		currentAnimationFrame = 0;
 		SetFrame(currentAnimation.frameIndices[0]);
@@ -82,7 +83,6 @@ public class SpriteAnimationController : MonoBehaviour {
 			frameCount = 0;
 			SetFrame(currentAnimation.frameIndices[currentAnimationFrame]);
 		}
-		
 	}
 				
 	void SetFrame(int newFrame)
@@ -98,6 +98,32 @@ public class SpriteAnimationController : MonoBehaviour {
 	public void Play()
 	{
 		paused = false;
+	}
+	
+	public void AddAnimation(string animationName, SpriteAnimation animation)
+	{
+		if (animations.ContainsKey(animationName))
+		{
+			animations[animationName] = animation;
+		}
+		else
+		{
+			animations.Add(animationName, animation);
+		}	
+	}
+	
+	public bool PlayAnimation(string animationName)
+	{
+		paused = false;
+		if(animations.ContainsKey(animationName))
+		{
+			SetCurrentAnimation(animations[animationName]);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
 
