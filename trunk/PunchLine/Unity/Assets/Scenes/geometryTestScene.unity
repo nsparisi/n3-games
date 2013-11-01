@@ -164,6 +164,8 @@ GameObject:
   - 23: {fileID: 1080870994}
   - 33: {fileID: 1080870993}
   - 114: {fileID: 1080870992}
+  - 65: {fileID: 1080870995}
+  - 114: {fileID: 1080870996}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -195,17 +197,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
   size: {x: 320, y: 320}
-  uv: {x: 0, y: 0, z: .5, w: .5}
+  uv: {x: .5, y: .5, z: 1, w: 1}
   framesWide: 2
   framesHigh: 2
-  currentFrame: 0
+  currentFrame: 3
 --- !u!33 &1080870993
 MeshFilter:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1080870990}
-  m_Mesh: {fileID: 2071335269}
+  m_Mesh: {fileID: 1331920004}
 --- !u!23 &1080870994
 Renderer:
   m_ObjectHideFlags: 0
@@ -224,7 +226,30 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
---- !u!43 &2071335269
+--- !u!65 &1080870995
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1080870990}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 320, y: 320, z: 0}
+  m_Center: {x: 160, y: 160, z: 0}
+--- !u!114 &1080870996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1080870990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e793a7c7ef4e4b4fbb5ddab53088f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!43 &1331920004
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -301,7 +326,7 @@ Mesh:
       dividerOp: 0
       frequency: 0
     m_DataSize: 96
-    _typelessdata: 000000000000000000000000ffffffff00000000000000000000a0430000000000000000ffffffff0000003f00000000000000000000a04300000000ffffffff000000000000003f0000a0430000a04300000000ffffffff0000003f0000003f
+    _typelessdata: 000000000000000000000000ffffffff0000003f0000003f0000a0430000000000000000ffffffff0000803f0000003f000000000000a04300000000ffffffff0000003f0000803f0000a0430000a04300000000ffffffff0000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
