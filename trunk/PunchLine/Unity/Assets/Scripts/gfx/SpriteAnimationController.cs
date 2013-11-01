@@ -7,13 +7,13 @@ using System.Collections.Generic;
 public class SpriteAnimationController : MonoBehaviour {
 	public Dictionary<string, SpriteAnimation> animations;
 	
+	public bool paused = false;
+	
 	GridSprite sprite;
 	SpriteAnimation currentAnimation;
 	int currentAnimationFrame = 0;
 	int frameCount = 0;
 	int animationDirection = 1;
-	
-	bool paused = false;
 	
 	void Awake()
 	{
