@@ -2,12 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class Enemy : Entity 
-{
-	public float chaseSpeed = 150; 
-	public float hurtSpeed = 400;
-	public float hurtDuration = 0.3f;
-	public float invulnerabilityDuration = 0.3f;
-	
+{	
 	public bool IsInvulnerable 
 	{
 		get 
@@ -20,14 +15,19 @@ public class Enemy : Entity
 	private float hurtTimer;
 	private Transform target;
 	
+	new void Awake()
+	{
+		base.Awake();
+	}
+	
 	void Start()
 	{
 		Faction = -1;
 		hurtTimer = invulnerabilityDuration;
-		target = GameObject.Find("PlayerCollider").transform;
+		target = GameObject.Find("Player").transform;
 	}
 	
-	void FixedUpdate()
+	protected override void EntityFixedUpdate()
 	{
 		// If we're hurt (falling back) 
 		// cannot attack or move.
@@ -49,21 +49,23 @@ public class Enemy : Entity
 	
 	void HandleHurtMovement()
 	{
-		this.transform.Translate(
-			hurtMovement.x * Time.fixedDeltaTime,
-			hurtMovement.y * Time.fixedDeltaTime,
-			0);
+		base.MoveWithSliding(
+			new Vector3(
+				hurtMovement.x * Time.fixedDeltaTime,
+				hurtMovement.y * Time.fixedDeltaTime,
+				0));
 	}
 	
 	void HandleMovement()
 	{
 		Vector3 direction = target.transform.position - this.transform.position;
-		direction = direction.normalized * chaseSpeed * Time.fixedDeltaTime;
+		direction = direction.normalized * moveSpeed * Time.fixedDeltaTime;
 		
-		this.transform.Translate(
-			direction.x,
-			direction.y,
-			0);
+		base.MoveWithSliding(
+			new Vector3(
+				direction.x,
+				direction.y,
+				0));
 	}
 	
 	public void TakeDamage(int damage)
