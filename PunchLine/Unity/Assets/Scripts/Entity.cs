@@ -8,7 +8,7 @@ public abstract class Entity : MonoBehaviour
 {
 	public float moveSpeed = 200;
 	public float hurtSpeed = 600;
-	public float hurtDuration = 1;
+	public float pushBackDuration = 0.5f;
 	public float invulnerabilityDuration = 2;
 	
 	public int Faction { get; protected set; }
