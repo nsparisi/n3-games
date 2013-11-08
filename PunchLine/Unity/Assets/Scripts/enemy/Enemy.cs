@@ -106,7 +106,7 @@ public class Enemy : Entity
 			!IsInvulnerable)
 		{			
 			// fly backward
-			pushBackTimer = 0;
+			pushBackTimer = pushBackDuration * 0.5f;
 			Vector2 direction;
 			direction.x = this.transform.position.x - other.transform.position.x;
 			direction.y = this.transform.position.y - other.transform.position.y;

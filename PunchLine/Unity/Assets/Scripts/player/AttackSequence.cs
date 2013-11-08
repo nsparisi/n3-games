@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[ExecuteInEditMode]
 public class AttackSequence : MonoBehaviour
 {
 	public Transform attackSegmentsParent;
@@ -17,7 +16,7 @@ public class AttackSequence : MonoBehaviour
 	
 	private int currentFrame;
 	
-	void Awake()
+	void Start()
 	{
 		StopSequence();
 	}
@@ -49,11 +48,11 @@ public class AttackSequence : MonoBehaviour
 				currentFrame >= segment.startFrame &&
 				currentFrame < segment.startFrame + segment.frameCount)
 			{
-				segment.Enable();
+				segment.DoEnable();
 			}
 			else 
 			{
-				segment.Disable();
+				segment.DoDisable();
 			}
 		}
 	}
