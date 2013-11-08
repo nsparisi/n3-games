@@ -28,12 +28,7 @@ public abstract class Entity : MonoBehaviour
 	protected const float diagonalSpeedModifier = 0.707106f;
 	
 	public void Awake()
-	{
-		this.transform.position = new Vector3
-			(this.transform.position.x,
-				this.transform.position.y,
-				EntityPositioner.RequestPosition());
-		
+	{		
 		characterController = this.GetComponent<CharacterController>();
 	}
 	
