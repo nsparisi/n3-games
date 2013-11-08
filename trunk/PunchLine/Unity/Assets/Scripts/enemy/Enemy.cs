@@ -14,6 +14,7 @@ public class Enemy : Entity
 	private Vector2 hurtMovement;
 	private float hurtTimer;
 	private Transform target;
+	private float pushBackTimer;
 	
 	new void Awake()
 	{
@@ -31,7 +32,7 @@ public class Enemy : Entity
 	{
 		// If we're hurt (falling back) 
 		// cannot attack or move.
-		if(hurtTimer < hurtDuration)
+		if(pushBackTimer < pushBackDuration)
 		{
 			HandleHurtMovement();
 		}
@@ -43,6 +44,11 @@ public class Enemy : Entity
 		if(hurtTimer < invulnerabilityDuration)
 		{
 			hurtTimer += Time.fixedDeltaTime;
+		}
+		
+		if(pushBackTimer < pushBackDuration)
+		{
+			pushBackTimer += Time.fixedDeltaTime;
 		}
 	}
 	
@@ -86,6 +92,7 @@ public class Enemy : Entity
 			
 			// fly backward
 			hurtTimer = 0;
+			pushBackTimer = 0;
 			Vector2 direction;
 			direction.x = this.transform.position.x - other.transform.position.x;
 			direction.y = this.transform.position.y - other.transform.position.y;
@@ -95,7 +102,16 @@ public class Enemy : Entity
 	
 	public override void WeaponTouchedByWeapon (Weapon other)
 	{
-		
+		if(other.owner.Faction != this.Faction && 
+			!IsInvulnerable)
+		{			
+			// fly backward
+			pushBackTimer = 0;
+			Vector2 direction;
+			direction.x = this.transform.position.x - other.transform.position.x;
+			direction.y = this.transform.position.y - other.transform.position.y;
+			hurtMovement = direction.normalized * hurtSpeed;
+		}
 	}
 	
 	public override void TouchedByWall(Collider other)

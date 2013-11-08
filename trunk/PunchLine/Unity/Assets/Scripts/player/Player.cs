@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(CharacterController))]
 public class Player : Entity 
 {
 	public PlayerSword sword;
@@ -26,6 +27,7 @@ public class Player : Entity
 	Vector2 hurtMovement;
 	bool attackWasIssued;
 	float hurtTimer;
+	float pushBackTimer;
 	
 	enum PlayerFacingType { Up, Down, Left, Right }
 	PlayerFacingType facing;
@@ -63,6 +65,7 @@ public class Player : Entity
 		
 		Faction = 1;
 		hurtTimer = invulnerabilityDuration;
+		pushBackTimer = pushBackDuration;
 	}
 	
 	// KeyDown/KeyUp events need to occur in Update()
@@ -85,7 +88,7 @@ public class Player : Entity
 		
 		// If we're hurt (falling back) 
 		// cannot attack or move.
-		if(hurtTimer < hurtDuration)
+		if(pushBackTimer < pushBackDuration)
 		{
 			HandleHurtMovement();
 		}
@@ -100,6 +103,11 @@ public class Player : Entity
 		if(hurtTimer < invulnerabilityDuration)
 		{
 			hurtTimer += Time.fixedDeltaTime;
+		}
+		
+		if(pushBackTimer < pushBackDuration)
+		{
+			pushBackTimer += Time.fixedDeltaTime;
 		}
 	}
 	
@@ -216,13 +224,14 @@ public class Player : Entity
 	public override void TouchedByEntity (Entity other)
 	{
 		if(other.Faction != this.Faction &&
-			!this.IsInvulnerable)
+			!IsInvulnerable)
 		{
 			// take damage
 			TakeDamage(other.Strength);
 			
 			// fly backward
 			hurtTimer = 0;
+			pushBackTimer = 0;
 			Vector2 direction;
 			direction.x = this.transform.position.x - other.transform.position.x;
 			direction.y = this.transform.position.y - other.transform.position.y;
@@ -232,12 +241,34 @@ public class Player : Entity
 	
 	public override void TouchedByWeapon(Weapon other)
 	{
-		
+		if(other.owner.Faction != this.Faction && 
+			!IsInvulnerable)
+		{
+			// take damage, knockback
+			TakeDamage(other.Strength);
+			
+			// fly backward
+			hurtTimer = 0;
+			pushBackTimer = 0;
+			Vector2 direction;
+			direction.x = this.transform.position.x - other.transform.position.x;
+			direction.y = this.transform.position.y - other.transform.position.y;
+			hurtMovement = direction.normalized * hurtSpeed;
+		}
 	}
 	
 	public override void WeaponTouchedByWeapon(Weapon other)
 	{
-		
+		if(other.owner.Faction != this.Faction && 
+			!IsInvulnerable)
+		{			
+			// fly backward
+			pushBackTimer = 0;
+			Vector2 direction;
+			direction.x = this.transform.position.x - other.transform.position.x;
+			direction.y = this.transform.position.y - other.transform.position.y;
+			hurtMovement = direction.normalized * hurtSpeed;
+		}
 	}
 	
 	public override void TouchedByWall(Collider other)
