@@ -24,9 +24,10 @@ public class SpriteAnimationController : MonoBehaviour {
 	void Start()
 	{
 		SpriteAnimation newSpriteAnimation = new SpriteAnimation();
-		newSpriteAnimation.frameIndices = new int[]{ 0, 1, 2, 3 };
-		newSpriteAnimation.frameCounts = new int[]{ 60, 60, 60, 60 };
-		newSpriteAnimation.reverseOnLoop = true;
+		newSpriteAnimation.frameIndices = new int[]{ 0, 1, 2, 3 , 4, 5, 6, 7};
+		newSpriteAnimation.frameCounts = new int[]{ 3,3,3,3,3,3,3,3 };
+		newSpriteAnimation.reverseOnLoop = false;
+		newSpriteAnimation.loop = true;
 		AddAnimation("test animation", newSpriteAnimation);
 		PlayAnimation("test animation");
 	}
