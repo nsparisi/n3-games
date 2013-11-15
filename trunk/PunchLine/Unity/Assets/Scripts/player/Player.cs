@@ -32,11 +32,14 @@ public class Player : Entity
 	enum PlayerFacingType { Up, Down, Left, Right }
 	PlayerFacingType facing;
 	bool touchingWall;
-	
+
+	Animator animator;
 	
 	new void Awake()
 	{
 		base.Awake();
+
+		animator = GetComponent<Animator>();
 	}
 	
 	void Start () {
@@ -176,6 +179,7 @@ public class Player : Entity
 		base.MoveWithSliding(inputMovement * Time.fixedDeltaTime);
 		
 		HandleFacing();
+		HandleAnimationFacing();
 	}
 	
 	void HandleFacing()
@@ -214,6 +218,58 @@ public class Player : Entity
 		else if(inputMovement.y < 0)
 		{
 			facing = PlayerFacingType.Down;
+		}
+	}
+
+	public void HandleAnimationFacing()
+	{
+		switch(facing)
+		{
+		case PlayerFacingType.Down:
+			if (inputMovement.y != 0)
+			{
+				animator.Play("linkwalkdown");
+			}
+			else
+			{
+				animator.Play("linkstanddown");
+			}
+			break;
+		case PlayerFacingType.Up:
+			if (inputMovement.y != 0)
+			{
+				animator.Play("linkwalkup");
+			}
+			else
+			{
+				animator.Play("linkstandup");
+			}
+			break;
+		case PlayerFacingType.Right:
+			if (inputMovement.x != 0)
+			{
+				animator.Play("linkwalkright");
+			}
+			else
+			{
+				animator.Play("linkstandright");
+			}
+			break;
+		case PlayerFacingType.Left:
+			if (inputMovement.x != 0)
+			{
+				animator.Play("linkwalkleft");
+			}
+			else
+			{
+				animator.Play("linkstandleft");
+			}
+			break;
+		}
+
+		if (inputMovement.y != 0)
+		{
+
 		}
 	}
 	

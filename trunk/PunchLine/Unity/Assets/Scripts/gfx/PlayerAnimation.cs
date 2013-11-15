@@ -3,11 +3,16 @@ using System.Collections;
 
 
 public class PlayerAnimation : MonoBehaviour {
-	Animation myAnimation;
+	Animator animator;
 
 	void Start()
 	{
-		Animator animator = this.GetComponent<Animator>();
-//		animator.Play("linkwalkright");
+		animator = this.GetComponent<Animator>();
+		animator.Play("linkwalkright");
+	}
+
+	void Update()
+	{
+		animator.Play ("linkwalkright");
 	}
 }
