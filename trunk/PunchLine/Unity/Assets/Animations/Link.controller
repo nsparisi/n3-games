@@ -25,7 +25,7 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: linkwalkdown
+  m_Name: walkdown
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
@@ -40,7 +40,7 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: linkwalkleft
+  m_Name: walkleft
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
@@ -55,7 +55,7 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: linkstandright
+  m_Name: standright
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
@@ -70,7 +70,7 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: linkstandup
+  m_Name: standup
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
@@ -85,7 +85,7 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: linkstandleft
+  m_Name: standleft
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
@@ -100,7 +100,7 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: linkstanddown
+  m_Name: standdown
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
@@ -115,7 +115,7 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: linkwalkright
+  m_Name: walkright
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
@@ -130,7 +130,7 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: linkwalkup
+  m_Name: walkup
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
