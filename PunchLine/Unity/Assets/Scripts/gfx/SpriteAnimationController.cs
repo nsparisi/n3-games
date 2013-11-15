@@ -24,12 +24,20 @@ public class SpriteAnimationController : MonoBehaviour {
 	void Start()
 	{
 		SpriteAnimation newSpriteAnimation = new SpriteAnimation();
-		newSpriteAnimation.frameIndices = new int[]{ 0, 1, 2, 3 , 4, 5, 6, 7};
-		newSpriteAnimation.frameCounts = new int[]{ 3,3,3,3,3,3,3,3 };
+		newSpriteAnimation.frameIndices = new int[]{ 0,1,2,3,4,5,6,7};
+		newSpriteAnimation.frameCounts = new int[]{ 1,1,1,1,1,1,1,1 };
 		newSpriteAnimation.reverseOnLoop = false;
 		newSpriteAnimation.loop = true;
-		AddAnimation("test animation", newSpriteAnimation);
-		PlayAnimation("test animation");
+		AddAnimation("walk up", newSpriteAnimation);
+		PlayAnimation("walk up");
+		
+		newSpriteAnimation = new SpriteAnimation();
+		newSpriteAnimation.frameIndices = new int[]{ 8, 9, 10, 11, 12, 13};
+		newSpriteAnimation.frameCounts = new int[]{ 1,1,1,1,1,1 };
+		newSpriteAnimation.reverseOnLoop = false;
+		newSpriteAnimation.loop = true;
+		AddAnimation("walk right", newSpriteAnimation);
+		PlayAnimation("walk right");
 	}
 	
 	void SetCurrentAnimation(SpriteAnimation newAnimation)
