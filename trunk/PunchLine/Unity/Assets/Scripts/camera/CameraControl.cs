@@ -20,9 +20,12 @@ public class CameraControl : MonoBehaviour {
 	
 	void LateUpdate()
 	{
-		Vector3 position = transform.position;
-		position.x = target.transform.position.x;
-		position.y = target.transform.position.y;
-		transform.position = position;
+		if (target)
+		{
+			Vector3 position = transform.position;
+			position.x = target.transform.position.x;
+			position.y = target.transform.position.y;
+			transform.position = position;
+		}
 	}
 }
