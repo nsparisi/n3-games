@@ -228,41 +228,41 @@ public class Player : Entity
 		case PlayerFacingType.Down:
 			if (inputMovement.y != 0)
 			{
-				animator.Play("linkwalkdown");
+				animator.Play("walkdown");
 			}
 			else
 			{
-				animator.Play("linkstanddown");
+				animator.Play("standdown");
 			}
 			break;
 		case PlayerFacingType.Up:
 			if (inputMovement.y != 0)
 			{
-				animator.Play("linkwalkup");
+				animator.Play("walkup");
 			}
 			else
 			{
-				animator.Play("linkstandup");
+				animator.Play("standup");
 			}
 			break;
 		case PlayerFacingType.Right:
 			if (inputMovement.x != 0)
 			{
-				animator.Play("linkwalkright");
+				animator.Play("walkright");
 			}
 			else
 			{
-				animator.Play("linkstandright");
+				animator.Play("standright");
 			}
 			break;
 		case PlayerFacingType.Left:
 			if (inputMovement.x != 0)
 			{
-				animator.Play("linkwalkleft");
+				animator.Play("walkleft");
 			}
 			else
 			{
-				animator.Play("linkstandleft");
+				animator.Play("standleft");
 			}
 			break;
 		}
