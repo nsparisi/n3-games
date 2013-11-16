@@ -5,44 +5,46 @@ public class PlayerSword : MonoBehaviour {
 	
 	public enum SwordStateType { Swinging, NotSwinging }
 	public SwordStateType SwordState { get; private set; }
-	
-	public AttackSequence upAttackSequence;
-	public AttackSequence downAttackSequence;
-	public AttackSequence leftAttackSequence;
-	public AttackSequence rightAttackSequence;
-	
-	private AttackSequence currentAttackSequence;
-	
+
+	public Animator playerAnimator;
+	private string downAnimaitonName = "attackdown";
+	private string upAnimaitonName = "attackup";
+	private string leftAnimaitonName = "attackleft";
+	private string rightAnimaitonName = "attackright";
+	private string currectAttack;
+	private const string copySuffix = "_2";
+
+	float attackLength = 0;
+	float attackTimer = 0;
+
+	public Motion downMotion;
+
 	public void CancelSwing()
 	{
 		this.SwordState = SwordStateType.NotSwinging;
-		this.upAttackSequence.StopSequence();
-		this.downAttackSequence.StopSequence();
-		this.leftAttackSequence.StopSequence();
-		this.rightAttackSequence.StopSequence();
 	}
 	
 	public void SwingUp()
 	{
-		this.currentAttackSequence = upAttackSequence;
+		this.currectAttack = GetAttackName(upAnimaitonName);
 		Swing();
 	}
 	
 	public void SwingDown()
 	{
-		this.currentAttackSequence = downAttackSequence;
+		this.currectAttack = GetAttackName(downAnimaitonName);
 		Swing();
 	}
 	
 	public void SwingLeft()
 	{
-		this.currentAttackSequence = leftAttackSequence;
+		this.currectAttack = GetAttackName(leftAnimaitonName);
 		Swing();
 	}
 	
 	public void SwingRight()
 	{
-		this.currentAttackSequence = rightAttackSequence;
+		this.currectAttack = GetAttackName(rightAnimaitonName);
 		Swing();
 	}
 	
@@ -50,15 +52,30 @@ public class PlayerSword : MonoBehaviour {
 	{
 		CancelSwing();
 		this.SwordState = SwordStateType.Swinging;
-		this.currentAttackSequence.StartSequence();
+		playerAnimator.Play(this.currectAttack);
+		attackTimer = 0;
 	}
-	
+
+	private string GetAttackName(string newName)
+	{
+		if(this.currectAttack != null && 
+		   this.currectAttack.Equals(newName))
+		{
+			return newName + copySuffix;
+		}
+
+		return newName;
+	}
+
 	void FixedUpdate()
 	{
 		if(this.SwordState == SwordStateType.Swinging)
 		{
-			this.currentAttackSequence.AdvanceOneFrame();
-			if(this.currentAttackSequence.IsFinished)
+			//AnimatorStateInfo stateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
+			//AnimationInfo[] infos = playerAnimator.GetCurrentAnimationClipState(0);
+
+			attackTimer+= Time.fixedDeltaTime;
+			if(attackTimer >= 0.25f)
 			{
 				CancelSwing();
 			}
