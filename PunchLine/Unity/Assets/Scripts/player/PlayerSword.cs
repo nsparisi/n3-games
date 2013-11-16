@@ -7,6 +7,11 @@ public class PlayerSword : MonoBehaviour {
 	public SwordStateType SwordState { get; private set; }
 
 	public Animator playerAnimator;
+	public Motion upMotion;
+	public Motion downMotion;
+	public Motion leftMotion;
+	public Motion rightMotion;
+
 	private string downAnimaitonName = "attackdown";
 	private string upAnimaitonName = "attackup";
 	private string leftAnimaitonName = "attackleft";
@@ -17,8 +22,6 @@ public class PlayerSword : MonoBehaviour {
 	float attackLength = 0;
 	float attackTimer = 0;
 
-	public Motion downMotion;
-
 	public void CancelSwing()
 	{
 		this.SwordState = SwordStateType.NotSwinging;
@@ -27,24 +30,28 @@ public class PlayerSword : MonoBehaviour {
 	public void SwingUp()
 	{
 		this.currectAttack = GetAttackName(upAnimaitonName);
+		this.attackLength = upMotion.averageDuration;
 		Swing();
 	}
 	
 	public void SwingDown()
 	{
 		this.currectAttack = GetAttackName(downAnimaitonName);
+		this.attackLength = downMotion.averageDuration;
 		Swing();
 	}
 	
 	public void SwingLeft()
 	{
 		this.currectAttack = GetAttackName(leftAnimaitonName);
+		this.attackLength = leftMotion.averageDuration;
 		Swing();
 	}
 	
 	public void SwingRight()
 	{
 		this.currectAttack = GetAttackName(rightAnimaitonName);
+		this.attackLength = rightMotion.averageDuration;
 		Swing();
 	}
 	
@@ -53,7 +60,7 @@ public class PlayerSword : MonoBehaviour {
 		CancelSwing();
 		this.SwordState = SwordStateType.Swinging;
 		playerAnimator.Play(this.currectAttack);
-		attackTimer = 0;
+		attackTimer = 0; 
 	}
 
 	private string GetAttackName(string newName)
@@ -71,12 +78,10 @@ public class PlayerSword : MonoBehaviour {
 	{
 		if(this.SwordState == SwordStateType.Swinging)
 		{
-			//AnimatorStateInfo stateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
-			//AnimationInfo[] infos = playerAnimator.GetCurrentAnimationClipState(0);
-
 			attackTimer+= Time.fixedDeltaTime;
-			if(attackTimer >= 0.25f)
+			if(attackTimer >= attackLength)
 			{
+				Debug.Log(attackLength);
 				CancelSwing();
 			}
 		}
