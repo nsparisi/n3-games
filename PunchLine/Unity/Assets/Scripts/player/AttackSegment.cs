@@ -6,13 +6,9 @@ public class AttackSegment : MonoBehaviour
 	public int startFrame;
 	public int frameCount;
 	
-	private Vector3 onScreen;
-	private static Vector3 offScreen = new Vector3(-100, -100, 0);
-	
 	void Awake()
 	{
 		this.GetComponent<Collider>().enabled = true;
-		onScreen = this.transform.localPosition;
 	}
 	
 	public void DoEnable()
