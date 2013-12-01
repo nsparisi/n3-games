@@ -34,12 +34,20 @@ public class Player : Entity
 	bool touchingWall;
 
 	Animator animator;
+    
+    public float holeSpeedCoefficient = 0.5f;
+    public int holeDamage = 1;
+    HoleSensorController holeSensor;
+    bool isFalling = false;
+    bool fellInHole = false;
+    Vector3 lastSafePosition;
 	
 	new void Awake()
 	{
 		base.Awake();
 
 		animator = GetComponent<Animator>();
+        holeSensor = this.GetComponentInChildren<HoleSensorController>();
 	}
 	
 	void Start () {
@@ -69,6 +77,7 @@ public class Player : Entity
 		Faction = 1;
 		hurtTimer = invulnerabilityDuration;
 		pushBackTimer = pushBackDuration;
+        lastSafePosition = this.transform.position;
 	}
 	
 	// KeyDown/KeyUp events need to occur in Update()
@@ -83,7 +92,13 @@ public class Player : Entity
 	
 	protected override void EntityFixedUpdate()
 	{
-		if(attackWasIssued)
+        // Falling animation, can't control character
+        if (fellInHole)
+        {
+            return;
+        }
+
+		if(attackWasIssued && !isFalling)
 		{
 			BasicAttack();
 			attackWasIssued = false;
@@ -102,6 +117,9 @@ public class Player : Entity
 		{
 			HandleMovement();
 		}
+
+        // Make checks for hole and falling movement
+        HandleHoleMovement();
 		
 		if(hurtTimer < invulnerabilityDuration)
 		{
@@ -112,6 +130,7 @@ public class Player : Entity
 		{
 			pushBackTimer += Time.fixedDeltaTime;
 		}
+
 	}
 	
 	void BasicAttack()
@@ -272,6 +291,146 @@ public class Player : Entity
 
 		}
 	}
+
+	public void HandleHoleMovement()
+	{
+        if (!isFalling && CenterTouchingHole())
+        {
+            // just started to fall in a hole
+            isFalling = true;
+        }
+        else if(!isFalling)
+        {
+            // Remember position if not falling.
+            // Will teleport here if we fall in the future
+
+            // doesn't really work.
+            //lastSafePosition = this.transform.position;
+        }
+
+        if (isFalling)
+        {
+            Vector2 holeMovement = Vector2.zero;
+            float holeSpeed = moveSpeed * holeSpeedCoefficient;
+
+            if (UpTouchingHole() && !DownTouchingHole())
+            {
+                holeMovement.y = holeSpeed;
+            }
+            else if (DownTouchingHole() && !UpTouchingHole())
+            {
+                holeMovement.y = -holeSpeed;
+            }
+
+            if (LeftTouchingHole() && !RightTouchingHole())
+            {
+                holeMovement.x = -holeSpeed;
+            }
+            else if (RightTouchingHole() && !LeftTouchingHole())
+            {
+                holeMovement.x = holeSpeed;
+            }
+
+            // Got away from the hole!
+            if (!UpTouchingHole() &&
+                !DownTouchingHole() &&
+                !LeftTouchingHole() &&
+                !RightTouchingHole())
+            {
+                isFalling = false;
+            }
+
+            // Fell in the hole! =(
+            if (UpTouchingHole() &&
+                DownTouchingHole() &&
+                LeftTouchingHole() &&
+                RightTouchingHole())
+            {
+                FellInHole();
+            }
+            
+            if(isFalling)
+            {
+                // Move Diagonal = cut speed
+                if (holeMovement.x != 0 && holeMovement.y != 0)
+                {
+                    holeMovement.x *= diagonalSpeedModifier;
+                    holeMovement.y *= diagonalSpeedModifier;
+                }
+
+                // Don't want to increase movement speed 
+                // past it's normal speed
+                if(inputMovement.x > 0 && holeMovement.x > 0)
+                {
+                    holeMovement.x = 0;
+                }
+                else if(inputMovement.x < 0 && holeMovement.x < 0)
+                {
+                    holeMovement.x = 0;
+                }
+
+                if(inputMovement.y > 0 && holeMovement.y > 0)
+                {
+                    holeMovement.y = 0;
+                }
+                else if(inputMovement.y < 0 && holeMovement.y < 0)
+                {
+                    holeMovement.y = 0;
+                }
+
+                // Move towards the hole (can move diagonal)            
+                base.MoveWithSliding(holeMovement * Time.fixedDeltaTime);
+            }
+
+        }
+    }
+
+    void FellInHole()
+    {
+        isFalling = false;
+        StartCoroutine(FellInHoleRoutine());
+    }
+
+    IEnumerator FellInHoleRoutine()
+    {
+        animator.Play("fall");
+        fellInHole = true;
+        yield return new WaitForSeconds(1.95f);
+
+        // reset and take damage
+        this.transform.position = lastSafePosition;
+        TakeDamage(holeDamage);
+        hurtTimer = 0;
+        facing = PlayerFacingType.Down;
+
+        yield return new WaitForFixedUpdate();
+        fellInHole = false;
+    }
+
+    bool CenterTouchingHole()
+    {
+        return holeSensor.CenterTouching;
+    }
+	
+	bool UpTouchingHole()
+	{
+        return holeSensor.UpTouching;
+	}
+	
+	bool DownTouchingHole()
+	{
+        return holeSensor.DownTouching;
+	}
+	
+	bool LeftTouchingHole()
+	{
+        return holeSensor.LeftTouching;
+	}
+	
+	bool RightTouchingHole()
+	{
+        return holeSensor.RightTouching;
+	}
 	
 	public void TakeDamage(int damage)
 	{
@@ -307,8 +466,8 @@ public class Player : Entity
 			hurtTimer = 0;
 			pushBackTimer = 0;
 			Vector2 direction;
-			direction.x = this.transform.position.x - other.transform.position.x;
-			direction.y = this.transform.position.y - other.transform.position.y;
+			direction.x = this.transform.position.x - other.owner.transform.position.x;
+			direction.y = this.transform.position.y - other.owner.transform.position.y;
 			hurtMovement = direction.normalized * hurtSpeed;
 		}
 	}
