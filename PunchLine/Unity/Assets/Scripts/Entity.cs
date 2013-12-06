@@ -18,6 +18,7 @@ public abstract class Entity : MonoBehaviour
 	public abstract void TouchedByEntity(Entity other);
 	public abstract void TouchedByWeapon(Weapon other);
 	public abstract void WeaponTouchedByWeapon(Weapon other);
+	public abstract void WeaponTouchedByEntity(Entity other);
 	public abstract void TouchedByWall(Collider other);
 	
 	protected CharacterController characterController;

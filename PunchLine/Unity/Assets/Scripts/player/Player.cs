@@ -26,6 +26,7 @@ public class Player : Entity
 	Vector2 inputMovement;
 	Vector2 hurtMovement;
 	bool attackWasIssued;
+	bool attackHeldDown;
 	float hurtTimer;
 	float pushBackTimer;
 	
@@ -88,6 +89,8 @@ public class Player : Entity
 		{
 			attackWasIssued = true;
 		}
+
+		attackHeldDown = inputController.GetAction(actionBasicAttack);
 	}
 	
 	protected override void EntityFixedUpdate()
@@ -103,6 +106,11 @@ public class Player : Entity
 			BasicAttack();
 			attackWasIssued = false;
 		}
+
+		if(attackHeldDown)
+		{
+			sword.HoldSword();
+		}
 		
 		// If we're hurt (falling back) 
 		// cannot attack or move.
@@ -113,7 +121,8 @@ public class Player : Entity
 		
 		// If we're in attack animation, don't move. 
 		// Probably should change this in the future
-		else if(sword.SwordState == PlayerSword.SwordStateType.NotSwinging)
+		else if(sword.SwordState == PlayerSword.SwordStateType.NotSwinging || 
+		        sword.SwordState == PlayerSword.SwordStateType.Hold)
 		{
 			HandleMovement();
 		}
@@ -196,9 +205,12 @@ public class Player : Entity
 		}		
 		
 		base.MoveWithSliding(inputMovement * Time.fixedDeltaTime);
-		
-		HandleFacing();
-		HandleAnimationFacing();
+
+		if(sword.SwordState == PlayerSword.SwordStateType.NotSwinging)
+		{
+			HandleFacing();
+			HandleAnimationFacing();
+		}
 	}
 	
 	void HandleFacing()
@@ -434,6 +446,7 @@ public class Player : Entity
 	
 	public void TakeDamage(int damage)
 	{
+		this.sword.UnHoldSword();
 	}
 	
 	public override void TouchedByEntity (Entity other)
@@ -483,6 +496,15 @@ public class Player : Entity
 			direction.x = this.transform.position.x - other.transform.position.x;
 			direction.y = this.transform.position.y - other.transform.position.y;
 			hurtMovement = direction.normalized * hurtSpeed;
+			this.sword.UnHoldSword();
+		}
+	}
+	
+	public override void WeaponTouchedByEntity(Entity other)
+	{
+		if(other.Faction != this.Faction)
+		{
+			this.sword.UnHoldSword();
 		}
 	}
 	
