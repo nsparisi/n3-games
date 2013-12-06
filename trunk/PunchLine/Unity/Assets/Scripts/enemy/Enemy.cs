@@ -163,6 +163,14 @@ public class Enemy : Entity
 		}
 	}
 	
+	public override void WeaponTouchedByEntity(Entity other)
+	{
+		if(other.Faction != this.Faction)
+		{
+			// ahha, i got em!
+		}
+	}
+	
 	public override void TouchedByWall(Collider other)
 	{
 		

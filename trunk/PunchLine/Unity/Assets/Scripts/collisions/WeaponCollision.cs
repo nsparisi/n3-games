@@ -7,23 +7,19 @@ public class WeaponCollision : BaseCollision
 	
 	void OnTriggerStay (Collider other)
 	{
-		// tell the other weapon's owner that this weapon touched it.
+		// tell the this weapon's owner that another weapon touched it.
 		BaseCollision collision = other.GetComponent<BaseCollision>();
 		if(collision is WeaponCollision)
 		{
 			WeaponCollision weaponCollision = (WeaponCollision)collision;
 			weapon.owner.WeaponTouchedByWeapon(weaponCollision.weapon);
 		}
-	}
-	
-	void OnTriggerEnter (Collider other)
-	{
-		// tell the other weapon's owner that this weapon touched it.
-		BaseCollision collision = other.GetComponent<BaseCollision>();
-		if(collision is WeaponCollision)
+		
+		// tell the this weapon's owner that someone touched it.
+		if(collision is EntityCollision)
 		{
-			WeaponCollision weaponCollision = (WeaponCollision)collision;
-			weapon.owner.WeaponTouchedByWeapon(weaponCollision.weapon);
+			EntityCollision entityCollision = (EntityCollision)collision;
+			weapon.owner.WeaponTouchedByEntity(entityCollision.entity);
 		}
 	}
 }

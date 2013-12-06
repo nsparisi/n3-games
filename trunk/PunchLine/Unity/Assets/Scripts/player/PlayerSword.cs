@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerSword : MonoBehaviour {
 	
-	public enum SwordStateType { Swinging, NotSwinging }
+	public enum SwordStateType { Swinging, NotSwinging, Hold }
 	public SwordStateType SwordState { get; private set; }
 
 	public Animator playerAnimator;
@@ -18,9 +18,14 @@ public class PlayerSword : MonoBehaviour {
 	private string rightAnimaitonName = "attackright";
 	private string currectAttack;
 	private const string copySuffix = "_2";
+	
+	private string holdAnimationPrefix = "playerhold";
 
 	float attackLength = 0;
 	float attackTimer = 0;
+
+	bool holdInput = false;
+	bool unholdOverride = false;
 
 	public void CancelSwing()
 	{
@@ -54,6 +59,22 @@ public class PlayerSword : MonoBehaviour {
 		this.attackLength = rightMotion.averageDuration;
 		Swing();
 	}
+
+	public void HoldSword()
+	{
+		holdInput = true;
+	}
+
+	public void UnHoldSword()
+	{
+		unholdOverride = true;
+	}
+
+	private void DoHold()
+	{
+		SwordState = SwordStateType.Hold;
+		playerAnimator.Play(GetHoldName());
+	}
 	
 	private void Swing()
 	{
@@ -74,6 +95,17 @@ public class PlayerSword : MonoBehaviour {
 		return newName;
 	}
 
+	private string GetHoldName()
+	{
+		if(this.currectAttack.Contains("_2"))
+		{
+			return this.holdAnimationPrefix + 
+				this.currectAttack.Substring(0,this.currectAttack.Length - 2);
+		}
+
+		return this.holdAnimationPrefix + this.currectAttack;
+	}
+
 	void FixedUpdate()
 	{
 		if(this.SwordState == SwordStateType.Swinging)
@@ -81,9 +113,24 @@ public class PlayerSword : MonoBehaviour {
 			attackTimer+= Time.fixedDeltaTime;
 			if(attackTimer >= attackLength)
 			{
-				Debug.Log(attackLength);
-				CancelSwing();
+				if(holdInput)
+				{
+					DoHold();
+				}
+				else 
+				{
+					CancelSwing();
+				}
 			}
 		}
+
+		if(this.SwordState == SwordStateType.Hold && !holdInput ||
+		   this.SwordState == SwordStateType.Hold && unholdOverride)
+		{
+			CancelSwing();
+		}
+
+		unholdOverride = false;
+		holdInput = false;
 	}
 }

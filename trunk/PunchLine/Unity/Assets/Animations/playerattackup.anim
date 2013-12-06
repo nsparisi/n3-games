@@ -153,17 +153,17 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: -0
-      value: {fileID: 21300040, guid: a81bf605351e07949a9f01a61833e9c3, type: 3}
+      value: {fileID: 21300012, guid: f7132b61ac06ab94c87fb54f08786b9e, type: 3}
     - time: .0500000007
-      value: {fileID: 21300042, guid: a81bf605351e07949a9f01a61833e9c3, type: 3}
+      value: {fileID: 21300012, guid: f7132b61ac06ab94c87fb54f08786b9e, type: 3}
     - time: .100000001
-      value: {fileID: 21300044, guid: a81bf605351e07949a9f01a61833e9c3, type: 3}
+      value: {fileID: 21300012, guid: f7132b61ac06ab94c87fb54f08786b9e, type: 3}
     - time: .150000006
-      value: {fileID: 21300046, guid: a81bf605351e07949a9f01a61833e9c3, type: 3}
+      value: {fileID: 21300012, guid: f7132b61ac06ab94c87fb54f08786b9e, type: 3}
     - time: .200000003
-      value: {fileID: 21300048, guid: a81bf605351e07949a9f01a61833e9c3, type: 3}
+      value: {fileID: 21300012, guid: f7132b61ac06ab94c87fb54f08786b9e, type: 3}
     - time: .25
-      value: {fileID: 21300050, guid: a81bf605351e07949a9f01a61833e9c3, type: 3}
+      value: {fileID: 21300012, guid: f7132b61ac06ab94c87fb54f08786b9e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
