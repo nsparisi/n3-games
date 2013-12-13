@@ -10,15 +10,20 @@ public class CameraControl : MonoBehaviour {
 
 	void Awake()
 	{
+		if (!target)
+		{
+			target = GameObject.FindObjectOfType<Player>();
+		}
+
 		if(!mainCamera)
 			this.mainCamera = Camera.main;
 	}
 
 	void OnTriggerStay(Collider other)
 	{
-		CameraArea newArea = other.GetComponent<CameraArea>();
-		if (newArea != CurrentCameraArea)
-		{
+		if(!CurrentCameraArea)
+		{	
+			CameraArea newArea = other.GetComponent<CameraArea>();
 			CurrentCameraArea = newArea;
 		}
 	}
@@ -72,12 +77,10 @@ public class CameraControl : MonoBehaviour {
 	{
 		Vector3 cameraPosition = mainCamera.transform.position;
 		Rect cameraViewArea = CalculateViewableCameraArea();
-		print(cameraViewArea.xMin + ", " + cameraViewArea.xMax);
 
 		if (!CurrentCameraArea)
 			return;
 		Rect cameraMoveArea = CurrentCameraArea.GetRect();
-		print(cameraMoveArea.xMin + ", " + cameraMoveArea.xMax);
 		//x
 		if (cameraViewArea.width >= cameraMoveArea.width)
 		{
