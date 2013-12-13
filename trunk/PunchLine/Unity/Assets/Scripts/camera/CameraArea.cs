@@ -7,6 +7,7 @@ public class CameraArea : MonoBehaviour {
 	BoxCollider boxCollider;
 	void Awake()
 	{
+		gameObject.layer = LayerMask.NameToLayer("CameraArea");
 		boxCollider = collider as BoxCollider;
 	}
 
