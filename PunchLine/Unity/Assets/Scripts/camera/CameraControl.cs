@@ -8,6 +8,11 @@ public class CameraControl : MonoBehaviour {
 	
 	public Player target;
 
+	bool movingToTarget = false;
+
+	Vector3 targetCameraPosition;
+	float cameraMoveSpeed = 48f;
+
 	void Awake()
 	{
 		if (!target)
@@ -30,12 +35,14 @@ public class CameraControl : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		print(other.gameObject.name);
+		CameraArea newArea = other.GetComponent<CameraArea>();
+		CurrentCameraArea = newArea;
+		targetCameraPosition = RestrictToArea();
+		movingToTarget = true;
 	}
 
 	void OnTriggerExit(Collider other)
 	{
-		CurrentCameraArea = null;
 	}
 
 //	void OnTriggerEnter(Collider other)
@@ -52,7 +59,14 @@ public class CameraControl : MonoBehaviour {
 	
 	void LateUpdate()
 	{
-		if (target)
+		if (movingToTarget)
+		{
+			mainCamera.transform.position = Vector3.MoveTowards(mainCamera.transform.position, targetCameraPosition, cameraMoveSpeed);
+			if (mainCamera.transform.position == targetCameraPosition)
+				movingToTarget = false;
+		}
+
+		if (target && ! movingToTarget)
 		{
 			Vector3 position = mainCamera.transform.position;
 			position.x = target.transform.position.x;
@@ -61,7 +75,7 @@ public class CameraControl : MonoBehaviour {
 
 			this.transform.position = target.transform.position;
 
-			RestrictToArea();
+			mainCamera.transform.position = RestrictToArea();
 		}
 	}
 
@@ -73,13 +87,13 @@ public class CameraControl : MonoBehaviour {
 		return new Rect(position.x - xSize, position.y - ySize, xSize*2, ySize*2);
 	}
 
-	void RestrictToArea()
+	Vector3 RestrictToArea()
 	{
 		Vector3 cameraPosition = mainCamera.transform.position;
 		Rect cameraViewArea = CalculateViewableCameraArea();
 
 		if (!CurrentCameraArea)
-			return;
+			return cameraPosition;
 		Rect cameraMoveArea = CurrentCameraArea.GetRect();
 		//x
 		if (cameraViewArea.width >= cameraMoveArea.width)
@@ -109,7 +123,6 @@ public class CameraControl : MonoBehaviour {
 		{
 			cameraPosition.y = cameraMoveArea.yMax - mainCamera.orthographicSize;
 		}
-
-		mainCamera.transform.position = cameraPosition;
+		return cameraPosition;
 	}
 }
