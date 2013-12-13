@@ -17,10 +17,15 @@ public class CameraControl : MonoBehaviour {
 	void OnTriggerStay(Collider other)
 	{
 		CameraArea newArea = other.GetComponent<CameraArea>();
-		if (newArea)
+		if (newArea != CurrentCameraArea)
 		{
 			CurrentCameraArea = newArea;
 		}
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		print(other.gameObject.name);
 	}
 
 	void OnTriggerExit(Collider other)
