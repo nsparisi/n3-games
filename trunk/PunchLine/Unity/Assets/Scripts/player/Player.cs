@@ -13,6 +13,14 @@ public class Player : Entity
 			return hurtTimer < invulnerabilityDuration;
 		}
 	}
+
+	public bool IsBeingKnockedBack
+	{
+		get
+		{
+			return pushBackTimer < pushBackDuration;
+		}
+	}
 	
 	// private fields
 	InputController inputController;
@@ -22,32 +30,37 @@ public class Player : Entity
 	const string actionMoveLeft = "move_left";
 	const string actionMoveRight = "move_right";
 	const string actionBasicAttack = "basic_attack";
+	const string actionDash = "dash";
 	
+	public enum PlayerFacingType { Up, Down, Left, Right }
+	public PlayerFacingType facing;
+	public float holeSpeedCoefficient = 0.5f;
+	public int holeDamage = 1;
+	public float dashPrepDuration = 1;
+	public float dashSpeedCoefficient = 1.6f;
+
 	Vector2 inputMovement;
 	Vector2 hurtMovement;
 	bool attackWasIssued;
 	bool attackHeldDown;
 	float hurtTimer;
 	float pushBackTimer;
-	
-	enum PlayerFacingType { Up, Down, Left, Right }
-	PlayerFacingType facing;
+	bool dashWasIssued;
+	bool dashHeldDown;
 	bool touchingWall;
-
 	Animator animator;
-    
-    public float holeSpeedCoefficient = 0.5f;
-    public int holeDamage = 1;
     HoleSensorController holeSensor;
     bool isFalling = false;
     bool fellInHole = false;
     Vector3 lastSafePosition;
+	PlayerDash dash;
 	
 	new void Awake()
 	{
 		base.Awake();
 
 		animator = GetComponent<Animator>();
+		dash = GetComponent<PlayerDash>();
         holeSensor = this.GetComponentInChildren<HoleSensorController>();
 	}
 	
@@ -72,6 +85,11 @@ public class Player : Entity
 		inputController.RegisterAction(actionBasicAttack, 
 			KeyCode.Slash,
 			KeyCode.Mouse0);
+
+		inputController.RegisterAction(actionDash,
+		    KeyCode.Quote, 
+		    KeyCode.Mouse1, 
+		    KeyCode.LeftControl);
 		
 		sword.CancelSwing();
 		
@@ -89,22 +107,37 @@ public class Player : Entity
 		{
 			attackWasIssued = true;
 		}
+		
+		if(inputController.GetActionDown(actionDash))
+		{
+			dashWasIssued = true;
+		}
 
 		attackHeldDown = inputController.GetAction(actionBasicAttack);
+		dashHeldDown = inputController.GetAction(actionDash);
 	}
 	
 	protected override void EntityFixedUpdate()
 	{
         // Falling animation, can't control character
         if (fellInHole)
-        {
+		{
+			dashWasIssued = false;
+			attackWasIssued = false;
             return;
         }
 
-		if(attackWasIssued && !isFalling)
+		if(dashWasIssued && !isFalling && !IsBeingKnockedBack &&
+		   sword.SwordState == PlayerSword.SwordStateType.NotSwinging)
+		{
+			//begin dashing
+			dash.IgniteDash();
+		}
+
+		if(attackWasIssued && !isFalling && !IsBeingKnockedBack && 
+		   dash.DashState == PlayerDash.DashStateType.Nothing)
 		{
 			BasicAttack();
-			attackWasIssued = false;
 		}
 
 		if(attackHeldDown)
@@ -139,7 +172,9 @@ public class Player : Entity
 		{
 			pushBackTimer += Time.fixedDeltaTime;
 		}
-
+		
+		dashWasIssued = false;
+		attackWasIssued = false;
 	}
 	
 	void BasicAttack()
@@ -164,13 +199,14 @@ public class Player : Entity
 	
 	void HandleHurtMovement()
 	{
+		dash.CancelDash();
 		base.MoveWithSliding(
 			new Vector3(
 				hurtMovement.x * Time.fixedDeltaTime,
 				hurtMovement.y * Time.fixedDeltaTime,
 				0));
 	}
-	
+
 	void HandleMovement()
 	{
 		inputMovement.x = 0;
@@ -196,21 +232,68 @@ public class Player : Entity
 		{
 			inputMovement.y = moveSpeed;
 		}
-		
-		// Move Diagonal = cut speed
-		if(inputMovement.x != 0 && inputMovement.y != 0)
-		{
-			inputMovement.x *= diagonalSpeedModifier;
-			inputMovement.y *= diagonalSpeedModifier;
-		}		
-		
-		base.MoveWithSliding(inputMovement * Time.fixedDeltaTime);
 
-		if(sword.SwordState == PlayerSword.SwordStateType.NotSwinging)
+		if(dash.DashState == PlayerDash.DashStateType.Preparing)
 		{
-			HandleFacing();
-			HandleAnimationFacing();
+			if(dashHeldDown)
+			{
+				HandleFacing();
+			} 
+			else 
+			{
+				dash.CancelDash();
+			}
 		}
+		else 
+		{
+			Vector2 facingAsAVector = GetFacingAsAVector();
+			if(dash.DashState == PlayerDash.DashStateType.Dashing &&
+			   (facingAsAVector.normalized == inputMovement.normalized ||
+			   inputMovement == Vector2.zero))
+			{
+				float speed =  dashSpeedCoefficient * moveSpeed * Time.fixedDeltaTime;
+				base.MoveWithSliding(facingAsAVector * speed);
+			}
+			else 
+			{
+				dash.CancelDash();
+
+				// Move Diagonal = cut speed
+				if(inputMovement.x != 0 && inputMovement.y != 0)
+				{
+					inputMovement.x *= diagonalSpeedModifier;
+					inputMovement.y *= diagonalSpeedModifier;
+				}		
+				
+				base.MoveWithSliding(inputMovement * Time.fixedDeltaTime);
+				
+				if(sword.SwordState == PlayerSword.SwordStateType.NotSwinging)
+				{
+					HandleFacing();
+					HandleAnimationFacing();
+				}
+			}
+		}
+	}
+
+	Vector2 GetFacingAsAVector()
+	{
+		if(facing == PlayerFacingType.Down)
+		{
+			return new Vector3(0, -1, 0);
+		} 
+		else if(facing == PlayerFacingType.Up)
+		{
+			return new Vector3(0, 1, 0);
+		} 
+		else if(facing == PlayerFacingType.Left)
+		{
+			return new Vector3(-1, 0, 0);
+		} 
+		else 
+		{
+			return new Vector3(1, 0, 0);
+		} 
 	}
 	
 	void HandleFacing()
@@ -322,6 +405,7 @@ public class Player : Entity
 
         if (isFalling)
         {
+			dash.CancelDash();
             Vector2 holeMovement = Vector2.zero;
             float holeSpeed = moveSpeed * holeSpeedCoefficient;
 

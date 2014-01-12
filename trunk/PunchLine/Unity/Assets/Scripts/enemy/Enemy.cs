@@ -112,7 +112,6 @@ public class Enemy : Entity
     {
         // animator.Play("fall");
         fellInHole = true;
-        Debug.Log("Fell");
         yield return new WaitForSeconds(1.95f);
 
         Kill();
@@ -120,7 +119,7 @@ public class Enemy : Entity
 
     public void Kill()
     {
-        Debug.Log("Dead");
+        Debug.Log(this.name + " is Dead");
     }
 
 	public void TakeDamage(int damage)
