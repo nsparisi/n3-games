@@ -35,6 +35,9 @@ public abstract class Entity : MonoBehaviour
 	
 	void FixedUpdate()
 	{
+		if (GlobalPauser.actionPaused)
+			return;
+
 		EntityFixedUpdate();
 		
 		previousPosition = this.transform.position;
