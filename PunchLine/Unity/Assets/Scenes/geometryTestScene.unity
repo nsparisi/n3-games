@@ -1101,6 +1101,8 @@ GameObject:
   - 143: {fileID: 1231007549}
   - 95: {fileID: 1231007546}
   - 114: {fileID: 1231007545}
+  - 212: {fileID: 1231007551}
+  - 114: {fileID: 1231007550}
   - 212: {fileID: 1231007548}
   m_Layer: 11
   m_Name: Player
@@ -1126,8 +1128,11 @@ MonoBehaviour:
   pushBackDuration: .300000012
   invulnerabilityDuration: 1
   sword: {fileID: 1231007545}
+  facing: 0
   holeSpeedCoefficient: .600000024
   holeDamage: 1
+  dashPrepDuration: .560000002
+  dashSpeedCoefficient: 1.60000002
 --- !u!114 &1231007545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1213,6 +1218,42 @@ CharacterController:
   m_SkinWidth: 1
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: -3.79999995, z: 0}
+--- !u!114 &1231007550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400042, guid: 66214e94932c79d4184f4c5997961f81,
+    type: 2}
+  m_PrefabInternal: {fileID: 2140534434}
+  m_GameObject: {fileID: 1231007543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4dfc0ef834ff54ca8365a2a9cac9b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!212 &1231007551
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200002, guid: 66214e94932c79d4184f4c5997961f81,
+    type: 2}
+  m_PrefabInternal: {fileID: 2140534434}
+  m_GameObject: {fileID: 1231007543}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1464796976
 GameObject:
   m_ObjectHideFlags: 0
