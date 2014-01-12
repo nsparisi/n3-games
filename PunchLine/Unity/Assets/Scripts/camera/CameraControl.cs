@@ -36,14 +36,14 @@ public class CameraControl : MonoBehaviour {
 			CurrentCameraArea = newArea;
 		}
 	}
-	int x;
+
 	void OnTriggerEnter(Collider other)
 	{
 		CameraArea newArea = other.GetComponent<CameraArea>();
 		CurrentCameraArea = newArea;
 		targetCameraPosition = RestrictToArea();
 		movingToTarget = true;
-		print(transform.position.ToString() + " : " + x++);
+		GlobalPauser.actionPaused = true;
 	}
 
 	void OnTriggerExit(Collider other)
@@ -68,7 +68,10 @@ public class CameraControl : MonoBehaviour {
 		{
 			mainCamera.transform.position = Vector3.MoveTowards(mainCamera.transform.position, targetCameraPosition, cameraMoveSpeed);
 			if (mainCamera.transform.position == targetCameraPosition)
+			{
 				movingToTarget = false;
+				GlobalPauser.actionPaused = false;
+			}
 		}
 
 		if (target && ! movingToTarget)
