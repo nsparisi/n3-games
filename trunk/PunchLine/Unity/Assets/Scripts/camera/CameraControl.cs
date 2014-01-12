@@ -22,8 +22,12 @@ public class CameraControl : MonoBehaviour {
 
 		if(!mainCamera)
 			this.mainCamera = Camera.main;
-	}
 
+		if (rigidbody)
+		{
+			rigidbody.useGravity = false;
+		}
+	}
 	void OnTriggerStay(Collider other)
 	{
 		if(!CurrentCameraArea)
@@ -32,13 +36,14 @@ public class CameraControl : MonoBehaviour {
 			CurrentCameraArea = newArea;
 		}
 	}
-
+	int x;
 	void OnTriggerEnter(Collider other)
 	{
 		CameraArea newArea = other.GetComponent<CameraArea>();
 		CurrentCameraArea = newArea;
 		targetCameraPosition = RestrictToArea();
 		movingToTarget = true;
+		print(transform.position.ToString() + " : " + x++);
 	}
 
 	void OnTriggerExit(Collider other)
@@ -68,13 +73,11 @@ public class CameraControl : MonoBehaviour {
 
 		if (target && ! movingToTarget)
 		{
-			Vector3 position = mainCamera.transform.position;
-			position.x = target.transform.position.x;
-			position.y = target.transform.position.y;
+			Vector3 position = target.transform.position;
+			this.transform.position = position;
+
+			position.z = mainCamera.transform.position.z;
 			mainCamera.transform.position = position;
-
-			this.transform.position = target.transform.position;
-
 			mainCamera.transform.position = RestrictToArea();
 		}
 	}
@@ -119,7 +122,7 @@ public class CameraControl : MonoBehaviour {
 		{
 			cameraPosition.y = cameraMoveArea.yMin + mainCamera.orthographicSize;
 		}
-		else if (cameraViewArea.yMax >= cameraMoveArea.yMax)
+		else if (cameraViewArea.yMax > cameraMoveArea.yMax)
 		{
 			cameraPosition.y = cameraMoveArea.yMax - mainCamera.orthographicSize;
 		}
