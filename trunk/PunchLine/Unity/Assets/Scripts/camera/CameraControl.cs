@@ -18,6 +18,7 @@ public class CameraControl : MonoBehaviour {
 		if (!target)
 		{
 			target = GameObject.FindObjectOfType<Player>();
+			this.transform.position = target.transform.position;
 		}
 
 		if(!mainCamera)
@@ -31,7 +32,7 @@ public class CameraControl : MonoBehaviour {
 	void OnTriggerStay(Collider other)
 	{
 		if(!CurrentCameraArea)
-		{	
+		{
 			CameraArea newArea = other.GetComponent<CameraArea>();
 			CurrentCameraArea = newArea;
 		}
@@ -39,11 +40,27 @@ public class CameraControl : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
+		bool instant = !CurrentCameraArea;
+
 		CameraArea newArea = other.GetComponent<CameraArea>();
 		CurrentCameraArea = newArea;
-		targetCameraPosition = RestrictToArea();
-		movingToTarget = true;
-		GlobalPauser.actionPaused = true;
+		if (instant)
+		{
+			if (target)
+			{
+				Vector3 position = target.transform.position;
+				this.transform.position = position;
+				position.z = mainCamera.transform.position.z;
+				mainCamera.transform.position = position;
+				mainCamera.transform.position = RestrictToArea();
+			}
+		}
+		else
+		{
+			targetCameraPosition = RestrictToArea();
+			movingToTarget = true;
+			GlobalPauser.actionPaused = true;
+		}
 	}
 
 	void OnTriggerExit(Collider other)
@@ -74,7 +91,7 @@ public class CameraControl : MonoBehaviour {
 			}
 		}
 
-		if (target && ! movingToTarget)
+		if (target && !movingToTarget)
 		{
 			Vector3 position = target.transform.position;
 			this.transform.position = position;
