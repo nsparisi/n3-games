@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(CharacterController))]
 public class Player : Entity 
 {
+	public static Player Instance { get; private set; }
+
 	public PlayerSword sword;
 	
 	public bool IsInvulnerable 
@@ -59,6 +61,7 @@ public class Player : Entity
 	{
 		base.Awake();
 
+		Instance = this;
 		animator = GetComponent<Animator>();
 		dash = GetComponent<PlayerDash>();
         holeSensor = this.GetComponentInChildren<HoleSensorController>();

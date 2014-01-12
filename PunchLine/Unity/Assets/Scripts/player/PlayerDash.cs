@@ -29,7 +29,6 @@ public class PlayerDash : MonoBehaviour {
 		// it can change direction
 		if(DashState == DashStateType.Preparing)
 		{
-			Debug.Log("Playing prep animation: " + GetPrepAnimation());
 			playerAnimator.Play(GetPrepAnimation());
 		}
 	}
@@ -50,7 +49,6 @@ public class PlayerDash : MonoBehaviour {
 	{
 		if(DashState == DashStateType.Preparing)
 		{
-			Debug.Log("Playing prep animation: " + GetPrepAnimation());
 			playerAnimator.Play(GetPrepAnimation());
 
 			prepTimer += Time.fixedDeltaTime;

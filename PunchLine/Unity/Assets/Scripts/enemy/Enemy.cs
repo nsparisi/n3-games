@@ -13,11 +13,12 @@ public class Enemy : Entity
 	
 	private Vector2 hurtMovement;
 	private float hurtTimer;
-	private Transform target;
 	private float pushBackTimer;
     private HoleCollider holeCollider;
     private HoleSensor holeSensor;
     private bool fellInHole;
+	
+	protected delegate void EnemyAIUpdateFunction();
 	
 	new void Awake()
 	{
@@ -28,9 +29,19 @@ public class Enemy : Entity
 	{
 		Faction = -1;
 		hurtTimer = invulnerabilityDuration;
-		target = GameObject.Find("Player").transform;
         holeCollider = this.GetComponent<HoleCollider>();
-        holeSensor = this.GetComponentInChildren<HoleSensor>();
+		holeSensor = this.GetComponentInChildren<HoleSensor>();
+		Init();
+	}
+
+	protected virtual void RunAI()
+	{
+		return;
+	}
+
+	protected virtual void Init()
+	{
+		return;
 	}
 	
 	protected override void EntityFixedUpdate()
@@ -57,7 +68,7 @@ public class Enemy : Entity
 		else 
         {
             holeCollider.ActivateHoleCollisions();
-			HandleMovement();
+			RunAI();
 		}
 		
 		if(hurtTimer < invulnerabilityDuration)
@@ -78,18 +89,6 @@ public class Enemy : Entity
 			new Vector3(
 				hurtMovement.x * Time.fixedDeltaTime,
 				hurtMovement.y * Time.fixedDeltaTime,
-				0));
-	}
-	
-	void HandleMovement()
-	{
-		Vector3 direction = target.transform.position - this.transform.position;
-		direction = direction.normalized * moveSpeed * Time.fixedDeltaTime;
-		
-		base.MoveWithSliding(
-			new Vector3(
-				direction.x,
-				direction.y,
 				0));
 	}
 
