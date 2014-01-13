@@ -127,8 +127,12 @@ AnimationClip:
     script: {fileID: 0}
   m_PPtrCurves:
   - curve:
-    - time: 0
-      value: {fileID: 21300008, guid: f7132b61ac06ab94c87fb54f08786b9e, type: 3}
+    - time: -0
+      value: {fileID: 21300126, guid: ab034b6f41b5ed240b545daa452bcdb1, type: 3}
+    - time: .0500000007
+      value: {fileID: 21300128, guid: ab034b6f41b5ed240b545daa452bcdb1, type: 3}
+    - time: .100000001
+      value: {fileID: 21300132, guid: ab034b6f41b5ed240b545daa452bcdb1, type: 3}
     attribute: m_Sprite
     path: Sprite
     classID: 212

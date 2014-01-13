@@ -104,8 +104,8 @@ GameObject:
   - 143: {fileID: 14300000}
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400014}
-  - 212: {fileID: 21200002}
   - 114: {fileID: 11400042}
+  - 212: {fileID: 21200002}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -286,7 +286,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .153672829}
+  m_LocalPosition: {x: 0, y: 0, z: .216308266}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400010}
@@ -346,7 +346,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -237.137253, y: 15.3672838, z: 0}
+  m_LocalPosition: {x: -201.180237, y: 21.630827, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400006}
@@ -1165,7 +1165,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: f7132b61ac06ab94c87fb54f08786b9e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab034b6f41b5ed240b545daa452bcdb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200002
 SpriteRenderer:
