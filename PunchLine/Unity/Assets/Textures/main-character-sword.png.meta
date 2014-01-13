@@ -20,26 +20,674 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 1024
+  textureFormat: -3
+  maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 1
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: main-character-sword_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 891
+        width: 51
+        height: 59
+      alignment: 9
+      pivot: {x: .619596243, y: .731373906}
+    - name: main-character-sword_1
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 891
+        width: 60
+        height: 59
+      alignment: 9
+      pivot: {x: .645223975, y: .721527636}
+    - name: main-character-sword_2
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 889
+        width: 57
+        height: 61
+      alignment: 9
+      pivot: {x: .586624384, y: .75235635}
+    - name: main-character-sword_3
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 890
+        width: 57
+        height: 60
+      alignment: 9
+      pivot: {x: .642675579, y: .756561279}
+    - name: main-character-sword_4
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 891
+        width: 54
+        height: 59
+      alignment: 9
+      pivot: {x: .661360025, y: .726450801}
+    - name: main-character-sword_5
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 889
+        width: 54
+        height: 61
+      alignment: 9
+      pivot: {x: .645222962, y: .75235635}
+    - name: main-character-sword_6
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 890
+        width: 56
+        height: 60
+      alignment: 9
+      pivot: {x: .650410235, y: .737198889}
+    - name: main-character-sword_7
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 891
+        width: 39
+        height: 48
+      alignment: 9
+      pivot: {x: .469206989, y: .6688779}
+    - name: main-character-sword_8
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 896
+        width: 68
+        height: 32
+      alignment: 9
+      pivot: {x: .658705771, y: .604663849}
+    - name: main-character-sword_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 762
+        width: 60
+        height: 59
+      alignment: 9
+      pivot: {x: .69307965, y: .720896602}
+    - name: main-character-sword_10
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 762
+        width: 63
+        height: 60
+      alignment: 9
+      pivot: {x: .689631879, y: .723248303}
+    - name: main-character-sword_11
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 762
+        width: 63
+        height: 57
+      alignment: 9
+      pivot: {x: .712617397, y: .715944529}
+    - name: main-character-sword_12
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 757
+        width: 37
+        height: 61
+      alignment: 9
+      pivot: {x: .5, y: .725523889}
+    - name: main-character-sword_13
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 763
+        width: 37
+        height: 59
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_14
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 763
+        width: 37
+        height: 59
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_15
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 763
+        width: 35
+        height: 59
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_16
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 763
+        width: 35
+        height: 58
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_17
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 763
+        width: 35
+        height: 59
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_18
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 637
+        width: 53
+        height: 58
+      alignment: 9
+      pivot: {x: .515763402, y: .744873047}
+    - name: main-character-sword_19
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 630
+        width: 59
+        height: 65
+      alignment: 9
+      pivot: {x: .507080078, y: .769914389}
+    - name: main-character-sword_20
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 636
+        width: 67
+        height: 58
+      alignment: 9
+      pivot: {x: .481295913, y: .752075195}
+    - name: main-character-sword_21
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 637
+        width: 63
+        height: 58
+      alignment: 9
+      pivot: {x: .466847241, y: .752075195}
+    - name: main-character-sword_22
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 637
+        width: 60
+        height: 58
+      alignment: 9
+      pivot: {x: .367721558, y: .737670898}
+    - name: main-character-sword_23
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 636
+        width: 54
+        height: 58
+      alignment: 9
+      pivot: {x: .376229733, y: .73046875}
+    - name: main-character-sword_24
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 637
+        width: 60
+        height: 58
+      alignment: 9
+      pivot: {x: .493037909, y: .737670898}
+    - name: main-character-sword_25
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 637
+        width: 44
+        height: 54
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_26
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 641
+        width: 69
+        height: 32
+      alignment: 9
+      pivot: {x: .672297835, y: .62922287}
+    - name: main-character-sword_27
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 511
+        width: 68
+        height: 58
+      alignment: 9
+      pivot: {x: .507601261, y: .758447051}
+    - name: main-character-sword_28
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 512
+        width: 70
+        height: 57
+      alignment: 9
+      pivot: {x: .49261561, y: .762981236}
+    - name: main-character-sword_29
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 511
+        width: 74
+        height: 56
+      alignment: 9
+      pivot: {x: .430148989, y: .758447945}
+    - name: main-character-sword_30
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 511
+        width: 85
+        height: 55
+      alignment: 9
+      pivot: {x: .475675344, y: .734952033}
+    - name: main-character-sword_31
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 510
+        width: 38
+        height: 58
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_32
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 510
+        width: 42
+        height: 58
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_33
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 510
+        width: 38
+        height: 58
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_34
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 510
+        width: 40
+        height: 59
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_35
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 510
+        width: 40
+        height: 59
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_36
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 380
+        width: 52
+        height: 58
+      alignment: 9
+      pivot: {x: .364584774, y: .763048351}
+    - name: main-character-sword_37
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 381
+        width: 56
+        height: 57
+      alignment: 9
+      pivot: {x: .332342952, y: .76766324}
+    - name: main-character-sword_38
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 382
+        width: 52
+        height: 57
+      alignment: 9
+      pivot: {x: .375869155, y: .747074068}
+    - name: main-character-sword_39
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 382
+        width: 53
+        height: 57
+      alignment: 9
+      pivot: {x: .367139697, y: .716189742}
+    - name: main-character-sword_40
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 381
+        width: 55
+        height: 57
+      alignment: 9
+      pivot: {x: .403978378, y: .685305417}
+    - name: main-character-sword_41
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 382
+        width: 53
+        height: 57
+      alignment: 9
+      pivot: {x: .422498018, y: .716189742}
+    - name: main-character-sword_42
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 382
+        width: 52
+        height: 57
+      alignment: 9
+      pivot: {x: .379999995, y: .680000007}
+    - name: main-character-sword_43
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 388
+        width: 42
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_44
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 384
+        width: 68
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_45
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 256
+        width: 60
+        height: 57
+      alignment: 9
+      pivot: {x: .314179987, y: .757368684}
+    - name: main-character-sword_46
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 256
+        width: 58
+        height: 57
+      alignment: 9
+      pivot: {x: .307772398, y: .76766324}
+    - name: main-character-sword_47
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 255
+        width: 46
+        height: 73
+      alignment: 9
+      pivot: {x: .410704225, y: .612537146}
+    - name: main-character-sword_48
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 255
+        width: 44
+        height: 76
+      alignment: 9
+      pivot: {x: .430000007, y: .555000007}
+    - name: main-character-sword_49
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 256
+        width: 41
+        height: 57
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_50
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 256
+        width: 39
+        height: 57
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_51
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 256
+        width: 36
+        height: 57
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_52
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 256
+        width: 35
+        height: 56
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_53
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 256
+        width: 35
+        height: 57
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_54
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 125
+        width: 53
+        height: 58
+      alignment: 9
+      pivot: {x: .47016409, y: .76355058}
+    - name: main-character-sword_55
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 125
+        width: 59
+        height: 58
+      alignment: 9
+      pivot: {x: .482132226, y: .76355058}
+    - name: main-character-sword_56
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 124
+        width: 67
+        height: 58
+      alignment: 9
+      pivot: {x: .507867157, y: .772637963}
+    - name: main-character-sword_57
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 125
+        width: 64
+        height: 58
+      alignment: 9
+      pivot: {x: .520217419, y: .745397091}
+    - name: main-character-sword_58
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 125
+        width: 62
+        height: 58
+      alignment: 9
+      pivot: {x: .614782512, y: .745397091}
+    - name: main-character-sword_59
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 124
+        width: 56
+        height: 58
+      alignment: 9
+      pivot: {x: .580869377, y: .745396852}
+    - name: main-character-sword_60
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 125
+        width: 60
+        height: 58
+      alignment: 9
+      pivot: {x: .510782897, y: .756551564}
+    - name: main-character-sword_61
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 131
+        width: 44
+        height: 49
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_62
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 135
+        width: 67
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_63
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 0
+        width: 70
+        height: 58
+      alignment: 9
+      pivot: {x: .484939903, y: .754461884}
+    - name: main-character-sword_64
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 1
+        width: 68
+        height: 58
+      alignment: 9
+      pivot: {x: .538757324, y: .754462302}
+    - name: main-character-sword_65
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 0
+        width: 74
+        height: 56
+      alignment: 9
+      pivot: {x: .561198473, y: .754161}
+    - name: main-character-sword_66
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 0
+        width: 85
+        height: 55
+      alignment: 9
+      pivot: {x: .545667589, y: .735256732}
+    - name: main-character-sword_67
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 0
+        width: 38
+        height: 57
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_68
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 0
+        width: 42
+        height: 57
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_69
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 0
+        width: 38
+        height: 57
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_70
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 5
+        width: 40
+        height: 59
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: main-character-sword_71
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 5
+        width: 40
+        height: 59
+      alignment: 0
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 
