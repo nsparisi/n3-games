@@ -4,8 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(Collider))]
 public class BaseCollision : MonoBehaviour 
 {
-	void Start()
+	protected void Start()
 	{
-		this.collider.isTrigger = true;				
+		this.collider.isTrigger = true;		
 	}
 }
