@@ -12,11 +12,14 @@ public class SkeletonShieldEnemy : Enemy
 	private Transform player;
 	private Vector3 targetDirectionFromPlayer;
 	private Vector3 destination;
+	private EntityFacing facing;
+	private Animator animator;
 
 	EnemyAIUpdateFunction currentUpdate;
 
 	protected override void Init ()
 	{
+		animator = this.GetComponent<Animator>();
 		player = Player.Instance.transform;
 		currentUpdate = DoNothing;
 		BeginCatchUpToPlayer();
@@ -25,6 +28,36 @@ public class SkeletonShieldEnemy : Enemy
 	protected override void RunAI ()
 	{
 		currentUpdate();
+		DoFacing();
+	}
+
+	void DoFacing()
+	{
+		Vector3 facingVector = player.transform.position - this.transform.position;
+		
+		if( Mathf.Abs(facingVector.x) > Mathf.Abs(facingVector.y)) 
+		{
+			if(facingVector.x > 0)
+			{
+				facing = EntityFacing.Right;
+			}
+			else 
+			{
+				facing = EntityFacing.Left;
+			}
+		} else
+		{
+			if(facingVector.y > 0)
+			{
+				facing = EntityFacing.Up;
+			}
+			else 
+			{
+				facing = EntityFacing.Down;
+			}
+		}
+
+		animator.Play("skeletonwalk"+facing.ToString().ToLower());
 	}
 
 	void DoNothing()

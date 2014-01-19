@@ -20,26 +20,674 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 1024
+  textureFormat: -3
+  maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 1
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: skeleton-shielf-staff_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 890
+        width: 63
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_1
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 890
+        width: 66
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_2
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 888
+        width: 62
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_3
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 889
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_4
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 888
+        width: 67
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_5
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 888
+        width: 63
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_6
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 889
+        width: 65
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_7
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 888
+        width: 29
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_8
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 899
+        width: 58
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 761
+        width: 58
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_10
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 761
+        width: 60
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_11
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 761
+        width: 65
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_12
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 740
+        width: 37
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_13
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 761
+        width: 63
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_14
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 762
+        width: 20
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_15
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 762
+        width: 20
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_16
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 762
+        width: 18
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_17
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 762
+        width: 18
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_18
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 638
+        width: 61
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_19
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 638
+        width: 54
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 638
+        width: 57
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_21
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 638
+        width: 61
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_22
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 638
+        width: 54
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_23
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 637
+        width: 54
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_24
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 637
+        width: 61
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_25
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 635
+        width: 30
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_26
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 644
+        width: 58
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 58
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_28
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 511
+        width: 59
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_29
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 511
+        width: 61
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_30
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 511
+        width: 68
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_31
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 510
+        width: 27
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_32
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 510
+        width: 25
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_33
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 510
+        width: 29
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_34
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 510
+        width: 31
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_35
+      rect:
+        serializedVersion: 2
+        x: 979
+        y: 510
+        width: 31
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_36
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 378
+        width: 63
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_37
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 378
+        width: 66
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_38
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 380
+        width: 62
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_39
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 379
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_40
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 378
+        width: 67
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_41
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 379
+        width: 63
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_42
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 379
+        width: 65
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_43
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 387
+        width: 37
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_44
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 387
+        width: 58
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_45
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 254
+        width: 55
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_46
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 254
+        width: 56
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_47
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 253
+        width: 38
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_48
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 253
+        width: 35
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_49
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 253
+        width: 21
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_50
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 253
+        width: 18
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_51
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 253
+        width: 18
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_52
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 253
+        width: 19
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_53
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 253
+        width: 19
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_54
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 126
+        width: 61
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_55
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 126
+        width: 54
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_56
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 126
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_57
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 126
+        width: 61
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_58
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 126
+        width: 54
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_59
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 125
+        width: 54
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_60
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 125
+        width: 61
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_61
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 131
+        width: 38
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_62
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 138
+        width: 57
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_63
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 1
+        width: 60
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_64
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 59
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_65
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 0
+        width: 61
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_66
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 0
+        width: 68
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_67
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 27
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_68
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 25
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_69
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 0
+        width: 29
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_70
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 5
+        width: 31
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: skeleton-shielf-staff_71
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 5
+        width: 31
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 

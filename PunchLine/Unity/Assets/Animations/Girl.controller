@@ -541,7 +541,97 @@ StateMachine:
   - {fileID: 110299135}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
-  m_OrderedTransitions: {}
+  m_OrderedTransitions:
+    data:
+      first: {fileID: 110200000}
+      second: []
+    data:
+      first: {fileID: 110214234}
+      second: []
+    data:
+      first: {fileID: 110286671}
+      second: []
+    data:
+      first: {fileID: 110294457}
+      second: []
+    data:
+      first: {fileID: 110285698}
+      second: []
+    data:
+      first: {fileID: 110265793}
+      second: []
+    data:
+      first: {fileID: 110238459}
+      second: []
+    data:
+      first: {fileID: 110257586}
+      second: []
+    data:
+      first: {fileID: 110204904}
+      second: []
+    data:
+      first: {fileID: 110281047}
+      second: []
+    data:
+      first: {fileID: 110279758}
+      second: []
+    data:
+      first: {fileID: 110293369}
+      second: []
+    data:
+      first: {fileID: 110289047}
+      second: []
+    data:
+      first: {fileID: 110294503}
+      second: []
+    data:
+      first: {fileID: 110238061}
+      second: []
+    data:
+      first: {fileID: 110253235}
+      second: []
+    data:
+      first: {fileID: 110254029}
+      second: []
+    data:
+      first: {fileID: 110239517}
+      second: []
+    data:
+      first: {fileID: 110263828}
+      second: []
+    data:
+      first: {fileID: 110295219}
+      second: []
+    data:
+      first: {fileID: 110227403}
+      second: []
+    data:
+      first: {fileID: 110236423}
+      second: []
+    data:
+      first: {fileID: 110275774}
+      second: []
+    data:
+      first: {fileID: 110233170}
+      second: []
+    data:
+      first: {fileID: 110213740}
+      second: []
+    data:
+      first: {fileID: 110206937}
+      second: []
+    data:
+      first: {fileID: 110277193}
+      second: []
+    data:
+      first: {fileID: 110285965}
+      second: []
+    data:
+      first: {fileID: 110244248}
+      second: []
+    data:
+      first: {fileID: 110299135}
+      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 144, y: -72, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
