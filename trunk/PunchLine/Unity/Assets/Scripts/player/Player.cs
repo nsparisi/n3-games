@@ -33,9 +33,8 @@ public class Player : Entity
 	const string actionMoveRight = "move_right";
 	const string actionBasicAttack = "basic_attack";
 	const string actionDash = "dash";
-	
-	public enum PlayerFacingType { Up, Down, Left, Right }
-	public PlayerFacingType facing;
+
+	public EntityFacing facing;
 	public float holeSpeedCoefficient = 0.5f;
 	public int holeDamage = 1;
 	public float dashPrepDuration = 1;
@@ -182,19 +181,19 @@ public class Player : Entity
 	
 	void BasicAttack()
 	{
-		if(facing == PlayerFacingType.Up)
+		if(facing == EntityFacing.Up)
 		{
 			sword.SwingUp();
 		} 
-		else if(facing == PlayerFacingType.Down)
+		else if(facing == EntityFacing.Down)
 		{
 			sword.SwingDown();
 		} 
-		else if(facing == PlayerFacingType.Left)
+		else if(facing == EntityFacing.Left)
 		{
 			sword.SwingLeft();
 		} 
-		else if(facing == PlayerFacingType.Right)
+		else if(facing == EntityFacing.Right)
 		{
 			sword.SwingRight();
 		} 
@@ -281,15 +280,15 @@ public class Player : Entity
 
 	Vector2 GetFacingAsAVector()
 	{
-		if(facing == PlayerFacingType.Down)
+		if(facing == EntityFacing.Down)
 		{
 			return new Vector3(0, -1, 0);
 		} 
-		else if(facing == PlayerFacingType.Up)
+		else if(facing == EntityFacing.Up)
 		{
 			return new Vector3(0, 1, 0);
 		} 
-		else if(facing == PlayerFacingType.Left)
+		else if(facing == EntityFacing.Left)
 		{
 			return new Vector3(-1, 0, 0);
 		} 
@@ -304,9 +303,9 @@ public class Player : Entity
 		// Edge case
 		if( inputMovement.x < 0 && 
 			inputMovement.y > 0 && 
-			facing == PlayerFacingType.Right)
+		   facing == EntityFacing.Right)
 		{
-			facing = PlayerFacingType.Up;
+			facing = EntityFacing.Up;
 			return;
 		}
 		
@@ -319,22 +318,22 @@ public class Player : Entity
 		// Basic facings
 		if(inputMovement.x > 0)
 		{
-			facing = PlayerFacingType.Right;
+			facing = EntityFacing.Right;
 		}
 		
 		else if(inputMovement.x < 0)
 		{
-			facing = PlayerFacingType.Left;
+			facing = EntityFacing.Left;
 		}
 		
 		else if(inputMovement.y > 0)
 		{
-			facing = PlayerFacingType.Up;
+			facing = EntityFacing.Up;
 		}
 		
 		else if(inputMovement.y < 0)
 		{
-			facing = PlayerFacingType.Down;
+			facing = EntityFacing.Down;
 		}
 	}
 
@@ -342,7 +341,7 @@ public class Player : Entity
 	{
 		switch(facing)
 		{
-		case PlayerFacingType.Down:
+		case EntityFacing.Down:
 			if (inputMovement.y != 0)
 			{
 				animator.Play("walkdown");
@@ -352,7 +351,7 @@ public class Player : Entity
 				animator.Play("standdown");
 			}
 			break;
-		case PlayerFacingType.Up:
+		case EntityFacing.Up:
 			if (inputMovement.y != 0)
 			{
 				animator.Play("walkup");
@@ -362,7 +361,7 @@ public class Player : Entity
 				animator.Play("standup");
 			}
 			break;
-		case PlayerFacingType.Right:
+		case EntityFacing.Right:
 			if (inputMovement.x != 0)
 			{
 				animator.Play("walkright");
@@ -372,7 +371,7 @@ public class Player : Entity
 				animator.Play("standright");
 			}
 			break;
-		case PlayerFacingType.Left:
+		case EntityFacing.Left:
 			if (inputMovement.x != 0)
 			{
 				animator.Play("walkleft");
@@ -500,7 +499,7 @@ public class Player : Entity
         this.transform.position = lastSafePosition;
         TakeDamage(holeDamage);
         hurtTimer = 0;
-        facing = PlayerFacingType.Down;
+		facing = EntityFacing.Down;
 
         yield return new WaitForFixedUpdate();
         fellInHole = false;

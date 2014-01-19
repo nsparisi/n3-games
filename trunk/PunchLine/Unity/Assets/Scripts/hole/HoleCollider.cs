@@ -9,7 +9,7 @@ public class HoleCollider : MonoBehaviour
     void Start()
     {
         disabledLayer = this.gameObject.layer;
-        enabledLayer = this.gameObject.layer | LayerMask.NameToLayer("HoleCollider");
+        enabledLayer = LayerMask.NameToLayer("HoleCollider");
 
         ActivateHoleCollisions();
     }

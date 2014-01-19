@@ -10,13 +10,13 @@ public class Enemy : Entity
 			return hurtTimer < invulnerabilityDuration;
 		}
 	}
-	
+
 	private Vector2 hurtMovement;
 	private float hurtTimer;
 	private float pushBackTimer;
     private HoleCollider holeCollider;
     private HoleSensor holeSensor;
-    private bool fellInHole;
+	private bool fellInHole;
 	
 	protected delegate void EnemyAIUpdateFunction();
 	

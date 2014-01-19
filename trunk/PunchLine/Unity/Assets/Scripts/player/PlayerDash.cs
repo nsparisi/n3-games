@@ -72,15 +72,15 @@ public class PlayerDash : MonoBehaviour {
 
 	private string GetDashAnimation()
 	{
-		if(player.facing == Player.PlayerFacingType.Up)
+		if(player.facing == EntityFacing.Up)
 		{
 			return upAnimaitonName;
 		} 
-		else if(player.facing == Player.PlayerFacingType.Down)
+		else if(player.facing == EntityFacing.Down)
 		{
 			return downAnimaitonName;
 		}
-		else if(player.facing == Player.PlayerFacingType.Left)
+		else if(player.facing == EntityFacing.Left)
 		{
 			return leftAnimaitonName;
 		}
