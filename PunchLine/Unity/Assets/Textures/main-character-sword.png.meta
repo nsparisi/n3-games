@@ -216,9 +216,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 130
-        y: 630
+        y: 633
         width: 59
-        height: 65
+        height: 62
       alignment: 9
       pivot: {x: .507080078, y: .769914389}
     - name: main-character-sword_20
