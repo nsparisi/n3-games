@@ -7,10 +7,10 @@ public class PlayerSword : MonoBehaviour {
 	public SwordStateType SwordState { get; private set; }
 
 	public Animator playerAnimator;
-	public Motion upMotion;
-	public Motion downMotion;
-	public Motion leftMotion;
-	public Motion rightMotion;
+	public AnimationClip upMotion;
+	public AnimationClip downMotion;
+	public AnimationClip leftMotion;
+	public AnimationClip rightMotion;
 
 	private string downAnimaitonName = "attackdown";
 	private string upAnimaitonName = "attackup";
@@ -35,28 +35,28 @@ public class PlayerSword : MonoBehaviour {
 	public void SwingUp()
 	{
 		this.currectAttack = GetAttackName(upAnimaitonName);
-		this.attackLength = upMotion.averageDuration;
+		this.attackLength = upMotion.length;
 		Swing();
 	}
 	
 	public void SwingDown()
 	{
 		this.currectAttack = GetAttackName(downAnimaitonName);
-		this.attackLength = downMotion.averageDuration;
+		this.attackLength = downMotion.length;
 		Swing();
 	}
 	
 	public void SwingLeft()
 	{
 		this.currectAttack = GetAttackName(leftAnimaitonName);
-		this.attackLength = leftMotion.averageDuration;
+		this.attackLength = leftMotion.length;
 		Swing();
 	}
 	
 	public void SwingRight()
 	{
 		this.currectAttack = GetAttackName(rightAnimaitonName);
-		this.attackLength = rightMotion.averageDuration;
+		this.attackLength = rightMotion.length;
 		Swing();
 	}
 

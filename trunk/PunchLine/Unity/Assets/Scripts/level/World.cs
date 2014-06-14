@@ -51,7 +51,8 @@ public class World : MonoBehaviour {
 
 	IEnumerator AnimateNextLevel(Level previousLevel, Level nextLevel)
 	{
-		yield return previousLevel.AnimateLevelComplete();
+		Debug.Log("AnimateNextLevel");
+		yield return StartCoroutine(previousLevel.AnimateLevelComplete());
 		previousLevel.gameObject.SetActive(false);
 
 		yield return new WaitForSeconds(1.0f);

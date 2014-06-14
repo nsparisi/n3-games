@@ -31,7 +31,8 @@ public class Level : MonoBehaviour {
 	// ************************
 	public IEnumerator AnimateLevelComplete()
 	{
-		yield return AnimateTiles();
+		Debug.Log("AnimateLevelComplete");
+		yield return StartCoroutine(AnimateTiles());
 	}
 
 	IEnumerator AnimateTiles()
