@@ -6,6 +6,7 @@ public class SnapToGrid : MonoBehaviour {
 	const float GridSize = 32f;
 	const float OneOverGridSize = 1f / GridSize;
 
+	float waittime = 0;
 	void OnEnable()
 	{
 		//EditorApplication.update += SnapUpdate;
@@ -30,8 +31,13 @@ public class SnapToGrid : MonoBehaviour {
 		this.transform.position = new Vector3(x, y, z);
 	}
 
-	void Update()
+	void OnRenderObject()
 	{
-		SnapUpdate();
+		float newtime = Time.realtimeSinceStartup - waittime;
+		if(newtime > 0.5f)
+		{
+			SnapUpdate();
+			waittime = Time.realtimeSinceStartup;
+		}
 	}
 }
