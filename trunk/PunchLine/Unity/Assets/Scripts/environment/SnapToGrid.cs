@@ -4,7 +4,7 @@ using UnityEditor;
 
 [ExecuteInEditMode]
 public class SnapToGrid : MonoBehaviour {
-	const float GridSize = 64f;
+	const float GridSize = 32f;
 	const float OneOverGridSize = 1f / GridSize;
 
 	void OnEnable()
