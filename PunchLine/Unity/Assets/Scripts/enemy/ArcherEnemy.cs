@@ -39,11 +39,14 @@ public class ArcherEnemy : Enemy
 	public float projectileVelocity;
 
 	public StraightFlyEnemy projectilePrefab;
+	private Animator animator;
+	private Transform player;
 
 
 	protected override void Init()
 	{
-
+		animator = this.GetComponent<Animator>();
+		player = Player.Instance.transform;
 	}
 
 	protected override void RunAI()
@@ -63,6 +66,14 @@ public class ArcherEnemy : Enemy
 			Patrol();
 			break;
 		}
+		DoFacing();
+	}
+	
+	void DoFacing()
+	{
+		Vector3 facingVector = player.transform.position - this.transform.position;
+		EntityFacing facing = Facing.DirectionToFacing (facingVector);
+		animator.Play("skeletonwalk"+facing.ToString().ToLower());
 	}
 
 	public Vector3 FindClosestAlignedDistance(Vector3 origin, Vector3 destination, float distance)
