@@ -9,7 +9,7 @@ TagManager:
   Builtin Layer 2: Ignore Raycast
   Builtin Layer 3: 
   Builtin Layer 4: Water
-  Builtin Layer 5: 
+  Builtin Layer 5: UI
   Builtin Layer 6: 
   Builtin Layer 7: 
   User Layer 8: Entity
@@ -21,8 +21,8 @@ TagManager:
   User Layer 14: HoleCollider
   User Layer 15: CameraArea
   User Layer 16: CameraController
-  User Layer 17: 
-  User Layer 18: 
+  User Layer 17: PotSensor
+  User Layer 18: Pot
   User Layer 19: 
   User Layer 20: 
   User Layer 21: 

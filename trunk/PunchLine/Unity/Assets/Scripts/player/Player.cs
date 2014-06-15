@@ -32,7 +32,7 @@ public class Player : Entity
 	const string actionMoveLeft = "move_left";
 	const string actionMoveRight = "move_right";
 	const string actionBasicAttack = "basic_attack";
-	const string actionDash = "dash";
+	const string actionSecondary = "secondary_action";
 
 	public EntityFacing facing;
 	public float holeSpeedCoefficient = 0.5f;
@@ -46,7 +46,7 @@ public class Player : Entity
 	bool attackHeldDown;
 	float hurtTimer;
 	float pushBackTimer;
-	bool dashWasIssued;
+	bool secondaryActionWasIssued;
 	bool dashHeldDown;
 	bool touchingWall;
 	Animator animator;
@@ -56,6 +56,8 @@ public class Player : Entity
     Vector3 lastSafePosition;
 	PlayerDash dash;
 	bool isDying = false;
+	PlayerPots potsHandler;
+	PotSensor potSensor;
 	
 	new void Awake()
 	{
@@ -64,7 +66,9 @@ public class Player : Entity
 		Instance = this;
 		animator = GetComponent<Animator>();
 		dash = GetComponent<PlayerDash>();
-        holeSensor = this.GetComponentInChildren<HoleSensorController>();
+		potsHandler = GetComponent<PlayerPots>();
+		holeSensor = this.GetComponentInChildren<HoleSensorController>();
+		potSensor = this.GetComponentInChildren<PotSensor>();
 	}
 	
 	void Start () {
@@ -89,7 +93,7 @@ public class Player : Entity
 			KeyCode.Slash,
 			KeyCode.Mouse0);
 
-		inputController.RegisterAction(actionDash,
+		inputController.RegisterAction(actionSecondary,
 		    KeyCode.Quote, 
 		    KeyCode.Mouse1, 
 		    KeyCode.LeftControl);
@@ -111,13 +115,24 @@ public class Player : Entity
 			attackWasIssued = true;
 		}
 		
-		if(inputController.GetActionDown(actionDash))
+		if(inputController.GetActionDown(actionSecondary))
 		{
-			dashWasIssued = true;
+			secondaryActionWasIssued = true;
 		}
 
 		attackHeldDown = inputController.GetAction(actionBasicAttack);
-		dashHeldDown = inputController.GetAction(actionDash);
+		dashHeldDown = inputController.GetAction(actionSecondary);
+	}
+
+	private bool TryPickupPot()
+	{
+		if(potSensor.TouchingPot != null)
+		{
+			potSensor.TouchingPot.PickUp(this);
+			return true;
+		}
+
+		return false;
 	}
 	
 	protected override void EntityFixedUpdate()
@@ -131,20 +146,40 @@ public class Player : Entity
         // Falling animation, can't control character
         if (fellInHole)
 		{
-			dashWasIssued = false;
+			secondaryActionWasIssued = false;
 			attackWasIssued = false;
             return;
         }
 
-		if(dashWasIssued && !isFalling && !IsBeingKnockedBack &&
+		if(potsHandler.PotsState == PlayerPots.PotsStateType.PickingUp || 
+		   potsHandler.PotsState == PlayerPots.PotsStateType.Throwing)
+		{
+			// temporary invulnerability
+			return;
+		}
+
+		if(secondaryActionWasIssued && !isFalling && !IsBeingKnockedBack &&
 		   sword.SwordState == PlayerSword.SwordStateType.NotSwinging)
 		{
-			//begin dashing			
-			dash.IgniteDash();
+			if(potsHandler.PotsState == PlayerPots.PotsStateType.Holding)
+			{
+				potsHandler.Throw();
+			}
+			else if(TryPickupPot())
+			{
+				// begin picking up a pot
+				potsHandler.Pickup();
+			}
+			else 
+			{
+				//begin dashing			
+				dash.IgniteDash();
+			}
 		}
 
 		if(attackWasIssued && !isFalling && !IsBeingKnockedBack && 
-		   dash.DashState == PlayerDash.DashStateType.Nothing)
+		   dash.DashState == PlayerDash.DashStateType.Nothing &&
+		   potsHandler.PotsState == PlayerPots.PotsStateType.Nothing)
 		{
 			BasicAttack();
 		}
@@ -182,7 +217,7 @@ public class Player : Entity
 			pushBackTimer += Time.fixedDeltaTime;
 		}
 		
-		dashWasIssued = false;
+		secondaryActionWasIssued = false;
 		attackWasIssued = false;
 	}
 	
@@ -280,7 +315,15 @@ public class Player : Entity
 				if(sword.SwordState == PlayerSword.SwordStateType.NotSwinging)
 				{
 					HandleFacing();
-					HandleAnimationFacing();
+
+					if(potsHandler.PotsState == PlayerPots.PotsStateType.Nothing)
+					{
+						HandleAnimationFacing();
+					}
+					else if(potsHandler.PotsState == PlayerPots.PotsStateType.Holding)
+					{
+						HandlePotsFacing();
+					}
 				}
 			}
 		}
@@ -342,6 +385,18 @@ public class Player : Entity
 		else if(inputMovement.y < 0)
 		{
 			facing = EntityFacing.Down;
+		}
+	}
+
+	public void HandlePotsFacing()
+	{
+		if(inputMovement.x == 0 && inputMovement.y == 0)
+		{
+			potsHandler.Stand();
+		} 
+		else 
+		{
+			potsHandler.Walk();
 		}
 	}
 
