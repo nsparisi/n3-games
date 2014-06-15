@@ -78,7 +78,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 54.5955811, y: 0, z: 0}
+  m_LocalPosition: {x: -153.010498, y: 119.169342, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -174,27 +174,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c740ba458bc4d4d4ca053d613013f329, type: 3}
+  m_Script: {fileID: 11500000, guid: 9129281714e672d41a04e686bfff94b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 200
+  moveSpeed: 180
   hurtSpeed: 600
   pushBackDuration: .5
   invulnerabilityDuration: 2
   Health: 2
   Strength: 1
-  mode: 2
-  modeTime: 0
-  minTravelTime: .5
-  maxTravelTime: 1
-  chosenTravelTime: 0
-  fireWait: .25
-  shotCount: 0
-  maxShots: 0
   facing: 0
-  projectileSpeed: 400
+  aimTime: .600000024
+  patrolSpeed: 0
+  postFireCooldown: .75
+  aiMode: 0
+  pursuitTime: 2
+  preferredFireDistance: 200
+  projectileVelocity: 350
   projectilePrefab: {fileID: 11400000, guid: 6fa0b73389b5df143aceefe7bb2e90c8, type: 2}
-  trajectory: {x: 0, y: 0, z: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
