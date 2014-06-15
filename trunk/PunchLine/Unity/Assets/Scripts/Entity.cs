@@ -10,10 +10,10 @@ public abstract class Entity : MonoBehaviour
 	public float hurtSpeed = 600;
 	public float pushBackDuration = 0.5f;
 	public float invulnerabilityDuration = 2;
+	public int Health = 2;
 	
 	public int Faction { get; protected set; }
 	public int Strength { get; protected set; }
-	public int Health  { get; protected set; }
 	
 	public abstract void TouchedByEntity(Entity other);
 	public abstract void TouchedByWeapon(Weapon other);

@@ -133,6 +133,11 @@ public class Enemy : Entity
 
 	public void TakeDamage(int damage)
 	{
+		Health -= damage;
+		if(Health <= 0)
+		{
+			Kill ();
+		}
 	}
 	
 	public override void TouchedByEntity (Entity other)
