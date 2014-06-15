@@ -49,7 +49,6 @@ public class PlayerPots : MonoBehaviour {
 	
 	IEnumerator PickupRoutine()
 	{
-		Debug.Log("Pickup!");
 		this.PotsState = PotsStateType.PickingUp;
 		playerAnimator.Play(GetAnimation(pickupSuffix));
 		
@@ -60,7 +59,6 @@ public class PlayerPots : MonoBehaviour {
 	
 	IEnumerator ThrowRoutine()
 	{
-		Debug.Log("Throw!");
 		this.PotsState = PotsStateType.Throwing;
 		playerAnimator.Play(GetAnimation(throwSuffix));
 		
