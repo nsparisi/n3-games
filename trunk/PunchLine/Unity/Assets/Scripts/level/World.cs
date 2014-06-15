@@ -16,16 +16,14 @@ public class World : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
-	void Start()
+	void Awake()
 	{
 		if(AllLevels.Count == 0)
 		{
 			Debug.LogError("World has no levels.");
 		}
-		
-		AllLevels[CurrentLevelIndex].transform.position = LevelPosition;
-		AllLevels[CurrentLevelIndex].LevelStart();
+
+		ActivateLevel(AllLevels[CurrentLevelIndex]);
 	}
 	
 	public void WorldComplete()
@@ -51,15 +49,19 @@ public class World : MonoBehaviour {
 
 	IEnumerator AnimateNextLevel(Level previousLevel, Level nextLevel)
 	{
-		Debug.Log("AnimateNextLevel");
 		yield return StartCoroutine(previousLevel.AnimateLevelComplete());
 		previousLevel.gameObject.SetActive(false);
 
 		yield return new WaitForSeconds(1.0f);
-
-		nextLevel.gameObject.SetActive(true);
-		nextLevel.transform.position = LevelPosition;
-		nextLevel.LevelStart();
+		
+		ActivateLevel(nextLevel);
 		yield break;
+	}
+
+	private void ActivateLevel(Level level)
+	{
+		level.LevelStart();
+		level.gameObject.SetActive(true);
+		level.transform.position = LevelPosition;
 	}
 }

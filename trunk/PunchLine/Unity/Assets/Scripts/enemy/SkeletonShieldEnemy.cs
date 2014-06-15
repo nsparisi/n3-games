@@ -22,7 +22,7 @@ public class SkeletonShieldEnemy : Enemy
 		animator = this.GetComponent<Animator>();
 		player = Player.Instance.transform;
 		currentUpdate = DoNothing;
-		BeginCatchUpToPlayer();
+		BeginShadowPlayer();
 	}
 
 	protected override void RunAI ()
@@ -68,6 +68,9 @@ public class SkeletonShieldEnemy : Enemy
 	{
 		currentUpdate = DoNothing;
 		StartCoroutine(WaitBeforeCatchUp());
+		
+		//debug, you killed me!
+		Kill();
 	}
 	
 	IEnumerator WaitBeforeCatchUp()
