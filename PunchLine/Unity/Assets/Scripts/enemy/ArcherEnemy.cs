@@ -107,7 +107,7 @@ public class ArcherEnemy : Enemy
 		
 		Vector3 movement = destination - this.transform.position;
 		float timedPositioningSpeed = moveSpeed * Time.fixedDeltaTime;
-		if (movement.sqrMagnitude < timedPositioningSpeed)
+		if (movement.magnitude < timedPositioningSpeed)
 		{
 			Mode = AIMode.Aim;
 			//lock in facing
