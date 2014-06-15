@@ -6,7 +6,7 @@ public class World : MonoBehaviour {
 
 	public List<Level> AllLevels = new List<Level>();
 	public int CurrentLevelIndex = 0;
-	private Vector3 LevelPosition = new Vector3(0, 0, 100);
+	private Vector3 LevelPosition = new Vector3(0, 0, 0);
 
 	public static World CurrentWorld
 	{
