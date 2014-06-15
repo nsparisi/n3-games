@@ -581,8 +581,16 @@ public class Player : Entity
 			hurtTimer = 0;
 			pushBackTimer = 0;
 			Vector2 direction;
-			direction.x = this.transform.position.x - other.transform.position.x;
-			direction.y = this.transform.position.y - other.transform.position.y;
+
+			if(other is StraightFlyEnemy)
+			{
+				direction = ((StraightFlyEnemy)other).velocity;
+			}
+			else 
+			{
+				direction.x = this.transform.position.x - other.transform.position.x;
+				direction.y = this.transform.position.y - other.transform.position.y;
+			}
 			hurtMovement = direction.normalized * hurtSpeed;
 		}
 	}
