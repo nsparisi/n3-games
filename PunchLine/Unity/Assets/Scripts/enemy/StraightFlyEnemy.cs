@@ -12,13 +12,14 @@ public class StraightFlyEnemy : Enemy {
 	private float modeTime;
 	
 	public Vector3 velocity;
+	public float timeBeforeDisappearing;
 
-	protected override void Init ()
+	protected override void Init()
 	{
 		Mode = AIMode.Go;
 	}
 
-	protected override void RunAI ()
+	protected override void RunAI()
 	{
 		modeTime += Time.deltaTime;
 		switch(mode)
@@ -34,15 +35,18 @@ public class StraightFlyEnemy : Enemy {
 
 	private void Go()
 	{
-		transform.Translate(velocity);
+		transform.Translate(velocity*Time.fixedDeltaTime);
 	}
 
 	private void Stop()
 	{
-		return;
+		if (modeTime > timeBeforeDisappearing)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 
-	public override void TouchedByWall (Collider other)
+	public override void TouchedByWall(Collider other)
 	{
 		Mode = AIMode.Stop;
 	}

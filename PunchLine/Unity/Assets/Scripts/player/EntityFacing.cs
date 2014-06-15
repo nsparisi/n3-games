@@ -33,7 +33,7 @@ public class Facing
 		}
 	}
 
-	public Vector3 FacingToUnitVector3(EntityFacing facing)
+	public static Vector3 FacingToUnitVector3(EntityFacing facing)
 	{
 		switch(facing)
 		{
