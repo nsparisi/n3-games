@@ -101,14 +101,4 @@ public class OctorokEnemy : Enemy {
 		StraightFlyEnemy firedProjectile = Instantiate (projectilePrefab, this.transform.position, Quaternion.identity) as StraightFlyEnemy;
 		firedProjectile.velocity = Facing.FacingToUnitVector3(facing)*projectileSpeed;
 	}
-
-	public override void TouchedByWall (Collider other)
-	{
-//		if (Mode == AIMode.Move)
-//		{
-//			facing = Facing.OppositeFacing(facing);
-//			trajectory = Facing.FacingToUnitVector3(facing);
-//			print (facing.ToString () + " going " + trajectory);
-//		}
-	}
 }
