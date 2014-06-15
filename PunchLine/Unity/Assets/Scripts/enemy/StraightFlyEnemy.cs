@@ -14,6 +14,8 @@ public class StraightFlyEnemy : Enemy {
 	public Vector3 velocity;
 	public float timeBeforeDisappearing;
 
+	public Collider trigger;
+
 	protected override void Init()
 	{
 		Mode = AIMode.Go;
@@ -51,6 +53,7 @@ public class StraightFlyEnemy : Enemy {
 	{
 		if (Mode != AIMode.Stop)
 		{
+			trigger.enabled = false;
 			Mode = AIMode.Stop;
 		}
 	}
