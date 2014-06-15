@@ -336,7 +336,7 @@ public class Player : Entity
 		}
 	}
 
-	Vector2 GetFacingAsAVector()
+	public Vector2 GetFacingAsAVector()
 	{
 		if(facing == EntityFacing.Down)
 		{
@@ -679,6 +679,11 @@ public class Player : Entity
 			hurtMovement = direction.normalized * hurtSpeed;
 		}
 	}
+
+	public override void TouchedByPot (Pot other)
+	{
+		// ignore
+	}
 	
 	public override void WeaponTouchedByWeapon(Weapon other)
 	{
@@ -702,6 +707,12 @@ public class Player : Entity
 			this.sword.UnHoldSword();
 		}
 	}
+
+	public override void WeaponTouchedByPot (Pot other)
+	{
+		// ignore
+	}
+
 	int x;
 	public override void TouchedByWall(Collider other)
 	{

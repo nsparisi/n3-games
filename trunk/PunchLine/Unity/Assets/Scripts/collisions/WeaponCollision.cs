@@ -16,10 +16,16 @@ public class WeaponCollision : BaseCollision
 		}
 		
 		// tell the this weapon's owner that someone touched it.
-		if(collision is EntityCollision)
+		else if(collision is EntityCollision)
 		{
 			EntityCollision entityCollision = (EntityCollision)collision;
 			weapon.owner.WeaponTouchedByEntity(entityCollision.entity);
+		}
+		
+		else if(collision is PotCollision)
+		{
+			PotCollision potCollision = (PotCollision)collision;
+			weapon.owner.WeaponTouchedByPot(potCollision.pot);
 		}
 	}
 }

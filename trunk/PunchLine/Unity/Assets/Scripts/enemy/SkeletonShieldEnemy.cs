@@ -68,9 +68,6 @@ public class SkeletonShieldEnemy : Enemy
 	{
 		currentUpdate = DoNothing;
 		StartCoroutine(WaitBeforeCatchUp());
-		
-		//debug, you killed me!
-		Kill();
 	}
 	
 	IEnumerator WaitBeforeCatchUp()
