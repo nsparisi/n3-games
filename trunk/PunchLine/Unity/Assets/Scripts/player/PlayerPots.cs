@@ -40,6 +40,11 @@ public class PlayerPots : MonoBehaviour {
 		StartCoroutine(ThrowRoutine());
 	}
 
+	public void Drop()
+	{
+		this.PotsState = PotsStateType.Nothing;
+	}
+
 	void Awake()
 	{
 		this.playerAnimator = this.GetComponent<Animator>();
