@@ -29,6 +29,7 @@ public class Enemy : Entity
 	{
 		Faction = -1;
 		hurtTimer = invulnerabilityDuration;
+		pushBackTimer = pushBackDuration;
         holeCollider = this.GetComponent<HoleCollider>();
 		holeSensor = this.GetComponentInChildren<HoleSensor>();
 		Init();

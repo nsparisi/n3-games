@@ -17,7 +17,7 @@ public class ArcherEnemy : Enemy
 	public float aimTime;
 	public float patrolSpeed;
 	public float postFireCooldown;
-	public float missileSpeed;
+
 	public AIMode aiMode;
 	public AIMode Mode { 
 		get { 
@@ -33,8 +33,10 @@ public class ArcherEnemy : Enemy
 
 	//pursue
 	private Vector3 destination;
-	public float positioningSpeed;
+//	public float moveSpeed;
 	public float preferredFireDistance;
+
+	public float projectileVelocity;
 
 	public StraightFlyEnemy projectilePrefab;
 
@@ -104,16 +106,16 @@ public class ArcherEnemy : Enemy
 		destination = FindClosestAlignedDistance (this.transform.position, Player.Instance.transform.position, preferredFireDistance);
 		
 		Vector3 movement = destination - this.transform.position;
-		if (movement.sqrMagnitude < positioningSpeed*positioningSpeed)
+		float timedPositioningSpeed = moveSpeed * Time.fixedDeltaTime;
+		if (movement.sqrMagnitude < timedPositioningSpeed)
 		{
 			Mode = AIMode.Aim;
 			//lock in facing
 			facing = Facing.DirectionToFacing(Player.Instance.transform.position - this.transform.position);
-			print ("aiming");
 		}
 		else
 		{
-			movement = movement.normalized * positioningSpeed;
+			movement = movement.normalized * timedPositioningSpeed;
 		}
 
 		base.MoveWithSliding(movement);
@@ -123,7 +125,6 @@ public class ArcherEnemy : Enemy
 	{
 		if (modeTime > aimTime)
 		{
-			print ("bang");
 			Fire();
 			Mode = AIMode.Cooldown;
 		}
@@ -133,7 +134,6 @@ public class ArcherEnemy : Enemy
 	{
 		if (modeTime > postFireCooldown)
 		{
-			print ("ready for more");
 			Mode = AIMode.Pursue;
 		}
 	}
@@ -144,7 +144,11 @@ public class ArcherEnemy : Enemy
 
 	private void Fire()
 	{
-
+		if(projectilePrefab)
+		{
+			StraightFlyEnemy firedProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as StraightFlyEnemy;
+			firedProjectile.velocity = Facing.FacingToUnitVector3(facing)*projectileVelocity;
+		}
 	}
 
 	private void OnDrawGizmos()

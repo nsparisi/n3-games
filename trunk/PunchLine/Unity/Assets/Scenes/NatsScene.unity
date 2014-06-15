@@ -1979,17 +1979,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9129281714e672d41a04e686bfff94b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 200
+  moveSpeed: 250
   hurtSpeed: 600
   pushBackDuration: .5
   invulnerabilityDuration: 2
-  aimTime: 1
+  facing: 0
+  aimTime: .25
   patrolSpeed: 0
-  postFireCooldown: 1
-  missileSpeed: 0
+  postFireCooldown: .75
   aiMode: 0
-  positioningSpeed: 2
-  preferredFireDistance: 125
+  preferredFireDistance: 220
+  projectileVelocity: 400
+  projectilePrefab: {fileID: 11400000, guid: 6fa0b73389b5df143aceefe7bb2e90c8, type: 2}
 --- !u!95 &261337668
 Animator:
   serializedVersion: 3
@@ -8785,7 +8786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491f575c44b7821478161d7fd7fc70c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 0}
+  entity: {fileID: 261337667}
 --- !u!136 &976983892
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14350,6 +14351,10 @@ Prefab:
     - target: {fileID: 400000, guid: 66214e94932c79d4184f4c5997961f81, type: 2}
       propertyPath: m_LocalPosition.z
       value: 1.39999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: 66214e94932c79d4184f4c5997961f81, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66214e94932c79d4184f4c5997961f81, type: 2}
