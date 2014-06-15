@@ -132,7 +132,7 @@ public class Player : Entity
 		if(dashWasIssued && !isFalling && !IsBeingKnockedBack &&
 		   sword.SwordState == PlayerSword.SwordStateType.NotSwinging)
 		{
-			//begin dashing
+			//begin dashing			
 			dash.IgniteDash();
 		}
 
@@ -181,6 +181,7 @@ public class Player : Entity
 	
 	void BasicAttack()
 	{
+		AudioManager.Instance.PlaySound(AudioManager.SoundTypes.SwordSwipe1);
 		if(facing == EntityFacing.Up)
 		{
 			sword.SwingUp();
@@ -540,6 +541,8 @@ public class Player : Entity
 		if(other.Faction != this.Faction &&
 			!IsInvulnerable)
 		{
+			AudioManager.Instance.PlaySound(AudioManager.SoundTypes.PlayerHurt);
+
 			// take damage
 			TakeDamage(other.Strength);
 			
