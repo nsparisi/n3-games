@@ -905,6 +905,8 @@ MonoBehaviour:
   hurtSpeed: 400
   pushBackDuration: .300000012
   invulnerabilityDuration: 1
+  Health: 2
+  Strength: 1
   sword: {fileID: 11400014}
   facing: 0
   holeSpeedCoefficient: .600000024

@@ -106,6 +106,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110223985
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: playerdie
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 77ea4a0f7e215054cbefb472d8291cba, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -132, y: 288, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110227107
 State:
   m_ObjectHideFlags: 3
@@ -252,7 +267,7 @@ State:
   m_Motions:
   - {fileID: 7400000, guid: 5b6caa723add7b1429cf020f1095622d, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: -133, y: 245, z: 0}
+  m_Position: {x: -132, y: 240, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -550,6 +565,7 @@ StateMachine:
   - {fileID: 110285965}
   - {fileID: 110244248}
   - {fileID: 110299135}
+  - {fileID: 110223985}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
