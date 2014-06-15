@@ -71,7 +71,10 @@ public class Enemy : Entity
 		}
 		else 
         {
-            holeCollider.ActivateHoleCollisions();
+			if(holeCollider)
+			{
+            	holeCollider.ActivateHoleCollisions();
+			}
 			RunAI();
 		}
 		

@@ -635,10 +635,10 @@ public class Player : Entity
 			this.sword.UnHoldSword();
 		}
 	}
-	
+	int x;
 	public override void TouchedByWall(Collider other)
 	{
-		
+		print ("wall: " + (x++));
 	}
 	
 	void OnCollisionEnter(Collision other)

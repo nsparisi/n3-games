@@ -17,12 +17,15 @@ public class EntityCollision : BaseCollision
 			EntityCollision entityCollision = (EntityCollision)collision;
 			entity.TouchedByEntity(entityCollision.entity);
 		} 
-
 		// tell this entity that some one else's weapon touched it
-		if(collision is WeaponCollision)
+		else if(collision is WeaponCollision)
 		{
 			WeaponCollision weaponCollision = (WeaponCollision)collision;
 			entity.TouchedByWeapon(weaponCollision.weapon);
+		}
+		else if (collision is WallCollision)
+		{
+			entity.TouchedByWall(other);
 		}
 	}
 }
