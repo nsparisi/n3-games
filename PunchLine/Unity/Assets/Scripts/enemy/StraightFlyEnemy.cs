@@ -9,7 +9,7 @@ public class StraightFlyEnemy : Enemy {
 
 	private AIMode mode;
 	private AIMode Mode { get { return mode; } set { mode = value; modeTime = 0f; } }
-	private float modeTime;
+	public float modeTime;
 	
 	public Vector3 velocity;
 	public float timeBeforeDisappearing;
@@ -21,7 +21,7 @@ public class StraightFlyEnemy : Enemy {
 
 	protected override void RunAI()
 	{
-		modeTime += Time.deltaTime;
+		modeTime += Time.fixedDeltaTime;
 		switch(mode)
 		{
 		case AIMode.Go:
@@ -31,11 +31,12 @@ public class StraightFlyEnemy : Enemy {
 			Stop();
 			break;
 		}
+
 	}
 
 	private void Go()
 	{
-		transform.Translate(velocity*Time.fixedDeltaTime);
+		characterController.Move(velocity*Time.fixedDeltaTime);
 	}
 
 	private void Stop()
@@ -48,15 +49,20 @@ public class StraightFlyEnemy : Enemy {
 
 	public override void TouchedByWall(Collider other)
 	{
-		Mode = AIMode.Stop;
+		if (Mode != AIMode.Stop)
+		{
+			Mode = AIMode.Stop;
+		}
 	}
 
 	public override void TouchedByEntity (Entity other)
 	{
-		print("Bang: " + other.name);
-		if (other is Player)
+		if (Mode == AIMode.Go)
 		{
-			Destroy (this.gameObject);
+			if (other is Player)
+			{
+				Destroy (this.gameObject);
+			}
 		}
 	}
 }

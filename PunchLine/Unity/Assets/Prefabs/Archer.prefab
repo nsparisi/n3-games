@@ -78,7 +78,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -239.222656, y: 267.108826, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -186,6 +186,7 @@ MonoBehaviour:
   patrolSpeed: 0
   postFireCooldown: .75
   aiMode: 0
+  pursuitTime: 1
   preferredFireDistance: 220
   projectileVelocity: 400
   projectilePrefab: {fileID: 11400000, guid: 6fa0b73389b5df143aceefe7bb2e90c8, type: 2}

@@ -33,12 +33,13 @@ public class ArcherEnemy : Enemy
 
 	//pursue
 	private Vector3 destination;
-//	public float moveSpeed;
+	public float pursuitTime;
 	public float preferredFireDistance;
 
 	public float projectileVelocity;
 
 	public StraightFlyEnemy projectilePrefab;
+
 
 	protected override void Init()
 	{
@@ -103,11 +104,12 @@ public class ArcherEnemy : Enemy
 
 	private void PursuePlayer()
 	{
-		destination = FindClosestAlignedDistance (this.transform.position, Player.Instance.transform.position, preferredFireDistance);
 		
-		Vector3 movement = destination - this.transform.position;
-		float timedPositioningSpeed = moveSpeed * Time.fixedDeltaTime;
-		if (movement.magnitude < timedPositioningSpeed)
+//		if (modeTime > pursuitTime)
+//		{
+//      }
+		
+		if (modeTime > pursuitTime)
 		{
 			Mode = AIMode.Aim;
 			//lock in facing
@@ -115,10 +117,21 @@ public class ArcherEnemy : Enemy
 		}
 		else
 		{
-			movement = movement.normalized * timedPositioningSpeed;
+			destination = FindClosestAlignedDistance (this.transform.position, Player.Instance.transform.position, preferredFireDistance);
+			Vector3 movement = destination - this.transform.position;
+			float timedPositioningSpeed = moveSpeed * Time.fixedDeltaTime;
+			if (movement.magnitude < timedPositioningSpeed)
+			{
+				Mode = AIMode.Aim;
+				//lock in facing
+				facing = Facing.DirectionToFacing(Player.Instance.transform.position - this.transform.position);
+			}
+			else
+			{
+				movement = movement.normalized * timedPositioningSpeed;
+			}
+			base.MoveWithSliding(movement);
 		}
-
-		base.MoveWithSliding(movement);
 	}
 
 	private void Aim()
@@ -151,6 +164,10 @@ public class ArcherEnemy : Enemy
 		}
 	}
 
+	public override void TouchedByWall (Collider other)
+	{
+	}
+
 	private void OnDrawGizmos()
 	{
 		switch(aiMode)
@@ -160,5 +177,5 @@ public class ArcherEnemy : Enemy
 				Gizmos.DrawSphere(destination, 10);
 				break;
 		}
-	}
+	}	
 }
