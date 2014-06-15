@@ -1,29 +1,74 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Level : MonoBehaviour {
 
-	public int EnemiesLeft = 1;
+	public List<AbstractObjective> Objectives;
+	bool[] completedObjectives;
+	bool shouldBeAwake = false;
 
-	// Use this for initialization
-	void Start () {
-	
+	void Awake()
+	{
+		if(!shouldBeAwake)
+		{
+			this.gameObject.SetActive(false);
+		}
+	}
+
+	void Start()
+	{
+		completedObjectives = new bool[Objectives.Count];
 	}
 	
 	public void LevelStart()
 	{
-		StartCoroutine(WaitAndComplete());
+		// initialization logic here
+		shouldBeAwake = true;
+	}
+
+	// ************************
+	// Objectives stuff
+	// ************************
+	void OnEnable()
+	{
+		AbstractObjective.OnCompleteEvent += ObjectiveCompleteEvent;
+	}
+
+	void OnDisable()
+	{
+		AbstractObjective.OnCompleteEvent -= ObjectiveCompleteEvent;
+	}
+
+	void ObjectiveCompleteEvent(AbstractObjective target)
+	{
+		for(int i = 0; i < Objectives.Count; i++)
+		{
+			if(Objectives[i].Equals(target))
+			{
+				Debug.Log("Level marked objective " + i);
+				completedObjectives[i] = true;
+				break;
+			}
+		}
+
+		bool allComplete = true;
+		for(int i = 0; i < completedObjectives.Length; i++)
+		{
+			allComplete &= completedObjectives[i];
+		}
+		
+		if(allComplete)
+		{
+			LevelComplete();
+		}	
 	}
 
 	public void LevelComplete()
 	{
+		Debug.Log("Level Complete!");
 		World.CurrentWorld.LevelComplete();
-	}
-
-	IEnumerator WaitAndComplete()
-	{
-		yield return new WaitForSeconds(5.0f);
-		LevelComplete();
+		shouldBeAwake = false;
 	}
 	
 	// ************************
@@ -31,18 +76,15 @@ public class Level : MonoBehaviour {
 	// ************************
 	public IEnumerator AnimateLevelComplete()
 	{
-		Debug.Log("AnimateLevelComplete");
 		yield return StartCoroutine(AnimateTiles());
 	}
 
 	IEnumerator AnimateTiles()
 	{
 		Transform background = transform.FindChild("Background");
-		Debug.Log("background: " + background);
 		for(int i = 0; i < background.childCount; i++)
 		{
 			Transform tile = background.GetChild(i);
-			Debug.Log("tile: " + tile);
 			StartCoroutine(FlyTileAway(tile));
 			yield return new WaitForFixedUpdate();
 		}
@@ -52,9 +94,13 @@ public class Level : MonoBehaviour {
 
 	IEnumerator FlyTileAway(Transform tile)
 	{
-		Vector3 velocity = new Vector3(5,5,0);
+		float speed = 10.0f;
+		float x = Random.Range(-1.0f, 1.0f);
+		float y = Random.Range(-1.0f, 1.0f);
+		Vector3 velocity = new Vector3(x,y,0);
+		velocity = velocity.normalized * speed;
 		float startTime = Time.fixedTime;
-		float duration = 5;
+		float duration = 2;
 
 		while(Time.fixedTime - startTime < duration)
 		{

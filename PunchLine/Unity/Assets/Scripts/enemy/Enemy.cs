@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Enemy : Entity 
 {	
+	public delegate void EnemyEvent(Enemy target);
+	public static event EnemyEvent OnKilled;
+
 	public bool IsInvulnerable 
 	{
 		get 
@@ -120,6 +123,12 @@ public class Enemy : Entity
     public void Kill()
     {
         Debug.Log(this.name + " is Dead");
+		if(OnKilled != null)
+		{
+			OnKilled(this);
+		}
+
+		this.gameObject.SetActive(false);
     }
 
 	public void TakeDamage(int damage)
