@@ -39,6 +39,7 @@ public class Player : Entity
 	public int holeDamage = 1;
 	public float dashPrepDuration = 1;
 	public float dashSpeedCoefficient = 1.6f;
+	public Transform potHolder;
 
 	Vector2 inputMovement;
 	Vector2 hurtMovement;
@@ -59,6 +60,7 @@ public class Player : Entity
 	PlayerPots potsHandler;
 	PotSensor potSensor;
 	float potSensorDistance;
+	Pot heldPot;
 	
 	new void Awake()
 	{
@@ -131,6 +133,7 @@ public class Player : Entity
 		if(potSensor.TouchingPot != null)
 		{
 			potSensor.TouchingPot.PickUp(this);
+			heldPot = potSensor.TouchingPot;
 			return true;
 		}
 
@@ -166,6 +169,7 @@ public class Player : Entity
 			if(potsHandler.PotsState == PlayerPots.PotsStateType.Holding)
 			{
 				potsHandler.Throw();
+				heldPot.Throw();
 			}
 			else if(TryPickupPot())
 			{
