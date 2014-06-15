@@ -35,7 +35,8 @@ public class PlayerDash : MonoBehaviour {
 
 	public void CancelDash()
 	{
-		DashState = DashStateType.Nothing;
+		DashState = DashStateType.Nothing;		
+		AudioManager.Instance.StopSound(AudioManager.SoundTypes.PlayerDash);
 	}
 
 	void Awake()
@@ -62,7 +63,8 @@ public class PlayerDash : MonoBehaviour {
 	private void StartDashing()
 	{
 		DashState = DashStateType.Dashing;
-		playerAnimator.Play(GetDashAnimation());
+		playerAnimator.Play(GetDashAnimation());		
+		AudioManager.Instance.PlaySound(AudioManager.SoundTypes.PlayerDash);
 	}
 
 	private string GetPrepAnimation()
