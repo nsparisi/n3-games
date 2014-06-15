@@ -58,6 +58,7 @@ public class Player : Entity
 	bool isDying = false;
 	PlayerPots potsHandler;
 	PotSensor potSensor;
+	float potSensorDistance;
 	
 	new void Awake()
 	{
@@ -69,6 +70,7 @@ public class Player : Entity
 		potsHandler = GetComponent<PlayerPots>();
 		holeSensor = this.GetComponentInChildren<HoleSensorController>();
 		potSensor = this.GetComponentInChildren<PotSensor>();
+		potSensorDistance = potSensor.transform.localPosition.magnitude;
 	}
 	
 	void Start () {
@@ -315,6 +317,7 @@ public class Player : Entity
 				if(sword.SwordState == PlayerSword.SwordStateType.NotSwinging)
 				{
 					HandleFacing();
+					HandlePotSensorFacing();
 
 					if(potsHandler.PotsState == PlayerPots.PotsStateType.Nothing)
 					{
@@ -386,6 +389,11 @@ public class Player : Entity
 		{
 			facing = EntityFacing.Down;
 		}
+	}
+
+	public void HandlePotSensorFacing()
+	{
+		potSensor.transform.localPosition = GetFacingAsAVector() * potSensorDistance;
 	}
 
 	public void HandlePotsFacing()
