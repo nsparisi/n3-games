@@ -164,7 +164,24 @@ public class Enemy : Entity
 			hurtMovement = direction.normalized * hurtSpeed;
 		}
 	}
-	
+
+	public override void TouchedByPot (Pot other)
+	{
+		if(other.isFlying)
+		{
+			TouchedByWeapon(other);
+		}
+	}
+
+	public override void WeaponTouchedByPot (Pot other)
+	{
+		if(other.isFlying)
+		{
+			// handle differently maybe
+			TouchedByWeapon(other);
+		}
+	}
+
 	public override void WeaponTouchedByWeapon (Weapon other)
 	{
 		if(other.owner.Faction != this.Faction && 

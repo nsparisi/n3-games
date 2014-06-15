@@ -27,5 +27,10 @@ public class EntityCollision : BaseCollision
 		{
 			entity.TouchedByWall(other);
 		}
+		else if(collision is PotCollision)
+		{
+			PotCollision potCollision = (PotCollision)collision;
+			entity.TouchedByPot(potCollision.pot);
+		}
 	}
 }

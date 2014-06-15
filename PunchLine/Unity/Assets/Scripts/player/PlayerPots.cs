@@ -17,8 +17,8 @@ public class PlayerPots : MonoBehaviour {
 	private const string throwSuffix = "_throw";
 	private const string walkSuffix = "_walk";
 
-	private const float PickupDuration = 1.0f;
-	private const float ThrowDuration = 1.0f;
+	private const float PickupDuration = 0.4f;
+	private const float ThrowDuration = 0.1f;
 
 	public void Pickup()
 	{
