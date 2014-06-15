@@ -555,7 +555,8 @@ public class Player : Entity
 	
 	void Die()
 	{
-		StartCoroutine(DieRoutine());
+		StartCoroutine(DieRoutine());		
+		AudioManager.Instance.PlaySound(AudioManager.SoundTypes.PlayerDying);
 	}
 	
 	IEnumerator DieRoutine()
