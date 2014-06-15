@@ -50,4 +50,13 @@ public class StraightFlyEnemy : Enemy {
 	{
 		Mode = AIMode.Stop;
 	}
+
+	public override void TouchedByEntity (Entity other)
+	{
+		print("Bang: " + other.name);
+		if (other is Player)
+		{
+			Destroy (this.gameObject);
+		}
+	}
 }
