@@ -609,6 +609,12 @@ public class Player : Entity
 	{
 		this.sword.UnHoldSword();
 
+		if(heldPot != null)
+		{
+			heldPot.Throw();
+		}
+		potsHandler.Drop();
+
 		Health -= damage;
 		if(Health <= 0)
 		{
