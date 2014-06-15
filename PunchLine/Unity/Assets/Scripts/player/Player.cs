@@ -55,6 +55,7 @@ public class Player : Entity
     bool fellInHole = false;
     Vector3 lastSafePosition;
 	PlayerDash dash;
+	bool isDying = false;
 	
 	new void Awake()
 	{
@@ -121,6 +122,12 @@ public class Player : Entity
 	
 	protected override void EntityFixedUpdate()
 	{
+		// You are dead.
+		if(isDying)
+		{
+			return;
+		}
+
         // Falling animation, can't control character
         if (fellInHole)
 		{
@@ -534,6 +541,31 @@ public class Player : Entity
 	public void TakeDamage(int damage)
 	{
 		this.sword.UnHoldSword();
+
+		Health -= damage;
+		if(Health <= 0)
+		{
+			Die();
+		} 
+		else 
+		{
+			AudioManager.Instance.PlaySound(AudioManager.SoundTypes.PlayerHurt);
+		}
+	}
+	
+	void Die()
+	{
+		StartCoroutine(DieRoutine());
+	}
+	
+	IEnumerator DieRoutine()
+	{
+		animator.Play("playerdie");
+		isDying = true;
+		yield return new WaitForSeconds(1.95f);
+		
+		// reset and take damage
+		Application.LoadLevel("World_1");
 	}
 	
 	public override void TouchedByEntity (Entity other)
@@ -541,8 +573,6 @@ public class Player : Entity
 		if(other.Faction != this.Faction &&
 			!IsInvulnerable)
 		{
-			AudioManager.Instance.PlaySound(AudioManager.SoundTypes.PlayerHurt);
-
 			// take damage
 			TakeDamage(other.Strength);
 			
