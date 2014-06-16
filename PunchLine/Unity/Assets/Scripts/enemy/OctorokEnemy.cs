@@ -26,6 +26,12 @@ public class OctorokEnemy : Enemy {
 	public StraightFlyEnemy projectilePrefab;
 
 	public Vector3 trajectory;
+	private Animator animator;
+
+	protected override void Init()
+	{
+		animator = this.GetComponent<Animator>();
+	}
 
 	protected override void RunAI ()
 	{
@@ -41,6 +47,8 @@ public class OctorokEnemy : Enemy {
 		case AIMode.Stop:
 			break;
 		}
+
+		DoFacing();
 	}
 
 	private void StartMove()
@@ -68,6 +76,11 @@ public class OctorokEnemy : Enemy {
 			facing = Facing.OppositeFacing(facing);
 			trajectory = Facing.FacingToUnitVector3(facing);
 		}
+	}
+
+	void DoFacing()
+	{
+		animator.Play("OctorokWalk"+facing.ToString());
 	}
 
 	private void StartFiring()

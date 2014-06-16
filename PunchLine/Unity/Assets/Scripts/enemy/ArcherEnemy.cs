@@ -73,7 +73,7 @@ public class ArcherEnemy : Enemy
 	{
 		Vector3 facingVector = player.transform.position - this.transform.position;
 		EntityFacing facing = Facing.DirectionToFacing (facingVector);
-		animator.Play("skeletonwalk"+facing.ToString().ToLower());
+		animator.Play("ArcherWalk"+facing.ToString());
 	}
 
 	public Vector3 FindClosestAlignedDistance(Vector3 origin, Vector3 destination, float distance)
