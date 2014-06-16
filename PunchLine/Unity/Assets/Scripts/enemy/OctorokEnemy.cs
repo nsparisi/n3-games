@@ -26,12 +26,6 @@ public class OctorokEnemy : Enemy {
 	public StraightFlyEnemy projectilePrefab;
 
 	public Vector3 trajectory;
-	private Animator animator;
-
-	protected override void Init()
-	{
-		animator = this.GetComponent<Animator>();
-	}
 
 	protected override void RunAI ()
 	{

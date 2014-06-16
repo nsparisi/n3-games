@@ -20,12 +20,14 @@ public class Enemy : Entity
     private HoleCollider holeCollider;
     private HoleSensor holeSensor;
 	private bool fellInHole;
+	protected Animator animator;
 	
 	protected delegate void EnemyAIUpdateFunction();
 	
 	new void Awake()
 	{
 		base.Awake();
+		animator = this.GetComponent<Animator>();
 	}
 	
 	void Start()

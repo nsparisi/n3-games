@@ -13,13 +13,11 @@ public class SkeletonShieldEnemy : Enemy
 	private Vector3 targetDirectionFromPlayer;
 	private Vector3 destination;
 	private EntityFacing facing;
-	private Animator animator;
 
 	EnemyAIUpdateFunction currentUpdate;
 
 	protected override void Init ()
 	{
-		animator = this.GetComponent<Animator>();
 		player = Player.Instance.transform;
 		currentUpdate = DoNothing;
 		BeginShadowPlayer();

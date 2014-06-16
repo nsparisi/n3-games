@@ -39,13 +39,11 @@ public class ArcherEnemy : Enemy
 	public float projectileVelocity;
 
 	public StraightFlyEnemy projectilePrefab;
-	private Animator animator;
 	private Transform player;
 
 
 	protected override void Init()
 	{
-		animator = this.GetComponent<Animator>();
 		player = Player.Instance.transform;
 	}
 
