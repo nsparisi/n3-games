@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 04b54802607f99a47850816415f3c209
+guid: bf025d4076adc7e4b9cfcdeccdd3ca3b
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -42,212 +42,182 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: mc-walk_13
+    - name: PlayerLift_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 131
+        x: 24
+        y: 155
         width: 32
-        height: 48
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerLift_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 156
+        width: 60
+        height: 36
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_14
+    - name: PlayerLift_6
       rect:
         serializedVersion: 2
-        x: 52
-        y: 131
-        width: 32
-        height: 46
+        x: 134
+        y: 156
+        width: 68
+        height: 36
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_15
+    - name: PlayerLift_7
       rect:
         serializedVersion: 2
-        x: 146
-        y: 131
+        x: 210
+        y: 155
+        width: 68
+        height: 36
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerLift_8
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 155
         width: 32
         height: 44
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_16
+    - name: PlayerLift_9
       rect:
         serializedVersion: 2
-        x: 192
-        y: 131
+        x: 356
+        y: 155
         width: 32
         height: 44
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_17
+    - name: PlayerLift_18
       rect:
         serializedVersion: 2
-        x: 240
-        y: 131
-        width: 32
-        height: 46
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_18
-      rect:
-        serializedVersion: 2
-        x: 286
-        y: 131
-        width: 32
-        height: 48
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_19
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 71
+        x: 21
+        y: 82
         width: 34
-        height: 48
+        height: 40
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_20
+    - name: PlayerLift_20
       rect:
         serializedVersion: 2
-        x: 52
-        y: 71
-        width: 34
-        height: 46
+        x: 71
+        y: 82
+        width: 56
+        height: 40
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_21
+    - name: PlayerLift_23
       rect:
         serializedVersion: 2
-        x: 100
-        y: 71
-        width: 34
-        height: 44
+        x: 137
+        y: 82
+        width: 64
+        height: 40
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_22
+    - name: PlayerLift_26
       rect:
         serializedVersion: 2
-        x: 194
-        y: 71
-        width: 34
-        height: 44
+        x: 211
+        y: 82
+        width: 64
+        height: 40
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_23
+    - name: PlayerLift_28
       rect:
         serializedVersion: 2
-        x: 240
-        y: 71
-        width: 34
-        height: 46
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_24
-      rect:
-        serializedVersion: 2
-        x: 284
-        y: 71
-        width: 34
-        height: 48
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_25
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 8
-        width: 36
-        height: 46
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_26
-      rect:
-        serializedVersion: 2
-        x: 52
-        y: 8
-        width: 36
-        height: 48
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_27
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 8
-        width: 38
-        height: 48
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_28
-      rect:
-        serializedVersion: 2
-        x: 194
-        y: 8
-        width: 38
-        height: 48
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_29
-      rect:
-        serializedVersion: 2
-        x: 242
-        y: 8
-        width: 36
-        height: 48
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: mc-walk_30
-      rect:
-        serializedVersion: 2
-        x: 286
-        y: 8
-        width: 38
-        height: 46
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PlayerWalk_33
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 131
+        x: 287
+        y: 82
         width: 32
         height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PlayerWalk_34
+    - name: PlayerLift_29
       rect:
         serializedVersion: 2
-        x: 146
-        y: 71
-        width: 34
+        x: 337
+        y: 82
+        width: 32
         height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PlayerWalk_35
+    - name: PlayerLift_34
       rect:
         serializedVersion: 2
-        x: 146
+        x: 22
         y: 8
-        width: 38
+        width: 50
+        height: 40
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerLift_35
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 8
+        width: 62
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerLift_37
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 8
+        width: 68
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerLift_38
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 8
+        width: 62
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerLift_39
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 8
+        width: 40
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerLift_40
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 10
+        width: 32
         height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
