@@ -15,6 +15,7 @@ public class StraightFlyEnemy : Enemy {
 	public float timeBeforeDisappearing;
 
 	public Collider trigger;
+	public string DeathAnimationName;
 
 	protected override void Init()
 	{
@@ -46,6 +47,10 @@ public class StraightFlyEnemy : Enemy {
 		if (modeTime > timeBeforeDisappearing)
 		{
 			Destroy(this.gameObject);
+		}
+		else if(!string.IsNullOrEmpty(DeathAnimationName)) 
+		{
+			animator.Play (DeathAnimationName);
 		}
 	}
 
