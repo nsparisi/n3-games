@@ -41,6 +41,9 @@ public class Player : Entity
 	public float dashSpeedCoefficient = 1.6f;
 	public Transform potHolder;
 
+	public AnimationClip fallMotion;
+	public AnimationClip dieMotion;
+
 	Vector2 inputMovement;
 	Vector2 hurtMovement;
 	bool attackWasIssued;
@@ -566,9 +569,9 @@ public class Player : Entity
 
     IEnumerator FellInHoleRoutine()
     {
-        animator.Play("fall");
+		animator.Play(fallMotion.name);
         fellInHole = true;
-        yield return new WaitForSeconds(1.95f);
+		yield return new WaitForSeconds(fallMotion.length);
 
         // reset and take damage
         this.transform.position = lastSafePosition;
@@ -634,9 +637,9 @@ public class Player : Entity
 	
 	IEnumerator DieRoutine()
 	{
-		animator.Play("playerdie");
+		animator.Play(dieMotion.name);
 		isDying = true;
-		yield return new WaitForSeconds(1.95f);
+		yield return new WaitForSeconds(dieMotion.length);
 		
 		// reset and take damage
 		Application.LoadLevel("World_1");
