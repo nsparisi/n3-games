@@ -320,7 +320,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.99999905, y: -11.000001, z: -.110000007}
+  m_LocalPosition: {x: -3.99999905, y: -11, z: -.634093285}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400010}
@@ -385,7 +385,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -52.4093323, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400006}
@@ -516,7 +516,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -15, z: 0}
+  m_LocalPosition: {x: 0, y: -22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400010}
@@ -980,7 +980,7 @@ MonoBehaviour:
   hurtSpeed: 400
   pushBackDuration: .300000012
   invulnerabilityDuration: 1
-  Health: 2
+  Health: 10
   Strength: 1
   sword: {fileID: 11400014}
   facing: 0
@@ -989,6 +989,8 @@ MonoBehaviour:
   dashPrepDuration: .560000002
   dashSpeedCoefficient: 1.60000002
   potHolder: {fileID: 400032}
+  fallMotion: {fileID: 7400000, guid: 5b6caa723add7b1429cf020f1095622d, type: 2}
+  dieMotion: {fileID: 7400000, guid: 77ea4a0f7e215054cbefb472d8291cba, type: 2}
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1238,7 +1240,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 5
-  m_Center: {x: 0, y: -10, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
